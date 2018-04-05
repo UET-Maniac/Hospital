@@ -1,0 +1,97 @@
+khoa:
+{
+	ten: "String", (mỗi khoa 1 tên, không được trùng)
+	moTa: "String",
+	diaChi: "String",
+	anh: "String"(link ảnh),
+	thanhLap: date (thời gian thành lập)
+}
+
+nguoiDung:
+{
+	id: "String",
+	hoVaTen: "String",
+	cmnd: "String",
+	soDienThoai: "String",
+	ngayThangNamSinh: date,
+	gioiTinh: boolean, (trai tru, gái false)
+	diaChi: "String",
+	anh: "String"(link ảnh),
+	tenDangNhap: "String", (mỗi người 1 tên, không được trùng)
+	matKhau: "String",
+	bacSi:
+	{
+		hocVan: "String",
+		kinhNghiem: "String",
+		diemDanhGia: int,
+		tenKhoa: "String",
+		truongKhoa: boolean
+	},
+	adMin: boolean
+}
+benhAn:
+{
+	idBacSi: "String",
+	idBenhNhan: "String",
+	soGiuongBenh: "String",
+	chuanDoan: "String",
+	tinhTrang: "String",
+	cachChua: "String",
+	loaiBenh: [
+		"String","String",..... (id)
+	]
+	loaiThuoc: [
+		"String", "String",..... (id)
+	]
+}
+loaiBenh:
+{
+	id: "String",
+	ten: "String"
+}
+loaiThuoc:
+{
+	id: "String",
+	ten: "String",
+	congDung: "String",
+	cachDung: "String",
+	moTa: "String"
+}
+lichHen:
+{
+	id: "String",
+	idBacSi: "String",
+	idKhach: "String",
+	thoiGian: dateTime,
+	diaChi: "String",
+	moTa: "String",
+	trangThai: boolean
+}
+danhGia:
+{
+	id: "String",
+	idBacSi: "String",
+	idKhach: "String",
+	diem: int,
+	noiDung: "String"
+}
+baiDang:
+{
+	id: "String",
+	tags: "String",
+	tieuDe: "String",
+	noiDung: "String",
+	anh: "String",
+	soLike: int
+	idNguoiDang: "String",
+}
+baiTraoDoi:
+{
+	id: "String",
+	noiDung: "String",
+	anh: "String",
+	idNguoiDung: "String",
+	idBaiCon:[
+		"String", "String", .....
+	]
+}
