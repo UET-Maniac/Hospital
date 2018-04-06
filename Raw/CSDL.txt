@@ -29,8 +29,10 @@ nguoiDung:
 	},
 	adMin: boolean
 }
+
 benhAn:
 {
+	id: "String",
 	idBacSi: "String",
 	idBenhNhan: "String",
 	soGiuongBenh: "String",
@@ -39,7 +41,7 @@ benhAn:
 	cachChua: "String",
 	loaiBenh: [
 		"String","String",..... (id)
-	]
+	],
 	loaiThuoc: [
 		"String", "String",..... (id)
 	]
@@ -47,7 +49,10 @@ benhAn:
 loaiBenh:
 {
 	id: "String",
-	ten: "String"
+	ten: "String",
+	benhAn: [
+		"String", "String",..... (id)
+	]
 }
 loaiThuoc:
 {
@@ -55,7 +60,10 @@ loaiThuoc:
 	ten: "String",
 	congDung: "String",
 	cachDung: "String",
-	moTa: "String"
+	moTa: "String",
+	benhAn: [
+		"String", "String",..... (id)
+	]
 }
 lichHen:
 {
