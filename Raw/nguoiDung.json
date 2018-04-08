@@ -1,0 +1,47 @@
+{
+	"id": "10001111",
+	"hoVaTen": "Nguyễn Văn A",
+	"cmnd": "0163478351",
+	"soDienThoai": "012483925",
+	"ngayThangNamSinh": "1998-09-05",
+	"gioiTinh": true,
+	"diaChi": "18/abc",
+	"anh": "",
+	"tenDangNhap": "nguyenvana@gmail.com",
+	"matKhau": "123456789"
+}
+
+{
+	"id": "16021112",
+	"hoVaTen": "Nguyễn Thị B",
+	"cmnd": "012337489",
+	"soDienThoai": "0113619322",
+	"ngayThangNamSinh": "2000-01-01",
+	"gioiTinh": false,
+	"diaChi": "1/northWood",
+	"anh": "",
+	"tenDangNhap": "nguyenthib@gmail.com",
+	"matKhau": "123456789",
+	"bacSi":
+	{
+		"hocVan": "Đại học",
+		"kinhNghiem": "2 Năm",
+		"diemDanhGia": 8,
+		"tenKhoa": "Chấn thương chỉnh hình",
+		"truongKhoa": false
+	}
+}
+
+{
+	"id": "10000000",
+	"hoVaTen": "Nguyễn Văn C",
+	"cmnd": "075395493",
+	"soDienThoai": "01248392535",
+	"ngayThangNamSinh": "1998-09-01",
+	"gioiTinh": true,
+	"diaChi": "19/abc",
+	"anh": "",
+	"tenDangNhap": "nguyenvanc@gmail.com",
+	"matKhau": "123456789",
+	"adMin": true
+}
