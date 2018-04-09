@@ -1,0 +1,115 @@
+#wrap-all {
+    margin: 0px auto;
+    background-color: #FFFFFF;
+    width: 1024px;
+    min-height: 2048px;
+    box-shadow: 0px 0px 3px 1px rgb(218, 217, 217);
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.clear-float {
+    clear: both;
+}
+
+hr {
+    display: inline-block;
+    width: 99.9%;
+    margin: auto;
+    box-shadow: 0px 1px 3px 1px gray;
+}
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+
+/*
+* header
+*/
+
+#language {
+    padding: 10px;
+}
+
+#language span {
+    float: right;
+    margin-right: 30px;
+    cursor: pointer;
+    color: #196AAA;
+}
+
+#language span#active-language {
+    color: #F09A22;
+}
+
+#banner {
+    margin-top: 10px;
+    width: 425px;
+    float: left;
+}
+
+#banner #logo {
+    display: inline-block;
+    margin-left: 80px;
+    weight: 80px;
+}
+
+#banner #logo img {
+    width: 90px;
+    border-radius: 45px;
+}
+
+#banner #slogan {
+    display: inline-block;
+    float: right;
+    font-weight: bold;
+    font-size: 30px;
+    color: #196AAA;
+}
+
+#communicate {
+    width: 599px;
+    float: right;
+}
+
+#communicate span {
+    float: right;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+
+/*
+* navigator
+*/
+
+div#main-menu {
+    float: right;
+    background-color: #008DC9;
+    width: 499px;
+    height: 43px;
+    line-height: 33px;
+}
+
+span.e-menu {
+    display: inline-block;
+    padding: 5px 10px;
+    color: #F9FFFF;
+}
+
+span.e-menu:hover {
+    background-color: #F09A22;
+}
+
+div#main-menu span.active {
+    background-color: #F09A22;
+}
