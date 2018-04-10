@@ -1,105 +1,107 @@
-khoa:
+department:
 {
-	ten: "String", (mỗi khoa 1 tên, không được trùng)
-	moTa: "String",
-	diaChi: "String",
-	anh: "String"(link ảnh),
-	thanhLap: date (thời gian thành lập)
+	name: "String", (mỗi khoa 1 tên, không được trùng)
+	description: "String",
+	address: "String",
+	image: "String"(link ảnh),
+	foundingOn: date (thời gian thành lập)
 }
 
-nguoiDung:
+user:
 {
-	id: "String",
-	hoVaTen: "String",
-	cmnd: "String",
-	soDienThoai: "String",
-	ngayThangNamSinh: date,
-	gioiTinh: boolean, (trai tru, gái false)
-	diaChi: "String",
-	anh: "String"(link ảnh),
-	tenDangNhap: "String", (mỗi người 1 tên, không được trùng)
-	matKhau: "String",
-	bacSi:
+	userId: "String",
+	name: "String",
+	card: "String",
+	phoneNumber: "String",
+	birthday: date,
+	sex: boolean, (trai tru, gái false)
+	address: "String",
+	image: "String"(link ảnh),
+	userName: "String", (mỗi người 1 tên, không được trùng)
+	password: "String",
+	doctor:
 	{
-		hocVan: "String",
-		kinhNghiem: "String",
-		diemDanhGia: int,
-		tenKhoa: "String",
-		truongKhoa: boolean
+		level: "String",
+		experience: "String",
+		star: int,
+		departmentName: "String",
+		dean: boolean
 	},
-	adMin: boolean
+	admin: boolean
 }
 
-benhAn:
+medicalRecord:
 {
-	id: "String",
-	idBacSi: "String",
-	idBenhNhan: "String",
-	soGiuongBenh: "String",
-	chuanDoan: "String",
-	tinhTrang: "String",
-	cachChua: "String",
-	loaiBenh: [
+	recordId: "String",
+	doctorId: "String",
+	patientId: "String",
+	bedNo: "String",
+	theDiagnosis: "String",
+	status: "String",
+	treatment: "String",
+	diseaseTypes: [
 		"String","String",..... (id)
 	],
-	loaiThuoc: [
+	medicines: [
 		"String", "String",..... (id)
 	]
 }
-loaiBenh:
+diseaseType:
 {
-	id: "String",
-	ten: "String",
-	benhAn: [
+	diseaseTypeId: "String",
+	name: "String",
+	medicalRecords: [
 		"String", "String",..... (id)
 	]
 }
-loaiThuoc:
+medicine:
 {
-	id: "String",
-	ten: "String",
-	congDung: "String",
-	cachDung: "String",
-	moTa: "String",
-	benhAn: [
+	medicineId: "String",
+	name: "String",
+	effect: "String",
+	use: "String",
+	description: "String",
+	medicalRecords: [
 		"String", "String",..... (id)
 	]
 }
-lichHen:
+appointmentSchedule:
 {
-	id: "String",
-	idBacSi: "String",
-	idKhach: "String",
-	thoiGian: dateTime,
-	diaChi: "String",
-	moTa: "String",
-	trangThai: boolean
+	scheduleId: "String",
+	doctorId: "String",
+	patientId: "String",
+	time: dateTime,
+	address: "String",
+	description: "String",
+	acceptance: boolean
 }
-danhGia:
+rating:
 {
-	id: "String",
-	idBacSi: "String",
-	idKhach: "String",
-	diem: int,
-	noiDung: "String"
+	ratingId: "String",
+	doctorId: "String",
+	patientId: "String",
+	star: int,
+	content: "String"
 }
-baiDang:
+new:
 {
-	id: "String",
-	tags: "String",
-	tieuDe: "String",
-	noiDung: "String",
-	anh: "String",
-	soLike: int
-	idNguoiDang: "String",
+	newId: "String",
+	tags: [
+		"String",...
+	]
+	title: "String",
+	content: "String",
+	image: "String",
+	like: int
+	authorId: "String",
 }
-baiTraoDoi:
+post:
 {
-	id: "String",
-	noiDung: "String",
-	anh: "String",
-	idNguoiDung: "String",
-	idBaiCon:[
+	postId: "String",
+	content: "String",
+	image: "String",
+	userId: "String",
+	subPostId:[
 		"String", "String", .....
 	]
 }
