@@ -13,4 +13,27 @@ var news = new Schema({
     timestamp: Date
 })
 
-module.exports = mongoose.model('news', news, "news") //name, Schema, collection
+var News = mongoose.model('news', news, "news") //name, Schema, collection
+
+function inserts(data, callback){
+	
+}
+
+function finds(data, callback){
+	
+}
+
+function updates(data, callback){
+	
+}
+
+function deletes(data, callback){
+	
+}
+
+module.exports = {
+	finds: finds,
+	inserts: inserts,
+	updates: updates,
+	deletes: deletes
+}

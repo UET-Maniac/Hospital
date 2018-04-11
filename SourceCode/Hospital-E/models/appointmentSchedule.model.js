@@ -13,4 +13,27 @@ var appointmentSchedule = new Schema({
     timestamp: Date
 })
 
-module.exports = mongoose.model('appointmentSchedule', appointmentSchedule, "appointmentSchedule") //name, Schema, collection
+var AppointmentSchedule = mongoose.model('appointmentSchedule', appointmentSchedule, "appointmentSchedule") //name, Schema, collection
+
+function inserts(data, callback){
+	
+}
+
+function finds(data, callback){
+	
+}
+
+function updates(data, callback){
+	
+}
+
+function deletes(data, callback){
+	
+}
+
+module.exports = {
+	finds: finds,
+	inserts: inserts,
+	updates: updates,
+	deletes: deletes
+}

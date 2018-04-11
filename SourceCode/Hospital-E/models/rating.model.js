@@ -11,4 +11,31 @@ var rating = new Schema({
     timestamp: Date
 })
 
-module.exports = mongoose.model('rating', rating, "rating") //name, Schema, collection
+var Rating = mongoose.model('rating', rating, "rating");
+
+function inserts(data, callback){
+	
+}
+
+function finds(data, callback){
+	
+}
+
+function updates(data, callback){
+	
+}
+
+function deletes(data, callback){
+	
+}
+
+module.exports = {
+	finds: finds,
+	inserts: inserts,
+	updates: updates,
+	deletes: deletes
+}
+
+module.exports = {
+	inserts: inserts
+}

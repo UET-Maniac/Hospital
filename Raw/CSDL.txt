@@ -83,7 +83,7 @@ rating:
 	star: int,
 	content: "String"
 }
-new:
+news:
 {
 	newId: "String",
 	tags: [

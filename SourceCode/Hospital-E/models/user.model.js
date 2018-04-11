@@ -1,5 +1,5 @@
-var mongoose = require("mongoose")
-var Schema = mongoose.Schema
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 
 var user = new Schema({
     userId: String,
@@ -25,4 +25,52 @@ var user = new Schema({
     timestamp: Date
 })
 
-module.exports = mongoose.model('user', user, "user") //name, Schema, collection
+var User = mongoose.model('user', user, "user");
+
+// 0-> admin, 1->doctor, 2->user
+function inserts(data, type, callback){
+	if(type = 0){
+
+	}
+	else if(type = 1){
+
+	}
+	else{
+
+	}
+}
+
+function finds(data, type, callback){
+	if(type = 0){
+
+	}
+	else if(type = 1){
+
+	}
+	else{
+
+	}
+}
+
+function updates(data, type, callback){
+	if(type = 0){
+
+	}
+	else if(type = 1){
+
+	}
+	else{
+
+	}
+}
+
+function deletes(data, callback){
+	
+}
+
+module.exports = {
+	finds: finds,
+	inserts: inserts,
+	updates: updates,
+	deletes: deletes
+}

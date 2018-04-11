@@ -11,4 +11,27 @@ var post = new Schema({
     timestamp: Date
 })
 
-module.exports = mongoose.model('post', post, "post") //name, Schema, collection
+var Post = mongoose.model('post', post, "post") //name, Schema, collection
+
+function inserts(data, callback){
+	
+}
+
+function finds(data, callback){
+	
+}
+
+function updates(data, callback){
+	
+}
+
+function deletes(data, callback){
+	
+}
+
+module.exports = {
+	finds: finds,
+	inserts: inserts,
+	updates: updates,
+	deletes: deletes
+}

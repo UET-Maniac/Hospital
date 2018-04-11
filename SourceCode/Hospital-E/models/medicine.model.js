@@ -12,4 +12,27 @@ var medicine = new Schema({
     timestamp: Date
 })
 
-module.exports = mongoose.model('medicine', medicine, "medicine") //name, Schema, collection
+var Medicine = mongoose.model('medicine', medicine, "medicine") //name, Schema, collection
+
+function inserts(data, callback){
+	
+}
+
+function finds(data, callback){
+	
+}
+
+function updates(data, callback){
+	
+}
+
+function deletes(data, callback){
+	
+}
+
+module.exports = {
+	finds: finds,
+	inserts: inserts,
+	updates: updates,
+	deletes: deletes
+}
