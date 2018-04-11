@@ -1,10 +1,8 @@
-@media screen and (min-width: 1280px) {
-
-
+@media screen and (min-width: 768px) {
     /*
         navigator
     */
-    .topheader{
+    .topheader {
         font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
         font-size: 15px;
         background-color: #008DC9;
@@ -18,7 +16,6 @@
         width: 100%;
         border-bottom: 3px solid #22dD99;
     }
-
     .topheader .inner {
         font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
         width: 1000px;
@@ -26,13 +23,11 @@
         margin-left: auto;
         margin-right: auto;
     }
-
     .topheader .inner .topleftmenu {
         display: inline-block;
         float: left;
         font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
     }
-
     .topheader .inner .topleftmenu a {
         font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
         text-decoration: none;
@@ -40,14 +35,11 @@
         padding: 12px;
         font-size: 15px;
         font-weight: bold;
-        
     }
-
-    .topheader .inner .topleftmenu a:hover{
+    .topheader .inner .topleftmenu a:hover {
         background-color: #D86422;
         font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
     }
-
     .topheader .inner .toprightmenu {
         text-align: right;
         float: right;
@@ -55,8 +47,7 @@
         background-color: #008DC9;
         font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
     }
-
-    .topheader .inner .toprightmenu .username { 
+    .topheader .inner .toprightmenu .username {
         display: block;
         float: right;
         padding-left: 5px;
@@ -66,7 +57,6 @@
         background-color: #008DC9;
         font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
     }
-
     .topheader .inner .toprightmenu .username span {
         padding: 12px;
         padding-right: 12px;
@@ -78,12 +68,13 @@
         background-color: #008DC9;
         font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
     }
-
-    .topheader .inner .toprightmenu .username span:hover{
+    .topheader .inner .toprightmenu .username span:hover {
         text-decoration: underline;
         background-color: #008DC9;
     }
-
+    .topheader .inner .toprightmenu a:hover {
+        color: gold;
+    }
     .clear {
         clear: both;
         height: 0px;
@@ -91,25 +82,61 @@
         padding: 0px;
         margin: 0px;
     }
-
-    header{
+    header {
         margin-top: 40px;
         width: 100%;
-        height: 120px;
-        background-color: red;
+        height: 140px;
+        background-image: url("../images/banner.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover
     }
-
 }
 
-    /*
+
+/*
+    Header
+*/
+
+#banner #logo img {
+    margin-left: 30%;
+    height: 140px;
+}
+
+#banner #slogan {
+    font-size: 30px;
+    font-weight: bold;
+    color: #005380;
+    margin-top: 25px;
+    ;
+}
+
+#communicate span {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    margin-top: 70px;
+}
+
+#communicate img {
+    height: 54px;
+    border: 4px solid transparent;
+}
+
+#communicate img:hover {
+    border: none;
+}
+
+
+/*
         index
     */
 
-    .body-wrapper{
-        background-color: #FAFAFA;
-        border-left: 1px solid #d6d6d6;
-        border-right: 1px solid #d6d6d6;
-        width: 1004px;
-        margin: 0px auto 0px auto;
-        display: block;
-    }
+.body-wrapper {
+    background-color: #FAFAFA;
+    border-left: 1px solid #d6d6d6;
+    border-right: 1px solid #d6d6d6;
+    width: 1004px;
+    margin: 0px auto 0px auto;
+    display: block;
+}
