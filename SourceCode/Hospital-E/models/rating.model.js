@@ -7,7 +7,7 @@ var rating = new Schema({
 	patientId: String,
 	star: Number,
 	content: String,
-    acctive: Boolean,
+    active: Boolean,
     timestamp: Date
 })
 

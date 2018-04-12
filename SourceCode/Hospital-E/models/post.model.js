@@ -7,7 +7,7 @@ var post = new Schema({
 	image: String,
 	userId: String,
 	subPostId:Array(String),
-    acctive: Boolean,
+    active: Boolean,
     timestamp: Date
 })
 

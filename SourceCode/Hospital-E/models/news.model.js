@@ -9,7 +9,7 @@ var news = new Schema({
 	image: String,
 	like: Number,
 	authorId: String,
-    acctive: Boolean,
+    active: Boolean,
     timestamp: Date
 })
 

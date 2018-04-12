@@ -8,7 +8,7 @@ var medicine = new Schema({
 	use: String,
 	description: String,
 	medicalRecords: Array(String),
-    acctive: Boolean,
+    active: Boolean,
     timestamp: Date
 })
 

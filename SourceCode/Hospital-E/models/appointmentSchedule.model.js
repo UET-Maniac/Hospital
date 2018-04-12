@@ -9,7 +9,7 @@ var appointmentSchedule = new Schema({
 	address: String,
 	description: String,
 	acceptance: Boolean,
-    acctive: Boolean,
+    active: Boolean,
     timestamp: Date
 })
 

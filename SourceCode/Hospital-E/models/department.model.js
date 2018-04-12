@@ -8,28 +8,43 @@ var department = new Schema({
 	address: String,
 	image: String,
 	foundingOn: Date,
-    acctive: Boolean,
+    active: Boolean,
     timestamp: Date
 });
 
 var Department = mongoose.model('Department', department, "department") //name, Schema, collection
 
 function inserts(data, callback){
-	Department.inser
+	// Department.inser
 }
 
-function finds(data, callback){
-	Department.find(
-		{
-			acctive: true,
-			$or: [
-				{name: {$regex: '.*' + data + '.*', $options: 'i'}},
-				{description: {$regex: '.*' + data + '.*', $options: 'i'}},
-				{address: {$regex: '.*' + data + '.*', $options: 'i'}}
-			]
-		},
-		callback(err, departments)
-	);
+function finds(data, type, callback){
+	if (type != 0){
+		Department.find(
+			{
+				active: true,
+				$or: [
+					{_id: {$regex: '.*' + data + '.*', $options: 'i'}},
+					{name: {$regex: '.*' + data + '.*', $options: 'i'}},
+					{description: {$regex: '.*' + data + '.*', $options: 'i'}},
+					{address: {$regex: '.*' + data + '.*', $options: 'i'}}
+				]
+			},
+			callback(err, departments)
+		);
+	} else{
+		Department.find(
+			{
+				$or: [
+					{_id: {$regex: '.*' + data + '.*', $options: 'i'}},
+					{name: {$regex: '.*' + data + '.*', $options: 'i'}},
+					{description: {$regex: '.*' + data + '.*', $options: 'i'}},
+					{address: {$regex: '.*' + data + '.*', $options: 'i'}}
+				]
+			},
+			callback(err, departments)
+		);
+	}
 };
 
 function updates(data, callback){
@@ -44,7 +59,10 @@ function updates(data, callback){
 function deletes(data, callback){
 	Department.findOneAndUpdate(
 		{
-			name: data
+			_id: data._id
+		},
+		{
+			$set: {active}
 		},
 		callback(err, departmens)
 	);

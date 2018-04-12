@@ -11,7 +11,7 @@ var medicalRecord = new Schema({
 	treatment: String,
 	diseaseTypes: Array(String),
 	medicines: Array(String),
-    acctive: Boolean,
+    active: Boolean,
     timestamp: Date
 })
 

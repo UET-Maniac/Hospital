@@ -21,7 +21,7 @@ var user = new Schema({
 		dean: Boolean
 	},
 	admin: Boolean,
-    acctive: Boolean,
+    active: Boolean,
     timestamp: Date
 })
 

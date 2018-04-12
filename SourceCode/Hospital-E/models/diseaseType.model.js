@@ -5,7 +5,7 @@ var diseaseType = new Schema({
     _id: String,
 	name: String,
 	medicalRecords: Array(String),
-    acctive: Boolean,
+    active: Boolean,
     timestamp: Date
 })
 
