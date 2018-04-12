@@ -7,7 +7,8 @@ var bodyParse = require("body-parser")
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var userRouter = require('./routes/user');
-var loginRouter = require('./routes/login')
+var loginRouter = require('./routes/login');
+// var infoFindDepartment = require('./routes/information/information.department');
 var mongoose = require("mongoose")
 var app = express();
 
@@ -30,6 +31,7 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter)
 app.use('/users', usersRouter);
 app.use('/user', userRouter);
+// app.use('/infomation', infoFindDepartment);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

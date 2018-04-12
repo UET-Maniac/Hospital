@@ -5,7 +5,9 @@
     </head>
     <body>
         <% include ../partials/sidebar %>
-        
+        <% for(var i=0; i<departmentList.length; i++) {%>
+            <li><%= departmentList[i] %></li>
+         <% } %>
     <footer></footer>
     </body>
 </html>

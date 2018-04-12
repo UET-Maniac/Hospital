@@ -2,7 +2,7 @@ var mongoose = require("mongoose")
 var Schema = mongoose.Schema
 
 var appointmentSchedule = new Schema({
-    scheduleId: String,
+    _id: String,
 	doctorId: String,
 	patientId: String,
 	time: Date,

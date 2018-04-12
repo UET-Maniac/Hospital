@@ -2,7 +2,7 @@ var mongoose = require("mongoose")
 var Schema = mongoose.Schema
 
 var medicalRecord = new Schema({
-    recordId: String,
+    _id: String,
 	doctorId: String,
 	patientId: String,
 	bedNo: String,

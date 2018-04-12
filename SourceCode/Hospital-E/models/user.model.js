@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var user = new Schema({
-    userId: String,
+    _id: String,
 	name: String,
 	card: String,
 	phoneNumber: String,
@@ -16,7 +16,7 @@ var user = new Schema({
 	{
 		level: String,
 		experience: String,
-		star: Int32Array,
+		star: Number,
 		departmentName: String,
 		dean: Boolean
 	},

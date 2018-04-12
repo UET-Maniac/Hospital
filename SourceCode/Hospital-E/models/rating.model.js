@@ -2,10 +2,10 @@ var mongoose = require("mongoose")
 var Schema = mongoose.Schema
 
 var rating = new Schema({
-    ratingId: String,
+    _id: String,
 	doctorId: String,
 	patientId: String,
-	star: Int32Array,
+	star: Number,
 	content: String,
     acctive: Boolean,
     timestamp: Date

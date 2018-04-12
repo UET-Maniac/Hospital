@@ -2,12 +2,12 @@ var mongoose = require("mongoose")
 var Schema = mongoose.Schema
 
 var news = new Schema({
-    newId: String,
+    _id: String,
 	tags: Array(String),
 	title: String,
 	content: String,
 	image: String,
-	like: int,
+	like: Number,
 	authorId: String,
     acctive: Boolean,
     timestamp: Date

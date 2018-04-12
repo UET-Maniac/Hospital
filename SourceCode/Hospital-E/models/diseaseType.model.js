@@ -2,7 +2,7 @@ var mongoose = require("mongoose")
 var Schema = mongoose.Schema
 
 var diseaseType = new Schema({
-    diseaseTypeId: String,
+    _id: String,
 	name: String,
 	medicalRecords: Array(String),
     acctive: Boolean,
