@@ -1,7 +1,7 @@
 var mongoose = require("mongoose")
 var Schema = mongoose.Schema
 
-var appointmentSchedule = new Schema({
+var AppointmentSchedule = new Schema({
     _id: String,
 	doctorId: String,
 	patientId: String,
@@ -13,27 +13,20 @@ var appointmentSchedule = new Schema({
     timestamp: Date
 })
 
-var AppointmentSchedule = mongoose.model('appointmentSchedule', appointmentSchedule, "appointmentSchedule") //name, Schema, collection
-
-function inserts(data, callback){
+AppointmentSchedule.statics.inserts = function(data, callback){
 	
 }
 
-function finds(data, callback){
+AppointmentSchedule.statics.finds = function(data, callback){
 	
 }
 
-function updates(data, callback){
+AppointmentSchedule.statics.updates = function(data, callback){
 	
 }
 
-function deletes(data, callback){
+AppointmentSchedule.statics.deletes = function(data, callback){
 	
 }
 
-module.exports = {
-	finds: finds,
-	inserts: inserts,
-	updates: updates,
-	deletes: deletes
-}
+module.exports = mongoose.model('AppointmentSchedule', appointmentSchedule, "appointmentSchedule")

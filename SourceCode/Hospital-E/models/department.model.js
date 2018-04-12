@@ -61,4 +61,5 @@ Department.methods.deletes = (data, callback) => {
 	);
 };
 
-module.exports = mongoose.model('Department', Department, 'department') //name, Schema, collection
+module.exports = mongoose.model('Department', Department, 'department')
+//name, Schema, collection

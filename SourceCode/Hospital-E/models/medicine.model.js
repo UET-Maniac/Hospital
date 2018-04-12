@@ -1,7 +1,7 @@
 var mongoose = require("mongoose")
 var Schema = mongoose.Schema
 
-var medicine = new Schema({
+var Medicine = new Schema({
     _id: String,
 	name: String,
 	effect: String,
@@ -12,27 +12,20 @@ var medicine = new Schema({
     timestamp: Date
 })
 
-var Medicine = mongoose.model('medicine', medicine, "medicine") //name, Schema, collection
-
-function inserts(data, callback){
+Medicine.statics.inserts = function(data, callback){
 	
 }
 
-function finds(data, callback){
+Medicine.statics.finds = function(data, callback){
 	
 }
 
-function updates(data, callback){
+Medicine.statics.updates = function(data, callback){
 	
 }
 
-function deletes(data, callback){
+Medicine.statics.deletes = function(data, callback){
 	
 }
 
-module.exports = {
-	finds: finds,
-	inserts: inserts,
-	updates: updates,
-	deletes: deletes
-}
+module.exports = mongoose.model('Medicine', medicine, "medicine")

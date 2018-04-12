@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-var user = new Schema({
+var User = new Schema({
     _id: String,
 	name: String,
 	card: String,
@@ -25,10 +25,9 @@ var user = new Schema({
     timestamp: Date
 })
 
-var User = mongoose.model('user', user, "user");
 
 // 0-> admin, 1->doctor, 2->user
-function inserts(data, type, callback){
+User.statics.inserts = function(data, type, callback){
 	if(type = 0){
 
 	}
@@ -40,7 +39,7 @@ function inserts(data, type, callback){
 	}
 }
 
-function finds(data, type, callback){
+User.statics.finds = function(data, type, callback){
 	if(type = 0){
 
 	}
@@ -52,7 +51,7 @@ function finds(data, type, callback){
 	}
 }
 
-function updates(data, type, callback){
+User.statics.updates = function(data, type, callback){
 	if(type = 0){
 
 	}
@@ -64,13 +63,8 @@ function updates(data, type, callback){
 	}
 }
 
-function deletes(data, callback){
+User.statics.deletes = function(data, callback){
 	
 }
 
-module.exports = {
-	finds: finds,
-	inserts: inserts,
-	updates: updates,
-	deletes: deletes
-}
+module.exports = mongoose.model('User', user, "user");

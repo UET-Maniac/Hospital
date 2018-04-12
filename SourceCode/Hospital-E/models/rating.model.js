@@ -1,7 +1,7 @@
 var mongoose = require("mongoose")
 var Schema = mongoose.Schema
 
-var rating = new Schema({
+var Rating = new Schema({
     _id: String,
 	doctorId: String,
 	patientId: String,
@@ -11,31 +11,20 @@ var rating = new Schema({
     timestamp: Date
 })
 
-var Rating = mongoose.model('rating', rating, "rating");
-
-function inserts(data, callback){
+Rating.statics.inserts = function(data, callback){
 	
 }
 
-function finds(data, callback){
+Rating.statics.finds = function(data, callback){
 	
 }
 
-function updates(data, callback){
+Rating.statics.updates = function(data, callback){
 	
 }
 
-function deletes(data, callback){
+Rating.statics.deletes = function(data, callback){
 	
 }
 
-module.exports = {
-	finds: finds,
-	inserts: inserts,
-	updates: updates,
-	deletes: deletes
-}
-
-module.exports = {
-	inserts: inserts
-}
+module.exports = mongoose.model('Rating', rating, "rating");

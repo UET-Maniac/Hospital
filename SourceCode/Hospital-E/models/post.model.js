@@ -1,7 +1,7 @@
 var mongoose = require("mongoose")
 var Schema = mongoose.Schema
 
-var post = new Schema({
+var Post = new Schema({
     _id: String,
 	content: String,
 	image: String,
@@ -11,27 +11,20 @@ var post = new Schema({
     timestamp: Date
 })
 
-var Post = mongoose.model('post', post, "post") //name, Schema, collection
-
-function inserts(data, callback){
+Post.statics.inserts = function(data, callback){
 	
 }
 
-function finds(data, callback){
+Post.statics.finds = function(data, callback){
 	
 }
 
-function updates(data, callback){
+Post.statics.updates = function(data, callback){
 	
 }
 
-function deletes(data, callback){
+Post.statics.deletes = function(data, callback){
 	
 }
 
-module.exports = {
-	finds: finds,
-	inserts: inserts,
-	updates: updates,
-	deletes: deletes
-}
+module.exports = mongoose.model('Post', post, "post")
