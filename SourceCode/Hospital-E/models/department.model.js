@@ -12,20 +12,16 @@ var Department = new Schema({
     timestamp: Date
 });
 
-// module.exports = mongoose.model('Department', Department, "department");
-
-var Departments = mongoose.model('Department', Department, 'department') //name, Schema, collection
-
-// function insertOrUpdate(data, callback){
-// 	var data = new Department(data);
-// 	data.active = true;
-// 	data.timestamp = new Date.now();
-// 	Departments.save(callback(err, departmens));
-// }
+Department.statics.insertOrUpdate = function(data, callback){
+	var data = new Department(data);
+	data.active = true;
+	data.timestamp = new Date.now();
+	this.save(callback);
+}
 
 Department.statics.finds = function(data, type, callback){
 	if (type != 0){
-		Departments.find(
+		this.find(
 			{
 				active: true,
 				$or: [
@@ -38,32 +34,31 @@ Department.statics.finds = function(data, type, callback){
 			callback(err, departments)
 		);
 	} else{
-		// Departments.find(
-		// 	{
-		// 		$or: [
-		// 			{_id: {$regex: '.*' + data + '.*', $options: 'i'}},
-		// 			{name: {$regex: '.*' + data + '.*', $options: 'i'}},
-		// 			{description: {$regex: '.*' + data + '.*', $options: 'i'}},
-		// 			{address: {$regex: '.*' + data + '.*', $options: 'i'}}
-		// 		]
-		// 	},
-		// 	callback(err, departments)
-		// );
-		console.log("111111111111111111111111111111");
+		this.find(
+			{
+				$or: [
+					{_id: {$regex: '.*' + data + '.*', $options: 'i'}},
+					{name: {$regex: '.*' + data + '.*', $options: 'i'}},
+					{description: {$regex: '.*' + data + '.*', $options: 'i'}},
+					{address: {$regex: '.*' + data + '.*', $options: 'i'}}
+				]
+			},
+			callback
+		);
 	}
 };
 
-// Department.methods.deletes = (data, callback) => {
-// 	return Departments.findByIdAndUpdate(
-// 		data,
-// 		{
-// 			$set: {
-// 				active: false,
-// 				timestamp: new Date.now()
-// 			}
-// 		},
-// 		callback(err, departmens)
-// 	);
-// };
+Department.methods.deletes = (data, callback) => {
+	this.findByIdAndUpdate(
+		data,
+		{
+			$set: {
+				active: false,
+				timestamp: new Date.now()
+			}
+		},
+		callback
+	);
+};
 
-module.exports = Departments;
+module.exports = mongoose.model('Department', Department, 'department') //name, Schema, collection
