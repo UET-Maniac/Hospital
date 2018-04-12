@@ -1,7 +1,7 @@
 var mongoose = require("mongoose")
 var Schema = mongoose.Schema
 
-var department = new Schema({
+var Department = new Schema({
 	_id: String,
     name: String,
 	description: String,
@@ -12,15 +12,20 @@ var department = new Schema({
     timestamp: Date
 });
 
-var Department = mongoose.model('Department', department, "department") //name, Schema, collection
+// module.exports = mongoose.model('Department', Department, "department");
 
-function inserts(data, callback){
-	// Department.inser
-}
+var Departments = mongoose.model('Department', Department, 'department') //name, Schema, collection
 
-function finds(data, type, callback){
+// function insertOrUpdate(data, callback){
+// 	var data = new Department(data);
+// 	data.active = true;
+// 	data.timestamp = new Date.now();
+// 	Departments.save(callback(err, departmens));
+// }
+
+Department.statics.finds = function(data, type, callback){
 	if (type != 0){
-		Department.find(
+		Departments.find(
 			{
 				active: true,
 				$or: [
@@ -33,45 +38,32 @@ function finds(data, type, callback){
 			callback(err, departments)
 		);
 	} else{
-		Department.find(
-			{
-				$or: [
-					{_id: {$regex: '.*' + data + '.*', $options: 'i'}},
-					{name: {$regex: '.*' + data + '.*', $options: 'i'}},
-					{description: {$regex: '.*' + data + '.*', $options: 'i'}},
-					{address: {$regex: '.*' + data + '.*', $options: 'i'}}
-				]
-			},
-			callback(err, departments)
-		);
+		// Departments.find(
+		// 	{
+		// 		$or: [
+		// 			{_id: {$regex: '.*' + data + '.*', $options: 'i'}},
+		// 			{name: {$regex: '.*' + data + '.*', $options: 'i'}},
+		// 			{description: {$regex: '.*' + data + '.*', $options: 'i'}},
+		// 			{address: {$regex: '.*' + data + '.*', $options: 'i'}}
+		// 		]
+		// 	},
+		// 	callback(err, departments)
+		// );
+		console.log("111111111111111111111111111111");
 	}
 };
 
-function updates(data, callback){
-	Department.findOneAndUpdate(
-		{
+// Department.methods.deletes = (data, callback) => {
+// 	return Departments.findByIdAndUpdate(
+// 		data,
+// 		{
+// 			$set: {
+// 				active: false,
+// 				timestamp: new Date.now()
+// 			}
+// 		},
+// 		callback(err, departmens)
+// 	);
+// };
 
-		},
-		callback(err, departments)
-	);
-};
-
-function deletes(data, callback){
-	Department.findOneAndUpdate(
-		{
-			_id: data._id
-		},
-		{
-			$set: {active}
-		},
-		callback(err, departmens)
-	);
-};
-
-module.exports = {
-	Department,
-	finds: finds,
-	inserts: inserts,
-	updates: updates,
-	deletes: deletes
-}
+module.exports = Departments;

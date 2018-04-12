@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../partials/head %>
+    </head>
+    <body>
+		<% include ../partials/sidebar %>
+		<header>Hello</header>
+        <% for(var i=0; i<departments.length; i++) {%>
+			<li><%= departments[i]._id %></li>
+			<li><%= departments[i].name %></li>
+			<li><%= departments[i].description %></li>
+			<li><%= departments[i].address %></li>
+			<li><%= departments[i].image %></li>
+			<li><%= departments[i].foundingOn %></li>
+		 <% } %>
+    <footer></footer>
+    </body>
+</html>
