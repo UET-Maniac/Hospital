@@ -1,6 +1,6 @@
 var mongoose = require("mongoose")
 var Schema = mongoose.Schema;
-var Delete = require('./delete.model');
+var tools = require('./tools.model');
 
 var DiseaseType = new Schema({
     _id: String,
@@ -11,28 +11,32 @@ var DiseaseType = new Schema({
 })
 
 DiseaseType.statics.inserts = function(data, callback){
-	
+	var query = {};
+	var defaultId = '';
+	tools.Insert(DiseaseTypeModel, query, defaultId, data, callback);
 }
 
 DiseaseType.statics.finds = function(data, callback){
-	this.find(
-        {
-            $or: [
-                {_id: {$regex: '.*' + data + '.*', $options: 'i'}},
-                {name: {$regex: '.*' + data + '.*', $options: 'i'}}
-                // Chua tim trong medicalRecord
-            ]
-        },
-        callback
-    );
+	var search = {$regex: '.*' + data + '.*', $options: 'i'};
+	var query = {
+		$or: [
+			{_id: search},
+			// .....
+		]
+	}
+	if (type != 0)
+		query.active = true;
+	this.find(query,callback);
 }
 
 DiseaseType.statics.updates = function(data, callback){
-	
+	tools.Update.call(this, data, callback);
 }
 
 DiseaseType.statics.deletes = function(data, callback){
-	Delete.call(this, data, callback);
+	tools.Delete.call(this, data, callback);
 }
 
-module.exports = mongoose.model('DiseaseType', diseaseType, "diseaseType")
+var DiseaseTypeModel = mongoose.model('DiseaseType', diseaseType, "diseaseType");
+
+module.exports = DiseaseTypeModel;

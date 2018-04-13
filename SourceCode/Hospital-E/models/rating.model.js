@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-var Delete = require('./delete.model');
+var tools = require('./tools.model');
 
 var Rating = new Schema({
     _id: String,
@@ -13,19 +13,32 @@ var Rating = new Schema({
 })
 
 Rating.statics.inserts = function(data, callback){
-	
+	var query = {};
+	var defaultId = '';
+	tools.Insert(RatingModel, query, defaultId, data, callback);
 }
 
 Rating.statics.finds = function(data, callback){
-	
+	var search = {$regex: '.*' + data + '.*', $options: 'i'};
+	var query = {
+		$or: [
+			{_id: search},
+			// .....
+		]
+	}
+	if (type != 0)
+		query.active = true;
+	this.find(query,callback);
 }
 
 Rating.statics.updates = function(data, callback){
-	
+	tools.Update.call(this, data, callback);
 }
 
 Rating.statics.deletes = function(data, callback){
-	Delete.call(this, data, callback);
+	tools.Delete.call(this, data, callback);
 }
 
-module.exports = mongoose.model('Rating', rating, "rating");
+var  RatingModel = mongoose.model('Rating', rating, "rating");
+
+module.exports = RatingModel;

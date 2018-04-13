@@ -1,8 +1,9 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-var Delete = require('./delete.model');
+var tools = require('./tools.model');
 
 var Department = new Schema({
+	// Do các thao tác với CSDl sử dụng trong model nên tôi thấy các thuộc tính hơi thừa 
 	_id: String,
     name: String,
 	description: String,
@@ -13,13 +14,16 @@ var Department = new Schema({
     timestamp: Date
 });
 
-Department.statics.insertOrUpdate = function(data, callback){
-	var data = new Department(data);
-	data.active = true;
-	data.timestamp = new Date.now();
-	this.save(callback);
+Department.statics.inserts = function(data, callback){
+	// Điều kiện tìm kiếm 
+	var query = { name : data.name };
+	var defaultId = 'DEP10001';
+	// model, query, defaultId, data, callback
+	tools.Insert(DepartmentModel, query, defaultId, data, callback);
 }
 
+// Phần này vẫn chưa tối ưu đc
+// type 0 là admin, còn lại là người dùng khác 
 Department.statics.finds = function(data, type, callback){
 	var search = {$regex: '.*' + data + '.*', $options: 'i'};
 	var query = {
@@ -35,9 +39,16 @@ Department.statics.finds = function(data, type, callback){
 	this.find(query,callback);
 };
 
-Department.statics.deletes = function(data, callback){
-	Delete.call(this, data, callback);
+Department.statics.updates = function(data, callback){
+	// Do sử dụng 'this' nên phải call để tham chiếu đến model
+	// nếu không dùng cái này thì thêm 1 biến model rồi truyền model vào 
+	tools.Update.call(this, data, callback);
 }
 
-module.exports = mongoose.model('Department', Department, 'department')
+Department.statics.deletes = function(data, callback){
+	tools.Delete.call(this, data, callback);
+}
+var DepartmentModel = mongoose.model('Department', Department, 'department');
+
+module.exports = DepartmentModel;
 //name, Schema, collection

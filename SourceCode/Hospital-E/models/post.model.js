@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-var Delete = require('./delete.model');
+var tools = require('./tools.model');
 
 var Post = new Schema({
     _id: String,
@@ -13,19 +13,32 @@ var Post = new Schema({
 })
 
 Post.statics.inserts = function(data, callback){
-	
+	var query = {};
+	var defaultId = '';
+	tools.Insert(PostModel, query, defaultId, data, callback);
 }
 
 Post.statics.finds = function(data, callback){
-	
+	var search = {$regex: '.*' + data + '.*', $options: 'i'};
+	var query = {
+		$or: [
+			{_id: search},
+			// .....
+		]
+	}
+	if (type != 0)
+		query.active = true;
+	this.find(query,callback);
 }
 
 Post.statics.updates = function(data, callback){
-	
+	tools.Update.call(this, data, callback);
 }
 
 Post.statics.deletes = function(data, callback){
-	Delete.call(this, data, callback);
+	tools.Delete.call(this, data, callback);
 }
 
-module.exports = mongoose.model('Post', post, "post")
+var PostModel = mongoose.model('Post', post, "post");
+
+module.exports = PostModel;

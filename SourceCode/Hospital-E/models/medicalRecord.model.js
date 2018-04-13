@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-var Delete = require('./delete.model');
+var tools = require('./tools.model');
 
 var MedicalRecord = new Schema({
     _id: String,
@@ -17,19 +17,32 @@ var MedicalRecord = new Schema({
 })
 
 MedicalRecord.statics.inserts = function(data, callback){
-	
+	var query = {};
+	var defaultId = '';
+	tools.Insert(MedicalRecordModel, query, defaultId, data, callback);
 }
 
 MedicalRecord.statics.finds = function(data, callback){
-	
+	var search = {$regex: '.*' + data + '.*', $options: 'i'};
+	var query = {
+		$or: [
+			{_id: search},
+			// .....
+		]
+	}
+	if (type != 0)
+		query.active = true;
+	this.find(query,callback);
 }
 
 MedicalRecord.statics.updates = function(data, callback){
-	
+	tools.Update.call(this, data, callback);
 }
 
 MedicalRecord.statics.deletes = function(data, callback){
-	Delete.call(this, data, callback);
+	tools.Delete.call(this, data, callback);
 }
 
-module.exports = mongoose.model('MedicalRecord', medicalRecord, "medicalRecord")
+var MedicalRecordModel = mongoose.model('MedicalRecord', medicalRecord, "medicalRecord");
+
+module.exports = MedicalRecordModel;

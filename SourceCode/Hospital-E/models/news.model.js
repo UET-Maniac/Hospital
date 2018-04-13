@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-var Delete = require('./delete.model');
+var tools = require('./tools.model');
 
 var News = new Schema({
     _id: String,
@@ -15,18 +15,31 @@ var News = new Schema({
 })
 
 News.statics.inserts = function(data, callback){
-	
+	var query = {};
+	var defaultId = '';
+	tools.Insert(NewsModel, query, defaultId, data, callback);
 }
 News.statics.finds = function(data, callback){
-	
+	var search = {$regex: '.*' + data + '.*', $options: 'i'};
+	var query = {
+		$or: [
+			{_id: search},
+			// .....
+		]
+	}
+	if (type != 0)
+		query.active = true;
+	this.find(query,callback);
 }
 
 News.statics.updates = function(data, callback){
-	
+	tools.Update.call(this, data, callback);
 }
 
 News.statics.deletes = function(data, callback){
-	Delete.call(this, data, callback);
+	tools.Delete.call(this, data, callback);
 }
 
-module.exports = mongoose.model('News', news, "news")
+var NewsModel = mongoose.model('News', news, "news");
+
+module.exports = NewsModel;
