@@ -4,17 +4,27 @@ var Department = require("../../models/department.model");
 
 router.route('/')
     .get(function(req, res, next){
-        var data = '';
-        if (req.body.data) data = req.body.data;
-        Department.finds(data, 0, (err, departments) => {
-            if (err){
-                res.status('404').json({
-                    message: "Can't find data suitable with this request!"
-                })
-            } else{
-                res.render('pages/informationDepartment', {departments: departments});
+        // var data = '';
+        // if (req.body.data) data = req.body.data;
+        // Department.finds(data, 1, (err, departments) => {
+        //     if (err){
+        //         res.status('404').json({
+        //             message: "Can't find data suitable with this request!"
+        //         })
+        //     } else{
+        //         res.render('pages/informationDepartment', {departments: departments});
+        //     }
+        // });
+        Department.deletes(
+            "Ham",
+            (err, departments)=>{
+                // if(departments){
+                //     res.send(departments);
+                // }
+                res.send(departments);
+                // res.send(err);
             }
-        });
+        )
     })
     .post(function(req, res, next){
         Department.insertOrUpdate(req.body.data, (err, departments) => {

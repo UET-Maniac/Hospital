@@ -1,5 +1,6 @@
-var mongoose = require("mongoose")
-var Schema = mongoose.Schema
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
+var Delete = require('./delete.model');
 
 var Department = new Schema({
 	_id: String,
@@ -20,46 +21,23 @@ Department.statics.insertOrUpdate = function(data, callback){
 }
 
 Department.statics.finds = function(data, type, callback){
-	if (type != 0){
-		this.find(
-			{
-				active: true,
-				$or: [
-					{_id: {$regex: '.*' + data + '.*', $options: 'i'}},
-					{name: {$regex: '.*' + data + '.*', $options: 'i'}},
-					{description: {$regex: '.*' + data + '.*', $options: 'i'}},
-					{address: {$regex: '.*' + data + '.*', $options: 'i'}}
-				]
-			},
-			callback(err, departments)
-		);
-	} else{
-		this.find(
-			{
-				$or: [
-					{_id: {$regex: '.*' + data + '.*', $options: 'i'}},
-					{name: {$regex: '.*' + data + '.*', $options: 'i'}},
-					{description: {$regex: '.*' + data + '.*', $options: 'i'}},
-					{address: {$regex: '.*' + data + '.*', $options: 'i'}}
-				]
-			},
-			callback
-		);
+	var search = {$regex: '.*' + data + '.*', $options: 'i'};
+	var query = {
+		$or: [
+			{_id: search},
+			{name: search},
+			{description: search},
+			{address: search}
+		]
 	}
+	if (type != 0)
+		query.active = true;
+	this.find(query,callback);
 };
 
-Department.methods.deletes = (data, callback) => {
-	this.findByIdAndUpdate(
-		data,
-		{
-			$set: {
-				active: false,
-				timestamp: new Date.now()
-			}
-		},
-		callback
-	);
-};
+Department.statics.deletes = function(data, callback){
+	Delete.call(this, data, callback);
+}
 
 module.exports = mongoose.model('Department', Department, 'department')
 //name, Schema, collection

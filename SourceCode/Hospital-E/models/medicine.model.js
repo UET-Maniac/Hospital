@@ -1,5 +1,6 @@
-var mongoose = require("mongoose")
-var Schema = mongoose.Schema
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
+var Delete = require('./delete.model');
 
 var Medicine = new Schema({
     _id: String,
@@ -25,7 +26,7 @@ Medicine.statics.updates = function(data, callback){
 }
 
 Medicine.statics.deletes = function(data, callback){
-	
+	Delete.call(this, data, callback);
 }
 
 module.exports = mongoose.model('Medicine', medicine, "medicine")

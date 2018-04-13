@@ -1,5 +1,6 @@
-var mongoose = require("mongoose")
-var Schema = mongoose.Schema
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
+var Delete = require('./delete.model');
 
 var Rating = new Schema({
     _id: String,
@@ -24,7 +25,7 @@ Rating.statics.updates = function(data, callback){
 }
 
 Rating.statics.deletes = function(data, callback){
-	
+	Delete.call(this, data, callback);
 }
 
 module.exports = mongoose.model('Rating', rating, "rating");
