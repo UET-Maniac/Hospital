@@ -30,8 +30,8 @@ var User = new Schema({
 // 0-> admin, 1->doctor, 2->user
 User.statics.inserts = function(data, callback){
 	// Điều kiện tìm kiếm 
-	var query = { name : data.name };
-	var defaultId = '';
+	// var query = { name : data.name };
+	// var defaultId = '';
 	// model, query, defaultId, data, callback
 	tools.Insert(UserModel, query, defaultId, data, callback);
 }
@@ -40,10 +40,10 @@ User.statics.finds = function(data, type, callback){
 	var search = {$regex: '.*' + data + '.*', $options: 'i'};
 	var query = {
 		$or: [
-			{_id: search},
-			{name: search},
-			{description: search},
-			{address: search}
+			// {_id: search},
+			// {name: search},
+			// {description: search},
+			// {address: search}
 		]
 	}
 	if (type != 0)
@@ -52,7 +52,7 @@ User.statics.finds = function(data, type, callback){
 }
 
 User.statics.updates = function(data, type, callback){
-	tools.Delete.call(this, data, callback);
+	tools.Update.call(this, data, callback);
 }
 
 User.statics.deletes = function(data, callback){
