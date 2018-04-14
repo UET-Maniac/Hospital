@@ -37,6 +37,6 @@ DiseaseType.statics.deletes = function(data, callback){
 	tools.Delete.call(this, data, callback);
 }
 
-var DiseaseTypeModel = mongoose.model('DiseaseType', diseaseType, "diseaseType");
+var DiseaseTypeModel = mongoose.model('DiseaseType', DiseaseType, "diseaseType");
 
 module.exports = DiseaseTypeModel;

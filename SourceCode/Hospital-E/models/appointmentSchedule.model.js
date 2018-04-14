@@ -41,6 +41,6 @@ AppointmentSchedule.statics.deletes = function(data, callback){
 	tools.Delete.call(this, data, callback);
 }
 
-var AppointmentScheduleModel = mongoose.model('AppointmentSchedule', appointmentSchedule, "appointmentSchedule")
+var AppointmentScheduleModel = mongoose.model('AppointmentSchedule', AppointmentSchedule, "appointmentSchedule")
 
 module.exports = AppointmentScheduleModel;

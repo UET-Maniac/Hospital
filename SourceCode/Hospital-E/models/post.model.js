@@ -39,6 +39,6 @@ Post.statics.deletes = function(data, callback){
 	tools.Delete.call(this, data, callback);
 }
 
-var PostModel = mongoose.model('Post', post, "post");
+var PostModel = mongoose.model('Post', Post, "post");
 
 module.exports = PostModel;

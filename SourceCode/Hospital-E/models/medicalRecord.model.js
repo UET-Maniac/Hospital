@@ -43,6 +43,6 @@ MedicalRecord.statics.deletes = function(data, callback){
 	tools.Delete.call(this, data, callback);
 }
 
-var MedicalRecordModel = mongoose.model('MedicalRecord', medicalRecord, "medicalRecord");
+var MedicalRecordModel = mongoose.model('MedicalRecord', MedicalRecord, "medicalRecord");
 
 module.exports = MedicalRecordModel;

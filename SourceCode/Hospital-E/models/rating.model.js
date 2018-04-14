@@ -39,6 +39,6 @@ Rating.statics.deletes = function(data, callback){
 	tools.Delete.call(this, data, callback);
 }
 
-var  RatingModel = mongoose.model('Rating', rating, "rating");
+var  RatingModel = mongoose.model('Rating', Rating, "rating");
 
 module.exports = RatingModel;

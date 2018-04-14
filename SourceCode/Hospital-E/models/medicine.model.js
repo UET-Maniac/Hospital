@@ -40,6 +40,6 @@ Medicine.statics.deletes = function(data, callback){
 	tools.Delete.call(this, data, callback);
 }
 
-var MedicineModel = mongoose.model('Medicine', medicine, "medicine");
+var MedicineModel = mongoose.model('Medicine', Medicine, "medicine");
 
 module.exports = MedicineModel;

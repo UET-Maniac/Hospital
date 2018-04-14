@@ -40,6 +40,6 @@ News.statics.deletes = function(data, callback){
 	tools.Delete.call(this, data, callback);
 }
 
-var NewsModel = mongoose.model('News', news, "news");
+var NewsModel = mongoose.model('News', News, "news");
 
 module.exports = NewsModel;

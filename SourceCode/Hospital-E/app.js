@@ -9,7 +9,8 @@ var usersRouter = require('./routes/users');
 var userRouter = require('./routes/user');
 var loginRouter = require('./routes/login');
 var infoDepartmentRouter = require('./routes/informations/information.department');
-var mongoose = require("mongoose")
+var infoDoctorRouter = require('./routes/informations/information.doctor');
+var mongoose = require("mongoose");
 var app = express();
 
 var mongoDB = "mongodb://127.0.0.1:27017/test_h"; //uri to database
@@ -31,7 +32,8 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter)
 app.use('/users', usersRouter);
 app.use('/user', userRouter);
-app.use('/information/department', infoDepartmentRouter);
+app.use('/infoDepartments', infoDepartmentRouter);
+app.use('/infoDoctors', infoDoctorRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
