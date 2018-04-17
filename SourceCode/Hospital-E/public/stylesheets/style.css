@@ -188,3 +188,39 @@
 
 
 /*End Dropdown-box*/
+
+/*
+    Footer
+*/
+footer{
+    width: 1004px;
+    margin: auto;
+    height:auto;
+    color: white;
+    background-color: #008DC9;
+    font-family: 'Times New Roman', 'Arial', serif;
+    padding: 20px;
+    padding-bottom: 0px;
+}
+.blockfooter ul li a{
+    font-family: 'Times New Roman', 'Arial', serif;
+}
+.titleblock{
+    font-size: 16px;
+    font-weight: bold;
+}
+.maps{
+    height: 200px;;
+    width: 100%;
+}
+.copyright{
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+
+/* 
+    END FOOTER 
+*/
