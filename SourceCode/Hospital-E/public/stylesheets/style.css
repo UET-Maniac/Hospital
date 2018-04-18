@@ -136,14 +136,16 @@
     */
 
 .body-wrapper {
-    background-color: #FAFAFA;
+    background-color: #fafafa;
     border-left: 1px solid #d6d6d6;
     border-right: 1px solid #d6d6d6;
     width: 1004px;
-    margin: 0px auto 0px auto;
-    display: block;
-    z-index: 1;
-    box-shadow: 4px 4px 10px gray;
+    margin: auto;
+    margin-top:20px;
+    margin-bottom: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    box-shadow: 0px 2px 6px gray;
+    color: black;
 }
 
 
@@ -223,4 +225,96 @@ footer{
 
 /* 
     END FOOTER 
+*/
+
+
+/*
+    Page News
+*/
+
+.block_news{
+    display: block;
+    width: 66.66%;
+    float: left;
+}
+.block_ask_answer{
+    display: block;
+    width: 30%;
+    float: right;
+}
+.title_news{
+    display:block;
+    padding: 7px 15px 7px 15px;
+    background-color: #008DC9 ;
+    color:white;
+    font-size: 20px;
+}
+.title_ask_answer{
+    display:block;
+    padding: 7px 15px 7px 15px;
+    background-color: #008DC9 ;
+    color:white;
+    font-size: 20px;
+}
+
+.block_post{
+    padding: 25px 20px 20px 20px;
+    display:block;
+    border: black;
+}
+.teaser_headline a{
+    color:#005380;
+    font-weight: bold;
+    font-size: 18px;
+}
+.block_text_post{
+    font-size: 14px;
+    width: 50%;
+    float:left;
+    padding:10px;
+}
+.block_img_post img{
+    width: 50%;
+    float: right;
+    padding-top: 10px;
+}
+.readmore a {
+    color: #008DC9;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-size: 15px;
+}
+.time_post{
+    color: #008DC9;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-size: 15px;
+}
+/*
+    Ask and Answer
+*/
+.box_ask_answer{
+    border-radius: 5px;
+    background: none repeat scroll 0 0 #fbfbfb;
+    clear: both;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    padding: 5px 10px;
+}
+.question{
+    background: url(../images/iconquestion.png) no-repeat left transparent;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0 0 0 30px;
+    position: relative;
+}
+.question a{
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 15px;
+}
+/*
+    END NEWS
 */
