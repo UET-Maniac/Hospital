@@ -4,18 +4,28 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParse = require("body-parser")
+var mongoose = require("mongoose");
+
+var app = express();
+/*
+    Import Route modules
+*/
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var userRouter = require('./routes/user');
 var loginRouter = require('./routes/login');
 var infoDepartmentRouter = require('./routes/informations/information.department');
 var infoDoctorRouter = require('./routes/informations/information.doctor');
-var mongoose = require("mongoose");
-var app = express();
 
+//End import routes
+
+/*
+    Connect Mongodb
+*/
 var mongoDB = "mongodb://127.0.0.1:27017/test_h"; //uri to database
-mongoose.connect(mongoDB)
+mongoose.connect(mongoDB);
 
+//End MongoDB
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,12 +38,17 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParse.json())
 
+/*
+    Routes which should handle request
+*/
 app.use('/', indexRouter);
 app.use('/login', loginRouter)
 app.use('/users', usersRouter);
 app.use('/user', userRouter);
 app.use('/infoDepartments', infoDepartmentRouter);
 app.use('/infoDoctors', infoDoctorRouter);
+
+//end routes
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
