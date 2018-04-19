@@ -378,3 +378,59 @@ footer {
 
 
 /* end Forum */
+
+
+/*
+    Start page Đặt lịch hẹn
+*/
+
+.content_datlich {
+    border: 1px solid #0478D3;
+}
+
+.introduce {
+    width: 33.33%;
+    background-color: while;
+    padding: 5px;
+    float: left;
+    display: block;
+}
+
+.note_ {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.datlichcho {
+    width: 33.33%;
+    background-color: whitesmoke;
+    padding: 5px;
+    float: left;
+    display: block;
+}
+
+._select {
+    line-height: inherit;
+    border-radius: 0;
+    padding: 7px 12px;
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid #d9d9d9;
+    margin: 6px 6px 0px 0px;
+}
+
+.info_dat_hen {
+    width: 33.33%;
+    background-color: wheat;
+    padding: 5px;
+    float: right;
+    display: block;
+}
+
+.submit_datlich {
+    background-color: #0478D3;
+    color: white;
+    float: right;
+    margin: 10px;
+    padding: 5px 10px 5px 10px;
+}

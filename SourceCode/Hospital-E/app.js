@@ -15,6 +15,7 @@ var usersRouter = require('./routes/users');
 var userRouter = require('./routes/user');
 var loginRouter = require('./routes/login');
 var newsRouter = require('./routes/news');
+var datlichhenRouter = require('./routes/dat-lich-hen');
 var infoDepartmentRouter = require('./routes/informations/information.department');
 var infoDoctorRouter = require('./routes/informations/information.doctor');
 var forumRouter = require('./routes/forum')
@@ -51,7 +52,8 @@ app.use('/user', userRouter);
 app.use('/news', newsRouter);
 app.use('/infoDepartments', infoDepartmentRouter);
 app.use('/infoDoctors', infoDoctorRouter);
-app.use('/forum', forumRouter)
+app.use('/forum', forumRouter);
+app.use('/dat-lich-hen', datlichhenRouter);
 
 
 //end routes
