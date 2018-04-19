@@ -14,6 +14,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var userRouter = require('./routes/user');
 var loginRouter = require('./routes/login');
+var newsRouter = require('./routes/news');
 var infoDepartmentRouter = require('./routes/informations/information.department');
 var infoDoctorRouter = require('./routes/informations/information.doctor');
 
@@ -45,6 +46,7 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter)
 app.use('/users', usersRouter);
 app.use('/user', userRouter);
+app.use('/news', newsRouter);
 app.use('/infoDepartments', infoDepartmentRouter);
 app.use('/infoDoctors', infoDoctorRouter);
 
