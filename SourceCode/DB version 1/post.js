@@ -1,17 +1,17 @@
 var arr = [
 	{
-		"postId": "POS00000001",
-		"content": "",
+		"_id": "POS10000001",
+		"content": "Đây ko phải là bài post",
 		"image": "",
 		"userId": "USE10001000",
-		"subPostId": []
+		"sub_id": []
 	},
 	{
-		"postId": "POS00000002",
-		"content": "",
+		"_id": "POS10000002",
+		"content": "Post cái gì lên cho hợp lí đây",
 		"image": "",
 		"userId": "USE10001001",
-		"subPostId": []
+		"sub_id": []
 	}
 ]
 

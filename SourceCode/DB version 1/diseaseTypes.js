@@ -1,28 +1,28 @@
 var arr = [
 	{
-		"diseaseTypeId": "DT00000001",
+		"_id": "DT10000001",
 		"name": "Gãy xương",
-		"medicalRecords": []
+		"medicalRecords": ["REC10000001", "REC10000002", "REC10000003", "REC10000007", "REC10000010"]
 	},
 	{
-		"diseaseTypeId": "DT00000002",
+		"_id": "DT10000002",
 		"name": "Chấn thương sọ não",
-		"medicalRecords": []
+		"medicalRecords": ["REC10000009"]
 	},
 	{
-		"diseaseTypeId": "DT00000003",
+		"_id": "DT10000003",
 		"name": "Thoái hóa xương khớp",
-		"medicalRecords": []
+		"medicalRecords": ["REC10000004", "REC10000008"]
 	},
 	{
-		"diseaseTypeId": "DT00000004",
+		"_id": "DT10000004",
 		"name": "Tổn thương mạch máu, thần kinh",
-		"medicalRecords": []
+		"medicalRecords": ["REC10000006"]
 	},
 	{
-		"diseaseTypeId": "DT00000005",
+		"_id": "DT10000005",
 		"name": "Bỏng",
-		"medicalRecords": []
+		"medicalRecords": ["REC10000005"]
 	}
 ]
 

@@ -1,6 +1,6 @@
 var arr = [
 	{
-		"userId": "DOC10001000",
+		"_id": "DOC10001000",
 		"name": "Nguyễn Văn A",
 		"card": "163439199",
 		"phoneNumber": "0123456789",
@@ -15,12 +15,12 @@ var arr = [
 			"level": "Giáo sư",
 			"experience": "15 năm kinh nghiệm",
 			"star": 5,
-			"departmentId": "CTCH",
+			"departmentId": "DEP10000001",
 			"dean": true
 		}
 	},
 	{
-		"userId": "DOC10001001",
+		"_id": "DOC10001001",
 		"name": "Nguyễn Văn B",
 		"card": "163456731",
 		"phoneNumber": "0123783203",
@@ -35,12 +35,12 @@ var arr = [
 			"level": "Phó giáo sư",
 			"experience": "10 năm kinh nghiệm",
 			"star": 4,
-			"departmentId": "CTCH",
+			"departmentId": "DEP10000001",
 			"dean": false
 		}
 	},
 	{
-		"userId": "DOC10001002",
+		"_id": "DOC10001002",
 		"name": "Trần Văn C",
 		"card": "163123090",
 		"phoneNumber": "03503132453",
@@ -55,12 +55,12 @@ var arr = [
 			"level": "Tiến sĩ",
 			"experience": "5 năm kinh nghiệm",
 			"star": 3,
-			"departmentId": "CTCH",
+			"departmentId": "DEP10000001",
 			"dean": false
 		}
 	},
 	{
-		"userId": "DOC10001003",
+		"_id": "DOC10001003",
 		"name": "Nguyễn Thị D",
 		"card": "163457872",
 		"phoneNumber": "0912456832",
@@ -75,12 +75,12 @@ var arr = [
 			"level": "Tiến sĩ",
 			"experience": "5 năm kinh nghiệm",
 			"star": 3,
-			"departmentId": "CTCH",
+			"departmentId": "DEP10000001",
 			"dean": false
 		}
 	},
 	{
-		"userId": "DOC10001004",
+		"_id": "DOC10001004",
 		"name": "Trần Thị A",
 		"card": "163345888",
 		"phoneNumber": "01231231230",
@@ -95,12 +95,12 @@ var arr = [
 			"level": "Phó tiến sĩ",
 			"experience": "5 năm kinh nghiệm",
 			"star": 3,
-			"departmentId": "CTCH",
+			"departmentId": "DEP10000001",
 			"dean": false
 		}
 	},
 	{
-		"userId": "AD10001000",
+		"_id": "AD10001000",
 		"name": "Nguyễn Văn X",
 		"card": "163245980",
 		"phoneNumber": "0912343542",
@@ -113,7 +113,7 @@ var arr = [
 		"admin": true
 	},
 	{
-		"userId": "USE10001000",
+		"_id": "USE10001000",
 		"name": "Đinh Văn T",
 		"card": "163450199",
 		"phoneNumber": "0123453489",
@@ -125,7 +125,7 @@ var arr = [
 		"password": "dinhvant"
 	},
 	{
-		"userId": "USE10001001",
+		"_id": "USE10001001",
 		"name": "Nguyễn Thị Y",
 		"card": "163439400",
 		"phoneNumber": "0999456789",
@@ -137,7 +137,7 @@ var arr = [
 		"password": "nguyenthiy"
 	},
 	{
-		"userId": "USE10001002",
+		"_id": "USE10001002",
 		"name": "Nguyễn Đức A",
 		"card": "163439200",
 		"phoneNumber": "0124543989",
@@ -149,7 +149,7 @@ var arr = [
 		"password": "nguyenduca"
 	},
 	{
-		"userId": "USE10001003",
+		"_id": "USE10001003",
 		"name": "Nguyễn Quang A",
 		"card": "163736223",
 		"phoneNumber": "0123137229",
@@ -161,7 +161,7 @@ var arr = [
 		"password": "nguyenquanga"
 	},
 	{
-		"userId": "USE10001004",
+		"_id": "USE10001004",
 		"name": "Trần Văn S",
 		"card": "163439100",
 		"phoneNumber": "0123456789",
@@ -173,7 +173,7 @@ var arr = [
 		"password": "tranvans"
 	},
 	{
-		"userId": "USE10001005",
+		"_id": "USE10001005",
 		"name": "Nguyễn Văn M",
 		"card": "163987345",
 		"phoneNumber": "0123548920",
@@ -185,7 +185,7 @@ var arr = [
 		"password": "nguyenvanm"
 	},
 	{
-		"userId": "USE10001006",
+		"_id": "USE10001006",
 		"name": "Đỗ Thị N",
 		"card": "162539188",
 		"phoneNumber": "0325456789",
@@ -197,7 +197,7 @@ var arr = [
 		"password": "dothin"
 	},
 	{
-		"userId": "USE10001007",
+		"_id": "USE10001007",
 		"name": "Nguyễn Thị A",
 		"card": "163429123",
 		"phoneNumber": "0123456789",
@@ -209,7 +209,7 @@ var arr = [
 		"password": "nguyenthia"
 	},
 	{
-		"userId": "U10001008",
+		"_id": "U10001008",
 		"name": "Đoàn Văn A",
 		"card": "163434198",
 		"phoneNumber": "0123456789",
@@ -221,7 +221,7 @@ var arr = [
 		"password": "doanvana"
 	},
 	{
-		"userId": "U10001009",
+		"_id": "U10001009",
 		"name": "Lê Văn A",
 		"card": "163535878",
 		"phoneNumber": "0174329522",
