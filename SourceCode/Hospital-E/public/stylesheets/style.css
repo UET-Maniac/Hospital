@@ -141,7 +141,7 @@
     border-right: 1px solid #d6d6d6;
     width: 1004px;
     margin: auto;
-    margin-top:20px;
+    margin-top: 20px;
     margin-bottom: 20px;
     font-family: 'Times New Roman', Times, serif;
     box-shadow: 0px 2px 6px gray;
@@ -191,31 +191,38 @@
 
 /*End Dropdown-box*/
 
+
 /*
     Footer
 */
-footer{
+
+footer {
     width: 1004px;
     margin: auto;
-    height:auto;
+    height: auto;
     color: white;
     background-color: #008DC9;
     font-family: 'Times New Roman', 'Arial', serif;
     padding: 20px;
     padding-bottom: 0px;
 }
-.blockfooter ul li a{
+
+.blockfooter ul li a {
     font-family: 'Times New Roman', 'Arial', serif;
 }
-.titleblock{
+
+.titleblock {
     font-size: 16px;
     font-weight: bold;
 }
-.maps{
-    height: 200px;;
+
+.maps {
+    height: 200px;
+    ;
     width: 100%;
 }
-.copyright{
+
+.copyright {
     font-size: 12px;
     font-style: italic;
     font-weight: bold;
@@ -232,68 +239,81 @@ footer{
     Page News
 */
 
-.block_news{
+.main_content {
     display: block;
-    width: 66.66%;
+    width: 75%;
     float: left;
 }
-.block_ask_answer{
+
+.select_function {
     display: block;
-    width: 30%;
+    width: 25%;
     float: right;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
-.title_news{
-    display:block;
+
+.main_name {
+    display: block;
     padding: 7px 15px 7px 15px;
-    background-color: #008DC9 ;
-    color:white;
-    font-size: 20px;
-}
-.title_ask_answer{
-    display:block;
-    padding: 7px 15px 7px 15px;
-    background-color: #008DC9 ;
-    color:white;
+    background-color: #008DC9;
+    color: white;
     font-size: 20px;
 }
 
-.block_post{
+.title_ask_answer {
+    display: block;
+    padding: 7px 15px 7px 15px;
+    background-color: #008DC9;
+    color: white;
+    font-size: 20px;
+}
+
+.block_post {
     padding: 25px 20px 20px 20px;
-    display:block;
+    display: block;
     border: black;
 }
-.teaser_headline a{
-    color:#005380;
+
+.teaser_headline a {
+    color: #005380;
     font-weight: bold;
     font-size: 18px;
 }
-.block_text_post{
+
+.block_text_post {
     font-size: 14px;
     width: 50%;
-    float:left;
-    padding:10px;
+    float: left;
+    padding: 10px;
 }
-.block_img_post img{
+
+.block_img_post img {
     width: 50%;
     float: right;
     padding-top: 10px;
 }
+
 .readmore a {
     color: #008DC9;
     font-family: 'Times New Roman', Times, serif;
     font-style: italic;
     font-size: 15px;
 }
-.time_post{
+
+.time_post {
     color: #008DC9;
     font-family: 'Times New Roman', Times, serif;
     font-style: italic;
     font-size: 15px;
 }
+
+
 /*
-    Ask and Answer
+    Select Function
 */
-.box_ask_answer{
+
+.box_ask_answer {
     border-radius: 5px;
     background: none repeat scroll 0 0 #fbfbfb;
     clear: both;
@@ -301,20 +321,60 @@ footer{
     margin: 10px 0;
     padding: 5px 10px;
 }
-.question{
+
+.question {
     background: url(../images/iconquestion.png) no-repeat left transparent;
     cursor: pointer;
     font-size: 16px;
     padding: 0 0 0 30px;
     position: relative;
 }
-.question a{
+
+.question a {
     font-family: 'Times New Roman', Times, serif;
     color: black;
     font-style: italic;
     font-weight: bold;
     font-size: 15px;
 }
+
+.select_function .btn-item-function {
+    font-size: 25px;
+    width: 180px;
+    height: 100px;
+    padding: 6px 12px;
+    margin-top: 20px;
+    margin-left: 30px;
+    border-radius: 45px;
+    background-color: #D86422;
+    box-shadow: 2px 3px 6px 2px gray;
+}
+
+.select_function .btn-item-function:hover {
+    background-color: #D86300;
+    font-weight: bold;
+}
+
+
+/*   END NEWS*/
+
+
 /*
-    END NEWS
+    Forum
 */
+
+.btn_add_question {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 20px;
+    background-color: #0F4874;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 10px;
+}
+
+.btn_add_question:hover {
+    background-color: #0478D3;
+}
+
+
+/* end Forum */

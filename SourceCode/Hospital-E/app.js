@@ -17,6 +17,8 @@ var loginRouter = require('./routes/login');
 var newsRouter = require('./routes/news');
 var infoDepartmentRouter = require('./routes/informations/information.department');
 var infoDoctorRouter = require('./routes/informations/information.doctor');
+var forumRouter = require('./routes/forum')
+
 
 //End import routes
 
@@ -49,6 +51,8 @@ app.use('/user', userRouter);
 app.use('/news', newsRouter);
 app.use('/infoDepartments', infoDepartmentRouter);
 app.use('/infoDoctors', infoDoctorRouter);
+app.use('/forum', forumRouter)
+
 
 //end routes
 
