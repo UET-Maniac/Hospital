@@ -1,14 +1,14 @@
-*{
+* {
     padding: 0px;
     margin: 0px;
 }
 
 a {
     decoration: none;
-	font-family: Poppins-Regular;
-	font-size: 14px;
-	line-height: 1.2;
-	margin: 0px;
+    font-family: Poppins-Regular;
+    font-size: 14px;
+    line-height: 1.2;
+    margin: 0px;
     transition: all 0.4s;
     -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
@@ -17,55 +17,63 @@ a {
 }
 
 a:focus {
-	outline: none !important;
+    outline: none !important;
 }
 
 a:hover {
-	text-decoration: none;
-  color: #57b846;
+    text-decoration: none;
+    color: #57b846;
 }
 
-body{
+body {
     background-color: #F5F5F5;
 }
 
-h1,h2,h3,h4,h5,h6 {
-	margin: 0px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0px;
 }
 
-ul, li {
-	margin: 0px;
-	list-style-type: none;
+ul,
+li {
+    margin: 0px;
+    list-style-type: none;
 }
 
 button {
-	outline: none !important;
-	background: transparent;
+    outline: none !important;
+    background: transparent;
 }
 
 button:hover {
-	cursor: pointer;
+    cursor: pointer;
 }
+
 
 /*
 -----Font
 */
+
 @font-face {
     font-family: Poppins-Regular;
-    src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+    src: url('../fonts/poppins/Poppins-Regular.ttf');
 }
-  
+
 @font-face {
     font-family: Poppins-Bold;
-    src: url('../fonts/poppins/Poppins-Bold.ttf'); 
+    src: url('../fonts/poppins/Poppins-Bold.ttf');
 }
-  
+
 @font-face {
     font-family: Poppins-Medium;
-    src: url('../fonts/poppins/Poppins-Medium.ttf'); 
+    src: url('../fonts/poppins/Poppins-Medium.ttf');
 }
-  
+
 @font-face {
     font-family: Montserrat-Bold;
-    src: url('../fonts/montserrat/Montserrat-Bold.ttf'); 
+    src: url('../fonts/montserrat/Montserrat-Bold.ttf');
 }

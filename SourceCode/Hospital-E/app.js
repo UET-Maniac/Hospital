@@ -19,7 +19,7 @@ var datlichhenRouter = require('./routes/dat-lich-hen');
 var infoDepartmentRouter = require('./routes/informations/information.department');
 var infoDoctorRouter = require('./routes/informations/information.doctor');
 var forumRouter = require('./routes/forum')
-
+var informationRouter = require('./routes/infomation')
 
 //End import routes
 
@@ -54,7 +54,7 @@ app.use('/infoDepartments', infoDepartmentRouter);
 app.use('/infoDoctors', infoDoctorRouter);
 app.use('/forum', forumRouter);
 app.use('/dat-lich-hen', datlichhenRouter);
-
+app.use('/gioi-thieu', informationRouter)
 
 //end routes
 

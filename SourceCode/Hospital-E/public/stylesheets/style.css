@@ -435,7 +435,42 @@ footer {
     padding: 5px 10px 5px 10px;
 }
 
+.introduce ol {
+    list-style-type: upper-roman;
+}
+
 
 /*
  End dat lich hen
 */
+
+
+/*
+    Produce
+*/
+
+.part1 {
+    padding: 10px;
+}
+
+.part1 h1 {
+    color: red;
+    text-align: center;
+}
+
+.part2 {
+    padding: 20px;
+    background-color: #ffd;
+}
+
+.part2 img {
+    width: 80px;
+    height: 80px;
+}
+
+.part2 ul {
+    list-style-type: disc;
+}
+
+
+/* end produce */
