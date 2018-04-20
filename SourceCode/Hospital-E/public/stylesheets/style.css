@@ -413,10 +413,10 @@ footer {
     line-height: inherit;
     border-radius: 0;
     padding: 7px 12px;
-    width: 100%;
+    width: 95%;
     font-size: 14px;
     border: 1px solid #d9d9d9;
-    margin: 6px 6px 0px 0px;
+    margin: 6px 10px 0px 10px;
 }
 
 .info_dat_hen {
@@ -434,3 +434,8 @@ footer {
     margin: 10px;
     padding: 5px 10px 5px 10px;
 }
+
+
+/*
+ End dat lich hen
+*/
