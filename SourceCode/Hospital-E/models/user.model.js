@@ -15,45 +15,55 @@ var User = new Schema({
 	image: String,
 	userName: String,
 	password: String,
-	doctor:
-	{
-		level: String,
-		experience: String,
-		star: Number,
-		departmentId: String,
-		dean: Boolean
-	},
+	objectType: Number,
+	level: String,
+	experience: String,
+	star: Number,
+	departmentId: String,
+	dean: Boolean,
 	admin: Boolean,
+	doctor: Boolean,
     active: Boolean,
     timestamp: Date
 })
 
-
-// 0-> admin, 1->doctor, 2->user
 User.statics.inserts = function(data, callback){
 	// Điều kiện tìm kiếm 
-	// var query = { name : data.name };
-	// var defaultId = '';
+	var query = { userName : data.userName };
+	var defaultId = 'USE100000000';
 	// model, query, defaultId, data, callback
 	tools.Insert(UserModel, query, defaultId, data, callback);
 }
 
-User.statics.finds = function(data, type, callback){
+
+// 0-> admin, 1->doctor, 2->user
+//objectType 0->all (admin), 1->doctor, 2->user
+// chua tim dc neu viet khong dau
+User.statics.finds = function(data, objectType, typeFind, callback){
 	var search = {$regex: '.*' + data + '.*', $options: 'i'};
 	var query = {
 		$or: [
-			// {_id: search},
-			// {name: search},
-			// {description: search},
-			// {address: search}
+			{_id: search},
+			{name: search},
+			{address: search},
+			{card: search},
+			{phoneNumber: search},
+			{level: search},
+			{experience: search},
+			{star: search},
+			{departmentId: search},
 		]
 	}
-	if (type != 0)
+	if (typeFind != 0){
+		query.objectType = typeFind;
+	}
+	if (objectType != 0){
 		query.active = true;
+	}
 	this.find(query,callback);
 }
 
-User.statics.updates = function(data, type, callback){
+User.statics.updates = function(data, objectType, callback){
 	tools.Update.call(this, data, callback);
 }
 
@@ -71,7 +81,7 @@ User.statics.login = function(data, callback){
 
 User.statics.checkToken = function(data, callback){
 	var query = {
-		token: data.token,
+		token: data,
 		expiresAt: {$gt : new Date()}
 	}
 	this.findOne(query, callback);

@@ -1,6 +1,6 @@
 var arr = [
 	{
-		"_id" : "DEP10000001",
+		"_id" : "DEP101",
 		"name": "Chấn thương chỉnh hình",
 		"description": "Thực hiện các việc phẫu thuật, chăm sóc việc gãy tay,gãy chân,...",
 		"address": "Khu A1, bệnh viện X",

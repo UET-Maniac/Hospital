@@ -6,7 +6,7 @@ var arr = [
 		"content": "Nghỉ học, ở nhà dưỡng bệnh",
 		"image": "",
 		"like": 69,
-		"authorId": "DOC10001000"
+		"authorId": "USE100000001"
 	},
 	{
 		"_id": "NEW10000002",
@@ -15,7 +15,7 @@ var arr = [
 		"content": "Nghỉ học, ở nhà dưỡng bệnh",
 		"image": "",
 		"like": 96,
-		"authorId": "DOC10001000"
+		"authorId": "USE100000002"
 	}
 ]
 

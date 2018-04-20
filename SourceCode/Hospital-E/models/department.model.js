@@ -17,14 +17,14 @@ var Department = new Schema({
 Department.statics.inserts = function(data, callback){
 	// Điều kiện tìm kiếm 
 	var query = { name : data.name };
-	var defaultId = 'DEP10001';
+	var defaultId = 'DEP101';
 	// model, query, defaultId, data, callback
 	tools.Insert(DepartmentModel, query, defaultId, data, callback);
 }
 
 // Phần này vẫn chưa tối ưu đc
-// type true là admin, còn lại là người dùng khác 
-Department.statics.finds = function(data, type, callback){
+// type 0, còn lại là người dùng khác 
+Department.statics.finds = function(data, objectType, callback){
 	var search = {$regex: '.*' + data + '.*', $options: 'i'};
 	var query = {
 		$or: [
@@ -34,7 +34,7 @@ Department.statics.finds = function(data, type, callback){
 			{address: search}
 		]
 	}
-	if (!type)
+	if (type)
 		query.active = true;
 	this.find(query,callback);
 };

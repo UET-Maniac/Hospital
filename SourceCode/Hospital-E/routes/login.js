@@ -25,8 +25,7 @@ router.route('/')
                 })
             } else if (user) {
                 data._id = user._id;
-                if (user.admin) data.admin = user.admin;
-                if (user.doctor) data.doctor = user.doctor;
+                data.objectType = user.objectType;
                 Token.sign(data, (err, token) => {
                     // Có cách nào mà có hay không có {user: user} index.ejs nó không lỗi không nhỉ?
                     // Với lại có cách nào mà cái thông tin user sau đăng nhập được gắn vô head
