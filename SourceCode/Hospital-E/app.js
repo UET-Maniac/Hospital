@@ -47,14 +47,14 @@ app.use(bodyParse.json())
     Routes which should handle request
 */
 app.use('/', indexRouter);
-app.use('/login', loginRouter)
-app.use('/users', usersRouter);
-app.use('/user', userRouter);
-app.use('/infoDepartments', infoDepartmentRouter);
-app.use('/infoDoctors', infoDoctorRouter);
-app.use('/forum', forumRouter);
+app.use('/dang-nhap', loginRouter)
+// app.use('/tai-khoan', userRouter);
+app.use('/gioi-thieu/khoa', infoDepartmentRouter);
+app.use('/gioi-thieu/bac-si', infoDoctorRouter);
+// app.use('/gioi-thieu/tai-khoan', infoDoctorRouter);
+app.use('/dien-dan', forumRouter);
 app.use('/dat-lich-hen', appointmentRouter);
-app.use('/gioi-thieu', informationRouter)
+// app.use('/gioi-thieu', informationRouter)
 app.use("/tin-tuc", newsRouter)
 
 //end routes
