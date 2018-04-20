@@ -4,12 +4,12 @@ var tools = require('./tools.model');
 
 var News = new Schema({
     _id: String,
-	tags: Array(String),
+	tags: [String],
 	title: String,
 	content: String,
 	image: String,
 	like: Number,
-	authorId: String,
+	authorId: {type: String, ref: 'User'},
     active: Boolean,
     timestamp: Date
 })

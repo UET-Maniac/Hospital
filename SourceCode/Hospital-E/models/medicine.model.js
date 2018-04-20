@@ -6,9 +6,9 @@ var Medicine = new Schema({
     _id: String,
 	name: String,
 	effect: String,
-	use: String,
+	use: {type: String, ref: 'User'},
 	description: String,
-	medicalRecords: Array(String),
+	medicalRecords: [{type: String, ref: 'MedicalRecord'}],
     active: Boolean,
     timestamp: Date
 })

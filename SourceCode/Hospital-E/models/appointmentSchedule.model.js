@@ -4,8 +4,8 @@ var tools = require('./tools.model');
 
 var AppointmentSchedule = new Schema({
     _id: String,
-	doctorId: String,
-	patientId: String,
+	doctorId: {type: String, ref: 'User'},
+	patientId: {type: String, ref: 'User'},
 	time: Date,
 	address: String,
 	description: String,

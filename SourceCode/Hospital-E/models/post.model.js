@@ -6,8 +6,8 @@ var Post = new Schema({
     _id: String,
 	content: String,
 	image: String,
-	userId: String,
-	subPostId:Array(String),
+	userId: {type: String, ref: 'User'},
+	subPostId:[{type: String, ref: 'Post'}],
     active: Boolean,
     timestamp: Date
 })

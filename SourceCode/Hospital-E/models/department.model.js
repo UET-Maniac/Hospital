@@ -34,7 +34,7 @@ Department.statics.finds = function(data, objectType, callback){
 			{address: search}
 		]
 	}
-	if (type)
+	if (objectType != 0)
 		query.active = true;
 	this.find(query,callback);
 };

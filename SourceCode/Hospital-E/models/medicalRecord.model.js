@@ -4,14 +4,14 @@ var tools = require('./tools.model');
 
 var MedicalRecord = new Schema({
     _id: String,
-	doctorId: String,
-	patientId: String,
+	doctorId: {type: String, ref: 'User'},
+	patientId: {type: String, ref: 'User'},
 	bedNo: String,
 	theDiagnosis: String,
 	status: String,
 	treatment: String,
-	diseaseTypes: Array(String),
-	medicines: Array(String),
+	diseaseTypes: [{type: String, ref: 'DiseaseType'}],
+	medicines:[{type: String, ref: 'Medicine'}],
     active: Boolean,
     timestamp: Date
 })

@@ -5,7 +5,7 @@ var tools = require('./tools.model');
 var DiseaseType = new Schema({
     _id: String,
 	name: String,
-	medicalRecords: Array(String),
+	medicalRecords: [{type: String, ref: 'MedicalRecord'}],
     active: Boolean,
     timestamp: Date
 })

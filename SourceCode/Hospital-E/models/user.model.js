@@ -19,10 +19,8 @@ var User = new Schema({
 	level: String,
 	experience: String,
 	star: Number,
-	departmentId: String,
+	departmentId: {type: String, ref: 'Department'},
 	dean: Boolean,
-	admin: Boolean,
-	doctor: Boolean,
     active: Boolean,
     timestamp: Date
 })
@@ -50,8 +48,8 @@ User.statics.finds = function(data, objectType, typeFind, callback){
 			{phoneNumber: search},
 			{level: search},
 			{experience: search},
-			{star: search},
-			{departmentId: search},
+			// {star: search}
+			{departmentId: search}
 		]
 	}
 	if (typeFind != 0){
