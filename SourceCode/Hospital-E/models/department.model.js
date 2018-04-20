@@ -23,7 +23,7 @@ Department.statics.inserts = function(data, callback){
 }
 
 // Phần này vẫn chưa tối ưu đc
-// type 0 là admin, còn lại là người dùng khác 
+// type true là admin, còn lại là người dùng khác 
 Department.statics.finds = function(data, type, callback){
 	var search = {$regex: '.*' + data + '.*', $options: 'i'};
 	var query = {
@@ -34,7 +34,7 @@ Department.statics.finds = function(data, type, callback){
 			{address: search}
 		]
 	}
-	if (type != 0)
+	if (!type)
 		query.active = true;
 	this.find(query,callback);
 };

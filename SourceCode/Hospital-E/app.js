@@ -14,12 +14,13 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var userRouter = require('./routes/user');
 var loginRouter = require('./routes/login');
-var newsRouter = require('./routes/news');
-var datlichhenRouter = require('./routes/dat-lich-hen');
 var infoDepartmentRouter = require('./routes/informations/information.department');
 var infoDoctorRouter = require('./routes/informations/information.doctor');
 var forumRouter = require('./routes/forum')
+var appointmentRouter = require('./routes/dat-lich-hen')
 var informationRouter = require('./routes/infomation')
+var newsRouter = require("./routes/news")
+
 
 //End import routes
 
@@ -49,12 +50,12 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter)
 app.use('/users', usersRouter);
 app.use('/user', userRouter);
-app.use('/news', newsRouter);
 app.use('/infoDepartments', infoDepartmentRouter);
 app.use('/infoDoctors', infoDoctorRouter);
 app.use('/forum', forumRouter);
-app.use('/dat-lich-hen', datlichhenRouter);
+app.use('/dat-lich-hen', appointmentRouter);
 app.use('/gioi-thieu', informationRouter)
+app.use("/tin-tuc", newsRouter)
 
 //end routes
 

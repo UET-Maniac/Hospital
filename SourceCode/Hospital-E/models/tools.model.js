@@ -12,7 +12,7 @@ function createNewId(latestId){
 
 function Update(data, callback){
 	data.active = true;
-	data.timestamp = new Date(Date.now());
+	data.timestamp = new Date();
 	var query = data._id;
 	var update = { $set: data };
 	this.findByIdAndUpdate(query, update, callback);
@@ -29,7 +29,7 @@ function Insert(model, query, defaultId, data, callback){
 				if(result) idNew = createNewId(result[0]._id);
                 data._id = idNew;
                 data.active = true;
-	            data.timestamp = new Date(Date.now());
+	            data.timestamp = new Date();
 				model.create(data, callback);
 			})
 		}else{
@@ -43,7 +43,7 @@ function Delete(data, callback){
 	var update = {
 		$set: {
 			active: false,
-			timestamp: new Date(Date.now())
+			timestamp: new Date()
 		}
 	}
 	this.findByIdAndUpdate(query,update,callback);
