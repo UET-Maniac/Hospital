@@ -24,27 +24,27 @@ router.route('/')
                     message: 'Error with server'
                 })
             } else if (user) {
-                // data._id = user._id;
-                // if (user.admin) data.admin = user.admin;
-                // if (user.doctor) data.doctor = user.doctor;
-                // Token.sign(data, (err, token) => {
-                //     // Có cách nào mà có hay không có {user: user} index.ejs nó không lỗi không nhỉ?
-                //     // Với lại có cách nào mà cái thông tin user sau đăng nhập được gắn vô head
-                //     // để thuận tiện cho việc check trong các phần sau không nhỉ?
-                //     // res.render("pages/index", {user: user});
-                //     console.log(1);
-                //     data.token = token;
-                //     User.updateToken(data, (err, result)=>{
-                //         if (err){
-                //             res.status(500).json({
-                //                 message: 'Error with server'
-                //             })
-                //         } else{
-                //             // chua gui token
+                data._id = user._id;
+                if (user.admin) data.admin = user.admin;
+                if (user.doctor) data.doctor = user.doctor;
+                Token.sign(data, (err, token) => {
+                    // Có cách nào mà có hay không có {user: user} index.ejs nó không lỗi không nhỉ?
+                    // Với lại có cách nào mà cái thông tin user sau đăng nhập được gắn vô head
+                    // để thuận tiện cho việc check trong các phần sau không nhỉ?
+                    // res.render("pages/index", {user: user});
+                    console.log(1);
+                    data.token = token;
+                    User.updateToken(data, (err, result)=>{
+                        if (err){
+                            res.status(500).json({
+                                message: 'Error with server'
+                            })
+                        } else{
+                            // chua gui token
                             res.render("pages/index");
-                //         }
-                //     })
-                // })
+                        }
+                    })
+                })
             } else {
                 //
                 res.status(404).json({
