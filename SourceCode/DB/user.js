@@ -1,4 +1,19 @@
 var arr = [
+
+	{
+		"_id": "USE100000000",
+		"name": "Nguyễn Văn X",
+		"card": "163245980",
+		"phoneNumber": "0912343542",
+		"birthday": new Date ('1998-01-06'),
+		"sex": true,
+		"address": "144 Xuân Thủy, Cầu Giấy, Hà Nội",
+		"image": "",
+		"userName": "nguynvanX@gmail.com",
+		"password": "nguyenvanx",
+		"objectType": 0
+	},
+	
 	{
 		"_id": "USE100000001",
 		"name": "Nguyễn Văn A",
@@ -89,19 +104,7 @@ var arr = [
 		"departmentId": "DEP101",
 		"dean": false
 	},
-	{
-		"_id": "USE100000006",
-		"name": "Nguyễn Văn X",
-		"card": "163245980",
-		"phoneNumber": "0912343542",
-		"birthday": new Date ('1998-01-06'),
-		"sex": true,
-		"address": "144 Xuân Thủy, Cầu Giấy, Hà Nội",
-		"image": "",
-		"userName": "nguynvanX@gmail.com",
-		"password": "nguyenvanx",
-		"objectType": 0
-	},
+	
 	{
 		"_id": "USE100000007",
 		"name": "Đinh Văn T",
@@ -126,7 +129,7 @@ var arr = [
 		"image": "",
 		"userName": "nguyenthiy@gmail.com",
 		"password": "nguyenthiy",
-		"objectType": 0
+		"objectType": 2
 	},
 	{
 		"_id": "USE100000009",
@@ -139,7 +142,7 @@ var arr = [
 		"image": "",
 		"userName": "nguyenduca@gmail.com",
 		"password": "nguyenduca",
-		"objectType": 0
+		"objectType": 2
 	},
 	{
 		"_id": "USE100000010",
@@ -152,7 +155,7 @@ var arr = [
 		"image": "",
 		"userName": "nguyenquanga@gmail.com",
 		"password": "nguyenquanga",
-		"objectType": 0
+		"objectType": 2
 	},
 	{
 		"_id": "USE100000011",
@@ -165,7 +168,7 @@ var arr = [
 		"image": "",
 		"userName": "tranvans@gmail.com",
 		"password": "tranvans",
-		"objectType": 0
+		"objectType": 2
 	},
 	{
 		"_id": "USE100000012",
@@ -178,7 +181,7 @@ var arr = [
 		"image": "",
 		"userName": "nguyenvanm@gmail.com",
 		"password": "nguyenvanm",
-		"objectType": 0
+		"objectType": 2
 	},
 	{
 		"_id": "USE100000013",
@@ -191,7 +194,7 @@ var arr = [
 		"image": "",
 		"userName": "dothin@gmail.com",
 		"password": "dothin",
-		"objectType": 0
+		"objectType": 2
 	},
 	{
 		"_id": "USE100000014",
@@ -204,7 +207,7 @@ var arr = [
 		"image": "",
 		"userName": "nguyenthia@gmail.com",
 		"password": "nguyenthia",
-		"objectType": 0
+		"objectType": 2
 	},
 	{
 		"_id": "USE100000015",
@@ -217,7 +220,7 @@ var arr = [
 		"image": "",
 		"userName": "doanvana@gmail.com",
 		"password": "doanvana",
-		"objectType": 0
+		"objectType": 2
 	},
 	{
 		"_id": "USE100000016",
@@ -230,7 +233,7 @@ var arr = [
 		"image": "",
 		"userName": "levana@gmail.com",
 		"password": "levana",
-		"objectType": 0
+		"objectType": 2
 	}
 ]
 

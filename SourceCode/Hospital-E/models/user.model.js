@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 var tools = require('./tools.model');
 // can lay secrectKey va timeExpires trong config
 var timeExpires  = 3600*1000;
+var Department = require('./department.model');
 
 var User = new Schema({
     _id: String,
@@ -58,7 +59,14 @@ User.statics.finds = function(data, objectType, typeFind, callback){
 	if (objectType != 0){
 		query.active = true;
 	}
-	this.find(query,callback);
+	this.find(query,(err, users)=>{
+		if (err){
+			callback(err, users);
+		} else{
+			var opts = [{ path: 'Department'}];
+			UserModel.populate(users, opts, callback);
+		}
+	});
 }
 
 User.statics.updates = function(data, objectType, callback){
