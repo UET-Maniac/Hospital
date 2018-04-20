@@ -1,14 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var Department = require("../../models/department.model");
-// var Token = require('../models/token.model');
+var Token = require('../../models/token.model');
 
 router.route('/')
     .get(function(req, res, next){
         var admin = false;
-        // Token.verify(req, res, (err, authData) => {
-        //     admin = a
-        // })
+        if(req.body.token){
+            Token.verify(req, res, (err, authData) => {
+                if(authData.admin) admin = authData.admin;
+            })
+        }
         Department.finds('', admin, (err, departments) => {
             if (err){
                 res.status('404').json({
@@ -16,16 +18,22 @@ router.route('/')
                 })
             } else{
                 // can check admin va render theo view rieng
-                res.render('pages/informationDepartment', {departments: departments});
+                if (!admin){
+                    res.render('pages/informationDepartment', {departments: departments});
+                }
+                else {
+
+                }
             }
         });
     })
     .put(function(req, res, next){
         var data = '';
         if (req.body.data) data = req.body.data;
-        // Thiếu check token và decode ra thông tin
-        // dựa vào thông tin đó phân quyền ngwoif dungf
-        var admin = true;
+        var admin = false;
+        Token.verify(req, res, (err, authData) => {
+            if(authData.admin) admin = authData.admin;
+        })
         Department.finds(data, admin, (err, departments) => {
             if (err){
                 res.status('404').json({
@@ -38,9 +46,10 @@ router.route('/')
         });
     })
     .post(function(req, res, next){
-        // Thiếu check token và decode ra thông tin
-        // dựa vào thông tin đó phân quyền ngwoif dungf
-        var admin = true;
+        var admin = false;
+        Token.verify(req, res, (err, authData) => {
+            if(authData.admin) admin = authData.admin;
+        })
         if(admin){
             Department.inserts(req.body.data, (err, departments) => {
                 if (err){
@@ -59,9 +68,10 @@ router.route('/')
         }
     })
     .patch(function(req, res, next){
-        // Thiếu check token và decode ra thông tin
-        // dựa vào thông tin đó phân quyền ngwoif dungf
-        var admin = true;
+        var admin = false;
+        Token.verify(req, res, (err, authData) => {
+            if(authData.admin) admin = authData.admin;
+        })
         if (admin){
             Department.updates(req.body.data, (err, departments) => {
                 if (err){
@@ -80,9 +90,10 @@ router.route('/')
         }
     })
     .delete(function(req, res, next){
-        // Thiếu check token và decode ra thông tin
-        // dựa vào thông tin đó phân quyền ngwoif dungf
-        var admin = true;
+        var admin = false;
+        Token.verify(req, res, (err, authData) => {
+            if(authData.admin) admin = authData.admin;
+        })
         if (admin){
             Department.deletes(req.body.data, (err, departments) => {
                 if (err){
