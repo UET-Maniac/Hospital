@@ -8,23 +8,58 @@
         <header></header>
         <div class="body-wrapper">
             <% for(var i=0; i<doctors.length; i++) {%>
-                <li><%= doctors[i]._id %></li>
-                <li><%= doctors[i].name %></li>
-                <li><%= doctors[i].card %></li>
-                <li><%= doctors[i].phoneNumber %></li>
-                <li><%= doctors[i].birthday %></li>
-                <li><%= doctors[i].sex %></li>
-                <li><%= doctors[i].address %></li>
-                <li><%= doctors[i].image %></li>
-                <li><%= doctors[i].level %></li>
-                <li><%= doctors[i].experience %></li>
-                <li><%= doctors[i].star %></li>
-                <li><%= doctors[i].departmentId._id %></li>
-                <li><%= doctors[i].departmentId.name %></li>
-                <li><%= doctors[i].departmentId.description %></li>
-                <li><%= doctors[i].departmentId.address %></li>
-                <li><%= doctors[i].departmentId.image %></li>
-                <li><%= doctors[i].departmentId.foundingOn %></li></br></br>
+                <% if(doctors[i]._id){%>
+                    <li><%= doctors[i]._id %></li>
+                <% } %>
+                <% if(doctors[i].name){%>
+                    <li><%= doctors[i].name %></li>
+                <% } %>
+                <% if(doctors[i].card){%>
+                    <li><%= doctors[i].card %></li>
+                <% } %>
+                <% if(doctors[i].phoneNumber){%>
+                    <li><%= doctors[i].phoneNumber %></li>
+                <% } %>
+                <% if(doctors[i].birthday){%>
+                    <li><%= doctors[i].birthday %></li>
+                <% } %>
+                <% if(doctors[i].sex){%>
+                    <li><%= doctors[i].sex %></li>
+                <% } %>
+                <% if(doctors[i].address){%>
+                    <li><%= doctors[i].address %></li>
+                <% } %>
+                <% if(doctors[i].image){%>
+                    <li><%= doctors[i].image %></li>
+                <% } %>
+                <% if(doctors[i].level){%>
+                    <li><%= doctors[i].level %></li>
+                <% } %>
+                <% if(doctors[i].experience){%>
+                    <li><%= doctors[i].experience %></li>
+                <% } %>
+                <% if(doctors[i].star){%>
+                    <li><%= doctors[i].star %></li>
+                <% } %>
+                <% if(doctors[i].departmentId._id){%>
+                    <li><%= doctors[i].departmentId._id %></li>
+                <% } %>
+                <% if(doctors[i].departmentId.name){%>
+                    <li><%= doctors[i].departmentId.name %></li>
+                <% } %>
+                <% if(doctors[i].departmentId.description){%>
+                    <li><%= doctors[i].departmentId.description %></li>
+                <% } %>
+                <% if(doctors[i].departmentId.address){%>
+                    <li><%= doctors[i].departmentId.address %></li>
+                <% } %>
+                <% if(doctors[i].departmentId.image){%>
+                    <li><%= doctors[i].departmentId.image %></li>
+                <% } %>
+                <% if(doctors[i].departmentId.foundingOn){%>
+                    <li><%= doctors[i].departmentId.foundingOn %></li>
+                <% } %>
+                </br></br>
             <% } %>
         </div>
     <footer><% include ../partials/footer %></footer>

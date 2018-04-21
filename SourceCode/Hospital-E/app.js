@@ -16,9 +16,9 @@ var userRouter = require('./routes/user');
 var loginRouter = require('./routes/login');
 var infoDepartmentRouter = require('./routes/informations/information.department');
 var infoDoctorRouter = require('./routes/informations/information.doctor');
-var forumRouter = require('./routes/forum')
-var appointmentRouter = require('./routes/dat-lich-hen')
-var informationRouter = require('./routes/infomation')
+var forumRouter = require('./routes/forum');
+var appointmentRouter = require('./routes/dat-lich-hen');
+var infoAllUserRouter = require('./routes/informations/information.alluser');
 var newsRouter = require("./routes/news")
 
 
@@ -53,7 +53,7 @@ app.use('/dang-nhap', loginRouter)
 // app.use('/tai-khoan', userRouter);
 app.use('/gioi-thieu/khoa', infoDepartmentRouter);
 app.use('/gioi-thieu/bac-si', infoDoctorRouter);
-// app.use('/gioi-thieu/tai-khoan', infoDoctorRouter);
+app.use('/gioi-thieu/tai-khoan', infoAllUserRouter);
 app.use('/dien-dan', forumRouter);
 app.use('/dat-lich-hen', appointmentRouter);
 // app.use('/gioi-thieu', informationRouter)
