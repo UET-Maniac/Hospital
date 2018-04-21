@@ -5,29 +5,31 @@
     </head>
     <body>
 		<% include ../partials/sidebar %>
-		<header>Hello</header>
-		<% for(var i=0; i<departments.length; i++) {%>
-			<ul>
-				<% if(departments[i]._id){%>
-					<li><%= departments[i]._id %></li>
-				<% } %>
-				<% if(departments[i].name){%>
-					<li><%= departments[i].name %></li>
-				<% } %>
-				<% if(departments[i].description){%>
-					<li><%= departments[i].description %></li>
-				<% } %>
-				<% if(departments[i].address){%>
-					<li><%= departments[i].address %></li>
-				<% } %>
-				<% if(departments[i].image){%>
-					<li><%= departments[i].image %></li>
-				<% } %>
-				<% if(departments[i].foundingOn){%>
-					<li><%= departments[i].foundingOn %></li>
-				<% } %>
-			</ul></br>
-		<% } %>
-    <footer></footer>
+		<header></header>
+		<div class="body-wrapper">
+			<% for(var i=0; i<departments.length; i++) {%>
+				<ul>
+					<% if(departments[i]._id){%>
+						<li><%= departments[i]._id %></li>
+					<% } %>
+					<% if(departments[i].name){%>
+						<li><%= departments[i].name %></li>
+					<% } %>
+					<% if(departments[i].description){%>
+						<li><%= departments[i].description %></li>
+					<% } %>
+					<% if(departments[i].address){%>
+						<li><%= departments[i].address %></li>
+					<% } %>
+					<% if(departments[i].image){%>
+						<li><%= departments[i].image %></li>
+					<% } %>
+					<% if(departments[i].foundingOn){%>
+						<li><%= departments[i].foundingOn %></li>
+					<% } %>
+				</ul></br>
+			<% } %>
+		</div>
+    <footer><% include ../partials/footer %></footer>
     </body>
 </html>

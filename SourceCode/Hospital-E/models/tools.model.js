@@ -1,4 +1,6 @@
-// symbol of entity
+/**
+ * symbol of entity
+ */
 var lengthSymbol = 3;
 /**
  * Tạo id mới cho thực thể
@@ -10,7 +12,6 @@ function createNewId(latestId){
     var idNew = symbol + numberNew;
     return idNew;
 }
-// all 'this' is used for model reference
 /**
  * Update tất cả các thuộc tính của 1 đối tượng
  * @param {*} data dữ liệu với form của đối tượng 
@@ -79,7 +80,9 @@ function Delete(data, callback){
 	}
 	this.findByIdAndUpdate(query,update,callback);
 }
-
+/**
+ * Exports
+ */
 module.exports = {
     Update: Update,
     Insert: Insert,

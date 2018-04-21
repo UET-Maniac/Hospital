@@ -26,11 +26,10 @@ Department.statics.inserts = function(data, callback){
 	// model, query, defaultId, data, callback
 	tools.Insert(DepartmentModel, query, defaultId, data, callback);
 }
-// Phần này vẫn chưa tối ưu đc
-// type 0, còn lại là người dùng khác
-
 /**
  * Tìm kiếm thông tin khoa
+ * Phần này vẫn chưa tối ưu đc
+ * type 0, còn lại là người dùng khác
  * @param {*} data từ tìm kiếm
  * @param {*} objectType kiểu người dùng
  * @param {*} callback hàm call back
@@ -67,7 +66,11 @@ Department.statics.updates = function(data, callback){
 Department.statics.deletes = function(data, callback){
 	tools.Delete.call(this, data, callback);
 }
-//name, Schema, collection
+/**
+ * name, Schema, collection
+ */
 var DepartmentModel = mongoose.model('Department', Department, 'department');
-
+/**
+ * Export
+ */
 module.exports = DepartmentModel;

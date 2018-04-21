@@ -4,27 +4,29 @@
         <% include ../partials/head %>
     </head>
     <body>
-		<% include ../partials/sidebar %>
-		<header>Hello</header>
-        <% for(var i=0; i<doctors.length; i++) {%>
-			<li><%= doctors[i]._id %></li>
-            <li><%= doctors[i].name %></li>
-            <li><%= doctors[i].card %></li>
-            <li><%= doctors[i].phoneNumber %></li>
-            <li><%= doctors[i].birthday %></li>
-            <li><%= doctors[i].sex %></li>
-			<li><%= doctors[i].address %></li>
-			<li><%= doctors[i].image %></li>
-            <li><%= doctors[i].level %></li>
-            <li><%= doctors[i].experience %></li>
-            <li><%= doctors[i].star %></li>
-            <li><%= doctors[i].departmentId._id %></li>
-            <li><%= doctors[i].departmentId.name %></li>
-            <li><%= doctors[i].departmentId.description %></li>
-            <li><%= doctors[i].departmentId.address %></li>
-            <li><%= doctors[i].departmentId.image %></li>
-            <li><%= doctors[i].departmentId.foundingOn %></li></br></br>
-		 <% } %>
-    <footer></footer>
+        <% include ../partials/sidebar %>
+        <header></header>
+        <div class="body-wrapper">
+            <% for(var i=0; i<doctors.length; i++) {%>
+                <li><%= doctors[i]._id %></li>
+                <li><%= doctors[i].name %></li>
+                <li><%= doctors[i].card %></li>
+                <li><%= doctors[i].phoneNumber %></li>
+                <li><%= doctors[i].birthday %></li>
+                <li><%= doctors[i].sex %></li>
+                <li><%= doctors[i].address %></li>
+                <li><%= doctors[i].image %></li>
+                <li><%= doctors[i].level %></li>
+                <li><%= doctors[i].experience %></li>
+                <li><%= doctors[i].star %></li>
+                <li><%= doctors[i].departmentId._id %></li>
+                <li><%= doctors[i].departmentId.name %></li>
+                <li><%= doctors[i].departmentId.description %></li>
+                <li><%= doctors[i].departmentId.address %></li>
+                <li><%= doctors[i].departmentId.image %></li>
+                <li><%= doctors[i].departmentId.foundingOn %></li></br></br>
+            <% } %>
+        </div>
+    <footer><% include ../partials/footer %></footer>
     </body>
 </html>

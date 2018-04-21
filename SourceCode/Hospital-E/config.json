@@ -1,0 +1,5 @@
+{
+    "db": "mongodb://127.0.0.1:27017/test_h",
+    "secretKey": "6d0fc20a1cc92d4de0d8cefee937b827",
+    "timeExpires": "3600s"
+}
