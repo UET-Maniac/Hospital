@@ -14,8 +14,8 @@ var Medicine = new Schema({
 })
 
 Medicine.statics.inserts = function(data, callback){
-	var query = {};
-	var defaultId = '';
+	var query = { name : data.name };
+	var defaultId = 'MED10000000';
 	tools.Insert(MedicineModel, query, defaultId, data, callback);
 }
 
@@ -38,6 +38,13 @@ Medicine.statics.updates = function(data, callback){
 
 Medicine.statics.deletes = function(data, callback){
 	tools.Delete.call(this, data, callback);
+}
+
+Medicine.statics.addIntoArray = function(data, callback){
+	var add = {
+		medicalRecords: data.medicalRecords
+	}
+	tools.addIntoArray.call(this, data._id, add, callback);
 }
 
 var MedicineModel = mongoose.model('Medicine', Medicine, "medicine");

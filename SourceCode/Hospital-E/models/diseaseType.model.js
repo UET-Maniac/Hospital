@@ -11,7 +11,7 @@ var DiseaseType = new Schema({
 })
 
 DiseaseType.statics.inserts = function(data, callback){
-	var query = {};
+	var query = { name : data.name };
 	var defaultId = '';
 	tools.Insert(DiseaseTypeModel, query, defaultId, data, callback);
 }

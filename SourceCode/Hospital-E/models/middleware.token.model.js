@@ -10,7 +10,7 @@ module.exports = function(req, res, next){
                 })
             } else{
                 Token.verify(req, res, (err, authData) => {
-                    // req.authData = authData
+                    req.authData = authData;
                     req.objectType = authData.objectType;
                 })
             }

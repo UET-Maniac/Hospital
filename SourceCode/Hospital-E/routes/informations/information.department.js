@@ -159,7 +159,7 @@ router.route('/')
         objectType = 0;
         //
         if (objectType){
-            Department.deletes(req.body.data, (err, departments) => {
+            Department.deletes(req.body.data._id, (err, departments) => {
                 if (err){
                     res.status('500').json({
                         message: "Error with server!"

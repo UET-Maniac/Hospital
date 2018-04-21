@@ -4,10 +4,12 @@ var Doctor = require("../../models/user.model");
 var objectType = 2;
 var typeFind = 1;
 // chua toi uu, nen cho vao file middle ware
+// chua bao mat tot
 router.use(function(req, res, next){
     if(req.objectType){
         objectType = req.objectType;
     }
+    // objectType = req.headers['objecttype'];
     next();
 })
 
@@ -67,7 +69,7 @@ router.route('/')
     // })
     // .delete(function(req, res, next){
     //     // chưa kiểm tra điều kiện là admin 
-    //     Doctor.deletes(req.body.data, (err, doctors) => {
+    //     Doctor.deletes(req.body.data._id, (err, doctors) => {
     //         if (err){
     //             res.status('500').json({
     //                 message: "Error with server!"

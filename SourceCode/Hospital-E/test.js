@@ -35,8 +35,55 @@ var departmentSchema = new Schema({
     timestamp: Date
 });
 
+var medicalRecordSchema = new Schema({
+    _id: String,
+	doctorId: {type: String, ref: 'User'},
+	patientId: {type: String, ref: 'User'},
+	bedNo: String,
+	theDiagnosis: String,
+	status: String,
+	treatment: String,
+	diseaseTypes: [{type: String, ref: 'DiseaseType'}],
+	medicines:[{type: String, ref: 'Medicine'}],
+    active: Boolean,
+    timestamp: Date
+})
+
+var diseaseTypeSchema = new Schema({
+    _id: String,
+	name: String,
+	medicalRecords: [{type: String, ref: 'MedicalRecord'}],
+    active: Boolean,
+    timestamp: Date
+})
+
+var medicineSchema = new Schema({
+    _id: String,
+	name: String,
+	effect: String,
+	use: {type: String, ref: 'User'},
+	description: String,
+	medicalRecords: [{type: String, ref: 'MedicalRecord'}],
+    active: Boolean,
+    timestamp: Date
+})
+
 var User = mongoose.model('User', userSchema, 'user');
 var Department = mongoose.model('Department', departmentSchema, 'department');
+var MedicalRecord = mongoose.model('medicalRecord', medicalRecordSchema, 'medicalRecord');
+var Medicine = mongoose.model('Medicine', medicineSchema, 'medicine');
+var DiseaseType = mongoose.model('DiseaseType', diseaseTypeSchema, 'diseaseType');
+
+MedicalRecord.find()
+	.populate('patientId')
+	.populate('doctorId')
+	.populate('diseaseTypes')
+	.populate('medicines')
+	.exec((err, results) => {
+        results.forEach((result)=>{
+            console.log(result)
+        })
+    })
 
 // User.find({},(err, results) => {
 //     results.forEach((result)=>{
@@ -59,30 +106,30 @@ var Department = mongoose.model('Department', departmentSchema, 'department');
 //             console.log(result)
 //         })
 //     })
-var rs = mongoose.model('rs', new Schema());
-User.find({departmentId: {$exists: true}})
-    .populate({
-		path: 'departmentId',
-		// model: 'rs'
-	})
-    .exec((err, results) => { 
-       	// results = results.filter((result)=>{
-		//    	if (result.departmentId._id == 'DEP102')
-		// 	return result;
-		//    })
-			// results.find({},(err, rs) => {
-			// 	console.log(rs);
-			// })
-		results.forEach((result)=>{
-            console.log(result)
-		})
-		// rs.find({'departmentId._id' : 'DEP102'}, (err, rss)=>{
-		// 	console.log(rss);
-		// })
-	})
+// var rs = mongoose.model('rs', new Schema());
+// User.find({departmentId: {$exists: true}})
+//     .populate({
+// 		path: 'departmentId',
+// 		// model: 'rs'
+// 	})
+//     .exec((err, results) => { 
+//        	// results = results.filter((result)=>{
+// 		//    	if (result.departmentId._id == 'DEP102')
+// 		// 	return result;
+// 		//    })
+// 			// results.find({},(err, rs) => {
+// 			// 	console.log(rs);
+// 			// })
+// 		results.forEach((result)=>{
+//             console.log(result)
+// 		})
+// 		// rs.find({'departmentId._id' : 'DEP102'}, (err, rss)=>{
+// 		// 	console.log(rss);
+// 		// })
+// 	})
 
-rs.find({'departmentId._id' : 'DEP102'}, (err, rss)=>{
-	// rss.forEach((r)=>{
-	// 	console.log(r)
-	// })
-})
+// rs.find({'departmentId._id' : 'DEP102'}, (err, rss)=>{
+// 	// rss.forEach((r)=>{
+// 	// 	console.log(r)
+// 	// })
+// })
