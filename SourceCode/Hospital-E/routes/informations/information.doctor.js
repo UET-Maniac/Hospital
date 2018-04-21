@@ -1,30 +1,21 @@
 var express = require('express');
 var router = express.Router();
 var Doctor = require("../../models/user.model");
+var objectType = 2;
+var typeFind = 1;
+// chua toi uu, nen cho vao file middle ware
+router.use(function(req, res, next){
+    if(req.objectType){
+        objectType = req.objectType;
+    }
+    next();
+})
 
 router.route('/')
     .get(function(req, res, next){
-        var objectType = 2; // type admin 0, doctor 1, user 2
-        if(req.body.token){
-            User.checkToken(req.body.token, (err, result) => {
-                if(err){
-                    res.status('404').json({
-                        message: "Can't find data suitable with this request!"
-                    })
-                } else{
-                    Token.verify(req, res, (err, authData) => {
-                        objectType = authData.objectType;
-                    })
-                }
-            })
-        }
-        //
-        objectType = 0;
-        //
-        var typeFind = 1; //typeFind 1 find doctor, 2 find user, 0 find all
-        //
         Doctor.finds('', objectType, typeFind, (err, doctors) => {
-            if (err){
+            // can them dieu kiem kiem tra xem co kq hay khong de  bat truong hop ko loi va ko co kq
+            if (err || !doctors.length){
                 res.status('404').json({
                     message: "Can't find data suitable with this request!"
                 })
@@ -37,32 +28,13 @@ router.route('/')
     .put(function(req, res, next){
         var data = '';
         if (req.body.data) data = req.body.data;
-        console.log(data);
-        var objectType = 2; // type admin 0, doctor 1, user 2
-        if(req.body.token){
-            User.checkToken(req.body.token, (err, result) => {
-                if(err){
-                    res.status('404').json({
-                        message: "Can't find data suitable with this request!"
-                    })
-                } else{
-                    Token.verify(req, res, (err, authData) => {
-                        objectType = authData.objectType;
-                    })
-                }
-            })
-        }
-        //
-        objectType = 0;
-        //
-        var typeFind = 1;
-        //
         Doctor.finds(data, objectType, typeFind, (err, doctors) => {
-            if (err){
+            if (err || !doctors.length){
                 res.status('404').json({
                     message: "Can't find data suitable with this request!"
                 })
             } else{
+                console.log()
                 res.render('pages/informationDoctor', {doctors: doctors});
             }
         });

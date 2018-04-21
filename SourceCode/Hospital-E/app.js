@@ -24,6 +24,8 @@ var newsRouter = require("./routes/news")
 
 //End import routes
 
+var middlewareToken = require('./models/middleware.token.model');
+
 /*
     Connect Mongodb
 */
@@ -58,6 +60,8 @@ app.use('/dat-lich-hen', appointmentRouter);
 app.use("/tin-tuc", newsRouter)
 
 //end routes
+
+app.use(middlewareToken);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

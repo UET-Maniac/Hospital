@@ -35,7 +35,7 @@ var departmentSchema = new Schema({
     timestamp: Date
 });
 
-var User = mongoose.model('User', userSchema, "user");
+var User = mongoose.model('User', userSchema, 'user');
 var Department = mongoose.model('Department', departmentSchema, 'department');
 
 // User.find({},(err, results) => {
@@ -45,17 +45,44 @@ var Department = mongoose.model('Department', departmentSchema, 'department');
 // })
 
 // User.find({},(err, results) => {
-//     User.populate(results, {path: 'departmentId'}, (err, resultss) => {
+//     User.populate(results, {path: 'departmentId', match: {_id: 'DEP101'}}, (err, resultss) => {
 //         resultss.forEach((result)=>{
 //             console.log(result)
 //         })
 //     })
 // })
 
-User.find({})
-    .populate('departmentId')
-    .exec((err, results) => {
-        results.forEach((result)=>{
+// User.find({})
+//     .populate('departmentId')
+//     .exec((err, results) => {
+//         results.forEach((result)=>{
+//             console.log(result)
+//         })
+//     })
+var rs = mongoose.model('rs', new Schema());
+User.find({departmentId: {$exists: true}})
+    .populate({
+		path: 'departmentId',
+		// model: 'rs'
+	})
+    .exec((err, results) => { 
+       	// results = results.filter((result)=>{
+		//    	if (result.departmentId._id == 'DEP102')
+		// 	return result;
+		//    })
+			// results.find({},(err, rs) => {
+			// 	console.log(rs);
+			// })
+		results.forEach((result)=>{
             console.log(result)
-        })
-    })
+		})
+		// rs.find({'departmentId._id' : 'DEP102'}, (err, rss)=>{
+		// 	console.log(rss);
+		// })
+	})
+
+rs.find({'departmentId._id' : 'DEP102'}, (err, rss)=>{
+	// rss.forEach((r)=>{
+	// 	console.log(r)
+	// })
+})

@@ -18,7 +18,12 @@
             <li><%= doctors[i].level %></li>
             <li><%= doctors[i].experience %></li>
             <li><%= doctors[i].star %></li>
-            <li><%= doctors[i].departmentId %></li></br></br>
+            <li><%= doctors[i].departmentId._id %></li>
+            <li><%= doctors[i].departmentId.name %></li>
+            <li><%= doctors[i].departmentId.description %></li>
+            <li><%= doctors[i].departmentId.address %></li>
+            <li><%= doctors[i].departmentId.image %></li>
+            <li><%= doctors[i].departmentId.foundingOn %></li></br></br>
 		 <% } %>
     <footer></footer>
     </body>

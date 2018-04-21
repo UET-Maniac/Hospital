@@ -3,7 +3,6 @@ var Schema = mongoose.Schema;
 var tools = require('./tools.model');
 // can lay secrectKey va timeExpires trong config
 var timeExpires  = 3600*1000;
-var Department = require('./department.model');
 
 var User = new Schema({
     _id: String,
@@ -38,6 +37,7 @@ User.statics.inserts = function(data, callback){
 // 0-> admin, 1->doctor, 2->user
 //objectType 0->all (admin), 1->doctor, 2->user
 // chua tim dc neu viet khong dau
+// chua tim duoc neu tim kiem ban ten khoa
 User.statics.finds = function(data, objectType, typeFind, callback){
 	var search = {$regex: '.*' + data + '.*', $options: 'i'};
 	var query = {
@@ -49,7 +49,7 @@ User.statics.finds = function(data, objectType, typeFind, callback){
 			{phoneNumber: search},
 			{level: search},
 			{experience: search},
-			// {star: search}
+			{star: data},
 			{departmentId: search}
 		]
 	}
@@ -59,14 +59,15 @@ User.statics.finds = function(data, objectType, typeFind, callback){
 	if (objectType != 0){
 		query.active = true;
 	}
-	this.find(query,(err, users)=>{
-		if (err){
-			callback(err, users);
-		} else{
-			var opts = [{ path: 'Department'}];
-			UserModel.populate(users, opts, callback);
-		}
-	});
+	if (typeFind == 2){
+		this.find(query, callback)
+	} else{
+		this.find(query)
+			.populate({
+				path: 'departmentId'
+			})
+			.exec(callback)
+	}
 }
 
 User.statics.updates = function(data, objectType, callback){
