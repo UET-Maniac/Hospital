@@ -27,18 +27,14 @@ router.route('/')
                 data._id = user._id;
                 data.objectType = user.objectType;
                 Token.sign(data, (err, token) => {
-                    // Có cách nào mà có hay không có {user: user} index.ejs nó không lỗi không nhỉ?
-                    // Với lại có cách nào mà cái thông tin user sau đăng nhập được gắn vô head
-                    // để thuận tiện cho việc check trong các phần sau không nhỉ?
-                    // res.render("pages/index", {user: user});
                     console.log(1);
                     data.token = token;
-                    User.updateToken(data, (err, result)=>{
-                        if (err){
+                    User.updateToken(data, (err, result) => {
+                        if (err) {
                             res.status(500).json({
                                 message: 'Error with server'
                             })
-                        } else{
+                        } else {
                             // chua gui token
                             res.render("pages/index");
                         }
@@ -68,13 +64,12 @@ router.route('/')
 //         .then(doc => {
 //             console.log("From database:", doc);
 //             if (doc) {
-//                 res.status(200).json({
-//                     products: doc,
-//                     request: {
-//                         type: 'GET',
-//                         url: 'https://localhost:3000/login/'
-//                     }
-
+//                 jwt.sign({ doc }, 'secretkey', { expiresIn: '5000s' }, (err, token) => {
+//                     res.cookie('auth', token);
+//                     //tra header cho response thoi
+//                     // res.setHeader('content-type', 'application/json');
+//                     // res.setHeader('Authorization', token);
+//                     res.render('pages/index');
 //                 });
 //             } else {
 //                 res.status(404).json({ message: "No valid entru found!" });
