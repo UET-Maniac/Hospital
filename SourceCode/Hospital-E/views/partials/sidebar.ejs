@@ -1,4 +1,3 @@
-
 <div class="topheader">
 <div class="outer">
     <div class="inner">
@@ -9,21 +8,32 @@
                 <span class="dropdown-content">
                     <a target="_top" href="/gioi-thieu/khoa">Chuyên khoa</a>
                     <a target="_top" href="/gioi-thieu/bac-si">Bác sĩ</a>
-                    <a target="_top" href="/gioi-thieu/tai-khoan">Người dùng</a>
+                    <% if(objectType == 1){%>
+                        <a target="_top" href="/gioi-thieu/tai-khoan">Người dùng</a>
+                    <% } %>
                 </span>
             </span>
             <a target="_top" href="/tin-tuc">Tin tức</a>
             <a target="_top" href="/dien-dan">Diễn đàn</a>
-            <a target="_top" href="/ho-so">Hồ sơ</a>
+            <% if(objectType == 0 || objectType == 1 || objectType == 2){%>
+                <a target="_top" href="/ho-so">Hồ sơ</a>
+            <% } %>
             <a target="_top" href="/dat-lich-hen">Đặt lịch hẹn</a>
         </div>
         <div class="toprightmenu">
-            <a href="/register.php" class="username">
-				<span>Đăng ký</span>
-			</a>
-			<a href="/dang-nhap" class="username">
-				<span>Ðăng nhập</span>
-            </a>
+            <% if(objectType == 3){%>
+                <a href="/register.php" class="username">
+                    <span>Đăng ký</span>
+                </a>
+                <a href="/dang-nhap" class="username">
+                    <span>Ðăng nhập</span>
+                </a>
+            <% } %>
+            <% if(objectType == 0 || objectType == 1 || objectType == 2){%>
+                <a href="/" class="username">
+                    <span>Đăng xuất</span>
+                </a>
+            <% } %>
         </div>
         <hr class="clear" />
     </div>

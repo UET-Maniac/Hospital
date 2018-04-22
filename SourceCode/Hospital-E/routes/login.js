@@ -36,7 +36,7 @@ router.route('/')
                             })
                         } else {
                             // chua gui token
-                            res.render("pages/index");
+                            res.render("pages/index", {objectType: data.objectType});
                         }
                     })
                 })

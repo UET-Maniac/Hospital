@@ -25,7 +25,7 @@ router.route('/')
 			// users.forEach(element => {
 			// 	console.log(element);
 			// });
-		res.render('pages/informationAllUser', {users: users});
+		res.render('pages/informationAllUser', {users: users, objectType: objectType});
 		}
 	});
 	})
@@ -39,7 +39,7 @@ router.route('/')
 		})
 		} else{
 		console.log()
-		res.render('pages/informationAllUser', {users: users});
+		res.render('pages/informationAllUser', {users: users, objectType: objectType});
 		}
 	});
 	})

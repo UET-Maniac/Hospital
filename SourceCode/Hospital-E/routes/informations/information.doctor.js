@@ -7,7 +7,7 @@ var typeFind = 1;
 // chua bao mat tot
 router.use(function(req, res, next){
   if(req.objectType){
-    objectType = req.objectType;
+    c = req.objectType;
   }
   // objectType = req.headers['objecttype'];
   next();
@@ -23,7 +23,7 @@ router.route('/')
         })
       } else{
         console.log(doctors[0]);
-        res.render('pages/informationDoctor', {doctors: doctors});
+        res.render('pages/informationDoctor', {doctors: doctors, objectType: objectType});
       }
     });
   })
@@ -37,7 +37,7 @@ router.route('/')
         })
       } else{
         console.log()
-        res.render('pages/informationDoctor', {doctors: doctors});
+        res.render('pages/informationDoctor', {doctors: doctors, objectType: objectType});
       }
     });
   })
