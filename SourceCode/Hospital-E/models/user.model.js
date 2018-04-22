@@ -27,7 +27,7 @@ var User = new Schema({
 })
 /**
  * Thêm người dùng => cần chỉnh sửa nếu thêm người dùng chưa có username, pass 
- * @param {string} data tên đăng nhập của người dùng
+ * @param {object} data dữ liệu cần thêm
  * @param {function} callback hàm callback
  */
 User.statics.inserts = function(data, callback){
@@ -81,7 +81,7 @@ User.statics.finds = function(data, objectType, typeFind, callback){
 }
 /**
  * Cập nhật người dùng
- * @param {pbject} data dữ liệu cập nhật
+ * @param {object} data dữ liệu cập nhật
  * @param {number} objectType đối tượng gửi yêu cầu 
  * @param {function} callback  hàm callback
  */
