@@ -3,10 +3,11 @@ var router = express.Router();
 var Department = require("../../models/department.model");
 var User = require('../../models/user.model');
 var Token = require('../../models/token.model');
+var objectType = 2;
 
 router.use(function(req, res, next){
     if(req.objectType){
-      c = req.objectType;
+        objectType = req.objectType;
     }
     // objectType = req.headers['objecttype'];
     next();

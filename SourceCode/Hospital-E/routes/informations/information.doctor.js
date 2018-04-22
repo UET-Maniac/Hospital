@@ -7,7 +7,7 @@ var typeFind = 1;
 // chua bao mat tot
 router.use(function(req, res, next){
   if(req.objectType){
-    c = req.objectType;
+    objectType = req.objectType;
   }
   // objectType = req.headers['objecttype'];
   next();
