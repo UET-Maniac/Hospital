@@ -27,9 +27,10 @@ Rating.statics.inserts = function(data, callback){
 /**
  * Tìm kiếm 1 đánh giá => chưa có tìm kiếm theo tên bác sĩ và tên người đánh giá
  * @param {string} data từ tìm kiếm
+ * @param {number} objectType đối tượng gửi yêu cầu 
  * @param {function} callback hàm callback
  */
-Rating.statics.finds = function(data, callback){
+Rating.statics.finds = function(data, objectType, callback){
 	var search = {$regex: '.*' + data + '.*', $options: 'i'};
 	var query = {
 		$or: [
@@ -38,11 +39,14 @@ Rating.statics.finds = function(data, callback){
 			{patientId: search}
 		]
 	}
-	if (type != 0)
+	if (objectType != 0)
 		query.active = true;
 	this.find(query)
 		.populate({
-			path: 'departmentId'
+			path: 'doctorId'
+		})
+		.populate({
+			path: 'patientId'
 		})
 		.exec(callback)
 }
