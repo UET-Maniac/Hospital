@@ -1,5 +1,17 @@
 {
     "db": "mongodb://127.0.0.1:27017/test_h",
     "secretKey": "6d0fc20a1cc92d4de0d8cefee937b827",
-    "timeExpires": "3600s"
+    "timeExpires": "3600s",
+    "defaultId": {
+        "appointmentSchedule": "SCH10000000",
+        "department": "DEP100",
+        "diseaseType": "DT10000000",
+        "medicalRecord": "REC10000000",
+        "medicine": "MED10000000",
+        "news": "NEW10000000",
+        "post": "POS10000000",
+        "rating": "RAT10000000",
+        "user": "USE100000000"
+    },
+    "port" : "process.env.PORT || 3000"
 }

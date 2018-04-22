@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParse = require("body-parser")
 var mongoose = require("mongoose");
+var config = require('./config.json');
 
 var app = express();
 /*
@@ -29,8 +30,7 @@ var middlewareToken = require('./models/middleware.token.model');
 /*
     Connect Mongodb
 */
-var mongoDB = "mongodb://127.0.0.1:27017/test_h"; //uri to database
-mongoose.connect(mongoDB);
+mongoose.connect(config.db);
 
 //End MongoDB
 

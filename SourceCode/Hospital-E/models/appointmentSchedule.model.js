@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var tools = require('./tools.model');
-
+var defaultId = require('../config.json').defaultId.appointmentSchedule;
 var AppointmentSchedule = new Schema({
     _id: String,
 	doctorId: {type: String, ref: 'User'},
@@ -16,7 +16,6 @@ var AppointmentSchedule = new Schema({
 
 AppointmentSchedule.statics.inserts = function(data, callback){
 	var query = {};
-	var defaultId = '';
 	tools.Insert(AppointmentScheduleModel, query, defaultId, data, callback);
 }
 

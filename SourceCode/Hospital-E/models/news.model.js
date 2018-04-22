@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var tools = require('./tools.model');
+var defaultId = require('../config.json').defaultId.news;
 
 var News = new Schema({
     _id: String,
@@ -16,7 +17,6 @@ var News = new Schema({
 
 News.statics.inserts = function(data, callback){
 	var query = {};
-	var defaultId = '';
 	tools.Insert(NewsModel, query, defaultId, data, callback);
 }
 News.statics.finds = function(data, callback){

@@ -1,9 +1,11 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var tools = require('./tools.model');
-var timeExpires  = require('../config.json').timeExpires;
+var config = require('../config.json');
+var timeExpires  = config.timeExpires;
+var defaultId = config.defaultId.user;
 /**
- * Schema
+ * Schema người dùng
  */
 var User = new Schema({
     _id: String,
@@ -37,11 +39,10 @@ User.statics.inserts = function(data, callback){
 	// 		nhưng đã có hồ sơ, sau đó muốn tạo tài khoản đăng nhập
 	var query = {};
 	if (data.userName){
-		query.userName = data.userName 
+		query.userName = data.userName;
 	} else{
 		query._id = '!';
 	}
-	var defaultId = 'USE100000000';
 	// model, query, defaultId, data, callback
 	tools.Insert(UserModel, query, defaultId, data, callback);
 }

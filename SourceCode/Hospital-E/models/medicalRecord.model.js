@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var tools = require('./tools.model');
+var defaultId = require('../config.json').defaultId.medicalRecord;
 
 var MedicalRecord = new Schema({
     _id: String,
@@ -18,7 +19,6 @@ var MedicalRecord = new Schema({
 
 MedicalRecord.statics.inserts = function(data, callback){
 	var query = {};
-	var defaultId = '';
 	tools.Insert(MedicalRecordModel, query, defaultId, data, callback);
 }
 

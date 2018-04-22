@@ -1,8 +1,9 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var tools = require('./tools.model');
+var defaultId = require('../config.json').defaultId.department;
 /**
- * Schema
+ * Schema khoa
  */
 var Department = new Schema({
 	_id: String,
@@ -22,7 +23,6 @@ var Department = new Schema({
 Department.statics.inserts = function(data, callback){
 	// Điều kiện tìm kiếm 
 	var query = { name : data.name };
-	var defaultId = 'DEP101';
 	// model, query, defaultId, data, callback
 	tools.Insert(DepartmentModel, query, defaultId, data, callback);
 }

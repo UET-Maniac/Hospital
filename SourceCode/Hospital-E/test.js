@@ -75,7 +75,7 @@ var MedicalRecord = mongoose.model('medicalRecord', medicalRecordSchema, 'medica
 var Medicine = mongoose.model('Medicine', medicineSchema, 'medicine');
 var DiseaseType = mongoose.model('DiseaseType', diseaseTypeSchema, 'diseaseType');
 
-console.log(config.db);
+console.log(config.defaultId.post);
 
 // MedicalRecord.find()
 // 	.populate('patientId')
