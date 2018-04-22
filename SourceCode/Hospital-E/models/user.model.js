@@ -32,7 +32,15 @@ var User = new Schema({
  */
 User.statics.inserts = function(data, callback){
 	// Điều kiện tìm kiếm 
-	var query = { userName : data.userName };
+	// do có trường hợp thêm người dùng mà họ không có tài khoản
+	// điều này dẫn đến trường hợp khó giải quyết là người dùng chưa có tài khoản
+	// 		nhưng đã có hồ sơ, sau đó muốn tạo tài khoản đăng nhập
+	var query = {};
+	if (data.userName){
+		query.userName = data.userName 
+	} else{
+		query._id = '!';
+	}
 	var defaultId = 'USE100000000';
 	// model, query, defaultId, data, callback
 	tools.Insert(UserModel, query, defaultId, data, callback);
