@@ -1,9 +1,10 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var tools = require('./tools.model');
-// can lay secrectKey va timeExpires trong config
-var timeExpires  = 3600*1000;
-
+var timeExpires  = require('../config.json').timeExpires;
+/**
+ * Schema
+ */
 var User = new Schema({
     _id: String,
 	name: String,
@@ -24,7 +25,11 @@ var User = new Schema({
     active: Boolean,
     timestamp: Date
 })
-
+/**
+ * Thêm người dùng => cần chỉnh sửa nếu thêm người dùng chưa có username, pass 
+ * @param {string} data tên đăng nhập của người dùng
+ * @param {function} callback hàm callback
+ */
 User.statics.inserts = function(data, callback){
 	// Điều kiện tìm kiếm 
 	var query = { userName : data.userName };
@@ -32,12 +37,17 @@ User.statics.inserts = function(data, callback){
 	// model, query, defaultId, data, callback
 	tools.Insert(UserModel, query, defaultId, data, callback);
 }
-
-
-// 0-> admin, 1->doctor, 2->user
-//objectType 0->all (admin), 1->doctor, 2->user
-// chua tim dc neu viet khong dau
-// chua tim duoc neu tim kiem ban ten khoa
+/**
+ * Tìm kiếm người dùng
+ * typeFind 0-> admin, 1->doctor, 2->user
+ * objectType 0->all (admin), 1->doctor, 2->user
+ * chua tim dc neu viet khong dau
+ * chua tim duoc neu tim kiem ban ten khoa
+ * @param {string} data từ tìm kiếm
+ * @param {number} objectType đối tượng gửi yêu cầu
+ * @param {number} typeFind đối tượng được tìm kiếm
+ * @param {function} callback  hàm callback
+ */
 User.statics.finds = function(data, objectType, typeFind, callback){
 	var search = {$regex: '.*' + data + '.*', $options: 'i'};
 	var query = {
@@ -69,15 +79,28 @@ User.statics.finds = function(data, objectType, typeFind, callback){
 			.exec(callback)
 	}
 }
-
+/**
+ * Cập nhật người dùng
+ * @param {pbject} data dữ liệu cập nhật
+ * @param {number} objectType đối tượng gửi yêu cầu 
+ * @param {function} callback  hàm callback
+ */
 User.statics.updates = function(data, objectType, callback){
 	tools.Update.call(this, data, callback);
 }
-
+/**
+ * 'Xóa' người dùng
+ * @param {string} data _id người dùng
+ * @param {function} callback hàm callback
+ */
 User.statics.deletes = function(data, callback){
 	tools.Delete.call(this, data, callback);
 }
-
+/**
+ * Đăng nhập
+ * @param {object} data dữ liệu đăng nhập
+ * @param {function} callback hàm callback 
+ */
 User.statics.login = function(data, callback){
 	var query = {
 		userName: data.userName,
@@ -85,7 +108,11 @@ User.statics.login = function(data, callback){
 	}
 	this.findOne(query,callback);
 }
-
+/**
+ * Kiểm tra token
+ * @param {string} data token
+ * @param {function} callback hàm callback 
+ */
 User.statics.checkToken = function(data, callback){
 	var query = {
 		token: data,
@@ -93,7 +120,11 @@ User.statics.checkToken = function(data, callback){
 	}
 	this.findOne(query, callback);
 }
-
+/**
+ * Cập nhật token
+ * @param {object} data dữ liệu id và token
+ * @param {function} callback hàm callback 
+ */
 User.statics.updateToken = function(data, callback){
 	var query = data._id;
 	var update = {
@@ -106,7 +137,11 @@ User.statics.updateToken = function(data, callback){
 	}
 	this.findByIdAndUpdate(query,update,callback);
 }
-
+/**
+ * name, Schema, collection
+ */
 var UserModel = mongoose.model('User', User, "user");
-
+/**
+ * Exports
+ */
 module.exports = UserModel;

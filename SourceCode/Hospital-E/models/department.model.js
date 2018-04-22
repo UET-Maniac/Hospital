@@ -16,8 +16,8 @@ var Department = new Schema({
 });
 /**
  * Thêm khoa
- * @param {*} data dữ liệu theo form của khoa
- * @param {*} callback 
+ * @param {object} data dữ liệu theo form của khoa
+ * @param {function} callback 
  */
 Department.statics.inserts = function(data, callback){
 	// Điều kiện tìm kiếm 
@@ -30,9 +30,9 @@ Department.statics.inserts = function(data, callback){
  * Tìm kiếm thông tin khoa
  * Phần này vẫn chưa tối ưu đc
  * type 0, còn lại là người dùng khác
- * @param {*} data từ tìm kiếm
- * @param {*} objectType kiểu người dùng
- * @param {*} callback hàm call back
+ * @param {string} data từ tìm kiếm
+ * @param {number} objectType kiểu người dùng
+ * @param {function} callback hàm call back
  */
 Department.statics.finds = function(data, objectType, callback){
 	var search = {$regex: '.*' + data + '.*', $options: 'i'};
@@ -50,8 +50,8 @@ Department.statics.finds = function(data, objectType, callback){
 };
 /**
  * Update khoa
- * @param {*} data dữ liệu theo form của khoa
- * @param {*} callback hàm call back
+ * @param {string} data dữ liệu theo form của khoa
+ * @param {function} callback hàm call back
  */
 Department.statics.updates = function(data, callback){
 	// Do sử dụng 'this' nên phải call để tham chiếu đến model
@@ -60,8 +60,8 @@ Department.statics.updates = function(data, callback){
 }
 /**
  * 'Xóa' khoa
- * @param {*} data _id khoa
- * @param {*} callback hàm call back
+ * @param {string} data _id khoa
+ * @param {function} callback hàm call back
  */
 Department.statics.deletes = function(data, callback){
 	tools.Delete.call(this, data, callback);

@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var mongoDB = "mongodb://127.0.0.1:27017/test_h"; //uri to database
 mongoose.connect(mongoDB);
+var config = require('./config.json');
 
 var userSchema = new Schema({
     _id: String,
@@ -74,16 +75,18 @@ var MedicalRecord = mongoose.model('medicalRecord', medicalRecordSchema, 'medica
 var Medicine = mongoose.model('Medicine', medicineSchema, 'medicine');
 var DiseaseType = mongoose.model('DiseaseType', diseaseTypeSchema, 'diseaseType');
 
-MedicalRecord.find()
-	.populate('patientId')
-	.populate('doctorId')
-	.populate('diseaseTypes')
-	.populate('medicines')
-	.exec((err, results) => {
-        results.forEach((result)=>{
-            console.log(result)
-        })
-    })
+console.log(config.db);
+
+// MedicalRecord.find()
+// 	.populate('patientId')
+// 	.populate('doctorId')
+// 	.populate('diseaseTypes')
+// 	.populate('medicines')
+// 	.exec((err, results) => {
+//         results.forEach((result)=>{
+//             console.log(result)
+//         })
+//     })
 
 // User.find({},(err, results) => {
 //     results.forEach((result)=>{
