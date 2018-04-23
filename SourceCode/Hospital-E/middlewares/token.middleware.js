@@ -1,5 +1,5 @@
-var User = require("./user.model");
-var Token = require("./token.model");
+var User = require("../models/user.model");
+var Token = require("../models/token.model");
 
 module.exports = function(req, res, next){
     if(req.body.token){

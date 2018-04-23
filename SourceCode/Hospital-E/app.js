@@ -25,7 +25,7 @@ var newsRouter = require("./routes/news")
 
 //End import routes
 
-var middlewareToken = require('./models/middleware.token.model');
+var middlewareToken = require('./middlewares/token.middleware');
 
 /*
     Connect Mongodb

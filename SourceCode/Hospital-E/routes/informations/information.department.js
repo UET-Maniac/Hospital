@@ -22,6 +22,7 @@ router.route('/')
                 })
             } else{
                 // can check objectType va render theo view rieng
+                console.log(departments[0])
                 if (!objectType){
                     res.render('pages/informationDepartment', {departments: departments, objectType: objectType});
                 }
