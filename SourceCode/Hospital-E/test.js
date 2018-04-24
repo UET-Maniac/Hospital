@@ -1,8 +1,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-var mongoDB = "mongodb://127.0.0.1:27017/test_h"; //uri to database
-mongoose.connect(mongoDB);
 var config = require('./config.json');
+mongoose.connect(config.db);
 
 var userSchema = new Schema({
     _id: String,
@@ -76,6 +75,23 @@ var Medicine = mongoose.model('Medicine', medicineSchema, 'medicine');
 var DiseaseType = mongoose.model('DiseaseType', diseaseTypeSchema, 'diseaseType');
 
 console.log(config.defaultId.post);
+
+var departments = [];
+Department.find({})
+	.select('_id')
+	.select('name')
+	.exec((err, results)=>{
+		results.forEach((result)=>{
+			User.find({departmentId: result._id})
+				.select('_id')
+				.select('name')
+				// .populate('departmentId')
+				.exec((err, doctors)=>{
+					console.log(result)
+					console.log(doctors)
+				})
+		})
+	})
 
 // MedicalRecord.find()
 // 	.populate('patientId')

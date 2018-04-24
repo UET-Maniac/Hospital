@@ -5,6 +5,7 @@ var storage = multer.diskStorage({
   	},
   	filename: function(req, file, callback){
         // chua chinh duoc ten file
+        // chua xu ly truong hop trungn ten khac loai anh
 		callback(null, req.body._id
 			+ file.originalname.substring(
 				file.originalname.lastIndexOf('.'), 

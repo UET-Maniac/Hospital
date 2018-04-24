@@ -30,55 +30,32 @@
                         <li><p><b>IV.</b>  &nbsp;&nbsp;Quý khách sử dụng dịch vụ Đặt hẹn trực tuyến, xin vui lòng đặt trước ít nhất là 24 giờ trước khi đến khám.</li>
                     </ol>
                 </div>
-                <form action="" method="post" name="appointment-form">
-                    <div class="datlichcho">
-                        <p class = "note_">Thông tin bệnh nhân</p>
-                        <span>Giới Tính(*):</span>
-                        <select class="_select" name="">
-                            <option value="0">Giới Tính(*)</option>
-                            <option value="1">Nam</option>
-                            <option value="2">Nữ</option>
-                            <option value="3">Khác</option>
-                        </select>
-                        <span>Tuổi(*):<span>
-                        <select id="select-age" class="_select" name="">
-                        </select>
-                        <span>Họ và Tên(*)</spanp>
-                        <input class="_select" name="fullname" placeholder="VD: Nguyễn Văn A" type="text">
-                        <span>Ngày Sinh(*)</span>
-                        <input class="_select" name="dateofbirth" placeholder="Ngày/Tháng/Năm VD: 30/2/2018" type="text">
-                        <span>Email</span>
-                        <input class="_select" name="email_select" placeholder="VD: programing@vnu.edu.vn" type="text">
-                        <span>Số điện thoại(*)</span>
-                        <input class="_select" name="email_select" placeholder="VD: 199002645" type="text">
-                        <span>Tỉnh/Thành phố</span>
-                        <input class="_select" name="email_select" placeholder="Hà Nội" type="text">
-                        <span>Quận/Huyện</span>
-                        <input class="_select" name="email_select" placeholder="Cầu Giấy" type="text">
-                        <span>Địa chỉ</span>
-                        <input class="_select" name="email_select" placeholder="165 ngách 42 ngõ 43 quận cầu giấy" type="text">
-                    </div>
+                <form action="/dat-lich-hen" method="post" name="appointment-form">
                     <div class="info_dat_hen">
                         <p class="note_">Thông tin đặt hẹn </p>
                         <span>Chuyên Khoa</span>
                         <select class="_select" name="">
-                                <option value="0">Chuyên khoa (*)</option>
-                                <option value="1">Nội Tổng Quát</option>
-                                <option value="2">Tiết Niệu</option>
-                                <option value="3">....</option>
+                            <option value='-1' >Chọn khoa (*)</option>
+                            <% for(var i=0; i<departments.length; i++){ %>
+                                <option value = i ><%= departments[i].name %></option>
+                            <% } %>
                         </select>
                         <span>Bác Sĩ</span>
                         <select class = "_select" name="">
-                            <option value ="0">Bác sĩ<option>
+                            <option value='-1' >Chọn bác sĩ (*)</option>
+                            <% if(doctors){ %>
+                                <% for(var i=0; i<doctors.length; i++){ %>
+                                    <option value= i ><%= doctors[i].name %></option>
+                                <% } %>
+                            <% } %>
                         </select>
-                        <input type="radio" name="gender" value="0" checked> Bệnh nhân mới
-                        <input type="radio" name="gender" value="1"> Tái khám
                         <span> Ngày hẹn lịch y tế</span>
                         <input class="_select" id="datepicker" name="dateofbirth" placeholder="Ngày/Tháng/Năm VD: 30/2/2018" type="text">
                         <span> Thời gian lịch y tế </span>
                         <select id="select-hour" class="_select" name="">
                         </select>
-                        
+                        <span>Địa chỉ</span>
+                        <input class="_select" name="address" placeholder="165 ngách 42 ngõ 43 quận cầu giấy" type="text">
                         <textarea rows="4" cols="20" class="_select" placeholder="Mô tả triệu chứng"></textarea>
                         <input class = "submit_datlich" value="Đặt Lịch" onClick="" type="submit">
                     </div>

@@ -18,7 +18,7 @@ var loginRouter = require('./routes/login');
 var infoDepartmentRouter = require('./routes/informations/information.department');
 var infoDoctorRouter = require('./routes/informations/information.doctor');
 var forumRouter = require('./routes/forum');
-var appointmentRouter = require('./routes/dat-lich-hen');
+var appointmentRouter = require('./routes/appointmentSchedule');
 var infoAllUserRouter = require('./routes/informations/information.alluser');
 var newsRouter = require("./routes/news")
 
