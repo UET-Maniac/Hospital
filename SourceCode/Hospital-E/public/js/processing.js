@@ -9,5 +9,8 @@ $(document).ready(function() {
         $(".dropdown-content").hide(500);
     });
 
+    $("#logout").click(function(){
+        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    })
     //End Effect Side Bar
 });
