@@ -3,10 +3,10 @@ $(document).ready(function() {
     /* Effect Side bar */
     $(".dropdown-content").hide();
     $(".dropdown--box").mouseenter(function() {
-        $(".dropdown-content").show(500);
+        $(".dropdown-content").show(50);
     });
     $(".dropdown--box").mouseleave(function() {
-        $(".dropdown-content").hide(500);
+        $(".dropdown-content").hide(5);
     });
 
     $("#logout").click(function(){
