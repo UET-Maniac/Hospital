@@ -2,19 +2,23 @@ var User = require("../models/user.model");
 var Token = require("../models/token.model");
 
 module.exports = function(req, res, next){
-    if(req.body.token){
-        User.checkToken(req.body.token, (err, result) => {
-            if(err){
-                res.status('404').json({
-                    message: "Can't find data suitable with this request!"
-                })
+    if(req.cookies.token && typeof req.cookies.token !== 'undefined'){
+        User.checkToken(req.cookies.token, (err, result) => {
+            if(err || !result){
+                console.log('Token khong phu hop')
+                return next();
             } else{
-                Token.verify(req, res, (err, authData) => {
-                    req.authData = authData;
-                    req.objectType = authData.objectType;
+                Token.verify(req, res, (err, auth) => {
+                    if (err){
+                        res.json('Không được định quyền');
+                    } else{
+                        req.auth = auth;
+                        req.objectType = auth.data.objectType;
+                        return next();
+                    }
                 })
             }
         })
     }
-    next();
+    else return next();
 }

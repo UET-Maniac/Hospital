@@ -12,6 +12,7 @@ var Department = new Schema({
 	address: String,
 	image: String,
 	foundingOn: Date,
+	doctorIds: [{type: String, ref: 'User'}],
     active: Boolean,
     timestamp: Date
 });

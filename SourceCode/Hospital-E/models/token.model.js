@@ -9,13 +9,12 @@ var timeExpires  = config.timeExpires;
  * @param {function} callback hàm callback
  */
 function verify(req, res, callback){
-    // check token
-	var token = req.body.token;
-    // Check if bearer is undefined
-    if (typeof token !== 'undefined'){
-        jwt.verify(token, secretKey, callback)
+    // Check if req.cookies.auth is undefined
+    if (typeof req.cookies.token !== 'undefined'){
+        var token = req.cookies.token;
+        jwt.verify(token, secretKey, callback);
     } else{
-        res.sendStatus(403);
+        callback(new Error('Không được định quyền'), null);
     }
 }
 /**

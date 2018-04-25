@@ -61,7 +61,7 @@ function Insert(model, query, defaultId, data, callback){
 				model.create(data, callback);
 			})
 		}else{
-			callback('Data exited', null);
+			callback(err, null);
 		}
 	})
 }

@@ -6,7 +6,7 @@
     </head>
     <body>
         <% include ../partials/sidebar %>
-        <header>Hello</header>
+        <header></header>
         <div class="body-wrapper">
         <div class="limiter">
 		<div class="container-login100">
@@ -15,7 +15,7 @@
 					<img src="images/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" method="put">
+				<form class="login100-form validate-form" method="post" action="/dang-nhap">
 					<span class="login100-form-title">
 						Member Login
 					</span>
@@ -37,7 +37,7 @@
 					</div>
 					
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button type="submit" class="login100-form-btn">
 							Login
 						</button>
 					</div>

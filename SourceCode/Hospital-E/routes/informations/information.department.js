@@ -1,17 +1,24 @@
 var express = require('express');
 var router = express.Router();
 var Department = require("../../models/department.model");
-// var User = require('../../models/user.model');
-// var Token = require('../../models/token.model');
-var objectType = 2;
+var config = require('../../config.json');
+var objectType = config.viewer;
 
 router.use(function(req, res, next){
-    if(req.objectType){
-        objectType = req.objectType;
+	if(typeof req.objectType !== 'undefined'){
+        objectType = req.objectType;  
+    } else{
+        objectType = config.viewer;
     }
-    // objectType = req.headers['objecttype'];
-    next();
+    next();  
 })
+
+function checkAdmin(req, res, next){
+	if(objectType != config.admin){
+        return res.json('Không có quyền')
+    }
+    return next();  
+}
 
 router.route('/')
     .get(function(req, res, next){
@@ -22,7 +29,6 @@ router.route('/')
                 })
             } else{
                 // can check objectType va render theo view rieng
-                console.log(departments[0])
                 if (!objectType){
                     res.render('pages/informationDepartment', {departments: departments, objectType: objectType});
                 }
@@ -46,7 +52,7 @@ router.route('/')
             }
         });
     })
-    .post(function(req, res, next){
+    .post(checkAdmin, function(req, res, next){
         if(objectType){
             Department.inserts(req.body.data, (err, departments) => {
                 if (err){
@@ -64,7 +70,7 @@ router.route('/')
             })
         }
     })
-    .patch(function(req, res, next){
+    .patch(checkAdmin, function(req, res, next){
         if (objectType){
             Department.updates(req.body.data, (err, departments) => {
                 if (err){
@@ -82,7 +88,7 @@ router.route('/')
             })
         }
     })
-    .delete(function(req, res, next){
+    .delete(checkAdmin, function(req, res, next){
         if (objectType){
             Department.deletes(req.body.data._id, (err, departments) => {
                 if (err){

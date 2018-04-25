@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var tools = require('./tools.model');
 var config = require('../config.json');
-var timeExpires  = config.timeExpires;
+var timeExpires  = config.cookieExpires*1000;
 var defaultId = config.defaultId.user;
 /**
  * Schema người dùng
@@ -25,7 +25,9 @@ var User = new Schema({
 	departmentId: {type: String, ref: 'Department'},
 	dean: Boolean,
     active: Boolean,
-    timestamp: Date
+	timestamp: Date,
+	token: String,
+	expiresAt: Date
 })
 /**
  * Thêm người dùng => cần chỉnh sửa nếu thêm người dùng chưa có username, pass 
@@ -113,9 +115,20 @@ User.statics.deletes = function(data, callback){
 User.statics.login = function(data, callback){
 	var query = {
 		userName: data.userName,
-		password: data.password
+		active: true
 	}
-	this.findOne(query,callback);
+	this.findOne(query,(err, user) => {
+		if(err || !user){
+			callback(err ,user);
+		} else{
+			if (user.password == data.password){
+				callback(null, user);
+			} else{
+				callback(new Error('Sai mật khẩu'), user);
+			}
+		}
+
+	});
 }
 /**
  * Kiểm tra token

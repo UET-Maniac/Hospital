@@ -48,20 +48,20 @@ app.use(bodyParse.json())
 /*
     Routes which should handle request
 */
-app.use('/', indexRouter);
+app.use('/', middlewareToken,indexRouter);
 app.use('/dang-nhap', loginRouter)
-// app.use('/tai-khoan', userRouter);
-app.use('/gioi-thieu/khoa', infoDepartmentRouter);
-app.use('/gioi-thieu/bac-si', infoDoctorRouter);
-app.use('/gioi-thieu/tai-khoan', infoAllUserRouter);
-app.use('/dien-dan', forumRouter);
-app.use('/dat-lich-hen', appointmentRouter);
-// app.use('/gioi-thieu', informationRouter)
-app.use("/tin-tuc", newsRouter)
+app.use('/tai-khoan', middlewareToken, userRouter);
+app.use('/gioi-thieu/khoa', middlewareToken, infoDepartmentRouter);
+app.use('/gioi-thieu/bac-si', middlewareToken, infoDoctorRouter);
+app.use('/gioi-thieu/tai-khoan', middlewareToken, infoAllUserRouter);
+app.use('/dien-dan', middlewareToken, forumRouter);
+app.use('/dat-lich-hen', middlewareToken, appointmentRouter);
+app.use('/tin-tuc', middlewareToken, newsRouter)
 
 //end routes
 
-app.use(middlewareToken);
+// nếu dùng middleware cho tất cả lại sai????
+// app.use(middlewareToken);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

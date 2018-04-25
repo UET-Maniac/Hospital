@@ -1,20 +1,29 @@
 var express = require('express');
 var router = express.Router();
 var Doctor = require("../../models/user.model");
-var objectType = 2;
-var typeFind = 1;
+var config = require('../../config.json');
+var objectType = config.viewer;
+var typeFind = config.findDoctor;
 
 var upload = require('../../middlewares/uploadImage.middleware');
 
 // chua toi uu, nen cho vao file middle ware
 // chua bao mat tot
 router.use(function(req, res, next){
-  	if(req.objectType){
-		objectType = req.objectType;
- 	 }
-  	// objectType = req.headers['objecttype'];
-  	next();
+	if(typeof req.objectType !== 'undefined'){
+        objectType = req.objectType;  
+    } else{
+        objectType = config.viewer;
+    }
+    next();  
 })
+
+function checkAdmin(req, res, next){
+	if(objectType != config.admin){
+        return res.json('Không có quyền')
+    }
+    return next();  
+}
 
 router.route('/')
   	.get(function(req, res, next){
@@ -43,7 +52,7 @@ router.route('/')
 	  		}
 		});
   	})
-  	.post(upload.single('image'), function(req, res, next){
+  	.post(checkAdmin, upload.single('image'), function(req, res, next){
 		// chưa kiểm tra điều kiện là admin 
 		// console.log(req.body._id);
 		// console.log(req.file);
@@ -59,7 +68,7 @@ router.route('/')
 		//     }
 		// });
  	 })
-	// .patch(function(req, res, next){
+	// .patch(checkAdmin, function(req, res, next){
 	// 	// chưa kiểm tra điều kiện là admin 
 	// 	Doctor.updates(req.body.data, (err, doctors) => {
 	// 		if (err){
@@ -72,7 +81,7 @@ router.route('/')
 	// 		}
 	// 	});
 	// })
-	// .delete(function(req, res, next){
+	// .delete(checkAdmin, function(req, res, next){
 	// 	// chưa kiểm tra điều kiện là admin 
 	// 	Doctor.deletes(req.body.data._id, (err, doctors) => {
 	// 		if (err){

@@ -1,16 +1,25 @@
 var express = require('express');
 var router = express.Router();
 var User = require("../../models/user.model");
-var objectType = 0;
-var typeFind = 0;
+var config = require('../../config.json');
+var objectType = config.viewer;
+var typeFind = config.findUser;
 // chua toi uu, nen cho vao file middle ware
 // chua bao mat tot
 router.use(function(req, res, next){
-	if(req.objectType){
-	objectType = req.objectType;
+	if(typeof req.objectType !== 'undefined'){
+        objectType = req.objectType;  
+    } else{
+        objectType = config.viewer;
+    }
+    next();  
+})
+
+router.use(function(req, res, next){
+	if (objectType != config.admin){
+		return res.json('Không có quyền truy cập')
 	}
-	// objectType = req.headers['objecttype'];
-	next();
+	return next();
 })
 
 router.route('/')

@@ -31,6 +31,7 @@ var departmentSchema = new Schema({
 	address: String,
 	image: String,
 	foundingOn: Date,
+	doctorIds: [{type: String, ref: 'User'}],
     active: Boolean,
     timestamp: Date
 });
@@ -74,24 +75,7 @@ var MedicalRecord = mongoose.model('medicalRecord', medicalRecordSchema, 'medica
 var Medicine = mongoose.model('Medicine', medicineSchema, 'medicine');
 var DiseaseType = mongoose.model('DiseaseType', diseaseTypeSchema, 'diseaseType');
 
-console.log(config.defaultId.post);
-
-var departments = [];
-Department.find({})
-	.select('_id')
-	.select('name')
-	.exec((err, results)=>{
-		results.forEach((result)=>{
-			User.find({departmentId: result._id})
-				.select('_id')
-				.select('name')
-				// .populate('departmentId')
-				.exec((err, doctors)=>{
-					console.log(result)
-					console.log(doctors)
-				})
-		})
-	})
+// s
 
 // MedicalRecord.find()
 // 	.populate('patientId')
@@ -110,13 +94,13 @@ Department.find({})
 //     })
 // })
 
-// User.find({},(err, results) => {
-//     User.populate(results, {path: 'departmentId', match: {_id: 'DEP101'}}, (err, resultss) => {
-//         resultss.forEach((result)=>{
-//             console.log(result)
-//         })
-//     })
-// })
+User.find({},(err, results) => {
+    User.populate(results, {path: 'departmentId', match: {_id: 'DEP101'}}, (err, resultss) => {
+        resultss.forEach((result)=>{
+            console.log(result)
+        })
+    })
+})
 
 // User.find({})
 //     .populate('departmentId')

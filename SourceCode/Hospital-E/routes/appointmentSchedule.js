@@ -3,17 +3,25 @@ var router = express.Router();
 var Appointment = require('../models/appointmentSchedule.model');
 var Department = require("../models/department.model");
 var Doctor = require("../models/user.model");
-var objectType = 2;
-var typeFind = 1;
+var config = require('../config.json');
+var objectType = config.viewer;
+var typeFind = config.findDoctor;
 
 router.use(function(req, res, next){
-    if(req.objectType){
-        objectType = req.objectType;
+	if(typeof req.objectType !== 'undefined'){
+        objectType = req.objectType;  
+    } else{
+        objectType = config.viewer;
     }
-    // objectType = req.headers['objecttype'];
-    next();
+    next();  
 })
 
+function checkUser(req, res, next){
+	if(objectType != config.user && objectType != config.admin && objectType != config.doctor){
+        return res.redirect('/dang-nhap');
+    } 
+    return next();  
+}
 
 router.route('/')
     .get(function(req, res, next){
@@ -37,7 +45,15 @@ router.route('/')
             }
         });
     })
-    .post(function(req, res, next){
+    .post(checkUser, function(req, res, next){
+        var data = {
+            doctorId: req.body.doctorId,
+            patientId: req.authData._id,
+            time: req.body.time,
+            address: req.body.address,
+            description: req.body.description,
+            acceptance: false
+        }
         Appointment.inserts(req.body, (err, appointment) => {
             if (err){
                 res.status('505').json({
