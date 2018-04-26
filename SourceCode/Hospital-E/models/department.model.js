@@ -67,6 +67,31 @@ Department.statics.updates = function(data, callback){
 Department.statics.deletes = function(data, callback){
 	tools.Delete.call(this, data, callback);
 }
+
+Department.statics.findIncludeWithDoctor = function(data, objectType, callback){
+	var search = {$regex: '.*' + data + '.*', $options: 'i'};
+	var query = {
+		$or: [
+			{_id: search},
+			{name: search}
+		]
+	}
+	if (objectType != 0){
+		query.active = true;
+	}
+	DepartmentModel.find(query)
+		.select('_id')
+		.select('name')
+		.select('doctorIds')
+		.exec((err, departments) => {
+			if(err || !departments){
+				callback(err, departments);
+			} else{
+				DepartmentModel.populate(departments, 
+					{path: 'doctorIds', select: {'_id': 1, 'name': 1}}, callback)
+			}
+		})
+}
 /**
  * name, Schema, collection
  */

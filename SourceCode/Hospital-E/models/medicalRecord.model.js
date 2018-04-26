@@ -13,6 +13,8 @@ var MedicalRecord = new Schema({
 	theDiagnosis: String,
 	status: String,
 	treatment: String,
+	timeStart: Date,
+	timeEnd: Date,
 	diseaseTypes: [{type: String, ref: 'DiseaseType'}],
 	medicines:[{type: String, ref: 'Medicine'}],
     active: Boolean,

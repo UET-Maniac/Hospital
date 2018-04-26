@@ -26,24 +26,31 @@ function checkUser(req, res, next){
 router.route('/')
     .get(function(req, res, next){
         // res.render('pages/appointmentSchedule', {objectType: objectType});
-        Department.finds('', objectType, (err, departments) => {
-            if (err){
-                res.status('404').json({
-                    message: "Can't find data suitable with this request!"
-                })
-            } else{
-                Doctor.finds('', objectType, typeFind, (err, doctors) => {
-                    if (err || !doctors.length){
-                        res.status('404').json({
-                            message: "Can't find data suitable with this request!"
-                        })
-                    } else{
-                        res.render('pages/appointmentSchedule', 
-                            {departments: departments, doctors: doctors, objectType: objectType});
-                    }
-                });
-            }
-        });
+        Department.findIncludeWithDoctor('', objectType, (err, departments)=>{
+            departments.forEach((result)=>{
+                console.log(result)
+            })
+            res.render('pages/appointmentSchedule', 
+                {departments: departments, objectType: objectType});
+        })
+        // Department.finds('', objectType, (err, departments) => {
+        //     if (err){
+        //         res.status('404').json({
+        //             message: "Can't find data suitable with this request!"
+        //         })
+        //     } else{
+        //         Doctor.finds('', objectType, typeFind, (err, doctors) => {
+        //             if (err || !doctors.length){
+        //                 res.status('404').json({
+        //                     message: "Can't find data suitable with this request!"
+        //                 })
+        //             } else{
+        //                 res.render('pages/appointmentSchedule', 
+        //                     {departments: departments, doctors: doctors, objectType: objectType});
+        //             }
+        //         });
+        //     }
+        // });
     })
     .post(checkUser, function(req, res, next){
         var data = {

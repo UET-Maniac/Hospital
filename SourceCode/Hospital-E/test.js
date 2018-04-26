@@ -75,7 +75,30 @@ var MedicalRecord = mongoose.model('medicalRecord', medicalRecordSchema, 'medica
 var Medicine = mongoose.model('Medicine', medicineSchema, 'medicine');
 var DiseaseType = mongoose.model('DiseaseType', diseaseTypeSchema, 'diseaseType');
 
-// s
+// Department.find({_id: 'DEP101', active: true})
+// 	.select('_id')
+// 	.select('name')
+// 	.select('doctorIds')
+// 	.exec((err, results) => {
+// 		Department.populate(results, {path: 'doctorIds', select: {'_id': 1, 'name': 1}}, (err, resultss) => {
+// 			resultss.forEach((result)=>{
+// 				console.log(result)
+// 			})
+// 		})
+// 	})
+
+// Department.find({})
+// 	.select('_id')
+// 	.select('name')
+// 	.select('doctorIds')
+// 	.populate('doctorIds')
+// 	.exec((err, results) => {
+// 		Department.populate(results, {path: 'doctorIds', select: {'_id': 1, 'name': 1}}, (err, resultss) => {
+// 			results.forEach((result)=>{
+// 				console.log(result)
+// 			})
+// 		})
+// 	})
 
 // MedicalRecord.find()
 // 	.populate('patientId')
@@ -94,13 +117,13 @@ var DiseaseType = mongoose.model('DiseaseType', diseaseTypeSchema, 'diseaseType'
 //     })
 // })
 
-User.find({},(err, results) => {
-    User.populate(results, {path: 'departmentId', match: {_id: 'DEP101'}}, (err, resultss) => {
-        resultss.forEach((result)=>{
-            console.log(result)
-        })
-    })
-})
+// Department.find({},(err, results) => {
+//     User.populate(results, {path: 'departmentId'}, (err, resultss) => {
+//         resultss.forEach((result)=>{
+//             console.log(result)
+//         })
+//     })
+// })
 
 // User.find({})
 //     .populate('departmentId')
@@ -137,7 +160,7 @@ User.find({},(err, results) => {
 // 	// })
 // })
 
-
+// console.log(new Date("11-04-2018 20:0:0"))
 
 
 
