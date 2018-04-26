@@ -543,3 +543,63 @@ footer {
   }
 
   /* end alert validate */
+  
+/*
+    Gioi thieu
+*/
+.box_top_content{
+    background-color: #008DC9;
+}
+.box_left_name_content{
+    width: 60%;
+    float:left;
+}
+.action_content_introduce{
+    float: right;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+.box_content_introduce{
+    background-color: #008DC9;
+}
+.padding_boxs_introduce{
+    padding: 20px 20px 20px 20px;
+}
+.boxs_name{
+    padding:5px 20px 5px 20px;
+    color: white;
+    font-size: 20px;
+}
+.photos_of_boxs{
+    border-right: 1px solid #008DC9;
+}
+.photos_of_boxs img{
+    height: 200px;
+    width: 300px;
+    margin: 25px 50px 25px 30px;
+    display: block;
+}
+.table_info{
+    margin: 25px 50px 25px 50px;
+}
+.info_introduce{
+    height: 250px;
+    overflow-y: scroll;
+}
+.box_padding_introduce{
+    border: 1px solid #008DC9;
+}
+
+.actions_box img{
+    margin: 5px 10px;
+    float: right;
+}
+.icon_update_instroduce{
+    cursor: pointer;
+}
+.icon_delete_instroduce{
+    cursor: pointer;
+}
+.box_update_instroduce{
+    margin: 25px 50px 25px 50px;
+}
