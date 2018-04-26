@@ -5,8 +5,132 @@
     </head>
     <body>
 		<% include ../partials/sidebar %>
-		<header></header>
+		<header><% include ../partials/header %></header>
 		<div class="body-wrapper">
+			<!--
+				Script
+			-->
+			<script>
+				/*
+					JQuery
+				*/
+				$(document).ready(function(){
+					$(".icon_update_instroduce").click(function(){
+						$(".table_info").hide();
+						$(".box_update_instroduce").show();
+					});
+				});
+
+				/*
+					JavaScript
+				*/
+				function delete_action() {
+					var accept_delete;
+					var rep = confirm("Do you want delete?");
+					if (r == true) {
+						accept_delete = 1;
+					} else {
+						accept_delete = 0;
+					}
+				}
+			</script>
+
+			<form action="" method="" name="">
+				<div class ="box_top_content">
+					<div class="box_left_name_content">
+						<div class="main_name">Gioi thieu Khoa</div>
+					</div>
+					<form action="" method="" name="">
+						<div class="action_content_introduce">
+							<input class ="search" type="text" name="" value="">
+							<a href=""><img src="/images/icons/search.png" width="32px"></a>
+							<a href=""><img src="/images/icons/back.png" width="32px"></a>
+							<a href=""><img src="/images/icons/create.png" width="32px"></a>
+						</div>
+					</form>
+					<div class="clear"></div>
+				</div>
+				</form>
+
+			<div class = "padding_boxs_introduce">
+				<div class="box_padding_introduce">
+					<div class="box_content_introduce">
+						<div class="boxs_name col-md-7 float-left">
+							Ten Khoa
+						</div>
+						<div class="actions_box col-md-5 float-right">
+							<div class ="icon_delete_instroduce" onclick="delete_action()" >
+								<img src="/images/icons/delete.png" width="24px" height="24px">
+							</div>
+							<div class ="icon_update_instroduce">
+								<img src="/images/icons/update.png" width="24px" height="24px">
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="photos_of_boxs col-md-5 float-left">
+						<img src="">
+						<div class="box_update_instroduce" style="display: none;">
+							<form method="post" enctype="multipart/form-data">
+								<div>
+									<label for="profile_pic">Choose file to upload</label>
+									<input type="file" id="profile_pic" name="profile_pic"
+										accept=".jpg, .jpeg, .png">
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="info_introduce col-md-7 float-right">
+						<form action="" method="" name="">
+							<ul class ="table_info">
+								<li class= "instroduce_1_1">Thong tin 1</li>
+								<li class= "instroduce_1_2">Thong tin 2</li>
+								<li class= "instroduce_1_3">Thong tin 3</li>
+								<li class= "instroduce_1_4">Thong tin 4</li>
+								<li class= "instroduce_1_5">Thong tin 5</li>
+								<li class= "instroduce_1_6">Thong tin 6</li>
+								<li class= "instroduce_1_7">Thong tin 7</li>
+								<li	class= "instroduce_1_8">Thong tin 8</li>
+								<li	class= "instroduce_1_9">Thong tin 9</li>
+								<li class= "instroduce_1_10">Thong tin 10</li>
+							</ul>
+							<div class="box_update_instroduce" style="display: none;">
+								<div class="instroduce_1_1">
+									<p>Thong tin 1: <input type="text" name="" value="Thong tin 1">
+								</div>
+								<div class="instroduce_1_1">
+									<p>Thong tin 1: <input type="text" name="" value="Thong tin 1">
+								</div>
+								<div class="instroduce_1_1">
+										<p>Thong tin 1: <input type="text" name="" value="Thong tin 1">
+								</div>
+								<div class="instroduce_1_1">
+									<p>Thong tin 1: <input type="text" name="" value="Thong tin 1">
+								</div>
+								<div class="instroduce_1_1">
+									<p>Thong tin 1: <input type="text" name="" value="Thong tin 1">
+								</div>
+								<div class="instroduce_1_1">
+									<p>Thong tin 1: <input type="text" name="" value="Thong tin 1">
+								</div>
+								<div class="instroduce_1_1">
+										<p>Thong tin 1: <input type="text" name="" value="Thong tin 1">
+								</div>
+								<button type="submit" class="submit_update">YEP!</button>
+							</div>
+						</form>
+					</div>
+					
+					<div class="time_post_info_khoa">
+						<div class="date">
+							
+					 	</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+
 			<% for(var i=0; i<departments.length; i++) {%>
 				<ul>
 					<% if(departments[i]._id){%>
