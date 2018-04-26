@@ -1,3 +1,6 @@
+import { randomBytes } from "crypto";
+import { Z_HUFFMAN_ONLY } from "zlib";
+
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var config = require('./config.json');

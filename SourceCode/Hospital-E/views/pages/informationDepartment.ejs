@@ -6,7 +6,7 @@
     <body>
 		<% include ../partials/sidebar %>
 		<header><% include ../partials/header %></header>
-		<div class="body-wrapper">
+		<!-- <div class="body-wrapper"> -->
 			<!--
 				Script
 			-->
@@ -50,8 +50,8 @@
 					</form>
 					<div class="clear"></div>
 				</div>
-				</form>
-
+			</form>
+			<% for(var i=0; i<departments.length; i++){ %>
 			<div class = "padding_boxs_introduce">
 				<div class="box_padding_introduce">
 					<div class="box_content_introduce">
@@ -69,7 +69,7 @@
 						<div class="clear"></div>
 					</div>
 					<div class="photos_of_boxs col-md-5 float-left">
-						<img src="">
+						<img src="/images/datas/undefined.jpg">
 						<div class="box_update_instroduce" style="display: none;">
 							<form method="post" enctype="multipart/form-data">
 								<div>
@@ -81,44 +81,40 @@
 						</div>
 					</div>
 					<div class="info_introduce col-md-7 float-right">
-						<form action="" method="" name="">
-							<ul class ="table_info">
-								<li class= "instroduce_1_1">Thong tin 1</li>
-								<li class= "instroduce_1_2">Thong tin 2</li>
-								<li class= "instroduce_1_3">Thong tin 3</li>
-								<li class= "instroduce_1_4">Thong tin 4</li>
-								<li class= "instroduce_1_5">Thong tin 5</li>
-								<li class= "instroduce_1_6">Thong tin 6</li>
-								<li class= "instroduce_1_7">Thong tin 7</li>
-								<li	class= "instroduce_1_8">Thong tin 8</li>
-								<li	class= "instroduce_1_9">Thong tin 9</li>
-								<li class= "instroduce_1_10">Thong tin 10</li>
-							</ul>
-							<div class="box_update_instroduce" style="display: none;">
-								<div class="instroduce_1_1">
-									<p>Thong tin 1: <input type="text" name="" value="Thong tin 1">
-								</div>
-								<div class="instroduce_1_1">
-									<p>Thong tin 1: <input type="text" name="" value="Thong tin 1">
-								</div>
-								<div class="instroduce_1_1">
+							<form action="" method="" name="">
+								<ul class ="table_info">
+									<li class= "instroduce_1_1">Id khoa: <%= departments[i]._id %></li>
+									<li class= "instroduce_1_2">Tên khoa: <%= departments[i].name %></li>
+									<li class= "instroduce_1_3">Thông tin khoa: <%= departments[i].description %></li>
+									<li class= "instroduce_1_4">Địa chỉ khoa: <%= departments[i].address %></li>
+									<li class= "instroduce_1_5">Thời gian thành lập khoa: <%=departments[i].foundingOn%></li>
+								</ul>
+								<div class="box_update_instroduce" style="display: none;">
+									<div class="instroduce_1_1">
 										<p>Thong tin 1: <input type="text" name="" value="Thong tin 1">
-								</div>
-								<div class="instroduce_1_1">
-									<p>Thong tin 1: <input type="text" name="" value="Thong tin 1">
-								</div>
-								<div class="instroduce_1_1">
-									<p>Thong tin 1: <input type="text" name="" value="Thong tin 1">
-								</div>
-								<div class="instroduce_1_1">
-									<p>Thong tin 1: <input type="text" name="" value="Thong tin 1">
-								</div>
-								<div class="instroduce_1_1">
+									</div>
+									<div class="instroduce_1_1">
 										<p>Thong tin 1: <input type="text" name="" value="Thong tin 1">
+									</div>
+									<div class="instroduce_1_1">
+											<p>Thong tin 1: <input type="text" name="" value="Thong tin 1">
+									</div>
+									<div class="instroduce_1_1">
+										<p>Thong tin 1: <input type="text" name="" value="Thong tin 1">
+									</div>
+									<div class="instroduce_1_1">
+										<p>Thong tin 1: <input type="text" name="" value="Thong tin 1">
+									</div>
+									<div class="instroduce_1_1">
+										<p>Thong tin 1: <input type="text" name="" value="Thong tin 1">
+									</div>
+									<div class="instroduce_1_1">
+											<p>Thong tin 1: <input type="text" name="" value="Thong tin 1">
+									</div>
+									<button type="submit" class="submit_update">YEP!</button>
 								</div>
-								<button type="submit" class="submit_update">YEP!</button>
-							</div>
-						</form>
+							</form>
+						
 					</div>
 					
 					<div class="time_post_info_khoa">
@@ -129,31 +125,8 @@
 					<div class="clear"></div>
 				</div>
 			</div>
-		</div>
-
-			<% for(var i=0; i<departments.length; i++) {%>
-				<ul>
-					<% if(departments[i]._id){%>
-						<li><%= departments[i]._id %></li>
-					<% } %>
-					<% if(departments[i].name){%>
-						<li><%= departments[i].name %></li>
-					<% } %>
-					<% if(departments[i].description){%>
-						<li><%= departments[i].description %></li>
-					<% } %>
-					<% if(departments[i].address){%>
-						<li><%= departments[i].address %></li>
-					<% } %>
-					<% if(departments[i].image){%>
-						<li><%= departments[i].image %></li>
-					<% } %>
-					<% if(departments[i].foundingOn){%>
-						<li><%= departments[i].foundingOn %></li>
-					<% } %>
-				</ul></br>
 			<% } %>
-		</div>
+		<!-- </div> -->
     <footer><% include ../partials/footer %></footer>
     </body>
 </html>

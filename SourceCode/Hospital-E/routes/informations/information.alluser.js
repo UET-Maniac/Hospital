@@ -17,7 +17,8 @@ router.use(function(req, res, next){
 
 router.use(function(req, res, next){
 	if (objectType != config.admin){
-		return res.json('Không có quyền truy cập')
+		return  res.render('pages/error404',
+			{ objectType: config.viewer, message: 'Không có quyền truy cập!'});
 	}
 	return next();
 })
