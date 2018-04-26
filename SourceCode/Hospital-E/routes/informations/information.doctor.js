@@ -20,7 +20,8 @@ router.use(function(req, res, next){
 
 function checkAdmin(req, res, next){
 	if(objectType != config.admin){
-        return res.json('Không có quyền')
+        return res.render('pages/error401',
+			{ objectType: config.viewer, message: 'Không có quyền truy cập!'});
     }
     return next();  
 }
@@ -30,11 +31,9 @@ router.route('/')
 		Doctor.finds('', objectType, typeFind, (err, doctors) => {
 			// can them dieu kiem kiem tra xem co kq hay khong de  bat truong hop ko loi va ko co kq
 			if (err || !doctors.length){
-				res.status('404').json({
-					message: "Can't find data suitable with this request!"
-				})
+				res.render('pages/error404',
+			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!'});
 			} else{
-				console.log(doctors[0]);
 				res.render('pages/informationDoctor', {doctors: doctors, objectType: objectType});
 			}
 		});
@@ -44,9 +43,8 @@ router.route('/')
 		if (req.body.data) data = req.body.data;
 		Doctor.finds(data, objectType, typeFind, (err, doctors) => {
 	  		if (err || !doctors.length){
-				res.status('404').json({
-		  			message: "Can't find data suitable with this request!"
-				})
+				res.render('pages/error404',
+			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!'});
 	  		} else{
 				res.render('pages/informationDoctor', {doctors: doctors, objectType: objectType});
 	  		}

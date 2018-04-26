@@ -17,7 +17,7 @@ router.use(function(req, res, next){
 
 router.use(function(req, res, next){
 	if (objectType != config.admin){
-		return  res.render('pages/error404',
+		return  res.render('pages/error401',
 			{ objectType: config.viewer, message: 'Không có quyền truy cập!'});
 	}
 	return next();
@@ -25,33 +25,27 @@ router.use(function(req, res, next){
 
 router.route('/')
 	.get(function(req, res, next){
-	User.finds('', objectType, typeFind, (err, users) => {
-		// can them dieu kiem kiem tra xem co kq hay khong de  bat truong hop ko loi va ko co kq
-		if (err || !users.length){
-		res.status('404').json({
-			message: "Can't find data suitable with this request!"
-		})
-		} else{
-			// users.forEach(element => {
-			// 	console.log(element);
-			// });
-		res.render('pages/informationAllUser', {users: users, objectType: objectType});
-		}
-	});
+		User.finds('', objectType, typeFind, (err, users) => {
+			// can them dieu kiem kiem tra xem co kq hay khong de  bat truong hop ko loi va ko co kq
+			if (err || !users.length){
+				res.render('pages/error404',
+					{ objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!'});
+			} else{
+				res.render('pages/informationAllUser', {users: users, objectType: objectType});
+			}
+		});
 	})
 	.put(function(req, res, next){
-	var data = '';
-	if (req.body.data) data = req.body.data;
-	User.finds(data, objectType, typeFind, (err, users) => {
-		if (err || !users.length){
-		res.status('404').json({
-			message: "Can't find data suitable with this request!"
-		})
-		} else{
-		console.log()
-		res.render('pages/informationAllUser', {users: users, objectType: objectType});
-		}
-	});
+		var data = '';
+		if (req.body.data) data = req.body.data;
+		User.finds(data, objectType, typeFind, (err, users) => {
+			if (err || !users.length){
+				res.render('pages/error404',
+					{ objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!'});
+			} else{
+				res.render('pages/informationAllUser', {users: users, objectType: objectType});
+			}
+		});
 	})
 	// .post(function(req, res, next){
 	//     // chưa kiểm tra điều kiện là admin 
