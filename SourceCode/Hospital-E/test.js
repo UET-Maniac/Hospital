@@ -159,8 +159,10 @@ var DiseaseType = mongoose.model('DiseaseType', diseaseTypeSchema, 'diseaseType'
 // 	// 	console.log(r)
 // 	// })
 // })
+var date = "13-04-2018";
+var newdate = date.split("-").reverse().join("-");
+console.log(new Date("2018-02-28 9:00"))
 
-// console.log(new Date("11-04-2018 20:0:0"))
 
 
 

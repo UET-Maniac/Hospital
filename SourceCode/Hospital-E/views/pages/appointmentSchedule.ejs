@@ -36,7 +36,7 @@
                         <div class="validate-input" data-validate="Yêu cầu chọn khoa">
                             <span>Chuyên Khoa</span>
                             <select class="_select" name="departments" id="departments">
-                                <option value='-1' >Chọn khoa (*)</option>
+                                <option value='-1'>Chọn khoa (*)</option>
                                 <% for(var i=0; i<departments.length; i++){ %>
                                     <option value = '<%= i %>' ><%= departments[i].name %></option>
                                 <% } %>
@@ -66,6 +66,7 @@
                             <textarea rows="4" cols="20" class="_select" name="description" placeholder="Mô tả triệu chứng"></textarea>
                         </div>
                         <input class="_select" id="time" name="time" type="hidden">
+                        <input class="_select" id="doctorId" name="doctorId" type="hidden">
                         <input class = "submitAppointment" value="Đặt Lịch" onClick="" type="submit">
                     </div>
                 </form>

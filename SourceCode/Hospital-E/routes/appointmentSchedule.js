@@ -20,55 +20,33 @@ function checkUser(req, res, next){
 	if(objectType != config.user && objectType != config.admin && objectType != config.doctor){
         return res.redirect('/dang-nhap');
     } 
-    return next();  
+    next();  
 }
 
 router.route('/')
     .get(function(req, res, next){
-        // res.render('pages/appointmentSchedule', {objectType: objectType});
         Department.findIncludeWithDoctor('', objectType, (err, departments)=>{
-            departments.forEach((result)=>{
-                console.log(result)
-            })
             res.render('pages/appointmentSchedule', 
                 {departments: departments, objectType: objectType});
         })
-        // Department.finds('', objectType, (err, departments) => {
-        //     if (err){
-        //         res.status('404').json({
-        //             message: "Can't find data suitable with this request!"
-        //         })
-        //     } else{
-        //         Doctor.finds('', objectType, typeFind, (err, doctors) => {
-        //             if (err || !doctors.length){
-        //                 res.status('404').json({
-        //                     message: "Can't find data suitable with this request!"
-        //                 })
-        //             } else{
-        //                 res.render('pages/appointmentSchedule', 
-        //                     {departments: departments, doctors: doctors, objectType: objectType});
-        //             }
-        //         });
-        //     }
-        // });
     })
     .post(checkUser, function(req, res, next){
         var data = {
             doctorId: req.body.doctorId,
-            patientId: req.authData._id,
+            patientId: req.auth.data._id,
             time: req.body.time,
             address: req.body.address,
             description: req.body.description,
             acceptance: false
         }
-        Appointment.inserts(req.body, (err, appointment) => {
+        Appointment.inserts(data, (err, appointment) => {
             if (err){
-                res.status('505').json({
-                    message: "Error with server"
-                })
+                res.render('pages/error500',
+                    { objectType: config.viewer , message: 'Xảy ra lỗi với server!'});
             } else{
                 // can check objectType va render theo view rieng
                 // response gui lai 1 dau hieu de client gui tin nhan tao thanh cong
+                res.redirect('/');
                 res.render('pages/index', {objectType: objectType});
             }
         });

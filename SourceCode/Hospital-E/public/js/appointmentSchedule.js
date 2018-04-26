@@ -38,7 +38,13 @@ $(document).ready(function() {
             }
         }
         if(check){
-            $('#time').val('123132');
+            var departments = JSON.parse($(".infoAppointment").attr('departments'));
+            var indexDep = $('#departments option:selected').val();
+            var indexDoc = $('#doctors option:selected').val();
+            $('#doctorId').val(departments[indexDep].doctorIds[indexDoc]._id);
+            var date = $('#date').val().split("-").reverse().join("-");
+            var timeInday = $('#timeInday option:selected').text()
+            $('#time').val(date + " " + timeInday);
         }
 
         return check;
@@ -56,7 +62,8 @@ $(document).ready(function() {
                 return false;
         }
         if($(input).attr('name') == 'date'){
-            var date = $(input).val();
+            // do dinh dang dd-mm-yy doi sang yy-mm-dd
+            var date = $(input).val().split("-").reverse().join("-");
             return (new Date(date) !== "Invalid Date") && !isNaN(new Date(date));
         }
         if($(input).attr('name') == 'address' || $(input).attr('name') == 'description'){
