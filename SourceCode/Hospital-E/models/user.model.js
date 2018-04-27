@@ -108,6 +108,17 @@ User.statics.deletes = function(data, callback){
 	tools.Delete.call(this, data, callback);
 }
 /**
+ * Lấy dữ liệu của 1 user
+ * @param {string} data _id của user
+ * @param {function} callback hàm callback
+ */
+User.statics.getDataUser = function(data, callback){
+	var query = {
+		_id: data
+	}
+	this.findOne(query, callback);
+}
+/**
  * Đăng nhập
  * @param {object} data dữ liệu đăng nhập
  * @param {function} callback hàm callback 

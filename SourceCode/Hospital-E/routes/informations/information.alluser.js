@@ -48,8 +48,8 @@ router.route('/')
 		});
 	})
 	.post(function(req, res, next){
-	    User.inserts(req.body.data, (err, users) => {
-	        if (err || !users.length){
+	    User.inserts(req.body.data, (err, user) => {
+	        if (err || !user){
 	            res.render('pages/error',
 					{ objectType: config.viewer, message: 'Dữ liệu đã tồn tại!', codeError: 409});
 	        } else{
@@ -59,8 +59,8 @@ router.route('/')
 	    });
 	})
 	.patch(function(req, res, next){
-	    User.updates(req.body.data, (err, users) => {
-	        if (err|| !users.length){
+	    User.updates(req.body.data, (err, user) => {
+	        if (err|| !user){
 	            res.render('pages/error',
 					{ objectType: config.viewer, message: 'Lỗi server!', codeError: 500});
 	        } else{
@@ -70,8 +70,8 @@ router.route('/')
 	    });
 	})
 	.delete(function(req, res, next){
-	    User.deletes(req.body.data._id, (err, users) => {
-	        if (err || !users.length){
+	    User.deletes(req.body.data._id, (err, user) => {
+	        if (err || !user){
 	            res.render('pages/error',
 					{ objectType: config.viewer, message: 'Lỗi server!', codeError: 500});
 	        } else{

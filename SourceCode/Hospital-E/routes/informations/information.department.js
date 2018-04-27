@@ -45,7 +45,7 @@ router.route('/')
         });
     })
     .post(checkAdmin, function(req, res, next){
-        Department.inserts(req.body.data, (err, departments) => {
+        Department.inserts(req.body.data, (err, department) => {
             if (err){
                 res.render('pages/error',
 					{ objectType: config.viewer, message: 'Dữ liệu đã tồn tại!', codeError: 409});
@@ -56,8 +56,8 @@ router.route('/')
         });
     })
     .patch(checkAdmin, function(req, res, next){
-        Department.updates(req.body.data, (err, departments) => {
-            if (err || !departments.length){
+        Department.updates(req.body.data, (err, department) => {
+            if (err || !department){
                 res.render('pages/error',
                     { objectType: config.viewer, message: 'Lỗi server!', codeError: 500});
             } else{
@@ -67,8 +67,8 @@ router.route('/')
         });
     })
     .delete(checkAdmin, function(req, res, next){
-        Department.deletes(req.body.data._id, (err, departments) => {
-            if (err || !departments.length){
+        Department.deletes(req.body.data._id, (err, department) => {
+            if (err || !department){
                 res.render('pages/error',
                     { objectType: config.viewer, message: 'Lỗi server!', codeError: 500});
             } else{

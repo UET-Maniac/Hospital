@@ -12,7 +12,6 @@ var app = express();
     Import Route modules
 */
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var userRouter = require('./routes/user');
 var loginRouter = require('./routes/login');
 var infoDepartmentRouter = require('./routes/informations/information.department');
@@ -56,7 +55,7 @@ app.use('/gioi-thieu/bac-si', middlewareToken, infoDoctorRouter);
 app.use('/gioi-thieu/tai-khoan', middlewareToken, infoAllUserRouter);
 app.use('/dien-dan', middlewareToken, forumRouter);
 app.use('/dat-lich-hen', middlewareToken, appointmentRouter);
-app.use('/tin-tuc', middlewareToken, newsRouter)
+app.use('/tin-tuc', middlewareToken, newsRouter);
 
 //end routes
 

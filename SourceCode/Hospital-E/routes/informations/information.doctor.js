@@ -66,8 +66,8 @@ router.route('/')
 		// });
  	 })
 	.patch(checkAdmin, function(req, res, next){
-		Doctor.updates(req.body.data, (err, doctors) => {
-			if (err || !doctors.length){
+		Doctor.updates(req.body.data, (err, doctor) => {
+			if (err || !doctor){
 				res.render('pages/error',
                     { objectType: config.viewer, message: 'Lỗi server!', codeError: 500});
 			} else{
@@ -77,8 +77,8 @@ router.route('/')
 		});
 	})
 	.delete(checkAdmin, function(req, res, next){
-		Doctor.deletes(req.body.data._id, (err, doctors) => {
-			if (err || !doctors.length){
+		Doctor.deletes(req.body.data._id, (err, doctor) => {
+			if (err || !doctor){
 				res.render('pages/error',
                     { objectType: config.viewer, message: 'Lỗi server!', codeError: 500});
 			} else{
