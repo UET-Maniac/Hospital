@@ -6,21 +6,21 @@ $(document).ready(function() {
         $("#information-content").show(50);
     });
     $("#information").mouseleave(function() {
-        $("#information-content").hide(5);
+        $("#information-content").hide(50);
     });
 
     $("#record").mouseenter(function() {
         $("#record-content ").show(50);
     });
     $("#record").mouseleave(function() {
-        $("#record-content").hide(5);
+        $("#record-content").hide(50);
     });
 
     $("#appointment").mouseenter(function() {
         $("#appointment-content ").show(50);
     });
     $("#appointment").mouseleave(function() {
-        $("#appointment-content").hide(5);
+        $("#appointment-content").hide(50);
     });
 
     $("#logout").click(function(){

@@ -165,11 +165,23 @@
     width: 350px;
     background-color: #008DC9;
     color: #fff;
-    top: 40px;
-    left: 0px;
+    top: 43px;
+    left: 0%;
     padding: 0px;
     height: 40px;
 }
+
+/* #information-content{
+    left: -120%;
+}
+
+#appointment-content{
+    left: -105%;
+}
+
+#record-content{
+    left: -180%;
+} */
 
 .infoBox:hover {
     background-color: #D86422; 
