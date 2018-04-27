@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var User = require("../../models/user.model");
+var User = require("../../models/user");
 var config = require('../../config.json');
 var objectType = config.viewer;
 var typeFind = config.findUser;

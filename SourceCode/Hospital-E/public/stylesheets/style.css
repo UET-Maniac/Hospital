@@ -19,7 +19,8 @@
         z-index: 100;
         height: 43px;
         width: 100%;
-        border-bottom: 3px solid #22dD99;
+        border-bottom: 3px solid #008DC9;
+        /* để green thì không có cái đường thẳng nhìn ko đẹp cho lắm*/
     }
     .topheader .inner {
         font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -42,7 +43,7 @@
         font-weight: bold;
     }
     .topheader .inner .topleftmenu a:hover {
-        background-color: #D86422;
+        background-color: #fff;
         font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
     }
     .topheader .inner .toprightmenu {
@@ -150,46 +151,46 @@
 
 
 /*
-    Dropdown - box
+    info box
 */
 
-.dropdown--box {
+.infoBox {
     position: relative;
     display: inline-block;
 }
 
-.dropdown-content {
+.infoBox-content {
     position: absolute;
     z-index: 100;
     width: 350px;
-    background-color: #191919;
-    color: red;
+    background-color: #008DC9;
+    color: #fff;
     top: 40px;
     left: 0px;
     padding: 0px;
     height: 40px;
 }
 
-.dropdown--box:hover {
-    background-color: #D86422;
+.infoBox:hover {
+    background-color: #D86422; 
     font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-.dropdown--box:hover .drop-choose {
+.infoBox:hover .info-choose {
     background-color: #D86422;
 }
 
-.dropdown-content {
+.infoBox-content {
     opacity: 0.8;
 }
 
-.dropdown-content a {
+.infoBox-content a {
     display: inline;
     margin: 0px;
 }
 
 
-/*End Dropdown-box*/
+/*End info - box*/
 
 
 /*

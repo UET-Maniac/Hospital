@@ -3,9 +3,9 @@
     <div class="inner">
         <div class="topleftmenu">
             <a target="_top" href="/">Trang chủ</a>
-            <span class="dropdown--box">
-                <a class="drop-choose" target="_top" href="">Giới thiệu</a>
-                <span class="dropdown-content">
+            <span class="infoBox" id="information">
+                <a class="info-choose" id="information-choose" target="_top" href="">Giới thiệu</a>
+                <span class="infoBox-content" id="information-content">
                     <a target="_top" href="/gioi-thieu/khoa">Chuyên khoa</a>
                     <a target="_top" href="/gioi-thieu/bac-si">Bác sĩ</a>
                     <% if(objectType == 0){%>
@@ -15,10 +15,28 @@
             </span>
             <a target="_top" href="/tin-tuc">Tin tức</a>
             <a target="_top" href="/dien-dan">Diễn đàn</a>
+            <span class="infoBox" id="appointment">
+                <a class="info-choose" id="appointment-choose" target="_top" href="">Đặt lịch hẹn</a>
+                <span class="infoBox-content" id="appointment-content">
+                    <a target="_top" href="/dat-lich-hen/dat-moi">Đặt mới</a>
+                    <a target="_top" href="/dat-lich-hen/lich-su">Lịch sử</a>
+                    <% if(objectType == 0 || objectType == 1){%>
+                        <a target="_top" href="/dat-lich-hen/lich-hen">Lịch hẹn</a>
+                    <% } %>
+                </span>
+            </span>
             <% if(objectType == 0 || objectType == 1 || objectType == 2){%>
-                <a target="_top" href="/ho-so">Hồ sơ</a>
+                <span class="infoBox" id="record">
+                    <a class="info-choose" id="record-choose" target="_top" href="">Hồ sơ</a>
+                    <span class="infoBox-content" id="record-content">
+                        <a target="_top" href="/ho-so/tai-khoan">Tài khoản</a>
+                        <a target="_top" href="/ho-so/benh-an">Bệnh án</a>
+                        <% if(objectType == 0 || objectType == 1){%>
+                            <a target="_top" href="/ho-so/benh-nhan">Bệnh nhân</a>
+                        <% } %>
+                    </span>
+                </span>
             <% } %>
-            <a target="_top" href="/dat-lich-hen">Đặt lịch hẹn</a>
         </div>
         <div class="toprightmenu">
             <% if(objectType == 3){%>

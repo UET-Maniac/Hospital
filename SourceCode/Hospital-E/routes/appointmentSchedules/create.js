@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var Appointment = require('../models/appointmentSchedule.model');
-var Department = require("../models/department.model");
-var Doctor = require("../models/user.model");
-var config = require('../config.json');
+var Appointment = require('../../models/appointmentSchedule');
+var Department = require("../../models/department");
+var Doctor = require("../../models/user");
+var config = require('../../config.json');
 var objectType = config.viewer;
 var typeFind = config.findDoctor;
 

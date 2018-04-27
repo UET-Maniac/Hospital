@@ -1,5 +1,5 @@
-var User = require("../models/user.model");
-var Token = require("../models/token.model");
+var User = require("../models/user");
+var Token = require("../models/token");
 
 module.exports = function(req, res, next){
     if(req.cookies.token && typeof req.cookies.token !== 'undefined'){

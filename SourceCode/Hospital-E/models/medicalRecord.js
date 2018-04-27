@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-var tools = require('./tools.model');
+var tools = require('./tools');
 var defaultId = require('../config.json').defaultId.medicalRecord;
 /**
  * Schema hồ sơ bệnh án

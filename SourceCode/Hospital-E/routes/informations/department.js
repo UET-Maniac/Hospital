@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Department = require("../../models/department.model");
+var Department = require("../../models/department");
 var config = require('../../config.json');
 var objectType = config.viewer;
 

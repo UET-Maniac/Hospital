@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-var tools = require('./tools.model');
+var tools = require('./tools');
 var defaultId = require('../config.json').defaultId.rating;
 /**
  * Schema đánh giá

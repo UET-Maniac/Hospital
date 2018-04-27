@@ -1,12 +1,26 @@
 $(document).ready(function() {
 
     /* Effect Side bar */
-    $(".dropdown-content").hide();
-    $(".dropdown--box").mouseenter(function() {
-        $(".dropdown-content").show(50);
+    $(".infoBox-content").hide();
+    $("#information").mouseenter(function() {
+        $("#information-content").show(50);
     });
-    $(".dropdown--box").mouseleave(function() {
-        $(".dropdown-content").hide(5);
+    $("#information").mouseleave(function() {
+        $("#information-content").hide(5);
+    });
+
+    $("#record").mouseenter(function() {
+        $("#record-content ").show(50);
+    });
+    $("#record").mouseleave(function() {
+        $("#record-content").hide(5);
+    });
+
+    $("#appointment").mouseenter(function() {
+        $("#appointment-content ").show(50);
+    });
+    $("#appointment").mouseleave(function() {
+        $("#appointment-content").hide(5);
     });
 
     $("#logout").click(function(){

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var User = require("../models/user.model");
-var config = require('../config.json');
+var User = require("../../models/user");
+var config = require('../../config.json');
 var objectType = config.viewer;
 // chua toi uu, nen cho vao file middle ware
 // chua bao mat tot

@@ -12,19 +12,23 @@ var app = express();
     Import Route modules
 */
 var indexRouter = require('./routes/index');
-var userRouter = require('./routes/user');
 var loginRouter = require('./routes/login');
-var infoDepartmentRouter = require('./routes/informations/information.department');
-var infoDoctorRouter = require('./routes/informations/information.doctor');
+var infoDepartmentRouter = require('./routes/informations/department');
+var infoDoctorRouter = require('./routes/informations/doctor');
+var infoAllUserRouter = require('./routes/informations/alluser');
+var asCreateRouter = require('./routes/appointmentSchedules/create');
+var asHistoryRouter = require('./routes/appointmentSchedules/history');
+var asListRouter = require('./routes/appointmentSchedules/list');
+var recordUserRouter = require('./routes/records/user');
+var recordMedicalRouter = require('./routes/records/medicalRecord');
+var recordPatientRouter = require('./routes/records/patient');
 var forumRouter = require('./routes/forum');
-var appointmentRouter = require('./routes/appointmentSchedule');
-var infoAllUserRouter = require('./routes/informations/information.alluser');
 var newsRouter = require("./routes/news")
 
 
 //End import routes
 
-var middlewareToken = require('./middlewares/token.middleware');
+var middlewareToken = require('./middlewares/token');
 
 /*
     Connect Mongodb
@@ -49,12 +53,16 @@ app.use(bodyParse.json())
 */
 app.use('/', middlewareToken,indexRouter);
 app.use('/dang-nhap', loginRouter)
-app.use('/tai-khoan', middlewareToken, userRouter);
 app.use('/gioi-thieu/khoa', middlewareToken, infoDepartmentRouter);
 app.use('/gioi-thieu/bac-si', middlewareToken, infoDoctorRouter);
 app.use('/gioi-thieu/tai-khoan', middlewareToken, infoAllUserRouter);
+app.use('/dat-lich-hen/dat-moi', middlewareToken, asCreateRouter);
+app.use('/dat-lich-hen/lich-su', middlewareToken, asHistoryRouter);
+app.use('/dat-lich-hen/lich-hen', middlewareToken, asListRouter);
+app.use('/ho-so/tai-khoan', middlewareToken, recordUserRouter);
+app.use('/ho-so/benh-an', middlewareToken, recordMedicalRouter);
+app.use('/ho-so/benh-nhan', middlewareToken, recordPatientRouter);
 app.use('/dien-dan', middlewareToken, forumRouter);
-app.use('/dat-lich-hen', middlewareToken, appointmentRouter);
 app.use('/tin-tuc', middlewareToken, newsRouter);
 
 //end routes
@@ -63,10 +71,10 @@ app.use('/tin-tuc', middlewareToken, newsRouter);
 // app.use(middlewareToken);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(middlewareToken, function(req, res, next) {
     // next(createError(404));
     res.render('pages/error',
-        { objectType: config.viewer, message: 'Not found!', codeError: 404});
+        { objectType: req.objectType, message: 'Not found!', codeError: 404});
 });
 
 // error handler

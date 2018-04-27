@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-var tools = require('./tools.model');
+var tools = require('./tools');
 var config = require('../config.json');
 var timeExpires  = config.cookieExpires*1000;
 var defaultId = config.defaultId.user;

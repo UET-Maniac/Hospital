@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var User = require("../models/user.model");
-var Token = require("../models/token.model");
+var User = require("../models/user");
+var Token = require("../models/token");
 var config = require('../config.json');
 
 router.route('/')

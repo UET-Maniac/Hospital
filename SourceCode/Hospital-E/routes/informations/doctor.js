@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var Doctor = require("../../models/user.model");
+var Doctor = require("../../models/user");
 var config = require('../../config.json');
 var objectType = config.viewer;
 var typeFind = config.findDoctor;
 
-var upload = require('../../middlewares/uploadImage.middleware');
+var upload = require('../../middlewares/uploadImage');
 
 // chua toi uu, nen cho vao file middle ware
 // chua bao mat tot
