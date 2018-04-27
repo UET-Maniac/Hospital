@@ -66,8 +66,8 @@ app.use('/tin-tuc', middlewareToken, newsRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     // next(createError(404));
-    res.render('pages/error404',
-        { objectType: config.viewer, message: 'Not found!'});
+    res.render('pages/error',
+        { objectType: config.viewer, message: 'Not found!', codeError: 404});
 });
 
 // error handler

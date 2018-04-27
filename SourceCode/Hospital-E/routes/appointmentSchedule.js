@@ -26,8 +26,13 @@ function checkUser(req, res, next){
 router.route('/')
     .get(function(req, res, next){
         Department.findIncludeWithDoctor('', objectType, (err, departments)=>{
-            res.render('pages/appointmentSchedule', 
-                {departments: departments, objectType: objectType});
+            if(err || !departments.length){
+                res.render('pages/error',
+			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
+            } else{
+                res.render('pages/appointmentSchedule', 
+                    {departments: departments, objectType: objectType});
+            }
         })
     })
     .post(checkUser, function(req, res, next){
@@ -41,8 +46,8 @@ router.route('/')
         }
         Appointment.inserts(data, (err, appointment) => {
             if (err){
-                res.render('pages/error500',
-                    { objectType: config.viewer , message: 'Xảy ra lỗi với server!'});
+                res.render('pages/error',
+                    { objectType: config.viewer , message: 'Xảy ra lỗi với server!', codeError: 500});
             } else{
                 // can check objectType va render theo view rieng
                 // response gui lai 1 dau hieu de client gui tin nhan tao thanh cong

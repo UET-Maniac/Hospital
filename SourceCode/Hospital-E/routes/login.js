@@ -25,8 +25,8 @@ router.route('/')
                     data.token = token;
                     User.updateToken(data, (err, result) => {
                         if (err) {
-                            res.render('pages/error500',
-                                { objectType: config.viewer , message: 'Xảy ra lỗi với server!'});
+                            res.render('pages/error',
+                                { objectType: config.viewer , message: 'Xảy ra lỗi với server!', codeError: 500});
                         } else {
                             // chua thong bao thanh cong dang nhap
                             res.redirect('/');
@@ -35,11 +35,11 @@ router.route('/')
                     })
                 })
             } else if(user && err){
-                res.render('pages/error404',
-                    { objectType: config.viewer , message: 'Sai mật khẩu! Vui lòng đăng nhập lại'});
+                res.render('pages/error',
+                    { objectType: config.viewer , message: 'Sai mật khẩu! Vui lòng đăng nhập lại', codeError: 404});
             } else{
-                res.render('pages/error404',
-                    { objectType: config.viewer, message: 'Tên đăng nhập không tồn tại!'});
+                res.render('pages/error',
+                    { objectType: config.viewer, message: 'Tên đăng nhập không tồn tại!', codeError: 404});
             }
         })
     });

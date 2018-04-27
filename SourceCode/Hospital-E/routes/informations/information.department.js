@@ -15,8 +15,8 @@ router.use(function(req, res, next){
 
 function checkAdmin(req, res, next){
 	if(objectType != config.admin){
-        return res.render('pages/error401',
-            { objectType: config.viewer, message: 'Không có quyền truy cập!'});
+        return res.render('pages/error',
+            { objectType: config.viewer, message: 'Không có quyền truy cập!', codeError: 401});
     }
     return next();  
 }
@@ -24,9 +24,9 @@ function checkAdmin(req, res, next){
 router.route('/')
     .get(function(req, res, next){
         Department.finds('', objectType, (err, departments) => {
-            if (err){
-                res.render('pages/error404',
-			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!'});
+            if (err || !departments.length){
+                res.render('pages/error',
+			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
             } else{
                 res.render('pages/informationDepartment', {departments: departments, objectType: objectType});
             }
@@ -36,36 +36,30 @@ router.route('/')
         var data = '';
         if (req.body.data) data = req.body.data;
         Department.finds(data, objectType, (err, departments) => {
-            if (err){
-                res.render('pages/error404',
-			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!'});
+            if (err || !departments.length){
+                res.render('pages/error',
+			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
             } else{
                 res.render('pages/informationDepartment', {departments: departments, objectType: objectType});
             }
         });
     })
     .post(checkAdmin, function(req, res, next){
-        // if(objectType){
-            Department.inserts(req.body.data, (err, departments) => {
-                if (err){
-                    res.status('409').json({
-                        message: "Data exited!"
-                    })
-                } else{
-                    // render to information
-                    res.send("thanhcong");
-                }
-            });
-        // } else{
-        //     res.render('pages/error404',
-        //         { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!'});
-        // }
+        Department.inserts(req.body.data, (err, departments) => {
+            if (err){
+                res.render('pages/error',
+					{ objectType: config.viewer, message: 'Dữ liệu đã tồn tại!', codeError: 409});
+            } else{
+                // render to information
+                res.send("thanhcong");
+            }
+        });
     })
     .patch(checkAdmin, function(req, res, next){
         Department.updates(req.body.data, (err, departments) => {
-            if (err){
-                res.render('pages/error500',
-                    { objectType: config.viewer, message: 'Lỗi server!'});
+            if (err || !departments.length){
+                res.render('pages/error',
+                    { objectType: config.viewer, message: 'Lỗi server!', codeError: 500});
             } else{
                 // render to information
                 res.send("thanhcong");
@@ -74,10 +68,9 @@ router.route('/')
     })
     .delete(checkAdmin, function(req, res, next){
         Department.deletes(req.body.data._id, (err, departments) => {
-            if (err){
-                res.status('500').json({
-                    message: "Error with server!"
-                })
+            if (err || !departments.length){
+                res.render('pages/error',
+                    { objectType: config.viewer, message: 'Lỗi server!', codeError: 500});
             } else{
                 // render to information
                 res.send("thanhcong");
