@@ -3,6 +3,7 @@ var router = express.Router();
 var Department = require("../../models/department");
 var config = require('../../config.json');
 var objectType = config.viewer;
+var fs = require('fs')
 
 router.use(function(req, res, next){
 	if(typeof req.objectType !== 'undefined'){
@@ -36,11 +37,12 @@ router.route('/')
         var data = '';
         if (req.body.data) data = req.body.data;
         Department.finds(data, objectType, (err, departments) => {
+            console.log(departments)
             if (err || !departments.length){
                 res.render('pages/error',
 			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
             } else{
-                res.render('pages/informationDepartment', {departments: departments, objectType: objectType});
+                res.render('pages/listDepartments', {departments: departments});
             }
         });
     })
@@ -50,8 +52,7 @@ router.route('/')
                 res.render('pages/error',
 					{ objectType: config.viewer, message: 'Dữ liệu đã tồn tại!', codeError: 409});
             } else{
-                // render to information
-                res.send("thanhcong");
+                // res.render('pages/listDepartment', {departments: departments});
             }
         });
     })
@@ -61,8 +62,7 @@ router.route('/')
                 res.render('pages/error',
                     { objectType: config.viewer, message: 'Lỗi server!', codeError: 500});
             } else{
-                // render to information
-                res.send("thanhcong");
+                // res.render('pages/listDepartment', {departments: departments});
             }
         });
     })
@@ -72,8 +72,7 @@ router.route('/')
                 res.render('pages/error',
                     { objectType: config.viewer, message: 'Lỗi server!', codeError: 500});
             } else{
-                // render to information
-                res.send("thanhcong");
+                // res.render('pages/listDepartment', {departments: departments});
             }
         });
     })

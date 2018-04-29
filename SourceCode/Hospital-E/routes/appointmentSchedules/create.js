@@ -49,10 +49,7 @@ router.route('/')
                 res.render('pages/error',
                     { objectType: config.viewer , message: 'Xảy ra lỗi với server!', codeError: 500});
             } else{
-                // can check objectType va render theo view rieng
-                // response gui lai 1 dau hieu de client gui tin nhan tao thanh cong
-                res.redirect('/');
-                res.render('pages/index', {objectType: objectType});
+                res.sendStatus(201);
             }
         });
     })

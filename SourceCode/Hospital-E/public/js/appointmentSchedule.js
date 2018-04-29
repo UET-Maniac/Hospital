@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    
+
     for (var i=0; i < 12; i++){
         $("#timeInday").append($('<option>', {value: i, text:(i+8) + ':00'}));
     }
@@ -19,6 +19,16 @@ $(document).ready(function() {
             }
         }
     })
+    $('#appointment-form').on('submit', function(event) {
+        event.preventDefault();
+        var form = $(this);
+        var data = form.serialize();
+        $.ajax({
+            method: 'POST', url: '/dat-lich-hen/dat-moi', data: data,
+        }).done(function(data){
+            alert("Thành công!")
+        });
+    })
 });
 
 (function ($) {
@@ -30,8 +40,9 @@ $(document).ready(function() {
     $('#appointment-form').on('submit',function(){
 
         var check = true;
-
+        
         for(var i=0; i<input.length; i++) {
+
             if(validate(input[i]) == false){
                 showValidate(input[i]);
                 check=false;

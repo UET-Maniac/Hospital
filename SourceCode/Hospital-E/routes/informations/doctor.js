@@ -50,7 +50,7 @@ router.route('/')
 	  		}
 		});
   	})
-  	.post(checkAdmin, upload.single('image'), function(req, res, next){
+  	.post(upload.single('image'), function(req, res, next){
 		// chưa kiểm tra điều kiện là admin 
 		// console.log(req.body._id);
 		// console.log(req.file);
