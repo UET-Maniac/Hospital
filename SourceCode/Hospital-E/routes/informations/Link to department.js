@@ -1,0 +1,1 @@
+/home/dell/Documents/Hospital/SourceCode/Hospital-E/routes/informations/department.js

@@ -402,10 +402,8 @@ footer {
 }
 
 .introduce {
-    width: 33.33%;
     background-color: while;
     padding: 5px;
-    float: left;
     display: block;
 }
 
@@ -433,10 +431,8 @@ footer {
 }
 
 .infoAppointment {
-    width: 33.33%;
     background-color: wheat;
     padding: 5px;
-    float: right;
     display: block;
 }
 
@@ -558,7 +554,7 @@ footer {
   /* end alert validate */
   
 /*
-    Gioi thieu
+    instroduce
 */
 .box_top_content{
     background-color: #008DC9;
@@ -586,7 +582,8 @@ footer {
     width: 50%;
     padding: 20px;
     display: block;
-    background-color: whitesmoke;
+    background-color: wheat;
+    overflow-y: scroll;
 }
 .title_box_instroduce{
     color: blueviolet;
@@ -654,9 +651,25 @@ footer {
     font-weight: bold;
     width: 100%;
     padding: 6px 0;
-    margin-left: 20px;
+    margin: 5px 20px 5px 20px;
     color: #464646;
     vertical-align: top;
+}
+.text_instroduce_view{
+    color: blueviolet;
+    font-style: italic;
+    margin-right: 15px;
+    font-size: 27px;
+    border-bottom: 1px solid blueviolet;
+}
+.icons_text_view{
+    margin-right: 12px;
+}
+.text_instroduce{
+    font-style: italic;
+    margin-right: 8px;
+    color: blueviolet;
+    border-bottom: 1px solid blueviolet;
 }
 /* form styles */
 form .row {
@@ -830,3 +843,4 @@ form .txt:focus:valid, form .txtarea:focus:valid {
 }
 
 /* End Form */
+/* End Instroduce

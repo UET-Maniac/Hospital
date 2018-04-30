@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../partials/head %>
+    </head>
+    <body>
+        <% include ../partials/sidebar %>
+        <!-- <header></header> -->
+        <div class="body-wrapper">
+        <!-- Error Page -->
+            <div class="error">
+                <div class="container-floud">
+                    <div class="col-xs-12 ground-color text-center">
+                        <div class="container-error">
+                            <div class="clip"><div class="shadow"><span class="digit thirdDigit"></span></div></div>
+                            <div class="clip"><div class="shadow"><span class="digit secondDigit"></span></div></div>
+                            <div class="clip"><div class="shadow"><span class="digit firstDigit"></span></div></div>
+                            <div class="msg">OH!<span class="triangle"></span></div>
+                        </div>
+                        <input type="hidden" id="codeError" value="<%=codeError%>">
+                        <h2 class="h1">
+                            <%= message %>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        <!-- Error Page -->
+        </div>
+    <footer><% include ../partials/footer %></footer>
+    <script src="/js/error.js"></script>
+    </body>
+</html>
