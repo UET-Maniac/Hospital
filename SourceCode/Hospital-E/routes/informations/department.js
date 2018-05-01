@@ -3,7 +3,7 @@ var router = express.Router();
 var Department = require("../../models/department");
 var config = require('../../config.json');
 var objectType = config.viewer;
-var fs = require('fs')
+var upload = require('../../middlewares/uploadImage');
 
 router.use(function(req, res, next){
 	if(typeof req.objectType !== 'undefined'){
@@ -46,33 +46,56 @@ router.route('/')
             }
         });
     })
-    .post(checkAdmin, function(req, res, next){
-        Department.inserts(req.body.data, (err, department) => {
-            if (err){
+    .post(checkAdmin, upload.single('image'), function(req, res, next){
+        var data = {
+            name: req.body.name,
+            description: req.body.description,
+            address: req.body.address,
+            foundingOn: req.body.foundingOn
+        }
+        if (req.file){
+            // cắt 'puclic' đi
+            data.image= req.file.path.substr(6,req.file.path.length);
+        }
+        Department.inserts(data, (err, department) => {
+            if (err || !department){
                 res.render('pages/error',
 					{ objectType: config.viewer, message: 'Dữ liệu đã tồn tại!', codeError: 409});
             } else{
-                // res.render('pages/listDepartment', {departments: departments});
+                // trả lại department mới được tạo
+                res.render('pages/listDepartments', {departments: [department]});
             }
         });
     })
-    .patch(checkAdmin, function(req, res, next){
-        Department.updates(req.body.data, (err, department) => {
+    .patch(checkAdmin, upload.single('image'), function(req, res, next){
+        var data = {
+            name: req.body.name,
+            description: req.body.description,
+            address: req.body.address,
+            foundingOn: req.body.foundingOn
+        }
+        if (req.file){
+            // cắt 'puclic' đi
+            data.image= req.file.path.substr(6,req.file.path.length);
+        }
+        Department.updates(data, (err, department) => {
             if (err || !department){
                 res.render('pages/error',
                     { objectType: config.viewer, message: 'Lỗi server!', codeError: 500});
             } else{
-                // res.render('pages/listDepartment', {departments: departments});
+                res.render('pages/listDepartments', {departments: [department]});
             }
         });
     })
     .delete(checkAdmin, function(req, res, next){
-        Department.deletes(req.body.data._id, (err, department) => {
+        var data = req.body._id;
+        Department.deletes(data, (err, department) => {
             if (err || !department){
                 res.render('pages/error',
                     { objectType: config.viewer, message: 'Lỗi server!', codeError: 500});
             } else{
-                // res.render('pages/listDepartment', {departments: departments});
+                console.log(department)
+                res.render('pages/listDepartments', {departments: [department]});
             }
         });
     })

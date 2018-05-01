@@ -3,24 +3,24 @@ $(document).ready(function() {
     /* Effect Side bar */
     $(".infoBox-content").hide();
     $("#information").mouseenter(function() {
-        $("#information-content").show(50);
+        $("#information-content").show(0);
     });
     $("#information").mouseleave(function() {
-        $("#information-content").hide(50);
+        $("#information-content").hide(0);
     });
 
     $("#record").mouseenter(function() {
-        $("#record-content ").show(50);
+        $("#record-content ").show(0);
     });
     $("#record").mouseleave(function() {
-        $("#record-content").hide(50);
+        $("#record-content").hide(0);
     });
 
     $("#appointment").mouseenter(function() {
-        $("#appointment-content ").show(50);
+        $("#appointment-content ").show(0);
     });
     $("#appointment").mouseleave(function() {
-        $("#appointment-content").hide(50);
+        $("#appointment-content").hide(0);
     });
 
     $("#logout").click(function(){

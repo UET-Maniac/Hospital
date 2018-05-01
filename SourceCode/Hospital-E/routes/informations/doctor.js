@@ -52,7 +52,7 @@ router.route('/')
   	})
   	.post(upload.single('image'), function(req, res, next){
 		// chưa kiểm tra điều kiện là admin 
-		// console.log(req.body._id);
+		console.log(req.body);
 		// console.log(req.file);
 		res.send("thanhcong");
 		// Doctor.inserts(req.body.data, (err, doctors) => {

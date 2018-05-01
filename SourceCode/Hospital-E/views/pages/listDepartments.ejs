@@ -1,13 +1,14 @@
-<script>
-    var time = document.getElementById('foundingOn_1');
-    document.getElementsByClassName("foundingOn_1").innerHTML=time;
-</script>
 <% for (var i=0; i<departments.length; i++) { 
-    var view = 'view_'+i, update = 'update_'+i, deleteId = 'delete_'+i
+    var viewId = 'view_'+i, updateId = 'update_'+i, formUpdate = 'formUpdate_'+i,
+        deleteId = 'deleteId_'+i, imageId = 'imageId_'+i, pathImage = '';
+    if (typeof departments[i].image == 'undefined' || !departments[i].image)
+        pathImage = '/images/datas/user-default.png';
+    else pathImage = departments[i].image;
 %>
+    <!-- chưa check nếu ko tìm thấy path file ảnhh-->
     <div class ="box_content_instroduce col-md-6 float-left">
         <div class="img_box_instroduce">
-            <img src="/images/datas/undefined.jpg">
+            <img src="<%=pathImage%>">
         </div>
 
         <div class="text_box_instroduce" >
@@ -24,20 +25,21 @@
         </div>
         
         <div class="action_box_instroduce float-right">
-            <div class="icon_delete_instroduce" onclick="delete_action()">
-                <a href="#<%=deleteId%>">
+            <div class="icon_delete_instroduce">
+                <input type="hidden" id="<%=deleteId%>" value="<%=departments[i]._id%>">
+                <a onclick="deletes('<%=deleteId%>')">
                     <img src="/images/icons/delete.png" width="16px">
                     <label for="icon_delete_instroduce">Delete</label>
                 </a>
             </div>
             <div class="icon_update_instroduce" >
-                <a href="#<%=update%>">
+                <a onclick="showScene('<%=updateId%>')">
                     <img src="/images/icons/update.png" width="16px">
                     <label for="icon_update_instroduce">Update</label>
                 </a>
             </div>
             <div class="icon_view_instroduce">
-                <a href="#<%=view%>">
+                <a onclick="showScene('<%=viewId%>')">
                     <img src="/images/icons/view.png" width="16px">
                     <label for="icon_view_instroduce">View</label>
                 </a>
@@ -46,10 +48,10 @@
     </div>
 
     <!-- View -->
-    <a href="#_" id="<%=view%>" class="view_action">
+    <a onclick="hideScene('<%=viewId%>')" id="<%=viewId%>" class="view_action">
         <div class="center_box_action">
             <div class="img_box_instroduce_view">
-                <img src="/images/datas/undefined.jpg">
+                <img src="<%=pathImage%>">
             </div>
             <div class="text_box_instroduce_view">
                 <h1 class ="title_box_instroduce">
@@ -83,63 +85,57 @@
     <!--END VIEW ACTION-->
 
     <!--UPDATE ACTION-->
-    <div href="#_" id ="<%=update%>" class="update_action">
+    <div id ="<%=updateId%>" class="update_action">
         <div class="center_box_action">
-            <div class="img_box_instroduce_update">
-                    <img src="/images/datas/undefined.jpg">
-                <form method="post" enctype="multipart/form-data">
+            <form id="<%=formUpdate%>">
+                <div class="img_box_instroduce_update">
+                    <img id="<%=imageId%>" src="<%=pathImage%>">
                     <div class="input_file_img">
                         <label for="image">Choose file to upload</label>
-                        <input type="file" id="profile_pic" name="image"
-                            accept=".jpg, .jpeg, .png">
+                        <input type="file" name="image"
+                            accept="image/gif, image/jpeg, image/png"
+                            onchange="displayImage(this,'<%=imageId%>')">
                     </div>
-                </form>
-            </div>
-            <div class="text_box_instroduce_update" >
-                <h1 class ="title_box_instroduce">
-                    <%= departments[i].name %>
-                </h1>
-                <form id="contactform" name="contact" method="post" action="#">
+                </div>
+                <div class="text_box_instroduce_update" >
+                    <h1 class ="title_box_instroduce">
+                        <%= departments[i].name %>
+                    </h1>
                     <hr><p>
                     <div class="row">
                         <label for="_id">ID: <span class="req">*</span></label>
-                        <input type="text" name="_id" id="_id" class="txt" tabindex="1" value="<%= departments[i]._id %>">
+                        <input type="text" name="_id" class="txt" tabindex="1" value="<%= departments[i]._id %>">
                     </div>
                         
                     <div class="row">
                         <label for="name">Ten Khoa:  <span class="req">*</span></label>
-                        <input type="name" name="name" id="name" class="txt" tabindex="2" value="<%= departments[i].name %>">
+                        <input type="name" name="name" class="txt" tabindex="2" value="<%= departments[i].name %>">
                     </div>
                         
                     <div class="row">
                         <label for="description">Thong tin khoa:  <span class="req">*</span></label>
-                        <textarea type="" name="description" id="description" class="txtarea" tabindex="3">
+                        <textarea type="" name="description" class="txtarea" tabindex="3">
                             <%= departments[i].description %>
                         </textarea>
                     </div>
                         
                     <div class="row">
                         <label for="address">Dia chi Khoa:  <span class="req">*</span></label>
-                        <textarea name="address" id="address" class="txtarea" tabindex="4" >
+                        <textarea name="address" class="txtarea" tabindex="4" >
                             <%= departments[i].address %> 
                         </textarea>
                     </div>
                     
                     <div class="row">
                         <label for="foundingOn">Thoi gian thanh lap:   <span class="req">*</span></label>
-                        <input type="date" name="foundingOn" id="foundingOn" class="txt" tabindex="5" value="<%=departments[i].foundingOn%>">
+                        <input type="date" name="foundingOn" class="txt" tabindex="5" value="<%=departments[i].foundingOn%>">
                     </div>
-
                     <div class="center">
-                        <a href="">
-                            <input type="submit" id="submitbtn" name="accept" value="Accept">
-                        </a>
-                        <a href="">
-                            <input type="submit" id="submitbtn" name="cancel" value="Cancel">
-                        </a>
+                        <button class="submitbtn" onclick="submit('<%=formUpdate%>','<%=updateId%>')">Accept</button>
+                        <button type="button" class="submitbtn" onclick="hideScene('<%=updateId%>')">Cancel</button>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>	
     <!--END UPDATE-->

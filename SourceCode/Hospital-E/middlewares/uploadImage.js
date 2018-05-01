@@ -4,20 +4,21 @@ var storage = multer.diskStorage({
 		callback(null, 'public/images/datas');
   	},
   	filename: function(req, file, callback){
-        // chua chinh duoc ten file
 		// chua xu ly truong hop trungn ten khac loai anh
-		console.log(req)
-		callback(null, req.body._id
-			+ file.originalname.substring(
-				file.originalname.lastIndexOf('.'), 
-				file.originalname.length
-			)
-		);
+		var fileName = '';
+		if (req.objectType == 0){
+			fileName += req.auth.data.userName + '.' + new Date() + '.';
+		}
+		fileName += req.auth.data._id + file.originalname.substring(
+			file.originalname.lastIndexOf('.'), 
+			file.originalname.length
+		)
+		callback(null, fileName);
   	}
 });
 var fileFilter = function(req, file, callback){
 	// reject file
-	if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
+	if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'|| file.mimetype === 'image/jpg'){
 		callback(null, true);
 	} else{
 		callback(new Error('File không đúng định dạng hoặc quá cỡ cho phép'), false);
