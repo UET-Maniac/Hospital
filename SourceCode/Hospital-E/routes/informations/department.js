@@ -37,7 +37,6 @@ router.route('/')
         var data = '';
         if (req.body.data) data = req.body.data;
         Department.finds(data, objectType, (err, departments) => {
-            console.log(departments)
             if (err || !departments.length){
                 res.render('pages/error',
 			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
@@ -69,10 +68,19 @@ router.route('/')
     })
     .patch(checkAdmin, upload.single('image'), function(req, res, next){
         var data = {
-            name: req.body.name,
-            description: req.body.description,
-            address: req.body.address,
-            foundingOn: req.body.foundingOn
+            _id: req.body._id,
+        }
+        if (req.body.name){
+            data.name = req.body.name
+        }
+        if(req.body.description){
+            data.description = req.body.description
+        }
+        if(req.body.address){
+            data.address = req.body.address
+        }
+        if(req.body.foundingOn){
+            data.foundingOn = req.body.foundingOn
         }
         if (req.file){
             // cắt 'puclic' đi
@@ -83,7 +91,9 @@ router.route('/')
                 res.render('pages/error',
                     { objectType: config.viewer, message: 'Lỗi server!', codeError: 500});
             } else{
-                res.render('pages/listDepartments', {departments: [department]});
+                Department.findById(department._id, (err, department) => {
+                    res.render('pages/listDepartments', {departments: [department]});
+                });
             }
         });
     })
@@ -94,7 +104,6 @@ router.route('/')
                 res.render('pages/error',
                     { objectType: config.viewer, message: 'Lỗi server!', codeError: 500});
             } else{
-                console.log(department)
                 res.render('pages/listDepartments', {departments: [department]});
             }
         });

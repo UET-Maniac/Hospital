@@ -69,20 +69,23 @@ function showScene(show){
     $('#'+show).show()
 }
 
-function submit(form, id){
-    var data = new FormData($('#'+form));
-    $.ajax({
-        method: 'PATCH', 
-        url: '/gioi-thieu/khoa', 
-        data: data,
-        contentType: false,
-        cache: false,
-        processData:false
-    }).done(function(data){
-        alert(1)
-        hideScene(id);
-        $('#listDepartments').html(data);
-    });
+function submitUpdate(form, id){
+    $('#'+form).submit((event)=>{
+        event.preventDefault();
+        var data = new FormData($('#'+form)[0]);
+        $.ajax({
+            method: 'Patch', 
+            url: '/gioi-thieu/khoa', 
+            data: data,
+            contentType: false,
+            cache: false,
+            processData:false
+        }).done(function(data){
+            hideScene(id);
+            $('#listDepartments').html(data);
+        });
+    })
+    
 }
 
 function displayImage(input, id) {
