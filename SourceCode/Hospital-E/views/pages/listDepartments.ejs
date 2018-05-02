@@ -86,59 +86,61 @@
     
     <!--END VIEW ACTION-->
 
-    <!--UPDATE ACTION-->
-    <div id ="<%=updateId%>" class="update_action">
-        <div class="center_box_action">
-            <form id="<%=formUpdate%>">
-                <div class="img_box_instroduce_update">
-                    <img id="<%=imageId%>" src="<%=pathImage%>">
-                    <div class="input_file_img">
-                        <label for="image">Chọn ảnh</label>
-                        <input type="file" name="image"
-                            accept="image/gif, image/jpeg, image/png"
-                            onchange="displayImage(this,'<%=imageId%>')">
+    <% if (objectType == 0){ %>
+        <!--UPDATE ACTION-->
+        <div id ="<%=updateId%>" class="update_action">
+            <div class="center_box_action">
+                <form id="<%=formUpdate%>">
+                    <div class="img_box_instroduce_update">
+                        <img id="<%=imageId%>" src="<%=pathImage%>">
+                        <div class="input_file_img">
+                            <label for="image">Chọn ảnh</label>
+                            <input type="file" name="image"
+                                accept="image/gif, image/jpeg, image/png"
+                                onchange="displayImage(this,'<%=imageId%>')">
+                        </div>
                     </div>
-                </div>
-                <div class="text_box_instroduce_update" >
-                    <h1 class ="title_box_instroduce">
-                        <%= departments[i].name %>
-                    </h1>
-                    <hr><p>
-                    <div class="row">
-                        <label for="_id">ID khoa: <span class="req">*</span></label>
-                        <input type="text" name="_id" class="txt" tabindex="1" value="<%= departments[i]._id %>">
-                    </div>
+                    <div class="text_box_instroduce_update" >
+                        <h1 class ="title_box_instroduce">
+                            <%= departments[i].name %>
+                        </h1>
+                        <hr><p>
+                        <div class="row">
+                            <label for="_id">ID khoa: <span class="req">*</span></label>
+                            <input type="text" name="_id" class="txt" tabindex="1" value="<%= departments[i]._id %>">
+                        </div>
+                            
+                        <div class="row">
+                            <label for="name">Tên khoa:  <span class="req">*</span></label>
+                            <input type="name" name="name" class="txt" tabindex="2" value="<%= departments[i].name %>">
+                        </div>
+                            
+                        <div class="row">
+                            <label for="description">Thông tin khoa:  <span class="req">*</span></label>
+                            <textarea type="" name="description" class="txtarea" tabindex="3">
+                                <%= departments[i].description %>
+                            </textarea>
+                        </div>
+                            
+                        <div class="row">
+                            <label for="address">Địa chỉ khoa:  <span class="req">*</span></label>
+                            <textarea name="address" class="txtarea" tabindex="4" >
+                                <%= departments[i].address %> 
+                            </textarea>
+                        </div>
                         
-                    <div class="row">
-                        <label for="name">Tên khoa:  <span class="req">*</span></label>
-                        <input type="name" name="name" class="txt" tabindex="2" value="<%= departments[i].name %>">
+                        <div class="row">
+                            <label for="foundingOn">Thời gian thành lập:   <span class="req">*</span></label>
+                            <input type="date" name="foundingOn" class="txt" tabindex="5" value="<%=departments[i].foundingOn%>">
+                        </div>
+                        <div class="center">
+                            <button class="submitbtn" onclick="submitUpdate('<%=formUpdate%>','<%=updateId%>')">Accept</button>
+                            <button type="button" class="submitbtn" onclick="hideScene('<%=updateId%>')">Cancel</button>
+                        </div>
                     </div>
-                        
-                    <div class="row">
-                        <label for="description">Thông tin khoa:  <span class="req">*</span></label>
-                        <textarea type="" name="description" class="txtarea" tabindex="3">
-                            <%= departments[i].description %>
-                        </textarea>
-                    </div>
-                        
-                    <div class="row">
-                        <label for="address">Địa chỉ khoa:  <span class="req">*</span></label>
-                        <textarea name="address" class="txtarea" tabindex="4" >
-                            <%= departments[i].address %> 
-                        </textarea>
-                    </div>
-                    
-                    <div class="row">
-                        <label for="foundingOn">Thời gian thành lập:   <span class="req">*</span></label>
-                        <input type="date" name="foundingOn" class="txt" tabindex="5" value="<%=departments[i].foundingOn%>">
-                    </div>
-                    <div class="center">
-                        <button class="submitbtn" onclick="submitUpdate('<%=formUpdate%>','<%=updateId%>')">Accept</button>
-                        <button type="button" class="submitbtn" onclick="hideScene('<%=updateId%>')">Cancel</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>	
-    <!--END UPDATE-->
+                </form>
+            </div>
+        </div>	
+        <!--END UPDATE-->
+    <% } %>
 <% } %>

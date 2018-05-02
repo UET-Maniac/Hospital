@@ -28,52 +28,54 @@
 			<div id="listDepartments">
 				<% include ./listDepartments %>
 			</div>
-			<!--Create ACTION-->
-			<div id ="create" class="create_action">
-				<div class="center_box_action">
-					<form id="create-form">
-						<div class="img_box_instroduce_update">
-							<img id="profile_pic_create" src="/images/datas/user-default.png">
-							<div class="input_file_img">
-								<label for="image">Chọn ảnh</label>
-								<input type="file" name="image"
-									accept="image/gif, image/jpeg, image/png"
-									onchange="displayImage(this,'profile_pic_create')">
+			<% if (objectType == 0){ %>
+				<!--Create ACTION-->
+				<div id ="create" class="create_action">
+					<div class="center_box_action">
+						<form id="create-form">
+							<div class="img_box_instroduce_update">
+								<img id="profile_pic_create" src="/images/datas/user-default.png">
+								<div class="input_file_img">
+									<label for="image">Chọn ảnh</label>
+									<input type="file" name="image"
+										accept="image/gif, image/jpeg, image/png"
+										onchange="displayImage(this,'profile_pic_create')">
+								</div>
 							</div>
-						</div>
-						<div class="text_box_instroduce_update" >
-							<h1 class ="title_box_instroduce">
-								Tạo chuyên khoa
-							</h1>
-							<hr><p>	
-							<div class="row">
-								<label for="name">Tên khoa:  <span class="req">*</span></label>
-								<input type="name" name="name" id="name" class="txt" tabindex="2" placeholder="Phẫu thuật">
-							</div>
+							<div class="text_box_instroduce_update" >
+								<h1 class ="title_box_instroduce">
+									Tạo chuyên khoa
+								</h1>
+								<hr><p>	
+								<div class="row">
+									<label for="name">Tên khoa:  <span class="req">*</span></label>
+									<input type="name" name="name" id="name" class="txt" tabindex="2" placeholder="Phẫu thuật">
+								</div>
+									
+								<div class="row">
+									<label for="description">Thông tin khoa:  <span class="req">*</span></label>
+									<textarea type="" name="description" id="description" class="txtarea" tabindex="3" placeholder="Khoa thực hiện các công việc ...."></textarea>
+								</div>
+									
+								<div class="row">
+									<label for="address">Địa chỉ khoa:  <span class="req">*</span></label>
+									<textarea name="address" id="address" class="txtarea" tabindex="4" placeholder="144 Cầu Giấy, Hà Nội"></textarea>
+								</div>
 								
-							<div class="row">
-								<label for="description">Thông tin khoa:  <span class="req">*</span></label>
-								<textarea type="" name="description" id="description" class="txtarea" tabindex="3" placeholder="Khoa thực hiện các công việc ...."></textarea>
+								<div class="row">
+									<label for="foundingOn">Thời gian thành lập:   <span class="req">*</span></label>
+									<input type="date" name="foundingOn" id="foundingOn" class="txt" tabindex="5">
+								</div>
+								<div class="center">
+									<button class="submitbtn" >Accept</button>
+									<button type="button" class="submitbtn" onclick="hideScene('create')">Cancel</button>
+								</div>
 							</div>
-								
-							<div class="row">
-								<label for="address">Địa chỉ khoa:  <span class="req">*</span></label>
-								<textarea name="address" id="address" class="txtarea" tabindex="4" placeholder="144 Cầu Giấy, Hà Nội"></textarea>
-							</div>
-							
-							<div class="row">
-								<label for="foundingOn">Thời gian thành lập:   <span class="req">*</span></label>
-								<input type="date" name="foundingOn" id="foundingOn" class="txt" tabindex="5">
-							</div>
-							<div class="center">
-								<button class="submitbtn" >Accept</button>
-								<button type="button" class="submitbtn" onclick="hideScene('create')">Cancel</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>	
-			<!--END Create-->
+						</form>
+					</div>
+				</div>	
+				<!--END Create-->
+			<% } %>
 		<!-- </div> -->
 	<div class="clear"></div>
 	<footer><% include ../partials/footer %></footer>
