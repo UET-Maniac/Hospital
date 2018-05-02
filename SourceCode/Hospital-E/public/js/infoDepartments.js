@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    $('div[name=false]').css('background-color', 'rgb(245, 195, 179)');
+
     $('#form-sidebar').on('submit', function(event) {
         event.preventDefault();
         var form = $(this);

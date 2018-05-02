@@ -25,7 +25,7 @@ function checkUser(req, res, next){
 
 router.route('/')
     .get(function(req, res, next){
-        Department.findIncludeWithDoctor('', objectType, (err, departments)=>{
+        Department.findIncludeWithDoctor('', (err, departments)=>{
             if(err || !departments.length){
                 res.render('pages/error',
 			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});

@@ -68,16 +68,14 @@ Department.statics.deletes = function(data, callback){
 	tools.Delete.call(this, data, callback);
 }
 
-Department.statics.findIncludeWithDoctor = function(data, objectType, callback){
+Department.statics.findIncludeWithDoctor = function(data, callback){
 	var search = {$regex: '.*' + data + '.*', $options: 'i'};
 	var query = {
 		$or: [
 			{_id: search},
 			{name: search}
-		]
-	}
-	if (objectType != 0){
-		query.active = true;
+		],
+		active: true
 	}
 	DepartmentModel.find(query)
 		.select('_id')
@@ -88,7 +86,7 @@ Department.statics.findIncludeWithDoctor = function(data, objectType, callback){
 				callback(err, departments);
 			} else{
 				DepartmentModel.populate(departments, 
-					{path: 'doctorIds', select: {'_id': 1, 'name': 1}}, callback)
+					{path: 'doctorIds', match: {active: true}, select: {'_id': 1, 'name': 1}}, callback)
 			}
 		})
 }

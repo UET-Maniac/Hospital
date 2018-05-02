@@ -11,7 +11,7 @@
             <img src="<%=pathImage%>">
         </div>
 
-        <div class="text_box_instroduce" >
+        <div class="text_box_instroduce" name="<%=departments[i].active%>">
             <h3 class ="title_box_instroduce">
                 <%= departments[i].name %>
             </h3>
@@ -21,6 +21,11 @@
                 <li><span class="text_instroduce">Thông tin khoa:</span> <%= departments[i].description %></li>
                 <li><span class="text_instroduce">Địa chỉ khoa:</span><%= departments[i].address %></li>
                 <li><span class="text_instroduce">Thời gian thành lập:</span><%=departments[i].foundingOn%></li>
+                <% if (objectType == 0){ %>
+                    <li><span class="text_instroduce">Trạng thái hoạt động:</span><%=departments[i].active%></li>
+                    <li><span class="text_instroduce">Lần cuối cập nhật:</span><%=departments[i].timestamp%></li>
+                <% } %>
+                <!-- Thiếu xem các bác sĩ trong khoa-->
             </ul>	
         </div>
         
@@ -80,6 +85,18 @@
                         <img src="/images/add.png" width="20px">
                     </span>
                     <span class="text_instroduce_view">Thời gian thành lập:</span>  <%=departments[i].foundingOn%></div>
+                <% if (objectType == 0){ %>
+                    <div class="introduce_view" name="" >
+                        <span class="icons_text_view">
+                            <img src="/images/add.png" width="20px">
+                        </span>
+                        <span class="text_instroduce_view">Trạng thái hoạt động:</span>  <%=departments[i].active%></div>
+                    <div class="introduce_view" name="" >
+                        <span class="icons_text_view">
+                            <img src="/images/add.png" width="20px">
+                        </span>
+                        <span class="text_instroduce_view">Lần cuối cập nhật:</span>  <%=departments[i].timestamp%></div>
+                <% } %>
             </div>
         </div>
     </a>
@@ -133,6 +150,11 @@
                             <label for="foundingOn">Thời gian thành lập:   <span class="req">*</span></label>
                             <input type="date" name="foundingOn" class="txt" tabindex="5" value="<%=departments[i].foundingOn%>">
                         </div>
+
+                        <div class="row">
+                                <label for="name">Trạng thái hoạt động:  <span class="req">*</span></label>
+                                <input type="active" name="active" class="txt" tabindex="6" value="<%= departments[i].active %>">
+                            </div>
                         <div class="center">
                             <button class="submitbtn" onclick="submitUpdate('<%=formUpdate%>','<%=updateId%>')">Accept</button>
                             <button type="button" class="submitbtn" onclick="hideScene('<%=updateId%>')">Cancel</button>
