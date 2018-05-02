@@ -18,26 +18,28 @@
             <p><hr><p>
             <ul>
                 <li><span class="text_instroduce">ID khoa:</span><%= departments[i]._id %></li>
-                <li><span class="text_instroduce">Thong tin khoa:</span> <%= departments[i].description %></li>
-                <li><span class="text_instroduce">Dia chi khoa:</span><%= departments[i].address %></li>
-                <li><span class="text_instroduce">Thoi gian thanh lap:</span><%=departments[i].foundingOn%></li>
+                <li><span class="text_instroduce">Thông tin khoa:</span> <%= departments[i].description %></li>
+                <li><span class="text_instroduce">Địa chỉ khoa:</span><%= departments[i].address %></li>
+                <li><span class="text_instroduce">Thời gian thành lập:</span><%=departments[i].foundingOn%></li>
             </ul>	
         </div>
         
         <div class="action_box_instroduce float-right">
-            <div class="icon_delete_instroduce">
-                <input type="hidden" id="<%=deleteId%>" value="<%=departments[i]._id%>">
-                <a onclick="deletes('<%=deleteId%>')">
-                    <img src="/images/icons/delete.png" width="16px">
-                    <label for="icon_delete_instroduce">Delete</label>
-                </a>
-            </div>
-            <div class="icon_update_instroduce" >
-                <a onclick="showScene('<%=updateId%>')">
-                    <img src="/images/icons/update.png" width="16px">
-                    <label for="icon_update_instroduce">Update</label>
-                </a>
-            </div>
+            <% if (objectType == 0){ %>
+                <div class="icon_delete_instroduce">
+                    <input type="hidden" id="<%=deleteId%>" value="<%=departments[i]._id%>">
+                    <a onclick="deletes('<%=deleteId%>')">
+                        <img src="/images/icons/delete.png" width="16px">
+                        <label for="icon_delete_instroduce">Delete</label>
+                    </a>
+                </div>
+                <div class="icon_update_instroduce" >
+                    <a onclick="showScene('<%=updateId%>')">
+                        <img src="/images/icons/update.png" width="16px">
+                        <label for="icon_update_instroduce">Update</label>
+                    </a>
+                </div>
+            <% } %>
             <div class="icon_view_instroduce">
                 <a onclick="showScene('<%=viewId%>')">
                     <img src="/images/icons/view.png" width="16px">
@@ -67,17 +69,17 @@
                     <span class="icons_text_view">
                         <img src="/images/add.png" width="20px">
                     </span>
-                    <span class="text_instroduce_view">Thong tin khoa:</span>  <%= departments[i].description %></div>
+                    <span class="text_instroduce_view">Thông tin khoa:</span>  <%= departments[i].description %></div>
                 <div class="introduce_view" name="" >
                     <span class="icons_text_view">
                         <img src="/images/add.png" width="20px">
                     </span>
-                    <span class="text_instroduce_view">Dia chi khoa khoa:</span> <%= departments[i].address %></div>
+                    <span class="text_instroduce_view">Địa chỉ khoa:</span> <%= departments[i].address %></div>
                 <div class="introduce_view" name="" >
                     <span class="icons_text_view">
                         <img src="/images/add.png" width="20px">
                     </span>
-                    <span class="text_instroduce_view">Thoi gian thanh lap khoa:</span>  <%=departments[i].foundingOn%></div>
+                    <span class="text_instroduce_view">Thời gian thành lập:</span>  <%=departments[i].foundingOn%></div>
             </div>
         </div>
     </a>
@@ -91,7 +93,7 @@
                 <div class="img_box_instroduce_update">
                     <img id="<%=imageId%>" src="<%=pathImage%>">
                     <div class="input_file_img">
-                        <label for="image">Choose file to upload</label>
+                        <label for="image">Chọn ảnh</label>
                         <input type="file" name="image"
                             accept="image/gif, image/jpeg, image/png"
                             onchange="displayImage(this,'<%=imageId%>')">
@@ -103,31 +105,31 @@
                     </h1>
                     <hr><p>
                     <div class="row">
-                        <label for="_id">ID: <span class="req">*</span></label>
+                        <label for="_id">ID khoa: <span class="req">*</span></label>
                         <input type="text" name="_id" class="txt" tabindex="1" value="<%= departments[i]._id %>">
                     </div>
                         
                     <div class="row">
-                        <label for="name">Ten Khoa:  <span class="req">*</span></label>
+                        <label for="name">Tên khoa:  <span class="req">*</span></label>
                         <input type="name" name="name" class="txt" tabindex="2" value="<%= departments[i].name %>">
                     </div>
                         
                     <div class="row">
-                        <label for="description">Thong tin khoa:  <span class="req">*</span></label>
+                        <label for="description">Thông tin khoa:  <span class="req">*</span></label>
                         <textarea type="" name="description" class="txtarea" tabindex="3">
                             <%= departments[i].description %>
                         </textarea>
                     </div>
                         
                     <div class="row">
-                        <label for="address">Dia chi Khoa:  <span class="req">*</span></label>
+                        <label for="address">Địa chỉ khoa:  <span class="req">*</span></label>
                         <textarea name="address" class="txtarea" tabindex="4" >
                             <%= departments[i].address %> 
                         </textarea>
                     </div>
                     
                     <div class="row">
-                        <label for="foundingOn">Thoi gian thanh lap:   <span class="req">*</span></label>
+                        <label for="foundingOn">Thời gian thành lập:   <span class="req">*</span></label>
                         <input type="date" name="foundingOn" class="txt" tabindex="5" value="<%=departments[i].foundingOn%>">
                     </div>
                     <div class="center">

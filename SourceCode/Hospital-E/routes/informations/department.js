@@ -41,7 +41,7 @@ router.route('/')
                 res.render('pages/error',
 			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
             } else{
-                res.render('pages/listDepartments', {departments: departments});
+                res.render('pages/listDepartments', {departments: departments, objectType: objectType});
             }
         });
     })
@@ -62,7 +62,7 @@ router.route('/')
 					{ objectType: config.viewer, message: 'Dữ liệu đã tồn tại!', codeError: 409});
             } else{
                 // trả lại department mới được tạo
-                res.render('pages/listDepartments', {departments: [department]});
+                res.render('pages/listDepartments', {departments: [department], objectType: objectType});
             }
         });
     })
@@ -92,7 +92,7 @@ router.route('/')
                     { objectType: config.viewer, message: 'Lỗi server!', codeError: 500});
             } else{
                 Department.findById(department._id, (err, department) => {
-                    res.render('pages/listDepartments', {departments: [department]});
+                    res.render('pages/listDepartments', {departments: [department], objectType: objectType});
                 });
             }
         });
@@ -104,7 +104,7 @@ router.route('/')
                 res.render('pages/error',
                     { objectType: config.viewer, message: 'Lỗi server!', codeError: 500});
             } else{
-                res.render('pages/listDepartments', {departments: [department]});
+                res.render('pages/listDepartments', {departments: [department], objectType: objectType});
             }
         });
     })

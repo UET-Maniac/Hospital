@@ -18,7 +18,7 @@ router.use(function(req, res, next){
 
 function checkUser(req, res, next){
 	if(objectType != config.user && objectType != config.admin && objectType != config.doctor){
-        return res.redirect('/dang-nhap');
+        res.redirect('/dang-nhap');
     } 
     next();  
 }
@@ -49,7 +49,7 @@ router.route('/')
                 res.render('pages/error',
                     { objectType: config.viewer , message: 'Xảy ra lỗi với server!', codeError: 500});
             } else{
-                res.sendStatus(201);
+                res.redirect('/dat-lich-hen/lich-su');
             }
         });
     })

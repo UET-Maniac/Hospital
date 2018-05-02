@@ -19,16 +19,6 @@ $(document).ready(function() {
             }
         }
     })
-    $('#appointment-form').on('submit', function(event) {
-        event.preventDefault();
-        var form = $(this);
-        var data = form.serialize();
-        $.ajax({
-            method: 'POST', url: '/dat-lich-hen/dat-moi', data: data,
-        }).done(function(data){
-            alert("Thành công!")
-        });
-    })
 });
 
 (function ($) {

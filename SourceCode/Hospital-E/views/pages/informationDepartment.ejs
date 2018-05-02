@@ -17,7 +17,9 @@
 						<input class ="search" type="text" id="dataSearch" name="data" placeholder="Tìm kiếm">
 						<a id="search"><img src="/images/icons/search.png" width="32px" onclick="search()"></a>
 						<a href=""><img src="/images/icons/back.png" width="32px"></a>
-						<a onclick="showScene('create')"><img src="/images/icons/create.png" width="32px"></a>
+						<% if (objectType == 0){ %>
+							<a onclick="showScene('create')"><img src="/images/icons/create.png" width="32px"></a>
+						<% } %>
 					</div>
 				</form>
 				
@@ -33,7 +35,7 @@
 						<div class="img_box_instroduce_update">
 							<img id="profile_pic_create" src="/images/datas/user-default.png">
 							<div class="input_file_img">
-								<label for="image">Choose file to upload</label>
+								<label for="image">Chọn ảnh</label>
 								<input type="file" name="image"
 									accept="image/gif, image/jpeg, image/png"
 									onchange="displayImage(this,'profile_pic_create')">
