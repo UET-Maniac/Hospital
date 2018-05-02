@@ -21,7 +21,7 @@
         <div class="body-wrapper">
             <div class= "contentAppointment">
                 <div class = "main_name">ĐẶT LỊCH KHÁM</div>
-                <div class = "introduce">
+                <div class = "introduce col-md-7 float-left">
                     <p class = "note_"> Quý kháh vui lòng lưu ý trước khi đặt lịch khám: </p>
                     <ol>
                         <li><p><b>I.</b> &nbsp;&nbsp;&nbsp;Lịch hẹn có hiệu lực sau khi được xác nhận chính thức từ Bệnh viện.</li>
@@ -31,7 +31,7 @@
                     </ol>
                 </div>
                 <form name="appointment-form" id="appointment-form" action="/dat-lich-hen/dat-moi" method="POST">
-                    <div class="infoAppointment" departments ="<%= JSON.stringify(departments) %>">
+                    <div class="infoAppointment col-md-5 float-right" departments ="<%= JSON.stringify(departments) %>">
                         <p class="note_">Thông tin đặt hẹn </p>
                         <div class="validate-input" data-validate="Yêu cầu chọn khoa">
                             <span>Chuyên Khoa</span>
@@ -73,6 +73,7 @@
 
             <div class ="clear"></div>
         </div>
+    </div>
      <!--
          Footer
      -->   
