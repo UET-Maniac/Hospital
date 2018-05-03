@@ -1,0 +1,42 @@
+<div class="container-table100">
+    <div class="wrap-table100">
+        <div class="table100 ver3">
+            <table data-vertable="ver3">
+                <thead>
+                    <tr class="row100 head">
+                        <th class="column100 column1" data-column="column1">S</br>T</br>T</th>
+                        <th class="column100 column2" data-column="column2">ID</th>
+                        <th class="column100 column3" data-column="column3">Họ và tên</th>
+                        <th class="column100 column4" data-column="column4">Điện thoại</th>
+                        <th class="column100 column5" data-column="column5">Giới tính</th>
+                        <th class="column100 column6" data-column="column6">Tên đăng nhập</th>
+                        <th class="column100 column7" data-column="column7">Loai người dùng</th>
+                        <th class="column100 column8" data-column="column8">Trạng thái hoạt động</th>
+                        <th class="column100 column9" data-column="column9">Lần cuối cập nhật</th>
+                        <th class="column100 column10" data-column="column10">X</br>e</br>m</th>
+                        <th class="column100 column11" data-column="column11">S</br>ử</br>a</th>
+                        <th class="column100 column12" data-column="column12">X</br>o</br>á</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i=0; i<users.length; i++) {  %>
+                        <tr class="row100">
+                            <td class="column100 column1" data-column="column1"><%=i+1%></td>
+                            <td class="column100 column2" data-column="column2"><%=users[i]._id%></td>
+                            <td class="column100 column3" data-column="column3"><%=users[i].name%></td>
+                            <td class="column100 column4" data-column="column4"><%=users[i].phoneNumber%></td>
+                            <td class="column100 column5" data-column="column5"><%=users[i].sex%></td>
+                            <td class="column100 column6" data-column="column6"><%=users[i].userName%></td>
+                            <td class="column100 column7" data-column="column7"><%=users[i].objectType%></td>
+                            <td class="column100 column8" data-column="column8"><%=users[i].active%></td>
+                            <td class="column100 column9" data-column="column9"><%=users[i].timestamp%></td>
+                            <td class="column100 column10" data-column="column10"><form><button>click</button></form></td>
+                            <td class="column100 column11" data-column="column11"><form><button>click</button></form></td>
+                            <td class="column100 column12" data-column="column12"><form><button>click</button></form></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

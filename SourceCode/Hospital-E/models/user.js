@@ -74,20 +74,22 @@ User.statics.finds = function(data, objectType, typeFind, callback){
 			{departmentId: search}
 		]
 	}
-	if (typeFind != 0){
+	if (typeFind != config.admin){
 		query.objectType = typeFind;
 	}
-	if (objectType != 0){
+	if (objectType != config.admin){
 		query.active = true;
 	}
-	if (typeFind == 2){
-		this.find(query, callback)
+	if (typeFind == config.doctor){
+		this.find(query)
+		.populate({
+			path: 'departmentId'
+		})
+		.exec(callback)
 	} else{
 		this.find(query)
-			.populate({
-				path: 'departmentId'
-			})
-			.exec(callback)
+			.sort({_id: 1})
+			.exec(callback);
 	}
 }
 /**

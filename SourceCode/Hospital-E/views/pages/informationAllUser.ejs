@@ -4,66 +4,33 @@
         <% include ../partials/head %>
     </head>
     <body>
-        <% include ../partials/sidebar %>
-        <header></header>
-        <div class="body-wrapper">
-            <% for(var i=0; i<users.length; i++) {%>
-                <% if(users[i]._id){%>
-                    <li><%= users[i]._id %></li>
-                <% } %>
-                <% if(users[i].name){%>
-                    <li><%= users[i].name %></li>
-                <% } %>
-                <% if(users[i].card){%>
-                    <li><%= users[i].card %></li>
-                <% } %>
-                <% if(users[i].phoneNumber){%>
-                    <li><%= users[i].phoneNumber %></li>
-                <% } %>
-                <% if(users[i].birthday){%>
-                    <li><%= users[i].birthday %></li>
-                <% } %>
-                <% if(users[i].sex){%>
-                    <li><%= users[i].sex %></li>
-                <% } %>
-                <% if(users[i].address){%>
-                    <li><%= users[i].address %></li>
-                <% } %>
-                <% if(users[i].image){%>
-                    <li><%= users[i].image %></li>
-                <% } %>
-                <% if(users[i].level){%>
-                    <li><%= users[i].level %></li>
-                <% } %>
-                <% if(users[i].experience){%>
-                    <li><%= users[i].experience %></li>
-                <% } %>
-                <% if(users[i].star){%>
-                    <li><%= users[i].star %></li>
-                <% } %>
-                <% if(users[i].departmentId){%>
-                    <% if(users[i].departmentId._id){%>
-                        <li><%= users[i].departmentId._id %></li>
-                    <% } %>
-                    <% if(users[i].departmentId.name){%>
-                        <li><%= users[i].departmentId.name %></li>
-                    <% } %>
-                    <% if(users[i].departmentId.description){%>
-                        <li><%= users[i].departmentId.description %></li>
-                    <% } %>
-                    <% if(users[i].departmentId.address){%>
-                        <li><%= users[i].departmentId.address %></li>
-                    <% } %>
-                    <% if(users[i].departmentId.image){%>
-                        <li><%= users[i].departmentId.image %></li>
-                    <% } %>
-                    <% if(users[i].departmentId.foundingOn){%>
-                        <li><%= users[i].departmentId.foundingOn %></li>
-                    <% } %>
-                <% } %>
-                </br></br>
-            <% } %>
+		<% include ../partials/sidebar %>
+		<header><% include ../partials/header %></header>
+        <div class ="box_top_content">
+            <div class="box_left_name_content">
+                <div class="main_name">Tài khoản</div>
+            </div>
+            
+            <form id="form-sidebar">
+                <div class="action_content_introduce">
+                    <input class ="search" type="text" id="dataSearch" name="data" placeholder="Tìm kiếm">
+                    <a id="search"><img src="/images/icons/search.png" width="32px" onclick="search()"></a>
+                    <a href=""><img src="/images/icons/back.png" width="32px"></a>
+                    <a onclick=""><img src="/images/icons/create.png" width="32px"></a>
+                </div>
+            </form>
+            
+            <div class="clear"></div>
         </div>
-    <footer><% include ../partials/footer %></footer>
+        <div id="listUsers">
+            <% include ./listUsers %>
+        </div>
+
+        <div class="clear"></div>
+        <footer><% include ../partials/footer %></footer>
+    
+        <script src="/js/infoAllUser.js"></script>
+        <script src="/js/table.js"></script>
+
     </body>
 </html>
