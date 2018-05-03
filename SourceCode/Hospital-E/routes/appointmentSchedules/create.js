@@ -30,7 +30,7 @@ router.route('/')
                 res.render('pages/error',
 			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
             } else{
-                res.render('pages/appointmentSchedule', 
+                res.render('pages/appointmentScheduleCreate', 
                     {departments: departments, objectType: objectType});
             }
         })

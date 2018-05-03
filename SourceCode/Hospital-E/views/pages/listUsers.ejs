@@ -199,7 +199,7 @@
                                             <label for="card">CMND:  <span class="req">*</span></label>
                                             <input type="text" name="card" class="txt" tabindex="3" value="<%= users[i].card %>">
                                         </div>
-                                            
+                                        
                                         <div class="row">
                                             <label for="phoneNumber">Số điện thoại:  <span class="req">*</span></label>
                                             <input type="text" name="phoneNumber" class="txt" tabindex="4" value="<%= users[i].phoneNumber %>">
@@ -237,22 +237,22 @@
                                             
                                             <div class="row">
                                                 <label for="experience">Kinh nghiệm:  <span class="req">*</span></label>
-                                                <input type="text" name="experience" class="txt" tabindex="10" value="<%= users[i].experience %>">
+                                                <input type="text" name="experience" class="txt" tabindex="11" value="<%= users[i].experience %>">
                                             </div>
 
                                             <div class="row">
                                                 <label for="departmentId">Chuyên khoa:  <span class="req">*</span></label>
-                                                <input type="text" name="departmentId" class="txt" tabindex="11" value="<%= users[i].departmentId._id %>">
+                                                <input type="text" name="departmentId" class="txt" tabindex="12" value="<%= users[i].departmentId._id %>">
                                             </div>
 
                                             <div class="row">
                                                 <label for="dean">Trưởng khoa:  <span class="req">*</span></label>
-                                                <input type="text" name="dean" class="txt" tabindex="12" value="<%= users[i].dean %>">
+                                                <input type="text" name="dean" class="txt" tabindex="13" value="<%= users[i].dean %>">
                                             </div>
                                         <% } %>
                                         <div class="row">
                                             <label for="active">Trạng thái hoạt động:  <span class="req">*</span></label>
-                                            <input type="text" name="active" class="txt" tabindex="13" value="<%= users[i].active %>">
+                                            <input type="text" name="active" class="txt" tabindex="14" value="<%= users[i].active %>">
                                         </div>
                                         <div class="center">
                                             <button class="submitbtn" onclick="submitUpdate('<%=formUpdate%>','<%=updateId%>')">Accept</button>

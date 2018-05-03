@@ -16,7 +16,7 @@
                     <input class ="search" type="text" id="dataSearch" name="data" placeholder="Tìm kiếm">
                     <a id="search"><img src="/images/icons/search.png" width="32px" onclick="search()"></a>
                     <a href=""><img src="/images/icons/back.png" width="32px"></a>
-                    <a onclick=""><img src="/images/icons/create.png" width="32px"></a>
+                    <a onclick="showScene('create')"><img src="/images/icons/create.png" width="32px"></a>
                 </div>
             </form>
             
@@ -25,7 +25,96 @@
         <div id="listUsers">
             <% include ./listUsers %>
         </div>
+        <!--Create ACTION-->
+        <div id ="create" class="create_action">
+            <div class="center_box_action">
+                <form id="create-form">
+                    <div class="img_box_instroduce_update">
+                        <img id="profile_pic_create" src="/images/datas/user-default.png">
+                        <div class="input_file_img">
+                            <label for="image">Chọn ảnh</label>
+                            <input type="file" name="image" class="buttonFile"
+                                accept="image/gif, image/jpeg, image/png"
+                                onchange="displayImage(this,'profile_pic_create')">
+                        </div>
+                    </div>
+                    <div class="text_box_instroduce_update" >
+                        <h1 class ="title_box_instroduce">
+                            Tạo tài khoản
+                        </h1>
+                        <hr><p>	  
+                        <div class="row">
+                            <label for="name">Họ và tên:  <span class="req">*</span></label>
+                            <input type="text" name="name" class="txt" tabindex="1" placeholder="Phạm Văn A">
+                        </div>
 
+                        <div class="row">
+                            <label for="card">CMND:  <span class="req">*</span></label>
+                            <input type="text" name="card" class="txt" tabindex="2" placeholder="036012343265">
+                        </div>
+                            
+                        <div class="row">
+                            <label for="phoneNumber">Số điện thoại:  <span class="req">*</span></label>
+                            <input type="text" name="phoneNumber" class="txt" tabindex="3" placeholder="0168987123">
+                        </div>
+
+                        <div class="row">
+                            <label for="birthday">Ngày sinh:   <span class="req">*</span></label>
+                            <input type="date" name="birthday" class="txt" tabindex="4" placeholder="13/01/1998">
+                        </div>
+
+                        <div class="row">
+                            <label for="sex">Giới tính:  <span class="req">*</span></label>
+                            <input type="text" name="sex" class="txt" tabindex="5" placeholder="true với nam, false với nữ">
+                        </div>
+
+                        <div class="row">
+                            <label for="address">Địa chỉ:  <span class="req">*</span></label>
+                            <input type="text" name="address" class="txt" tabindex="6" placeholder="144, Xuân Thủy, Cầu Giấy">
+                        </div>
+
+                        <div class="row">
+                            <label for="userName">Tên đăng nhập:  <span class="req">*</span></label>
+                            <input type="email" name="userName" class="txt" tabindex="7" placeholder="abc@gmail.com">
+                        </div>
+                        
+                        <div class="row">
+                            <label for="password">Password:  <span class="req">*</span></label>
+                            <input type="text" name="password" class="txt" tabindex="8" placeholder="********">
+                        </div>
+
+                        <div class="row">
+                            <label for="objectType">Định quyền:  <span class="req">*</span></label>
+                            <input type="text" name="objectType" class="txt" tabindex="9" placeholder="0-admin,1-bác sĩ,2-bệnh nhân">
+                        </div>
+                        <div class="row">
+                            <label for="level">Trình độ:  <span class="req">*</span></label>
+                            <input type="text" name="level" class="txt" tabindex="10" placeholder="Giáo sư,Tiến sĩ,Thạc sĩ">
+                        </div>
+                        
+                        <div class="row">
+                            <label for="experience">Kinh nghiệm:  <span class="req">*</span></label>
+                            <input type="text" name="experience" class="txt" tabindex="11" placeholder="Thời gian đã công tác">
+                        </div>
+
+                        <div class="row">
+                            <label for="departmentId">Chuyên khoa:  <span class="req">*</span></label>
+                            <input type="text" name="departmentId" class="txt" tabindex="12" placeholder="ID khoa (DEP101)">
+                        </div>
+
+                        <div class="row">
+                            <label for="dean">Trưởng khoa:  <span class="req">*</span></label>
+                            <input type="text" name="dean" class="txt" tabindex="13" placeholder="true-trưởng khoa,false-nếu không">
+                        </div>
+                        <div class="center">
+                            <button class="submitbtn" >Accept</button>
+                            <button type="button" class="submitbtn" onclick="hideScene('create')">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>	
+        <!--END Create-->
         <div class="clear"></div>
         <footer><% include ../partials/footer %></footer>
     

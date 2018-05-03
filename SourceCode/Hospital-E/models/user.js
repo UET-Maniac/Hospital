@@ -92,10 +92,9 @@ User.statics.finds = function(data, objectType, typeFind, callback){
 /**
  * Cập nhật người dùng
  * @param {object} data dữ liệu cập nhật
- * @param {number} objectType đối tượng gửi yêu cầu 
  * @param {function} callback  hàm callback
  */
-User.statics.updates = function(data, objectType, callback){
+User.statics.updates = function(data, callback){
 	tools.Update.call(this, data, callback);
 }
 /**

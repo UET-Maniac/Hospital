@@ -49,18 +49,63 @@ router.route('/')
 		});
 	})
 	.post(upload.single('image'), function(req, res, next){
-	    User.inserts(req.body.data, (err, user) => {
-	        if (err || !user){
+	    var data = {}
+        if (req.body.name){
+            data.name = req.body.name
+		}
+        if(req.body.card){
+            data.card = req.body.card
+        }
+        if(req.body.phoneNumber){
+            data.phoneNumber = req.body.phoneNumber
+        }
+        if(req.body.birthday){
+            data.birthday = req.body.birthday
+		}
+		if(req.body.sex){
+            data.sex = req.body.sex
+		}
+		if(req.body.address){
+            data.address = req.body.address
+		}
+		if(req.body.userName){
+            data.userName = req.body.userName
+		}
+		if(req.body.password){
+            data.password = req.body.password
+		}
+		if(req.body.objectType){
+            data.objectType = req.body.objectType
+		}
+		if(req.body.level){
+            data.level = req.body.level
+		}
+		if(req.body.experience){
+            data.experience = req.body.experience
+		}
+		if(req.body.departmentId){
+            data.departmentId = req.body.departmentId
+		}
+		if(req.body.dean){
+            data.dean = req.body.dean
+		}
+        if (req.file){
+            // cắt 'puclic' đi
+            data.image= req.file.path.substr(6,req.file.path.length);
+		}
+	    User.inserts(data, (err, user) => {
+	        if (err|| !user){
 	            res.render('pages/errorTemplate',
-					{message: 'Dữ liệu đã tồn tại!', codeError: 409});
+					{message: 'Lỗi server!', codeError: 500});
 	        } else{
-	            // render to information
-	            res.send("thanhcong");
+				// do finds nen user o day la 1 array
+	            User.finds(user._id, objectType, typeFind, (err, user) => {
+                    res.render('pages/listUsers', {users: user, objectType: objectType});
+                });
 	        }
 	    });
 	})
 	.patch(upload.single('image'), function(req, res, next){
-		console.log(req.body)
 		var data = {
             _id: req.body._id,
         }
@@ -106,15 +151,15 @@ router.route('/')
         if (req.file){
             // cắt 'puclic' đi
             data.image= req.file.path.substr(6,req.file.path.length);
-        }
+		}
 	    User.updates(data, (err, user) => {
-			console(12)
 	        if (err|| !user){
 	            res.render('pages/errorTemplate',
 					{message: 'Lỗi server!', codeError: 500});
 	        } else{
-	            User.findById(user._id, (err, user) => {
-                    res.render('pages/listUsers', {users: [user], objectType: objectType});
+				// do finds nen user o day la 1 array
+	            User.finds(user._id, objectType, typeFind, (err, user) => {
+                    res.render('pages/listUsers', {users: user, objectType: objectType});
                 });
 	        }
 	    });
@@ -126,8 +171,8 @@ router.route('/')
 	            res.render('pages/errorTemplate',
 					{message: 'Lỗi server!', codeError: 500});
 	        } else{
-	            User.findById(user._id, (err, user) => {
-                    res.render('pages/listUsers', {users: [user], objectType: objectType});
+				User.finds(user._id, objectType, typeFind, (err, user) => {
+                    res.render('pages/listUsers', {users: user, objectType: objectType});
                 });
 	        }
 	    });
