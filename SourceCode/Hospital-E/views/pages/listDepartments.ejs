@@ -124,7 +124,7 @@
                         <hr><p>
                         <div class="row">
                             <label for="_id">ID khoa: <span class="req">*</span></label>
-                            <input type="text" name="_id" class="txt" tabindex="1" value="<%= departments[i]._id %>">
+                            <input type="text" readonly="readonly" name="_id" class="txt" tabindex="1" value="<%= departments[i]._id %>">
                         </div>
                             
                         <div class="row">
@@ -148,9 +148,9 @@
                         </div>
 
                         <div class="row">
-                                <label for="name">Trạng thái hoạt động:  <span class="req">*</span></label>
-                                <input type="active" name="active" class="txt" tabindex="6" value="<%= departments[i].active %>">
-                            </div>
+                            <label for="name">Trạng thái hoạt động:  <span class="req">*</span></label>
+                            <input type="active" name="active" class="txt" tabindex="6" value="<%= departments[i].active %>">
+                        </div>
                         <div class="center">
                             <button class="submitbtn" onclick="submitUpdate('<%=formUpdate%>','<%=updateId%>')">Accept</button>
                             <button type="button" class="submitbtn" onclick="hideScene('<%=updateId%>')">Cancel</button>

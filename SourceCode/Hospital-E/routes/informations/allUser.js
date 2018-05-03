@@ -3,7 +3,7 @@ var router = express.Router();
 var User = require("../../models/user");
 var config = require('../../config.json');
 var objectType = config.viewer;
-var typeFind = config.findUser;
+var typeFind = config.admin;
 // chua toi uu, nen cho vao file middle ware
 // chua bao mat tot
 router.use(function(req, res, next){
@@ -40,18 +40,18 @@ router.route('/')
 		if (req.body.data) data = req.body.data;
 		User.finds(data, objectType, typeFind, (err, users) => {
 			if (err || !users.length){
-				res.render('pages/error',
-					{ objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
+				res.render('pages/errorTemplate',
+					{message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
 			} else{
-				res.render('pages/informationAllUser', {users: users, objectType: objectType});
+				res.render('pages/listUsers', {users: users});
 			}
 		});
 	})
 	.post(function(req, res, next){
 	    User.inserts(req.body.data, (err, user) => {
 	        if (err || !user){
-	            res.render('pages/error',
-					{ objectType: config.viewer, message: 'Dữ liệu đã tồn tại!', codeError: 409});
+	            res.render('pages/errorTemplate',
+					{message: 'Dữ liệu đã tồn tại!', codeError: 409});
 	        } else{
 	            // render to information
 	            res.send("thanhcong");
@@ -61,8 +61,8 @@ router.route('/')
 	.patch(function(req, res, next){
 	    User.updates(req.body.data, (err, user) => {
 	        if (err|| !user){
-	            res.render('pages/error',
-					{ objectType: config.viewer, message: 'Lỗi server!', codeError: 500});
+	            res.render('pages/errorTemplate',
+					{message: 'Lỗi server!', codeError: 500});
 	        } else{
 	            // render to information
 	            res.send("thanhcong");
@@ -72,8 +72,8 @@ router.route('/')
 	.delete(function(req, res, next){
 	    User.deletes(req.body.data._id, (err, user) => {
 	        if (err || !user){
-	            res.render('pages/error',
-					{ objectType: config.viewer, message: 'Lỗi server!', codeError: 500});
+	            res.render('pages/errorTemplate',
+					{message: 'Lỗi server!', codeError: 500});
 	        } else{
 	            // render to information
 	            res.send("thanhcong");

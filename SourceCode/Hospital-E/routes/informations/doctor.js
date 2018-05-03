@@ -43,8 +43,8 @@ router.route('/')
 		if (req.body.data) data = req.body.data;
 		Doctor.finds(data, objectType, typeFind, (err, doctors) => {
 	  		if (err || !doctors.length){
-				res.render('pages/error',
-			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
+				res.render('pages/errorTemplate',
+			        { message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
 	  		} else{
 				res.render('pages/informationDoctor', {doctors: doctors, objectType: objectType});
 	  		}
@@ -57,8 +57,8 @@ router.route('/')
 		res.send("thanhcong");
 		// Doctor.inserts(req.body.data, (err, doctors) => {
 		//     if (err){
-		//         res.render('pages/error',
-					// { objectType: config.viewer, message: 'Dữ liệu đã tồn tại!', codeError: 409});
+		//         res.render('pages/errorTemplate',
+					// {message: 'Dữ liệu đã tồn tại!', codeError: 409});
 		//     } else{
 		//         // render to information
 		//         res.send("thanhcong");
@@ -68,8 +68,8 @@ router.route('/')
 	.patch(checkAdmin, function(req, res, next){
 		Doctor.updates(req.body.data, (err, doctor) => {
 			if (err || !doctor){
-				res.render('pages/error',
-                    { objectType: config.viewer, message: 'Lỗi server!', codeError: 500});
+				res.render('pages/errorTemplate',
+                    {message: 'Lỗi server!', codeError: 500});
 			} else{
 				// render to information
 				res.send("thanhcong");
@@ -79,8 +79,8 @@ router.route('/')
 	.delete(checkAdmin, function(req, res, next){
 		Doctor.deletes(req.body.data._id, (err, doctor) => {
 			if (err || !doctor){
-				res.render('pages/error',
-                    { objectType: config.viewer, message: 'Lỗi server!', codeError: 500});
+				res.render('pages/errorTemplate',
+                    {message: 'Lỗi server!', codeError: 500});
 			} else{
 				// render to information
 				res.send("thanhcong");
