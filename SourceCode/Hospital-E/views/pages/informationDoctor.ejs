@@ -5,63 +5,69 @@
     </head>
     <body>
         <% include ../partials/sidebar %>
-        <header></header>
+        <header><% include ../partials/header %></header>
         <div class="body-wrapper">
-            <% for(var i=0; i<doctors.length; i++) {%>
-                <% if(doctors[i]._id){%>
-                    <li><%= doctors[i]._id %></li>
-                <% } %>
-                <% if(doctors[i].name){%>
-                    <li><%= doctors[i].name %></li>
-                <% } %>
-                <% if(doctors[i].card){%>
-                    <li><%= doctors[i].card %></li>
-                <% } %>
-                <% if(doctors[i].phoneNumber){%>
-                    <li><%= doctors[i].phoneNumber %></li>
-                <% } %>
-                <% if(doctors[i].birthday){%>
-                    <li><%= doctors[i].birthday %></li>
-                <% } %>
-                <% if(doctors[i].sex){%>
-                    <li><%= doctors[i].sex %></li>
-                <% } %>
-                <% if(doctors[i].address){%>
-                    <li><%= doctors[i].address %></li>
-                <% } %>
-                <% if(doctors[i].image){%>
-                    <li><%= doctors[i].image %></li>
-                <% } %>
-                <% if(doctors[i].level){%>
-                    <li><%= doctors[i].level %></li>
-                <% } %>
-                <% if(doctors[i].experience){%>
-                    <li><%= doctors[i].experience %></li>
-                <% } %>
-                <% if(doctors[i].star){%>
-                    <li><%= doctors[i].star %></li>
-                <% } %>
-                <% if(doctors[i].departmentId._id){%>
-                    <li><%= doctors[i].departmentId._id %></li>
-                <% } %>
-                <% if(doctors[i].departmentId.name){%>
-                    <li><%= doctors[i].departmentId.name %></li>
-                <% } %>
-                <% if(doctors[i].departmentId.description){%>
-                    <li><%= doctors[i].departmentId.description %></li>
-                <% } %>
-                <% if(doctors[i].departmentId.address){%>
-                    <li><%= doctors[i].departmentId.address %></li>
-                <% } %>
-                <% if(doctors[i].departmentId.image){%>
-                    <li><%= doctors[i].departmentId.image %></li>
-                <% } %>
-                <% if(doctors[i].departmentId.foundingOn){%>
-                    <li><%= doctors[i].departmentId.foundingOn %></li>
-                <% } %>
-                </br></br>
-            <% } %>
+            <div class ="box_top_content">
+				<div class="box_left_name_content">
+					<div class="main_name">BÁC SĨ</div>
+				</div>
+				
+				<form id="form-sidebar">
+					<div class="action_content_introduce">
+						<input class ="search" type="text" id="dataSearch" name="data" placeholder="Tìm kiếm">
+						<a id="search"><img src="/images/icons/search.png" width="32px" onclick="search()"></a>
+						<a href=""><img src="/images/icons/back.png" width="32px"></a>
+						<% if (objectType == 0){ %>
+							<a onclick="showScene('create')"><img src="/images/icons/create.png" width="32px"></a>
+						<% } %>
+					</div>
+				</form>
+                <div class="clear"></div>
+            </div>   
+            <div class="col_box_infomation_doctor">
+                <% include ./listDoctor %>
+            </div>
+            <div class="clear"></div>
         </div>
     <footer><% include ../partials/footer %></footer>
+    <script>
+        
+        $(document).ready(function(){
+        $('#stars li').on('mouseover', function(){
+            var onStar = parseInt($(this).data('value'), 10);
+
+            //Hover star
+            $(this).parent().children('li.star').each(function(e){
+            if (e < onStar) {
+                $(this).addClass('hover');
+            }
+            else {
+                $(this).removeClass('hover');
+            }
+            });
+            
+        }).on('mouseout', function(){
+            $(this).parent().children('li.star').each(function(e){
+            $(this).removeClass('hover');
+            });
+        });
+        
+        
+        //Onclick star
+        $('#stars li').on('click', function(){
+            var onStar = parseInt($(this).data('value'), 10);
+            var stars = $(this).parent().children('li.star');
+            
+            for (i = 0; i < stars.length; i++) {
+            $(stars[i]).removeClass('selected');
+            }
+            
+            for (i = 0; i < onStar; i++) {
+            $(stars[i]).addClass('selected');
+            }
+            
+        });
+        });
+    </script>
     </body>
 </html>

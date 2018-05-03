@@ -25,6 +25,7 @@ var recordPatientRouter = require('./routes/records/patient');
 var forumRouter = require('./routes/forum');
 var newsRouter = require("./routes/news");
 var ratingRouter = require("./routes/rating");
+var userRouter = require("./routes/user");
 
 //End import routes
 
@@ -64,7 +65,8 @@ app.use('/ho-so/benh-an', middlewareToken, recordMedicalRouter);
 app.use('/ho-so/benh-nhan', middlewareToken, recordPatientRouter);
 app.use('/dien-dan', middlewareToken, forumRouter);
 app.use('/tin-tuc', middlewareToken, newsRouter);
-app.use('danh-gia', middlewareToken, ratingRouter);
+app.use('/danh-gia', middlewareToken, ratingRouter);
+app.use('/thong-tin-nguoi-dung', middlewareToken, userRouter);
 //end routes
 
 // nếu dùng middleware cho tất cả lại sai????

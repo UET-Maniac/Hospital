@@ -1,0 +1,110 @@
+<% for(var i=0; i<doctors.length; i++) {%>
+    <div class="box_infomation_doctor">
+        <div class="img_infomation_doctor col-md-3 float-left">
+            <img src="<% if(doctors[i].image){%><%= doctors[i].image %><% } %>" height="250px" width="200px">
+        </div>
+        <div class="text_box_infomation_doctor col-md-6 float-left">
+            <div class="content_infomation_doctor">
+                <span class="text_content_infomation_doctor">ID:</span>
+                <% if(doctors[i]._id){%>
+                    <%= doctors[i]._id %>
+                <% } %>
+            </div>
+            <div class="content_infomation_doctor">
+                    <span class="text_content_infomation_doctor">Tên bác sĩ:</span>
+                    <% if(doctors[i].name){%>
+                        <%= doctors[i].name %>
+                    <% } %>
+            </div>
+            <div class="content_infomation_doctor">
+                    <span class="text_content_infomation_doctor">Chứng minh thư:</span>
+                    <% if(doctors[i].card){%>
+                        <%= doctors[i].card %>
+                    <% } %>
+            </div>
+            <div class="content_infomation_doctor">
+                    <span class="text_content_infomation_doctor">Số điện thoại:</span>
+                    <% if(doctors[i].phoneNumber){%>
+                        <%= doctors[i].phoneNumber %>
+                    <% } %>
+            </div>
+            <div class="content_infomation_doctor">
+                    <span class="text_content_infomation_doctor">Ngày sinh:</span>
+                    <% if(doctors[i].birthday){%>
+                        <%= doctors[i].birthday %>
+                    <% } %>
+            </div>
+            <div class="content_infomation_doctor">
+                    <span class="text_content_infomation_doctor">Giới tinh:</span>
+                    <% if(doctors[i].sex){%>
+                        <%= doctors[i].sex %>
+                    <% } %>
+            </div>
+            <div class="content_infomation_doctor">
+                    <span class="text_content_infomation_doctor">Địa chỉ:</span>
+                    <% if(doctors[i].address){%>
+                        <%= doctors[i].address %>
+                    <% } %>
+            </div>
+            
+
+            <div class="content_infomation_doctor">
+                <span class="text_content_infomation_doctor">Trình độ:</span>
+                <% if(doctors[i].level){%>
+                    <%= doctors[i].level %>
+                <% } %>
+            </div>
+            <div class="content_infomation_doctor">
+                <span class="text_content_infomation_doctor">Kinh nghiệm :</span>
+                <% if(doctors[i].experience){%>
+                    <%= doctors[i].experience %>
+                <% } %>
+            </div>
+            
+
+            <div class="content_infomation_doctor">
+                <span class="text_content_infomation_doctor">ID khoa:</span>
+                <% if(doctors[i].departmentId._id){%>
+                    <%= doctors[i].departmentId._id %>
+                <% } %>
+            </div>
+            <div class="content_infomation_doctor">
+                <span class="text_content_infomation_doctor">Tên khoa:</span>
+                <% if(doctors[i].departmentId.name){%>
+                    <%= doctors[i].departmentId.name %>
+                <% } %>
+            </div>
+        </div>
+
+        <div class ="star_rating col-md-3 float-right">
+            <div class="hedding-title"><h2>Điểm đánh giá</h2></div> 
+		    <div class="rating-part">
+                <div class="average-rating">
+                    <h2><% if(doctors[i].star){%><li><%= doctors[i].star %></li><% } %></h2>
+                    <div class='rating-stars text-center'>
+                        <ul id='stars'>
+                            <li class='star' title='1 Sao' data-value='1'>
+                                <i class='fa fa-star'></i>
+                            </li>
+                            <li class='star' title='2 Sao' data-value='2'>
+                                <i class='fa fa-star'></i>
+                            </li>
+                            <li class='star' title='3 Sao' data-value='3'>
+                                <i class='fa fa-star'></i>
+                            </li>
+                            <li class='star' title='4 Sao' data-value='4'>
+                                <i class='fa fa-star'></i>
+                            </li>
+                            <li class='star' title='5 Sao' data-value='5'>
+                                <i class='fa fa-star fa-star-half-o'></i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+        <hr>
+    </div>
+    <% } %>
