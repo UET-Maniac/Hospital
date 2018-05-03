@@ -18,7 +18,6 @@ function createNewId(latestId){
  * @param {function} callback hàm call back
  */
 function Update(data, callback){
-	data.active = true;
 	data.timestamp = new Date();
 	var query = data._id;
 	var update = { $set: data };

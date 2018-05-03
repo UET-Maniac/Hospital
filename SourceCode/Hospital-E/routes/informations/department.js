@@ -82,6 +82,9 @@ router.route('/')
         if(req.body.foundingOn){
             data.foundingOn = req.body.foundingOn
         }
+        if(req.body.active){
+            data.active = req.body.active
+        }
         if (req.file){
             // cắt 'puclic' đi
             data.image= req.file.path.substr(6,req.file.path.length);
@@ -104,7 +107,9 @@ router.route('/')
                 res.render('pages/errorTemplate',
                     {message: 'Lỗi server!', codeError: 500});
             } else{
-                res.render('pages/listDepartments', {departments: [department], objectType: objectType});
+                Department.findById(department._id, (err, department) => {
+                    res.render('pages/listDepartments', {departments: [department], objectType: objectType});
+                });
             }
         });
     })

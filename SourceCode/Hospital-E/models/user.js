@@ -65,13 +65,9 @@ User.statics.finds = function(data, objectType, typeFind, callback){
 		$or: [
 			{_id: search},
 			{name: search},
-			{address: search},
 			{card: search},
 			{phoneNumber: search},
-			{level: search},
-			{experience: search},
-			{star: data},
-			{departmentId: search}
+			{userName: search}
 		]
 	}
 	if (typeFind != config.admin){
@@ -81,16 +77,17 @@ User.statics.finds = function(data, objectType, typeFind, callback){
 		query.active = true;
 	}
 	if (typeFind == config.doctor){
-		this.find(query)
+		query.address = search;
+		query.level= search;
+		query.experience= search;
+		query.departmentId= search;
+	}
+	this.find(query)
+		.sort({_id: 1})
 		.populate({
 			path: 'departmentId'
 		})
 		.exec(callback)
-	} else{
-		this.find(query)
-			.sort({_id: 1})
-			.exec(callback);
-	}
 }
 /**
  * Cập nhật người dùng

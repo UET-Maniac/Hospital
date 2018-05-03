@@ -9,6 +9,23 @@ $(document).ready(function() {
             $('#listUsers').html(data);
         });
     });
+    $('#create-form').on('submit', function(event) {
+        event.preventDefault();
+        // var form = $(this);
+        // var data = form.serialize();
+        var data = new FormData(this);
+        $.ajax({
+            method: 'POST', 
+            url: '/gioi-thieu/tai-khoan', 
+            data: data,
+            contentType: false,
+            cache: false,
+            processData:false
+        }).done(function(data){
+            hideScene('create');
+            $('#listUsers').html(data);
+        });
+    })
 })
 
 function search(){
@@ -29,14 +46,14 @@ function submitUpdate(form, id){
         var data = new FormData($('#'+form)[0]);
         $.ajax({
             method: 'Patch', 
-            url: '/gioi-thieu/khoa', 
+            url: '/gioi-thieu/tai-khoan', 
             data: data,
             contentType: false,
             cache: false,
             processData:false
         }).done(function(data){
             hideScene(id);
-            $('#listDepartments').html(data);
+            $('#listUsers').html(data);
         });
     })
     
@@ -63,8 +80,8 @@ function deletes(id){
         _id: $('#'+id).val()
     }
     $.ajax({
-        method: 'DELETE', url: '/gioi-thieu/khoa', data: data
+        method: 'DELETE', url: '/gioi-thieu/tai-khoan', data: data
     }).done(function(data){
-        $('#listDepartments').html(data);
+        $('#listUsers').html(data);
     });
 }

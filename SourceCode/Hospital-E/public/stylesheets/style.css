@@ -625,6 +625,13 @@ footer {
     margin: auto;
     padding-top: 5%;
 }
+.input_file_img {
+    text-align: center;
+}
+.buttonFile {
+    background-color: #0478D3;
+    color: white;
+}
 .img_box_instroduce_view, .img_box_instroduce_update{
     height: 540px;
     width: 50%;

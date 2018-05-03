@@ -1,10 +1,19 @@
-$(document).ready(function() {
-
+(function ($) {
+    "use strict";
+    /*==================================================================
+    [ Validate ]*/
     for (var i=0; i < 12; i++){
         $("#timeInday").append($('<option>', {value: i, text:(i+8) + ':00'}));
     }
     $( "#date" ).datepicker({
-        dateFormat: "dd-mm-yy"
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: "dd-mm-yy",
+        firstDay: 1,
+        hideIfNoPrevNext: true,
+        showAnim: 'slideDown',
+        showOtherMonths: true,
+        showStatus: true
     });
     $("#departments").change(()=>{
         // chua tim duoc cachu truyen truc tiep array object tu ejs sang jquery
@@ -19,12 +28,6 @@ $(document).ready(function() {
             }
         }
     })
-});
-
-(function ($) {
-    "use strict";
-    /*==================================================================
-    [ Validate ]*/
     var input = $('.infoAppointment ._select');
 
     $('#appointment-form').on('submit',function(){
