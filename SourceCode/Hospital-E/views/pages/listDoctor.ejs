@@ -1,7 +1,7 @@
 <% for(var i=0; i<doctors.length; i++) {%>
     <div class="box_infomation_doctor">
         <div class="img_infomation_doctor col-md-3 float-left">
-            <img src="<% if(doctors[i].image){%><%= doctors[i].image %><% } %>" height="250px" width="200px">
+            <img src="<% if(doctors[i].image){%><%= doctors[i].image %><% } %>" height="250px" width="220px" style="border:1px solid yellowgreen; border-radius: 10px;">
         </div>
         <div class="text_box_infomation_doctor col-md-6 float-left">
             <div class="content_infomation_doctor">
@@ -74,29 +74,30 @@
                     <%= doctors[i].departmentId.name %>
                 <% } %>
             </div>
+            <div class="h2"></div>
         </div>
 
         <div class ="star_rating col-md-3 float-right">
             <div class="hedding-title"><h2>Điểm đánh giá</h2></div> 
 		    <div class="rating-part">
-                <div class="average-rating">
-                    <h2><% if(doctors[i].star){%><li><%= doctors[i].star %></li><% } %></h2>
+                <div class="average-rating">    
+                    <h2 class="star-value"><% if(doctors[i].star){%><%= doctors[i].star %><% } %></h2>
                     <div class='rating-stars text-center'>
                         <ul id='stars'>
-                            <li class='star' title='1 Sao' data-value='1'>
-                                <i class='fa fa-star'></i>
+                            <li class='star' title='1 Sao' >
+                                <i class='fa fa-star-o' id="star_1"></i>
                             </li>
-                            <li class='star' title='2 Sao' data-value='2'>
-                                <i class='fa fa-star'></i>
+                            <li class='star star_2' title='2 Sao' data-value='1'>
+                                <i class='fa fa-star-o' id="star_2"></i>
                             </li>
-                            <li class='star' title='3 Sao' data-value='3'>
-                                <i class='fa fa-star'></i>
+                            <li class='star star_3' title='3 Sao' data-value='3'>
+                                <i class='fa fa-star-o' id="star_3"></i>
                             </li>
-                            <li class='star' title='4 Sao' data-value='4'>
-                                <i class='fa fa-star'></i>
+                            <li class='star star_4' title='4 Sao' data-value='4'>
+                                <i class='fa fa-star-o' id="star_4"></i>
                             </li>
-                            <li class='star' title='5 Sao' data-value='5'>
-                                <i class='fa fa-star fa-star-half-o'></i>
+                            <li class='star star_5' title='5 Sao' data-value='5'>
+                                <i class='fa fa-star-o' id="star_5"></i>
                             </li>
                         </ul>
                     </div>
@@ -107,4 +108,4 @@
         <div class="clear"></div>
         <hr>
     </div>
-    <% } %>
+<% } %>
