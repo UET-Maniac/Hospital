@@ -107,9 +107,7 @@ router.route('/')
                 res.render('pages/errorTemplate',
                     {message: 'Lỗi server!', codeError: 500});
             } else{
-                Department.findById(department._id, (err, department) => {
-                    res.render('pages/listDepartments', {departments: [department], objectType: objectType});
-                });
+                res.render('pages/listDepartments', {departments: [department], objectType: objectType});
             }
         });
     })

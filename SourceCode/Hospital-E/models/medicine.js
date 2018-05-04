@@ -1,7 +1,8 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var tools = require('./tools');
-var defaultId = require('../config.json').defaultId.medicine;
+var config = require('../config.json');
+var defaultId = config.defaultId.medicine;
 /**
  * Schema loại thuốc
  */
@@ -39,7 +40,7 @@ Medicine.statics.finds = function(data, objectType, callback){
 			{effect: search}
 		]
 	}
-	if (objectType != 0){
+	if (objectType != config.admin){
 		query.active = true;
 	}
 	this.find(query,callback);

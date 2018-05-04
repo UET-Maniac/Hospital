@@ -138,27 +138,6 @@
     width: 10px;
   }
   
-  .column100.column3 {
-    width: 300px;
-  }
-
-  .column100.column4 {
-    width: 100px;
-  }
-
-  .column100.column5 {
-    width: 100px;
-  }
-
-  .column100.column9 {
-    width: 500px;
-  }
-
-  .column100.column10 .column100.column11 .column100.column12{
-    width: 10px;
-  }
-  /*****/
-  
   .row100.head th {
     padding-top: 24px;
     padding-bottom: 20px;

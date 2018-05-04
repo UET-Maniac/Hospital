@@ -1,7 +1,8 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var tools = require('./tools');
-var defaultId = require('../config.json').defaultId.post;
+var config = require('../config.json');
+var defaultId = config.defaultId.post;
 /**
  * Schema bài trao đổi
  */
@@ -36,7 +37,7 @@ Post.statics.finds = function(data, callback){
 			// .....
 		]
 	}
-	if (type != 0)
+	if (type != config.admin)
 		query.active = true;
 	this.find(query,callback);
 }

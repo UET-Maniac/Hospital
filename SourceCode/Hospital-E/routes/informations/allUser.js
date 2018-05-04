@@ -9,9 +9,9 @@ var typeFind = config.admin;
 // chua bao mat tot
 router.use(function(req, res, next){
 	if(typeof req.objectType !== 'undefined'){
-        objectType = req.objectType;  
+	    objectType = req.objectType;  
     } else{
-        objectType = config.viewer;
+	    objectType = config.viewer;
     }
     next();  
 })
@@ -30,7 +30,7 @@ router.route('/')
 			// can them dieu kiem kiem tra xem co kq hay khong de  bat truong hop ko loi va ko co kq
 			if (err || !users.length){
 				res.render('pages/error',
-					{ objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
+					{ objectType: objectType, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
 			} else{
 				res.render('pages/informationAllUser', {users: users, objectType: objectType});
 			}
@@ -49,132 +49,127 @@ router.route('/')
 		});
 	})
 	.post(upload.single('image'), function(req, res, next){
-	    var data = {}
+        var data = {}
         if (req.body.name){
-            data.name = req.body.name
+		    data.name = req.body.name
 		}
-        if(req.body.card){
-            data.card = req.body.card
+	    if(req.body.card){
+		    data.card = req.body.card
+	     }
+	     if(req.body.phoneNumber){
+		    data.phoneNumber = req.body.phoneNumber
+	    }
+	    if(req.body.birthday){
+		    data.birthday = req.body.birthday
         }
-        if(req.body.phoneNumber){
-            data.phoneNumber = req.body.phoneNumber
-        }
-        if(req.body.birthday){
-            data.birthday = req.body.birthday
-		}
 		if(req.body.sex){
-            data.sex = req.body.sex
+		    data.sex = req.body.sex
 		}
 		if(req.body.address){
-            data.address = req.body.address
+		    data.address = req.body.address
 		}
 		if(req.body.userName){
-            data.userName = req.body.userName
+		    data.userName = req.body.userName
 		}
 		if(req.body.password){
-            data.password = req.body.password
+		    data.password = req.body.password
 		}
 		if(req.body.objectType){
-            data.objectType = req.body.objectType
+		    data.objectType = req.body.objectType
 		}
 		if(req.body.level){
-            data.level = req.body.level
+		    data.level = req.body.level
 		}
 		if(req.body.experience){
-            data.experience = req.body.experience
+		    data.experience = req.body.experience
 		}
 		if(req.body.departmentId){
-            data.departmentId = req.body.departmentId
+		    data.departmentId = req.body.departmentId
 		}
 		if(req.body.dean){
-            data.dean = req.body.dean
+		    data.dean = req.body.dean
 		}
-        if (req.file){
+	    if (req.file){
             // cắt 'puclic' đi
             data.image= req.file.path.substr(6,req.file.path.length);
 		}
 	    User.inserts(data, (err, user) => {
-	        if (err|| !user){
-	            res.render('pages/errorTemplate',
-					{message: 'Lỗi server!', codeError: 500});
-	        } else{
-				// do finds nen user o day la 1 array
-	            User.finds(user._id, objectType, typeFind, (err, user) => {
-                    res.render('pages/listUsers', {users: user, objectType: objectType});
-                });
-	        }
+		    if (err|| !user){
+			    res.render('pages/errorTemplate',
+					{message: 'Dữ liệu đã tồn tại!', codeError: 409});
+		     } else{
+				res.render('pages/listUsers', {users: [user], objectType: objectType});
+		    }
 	    });
 	})
 	.patch(upload.single('image'), function(req, res, next){
 		var data = {
-            _id: req.body._id,
-        }
-        if (req.body.name){
-            data.name = req.body.name
+		    _id: req.body._id,
+	    }
+	    if (req.body.name){
+		    data.name = req.body.name
 		}
-        if(req.body.card){
-            data.card = req.body.card
-        }
-        if(req.body.phoneNumber){
-            data.phoneNumber = req.body.phoneNumber
-        }
-        if(req.body.birthday){
-            data.birthday = req.body.birthday
+	    if(req.body.card){
+		    data.card = req.body.card
+	    }
+	    if(req.body.phoneNumber){
+		    data.phoneNumber = req.body.phoneNumber
+	    }
+	    if(req.body.birthday){
+		    data.birthday = req.body.birthday
 		}
 		if(req.body.sex){
-            data.sex = req.body.sex
+		    data.sex = req.body.sex
 		}
 		if(req.body.address){
-            data.address = req.body.address
+		    data.address = req.body.address
 		}
 		if(req.body.userName){
-            data.userName = req.body.userName
+		    data.userName = req.body.userName
 		}
 		if(req.body.objectType){
-            data.objectType = req.body.objectType
+		    data.objectType = req.body.objectType
 		}
 		if(req.body.level){
-            data.level = req.body.level
+		    data.level = req.body.level
 		}
 		if(req.body.experience){
-            data.experience = req.body.experience
+		    data.experience = req.body.experience
 		}
 		if(req.body.departmentId){
-            data.departmentId = req.body.departmentId
+		    data.departmentId = req.body.departmentId
 		}
 		if(req.body.dean){
-            data.dean = req.body.dean
+		    data.dean = req.body.dean
 		}
 		if(req.body.active){
-            data.active = req.body.active
-        }
-        if (req.file){
+		    data.active = req.body.active
+	    }
+	    if (req.file){
             // cắt 'puclic' đi
             data.image= req.file.path.substr(6,req.file.path.length);
 		}
 	    User.updates(data, (err, user) => {
-	        if (err|| !user){
-	            res.render('pages/errorTemplate',
+		    if (err|| !user){
+			    res.render('pages/errorTemplate',
 					{message: 'Lỗi server!', codeError: 500});
-	        } else{
+		     } else{
 				// do finds nen user o day la 1 array
-	            User.finds(user._id, objectType, typeFind, (err, user) => {
-                    res.render('pages/listUsers', {users: user, objectType: objectType});
+                User.finds(user._id, objectType, typeFind, (err, user) => {
+                res.render('pages/listUsers', {users: user, objectType: objectType});
                 });
-	        }
-	    });
-	})
-	.delete(function(req, res, next){
-		var data = req.body._id;
-	    User.deletes(data, (err, user) => {
-	        if (err || !user){
-	            res.render('pages/errorTemplate',
+                }
+            });
+        })
+        .delete(function(req, res, next){
+            var data = req.body._id;
+            User.deletes(data, (err, user) => {
+		     if (err || !user){
+			    res.render('pages/errorTemplate',
 					{message: 'Lỗi server!', codeError: 500});
-	        } else{
-				User.finds(user._id, objectType, typeFind, (err, user) => {
-                    res.render('pages/listUsers', {users: user, objectType: objectType});
-                });
-	        }
+		    } else{
+				res.render('pages/listUsers', {users: [user], objectType: objectType});
+		    }
 	    });
 	})
 

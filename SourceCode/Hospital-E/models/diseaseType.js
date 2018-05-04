@@ -1,7 +1,8 @@
 var mongoose = require("mongoose")
 var Schema = mongoose.Schema;
 var tools = require('./tools');
-var defaultId = require('../config.json').defaultId.diseaseType;
+var config = require('../config.json');
+var defaultId = config.defaultId.diseaseType;
 /**
  * Schema loại bệnh
  */
@@ -37,7 +38,7 @@ DiseaseType.statics.finds = function(data, objectType, callback){
 			{description: search}
 		]
 	}
-	if (objectType != 0)
+	if (objectType != config.admin)
 		query.active = true;
 	this.find(query,callback);
 }

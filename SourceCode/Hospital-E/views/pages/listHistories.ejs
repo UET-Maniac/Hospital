@@ -1,0 +1,156 @@
+<div class="container-table100">
+    <div class="wrap-table100">
+        <div class="table100 ver3">
+            <table data-vertable="ver3">
+                <thead>
+                    <tr class="row100 head">
+                        <th class="column100 column1" data-column="column1">S</br>T</br>T</th>
+                        <th class="column100 column2" data-column="column2" style="width: 100px;">ID lịch</th>
+                        <th class="column100 column3" data-column="column3" style="width: 100px;">Họ tên người dùng</th>
+                        <th class="column100 column4" data-column="column4" style="width: 100px;">Họ tên bác sĩ</th>
+                        <th class="column100 column5" data-column="column5" style="width: 100px;">Thời gian</th>
+                        <th class="column100 column6" data-column="column6">Địa chỉ</th>
+                        <th class="column100 column7" data-column="column7">Mô tả</th>
+                        <th class="column100 column8" data-column="column8" style="width: 80px;">Trạng thái chấp nhận</th>
+                        <th class="column100 column9" data-column="column9" style="width: 10px;">Xem</th>
+                        <th class="column100 column10" data-column="column10" style="width: 10px;">Hủy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i=0; i<appointments.length; i++) {  
+                        var viewId = 'view_'+i, deleteId = 'deleteId_'+i;
+                        if (typeof appointments[i].doctor[0].image == 'undefined' || !appointments[i].doctor[0].image)
+                            pathImage = '/images/datas/user-default.png';
+                        else pathImage = appointments[i].doctor[0].image;
+                    %>
+                        <tr class="row100">
+                            <td class="column100 column1" data-column="column1"><%=i+1%></td>
+                            <td class="column100 column2" data-column="column2" style="width: 100px;"><%=appointments[i]._id%></td>
+                            <td class="column100 column3" data-column="column3" style="width: 100px;"><%=appointments[i].patient[0].name%></td>
+                            <td class="column100 column4" data-column="column4" style="width: 100px;"><%=appointments[i].doctor[0].name%></td>
+                            <td class="column100 column5" data-column="column5" style="width: 100px;"><%=appointments[i].time%></td>
+                            <td class="column100 column6" data-column="column6"><%=appointments[i].address%></td>
+                            <td class="column100 column7" data-column="column7"><%=appointments[i].description%></td>
+                            <td class="column100 column8" data-column="column8" style="width: 80px;">
+                                <% if(appointments[i].acceptance == true) { %>
+                                    Đã chấp nhận
+                                <% } else {%>
+                                    Chưa chấp nhận
+                                <% } %>
+                            </td>
+                            <input type="hidden" id="<%=deleteId%>" value="<%=appointments[i]._id%>">
+                            <td class="column100 column9" data-column="column9" style="width: 10px;" onclick="showScene('<%=viewId%>')"><a>click</a></td>
+                            <td class="column100 column9" data-column="column9" style="width: 10px;" onclick="deletes('<%=deleteId%>')"><a>click</a></td>
+                        </tr>
+                        <!-- View -->
+                        <a onclick="hideScene('<%=viewId%>')" id="<%=viewId%>" class="view_action">
+                            <div class="center_box_action">
+                                <div class="img_box_instroduce_view">
+                                    <img src="<%=pathImage%>">
+                                </div>
+                                <div class="text_box_instroduce_view">
+                                    <h1 class ="title_box_instroduce">
+                                        <%=appointments[i]._id%>
+                                    </h1>
+                                    <p><hr></p>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">ID bác sĩ:</span> <%=appointments[i].doctor[0]._id%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Họ tên bác sĩ:</span> <%=appointments[i].doctor[0].name%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Số điện thoại:</span> <%=appointments[i].doctor[0].phoneNumber%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Trình độ:</span>  <%=appointments[i].doctor[0].level%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Kinh nghiệm:</span>  <%=appointments[i].doctor[0].level%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Đánh giá:</span>  <%=appointments[i].doctor[0].star%> Sao</div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">ID chuyên khoa:</span>  <%=appointments[i].doctor[0].departmentId%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Trình độ:</span>  <%=appointments[i].doctor[0].level%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Kinh nghiệm:</span>  <%=appointments[i].doctor[0].experience%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Id Chuyên khoa:</span>  <%=appointments[i].doctor[0].departmentId%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Đánh giá:</span>  <%=appointments[i].doctor[0].star%> Sao</div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Thời gian hẹn:</span>  <%=appointments[i].time%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Địa chỉ hẹn:</span>  <%=appointments[i].address%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Mô tả:</span>  <%=appointments[i].description%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Trạng thái chấp nhận:</span> 
+                                        <% if(appointments[i].acceptance == true) { %>
+                                            Đã chấp nhận
+                                        <% } else {%>
+                                            Chưa chấp nhận
+                                        <% } %>
+                                    </div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">ID người đặt:</span>  <%=appointments[i].patient[0]._id%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Họ tên người đặt:</span>  <%=appointments[i].patient[0].name%></div>
+                                </div>
+                            </div>
+                        </a>
+                        <!--END VIEW ACTION-->
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

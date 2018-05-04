@@ -3,7 +3,6 @@ var router = express.Router();
 var Appointment = require('../../models/appointmentSchedule');
 var config = require('../../config.json');
 var objectType = config.viewer;
-var typeFind = config.findDoctor;
 
 router.use(function(req, res, next){
 	if(typeof req.objectType !== 'undefined'){
@@ -14,96 +13,54 @@ router.use(function(req, res, next){
     next();  
 })
 
-function checkUser(req, res, next){
+router.use(function(req, res, next){
 	if(objectType != config.user && objectType != config.admin && objectType != config.doctor){
         res.redirect('/dang-nhap');
     } 
     next();  
-}
+})
 
 router.route('/')
     .get(function(req, res, next){
-        Department.findIncludeWithDoctor('', (err, departments)=>{
-            if(err || !departments.length){
+        var idObjectType = req.auth.data._id;
+        Appointment.finds('', config.user, idObjectType, (err, appointments)=>{
+            if(err || !appointments.length){
                 res.render('pages/error',
-			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
+			        { objectType: objectType, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
             } else{
-                res.render('pages/appointmentScheduleCreate', 
-                    {departments: departments, objectType: objectType});
+                res.render('pages/appointmentScheduleHistory', 
+                    {appointments: appointments, objectType: objectType});
             }
         })
     })
-    .post(checkUser, function(req, res, next){
-        var data = {
-            doctorId: req.body.doctorId,
-            patientId: req.auth.data._id,
-            time: req.body.time,
-            address: req.body.address,
-            description: req.body.description,
-            acceptance: false
-        }
-        Appointment.inserts(data, (err, appointment) => {
-            if (err){
-                res.render('pages/error',
-                    { objectType: config.viewer , message: 'Xảy ra lỗi với server!', codeError: 500});
+    .put(function(req, res, next){
+        var data = '';
+        if (req.body.data) data = req.body.data;
+        var idObjectType = req.auth.data._id;
+        Appointment.finds(data, config.user, idObjectType, (err, appointments)=>{
+            if(err || !appointments.length){
+                res.render('pages/errorTemplate',
+			        {message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
             } else{
-                res.redirect('/dat-lich-hen/lich-su');
+                res.render('pages/listHistories', 
+                    {appointments: appointments, objectType: objectType});
             }
-        });
+        })
     })
-    // .post(function(req, res, next){
-    //     if(objectType){
-    //         Department.inserts(req.body.data, (err, departments) => {
-    //             if (err){
-    //                 res.status('409').json({
-    //                     message: "Data exited!"
-    //                 })
-    //             } else{
-    //                 // render to information
-    //                 res.send("thanhcong");
-    //             }
-    //         });
-    //     } else{
-    //         res.status('404').json({
-    //             message: "Not found!"
-    //         })
-    //     }
-    // })
-    // .patch(function(req, res, next){
-    //     if (objectType){
-    //         Department.updates(req.body.data, (err, departments) => {
-    //             if (err){
-    //                 res.status('500').json({
-    //                     message: "Error with server!"
-    //                 })
-    //             } else{
-    //                 // render to information
-    //                 res.send("thanhcong");
-    //             }
-    //         });
-    //     } else{
-    //         res.status('404').json({
-    //             message: "Not found!"
-    //         })
-    //     }
-    // })
-    // .delete(function(req, res, next){
-    //     if (objectType){
-    //         Department.deletes(req.body.data._id, (err, departments) => {
-    //             if (err){
-    //                 res.status('500').json({
-    //                     message: "Error with server!"
-    //                 })
-    //             } else{
-    //                 // render to information
-    //                 res.send("thanhcong");
-    //             }
-    //         });
-    //     } else{
-    //         res.status('404').json({
-    //             message: "Not found!"
-    //         })
-    //     }
-    // })
+    .delete(function(req, res, next){
+        var data = req.body._id;
+        var idObjectType = req.auth.data._id;
+	    Appointment.deletes(data, (err, appointment) => {
+	        if (err || !appointment){
+	            res.render('pages/errorTemplate',
+					{message: 'Lỗi server!', codeError: 500});
+	        } else{
+                Appointment.finds(appointment._id, config.admin, idObjectType, (err, appointments)=>{
+                    res.render('pages/listHistories', 
+                        {appointments: appointments, objectType: objectType});
+                })
+	        }
+	    });
+    })
 
 module.exports = router;

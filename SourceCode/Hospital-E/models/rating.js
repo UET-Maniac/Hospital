@@ -1,7 +1,8 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var tools = require('./tools');
-var defaultId = require('../config.json').defaultId.rating;
+var config = require('../config.json');
+var defaultId = require.defaultId.rating;
 /**
  * Schema đánh giá
  */
@@ -39,7 +40,7 @@ Rating.statics.finds = function(data, objectType, callback){
 			{patientId: search}
 		]
 	}
-	if (objectType != 0)
+	if (objectType != config.admin)
 		query.active = true;
 	this.find(query)
 		.populate({

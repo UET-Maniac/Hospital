@@ -1,7 +1,8 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var tools = require('./tools');
-var defaultId = require('../config.json').defaultId.news;
+var config = require('../config.json');
+var defaultId = config.defaultId.news;
 /**
  * Schema bài đăng
  */
@@ -38,7 +39,7 @@ News.statics.finds = function(data, callback){
 			// .....
 		]
 	}
-	if (type != 0)
+	if (type != config.admin)
 		query.active = true;
 	this.find(query,callback);
 }

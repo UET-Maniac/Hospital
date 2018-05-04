@@ -1,6 +1,3 @@
-import { randomBytes } from "crypto";
-import { Z_HUFFMAN_ONLY } from "zlib";
-
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var config = require('./config.json');
@@ -72,11 +69,24 @@ var medicineSchema = new Schema({
     timestamp: Date
 })
 
+var  appointmentScheduleSchema = new Schema({
+    _id: String,
+	doctorId: {type: String, ref: 'User'},
+	patientId: {type: String, ref: 'User'},
+	time: Date,
+	address: String,
+	description: String,
+	acceptance: Boolean,
+    active: Boolean,
+    timestamp: Date
+})
+
 var User = mongoose.model('User', userSchema, 'user');
 var Department = mongoose.model('Department', departmentSchema, 'department');
 var MedicalRecord = mongoose.model('medicalRecord', medicalRecordSchema, 'medicalRecord');
 var Medicine = mongoose.model('Medicine', medicineSchema, 'medicine');
 var DiseaseType = mongoose.model('DiseaseType', diseaseTypeSchema, 'diseaseType');
+var AppointmentSchedule = mongoose.model('AppointmentSchedule', appointmentScheduleSchema, 'appointmentSchedule');
 
 // Department.find({_id: 'DEP101', active: true})
 // 	.select('_id')
@@ -128,8 +138,8 @@ var DiseaseType = mongoose.model('DiseaseType', diseaseTypeSchema, 'diseaseType'
 //     })
 // })
 
-// User.find({})
-//     .populate('departmentId')
+// User.find({objectType: 1})
+//     .populate({path: 'departmentId', model: 'Department'})
 //     .exec((err, results) => {
 //         results.forEach((result)=>{
 //             console.log(result)
@@ -162,11 +172,49 @@ var DiseaseType = mongoose.model('DiseaseType', diseaseTypeSchema, 'diseaseType'
 // 	// 	console.log(r)
 // 	// })
 // })
-var date = "13-04-2018";
-var newdate = date.split("-").reverse().join("-");
-console.log(new Date("2018-02-28 9:00"))
+// var date = "13-04-2018";
+// var newdate = date.split("-").reverse().join("-");
+// console.log(new Date("2018-02-28 9:00"))
 
+// var search = {$regex: '.*' + 'USE100000012' + '.*', $options: 'i'};
+// AppointmentSchedule.find({})
+// 	.populate({path: 'doctorId'})
+// 	.populate({path: 'patientId:', match: { _id: 'USE100000026'}})
+// 	.exec((err, result)=>{
+// 		if (!err && !result.length){
+// 			result = result.filter((element)=>{
+// 				if (element.doctorId) return element;
+// 			})
+// 			result.forEach(element=>{
+// 				console.log(element)
+// 			})
+// 		}else
+// 			console.log('Loois')
+// 	})
 
+// Department.aggregate([
+// 	{
+// 		$lookup:{
+// 			from: 'user',
+// 			localField: '_id',
+// 			foreignField: 'departmentId',
+// 			as: 'test'
+// 		}
+// 	}
+// ]).exec((err, result)=>{
+// 	result.forEach(element=>{
+// 		console.log(element)
+// 	})
+// })
 
+var match = {
+	$match: {
+		t: 1,
+		$or: [{a: 1}]
+	}
+}
+match['$match'].t = 4
+match['$match']['$or'].push({b: 2},{c: 3})
+console.log(match['$match'])
 
 ///update({},{$set: {active: true, timestamp: new Date()}},{multi: true})
