@@ -567,6 +567,7 @@ footer {
     float: right;
     padding-top: 5px;
     padding-left: 10px;
+    cursor: pointer;
 }
 .box_content_instroduce{
     padding: 30px 50px 30px 50px;
@@ -864,8 +865,8 @@ form .txt:focus:valid, form .txtarea:focus:valid {
     overflow-y: scroll;
     height: 250px;
     padding: 0px 30px 0px 30px;
-    background-color: yellowgreen;
-    border: 1px solid yellowgreen;
+    background-color: whitesmoke;
+    border: 1px solid whitesmoke;
     border-radius: 10px;
     font-size: 19px;
 }

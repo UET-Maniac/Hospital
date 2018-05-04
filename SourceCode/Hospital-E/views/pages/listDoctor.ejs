@@ -1,7 +1,7 @@
 <% for(var i=0; i<doctors.length; i++) {%>
     <div class="box_infomation_doctor">
         <div class="img_infomation_doctor col-md-3 float-left">
-            <img src="<% if(doctors[i].image){%><%= doctors[i].image %><% } %>" height="250px" width="220px" style="border:1px solid yellowgreen; border-radius: 10px;">
+            <img src="<% if(doctors[i].image){%><%= doctors[i].image %><% } %>" height="250px" width="230px" style="border:1px solid yellowgreen; border-radius: 10px;">
         </div>
         <div class="text_box_infomation_doctor col-md-6 float-left">
             <div class="content_infomation_doctor">
@@ -77,11 +77,12 @@
             <div class="h2"></div>
         </div>
 
+      
         <div class ="star_rating col-md-3 float-right">
             <div class="hedding-title"><h2>Điểm đánh giá</h2></div> 
 		    <div class="rating-part">
                 <div class="average-rating">    
-                    <h2 class="star-value"><% if(doctors[i].star){%><%= doctors[i].star %><% } %></h2>
+                    <h2 class="star-value"><% if(doctors[i].star){%><%= doctors[i].star %><% } %>/5</h2>
                     <div class='rating-stars text-center'>
                         <ul id='stars'>
                             <li class='star' title='1 Sao' >
@@ -105,7 +106,34 @@
             </div>
         </div>
 
+        
         <div class="clear"></div>
-        <hr>
+
+        <div class="icon_action_doctor" style="margin-right: 270px">
+        <div class="action_box_instroduce float-right ">
+                    <div class="icon_delete_instroduce">
+                        <input type="hidden">
+                        <a>
+                            <img src="/images/icons/delete.png" width="16px">
+                            <label for="icon_delete_instroduce">Delete</label>
+                        </a>
+                    </div>
+                    <div class="icon_update_instroduce" >
+                        <a>
+                            <img src="/images/icons/update.png" width="16px">
+                            <label for="icon_update_instroduce">Update</label>
+                        </a>
+                    </div>
+                    <div class="icon_view_instroduce">
+                        <a>
+                            <img src="/images/icons/view.png" width="16px">
+                            <label for="icon_view_instroduce">View</label>
+                        </a>
+                    </div>
+        </div>
+        </div>
+        
+
+        <br>
     </div>
 <% } %>
