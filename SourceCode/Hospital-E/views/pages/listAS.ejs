@@ -1,0 +1,250 @@
+<div class="container-table100">
+    <div class="wrap-table100">
+        <div class="table100 ver3">
+            <table data-vertable="ver3">
+                <thead>
+                    <tr class="row100 head">
+                        <th class="column100 column1" data-column="column1">S</br>T</br>T</th>
+                        <th class="column100 column2" data-column="column2" style="width: 100px;">ID lịch</th>
+                        <th class="column100 column3" data-column="column3" style="width: 100px;">Họ tên người dùng</th>
+                        <th class="column100 column4" data-column="column4" style="width: 100px;">Họ tên bác sĩ</th>
+                        <th class="column100 column5" data-column="column5" style="width: 100px;">Thời gian</th>
+                        <th class="column100 column6" data-column="column6">Địa chỉ</th>
+                        <th class="column100 column7" data-column="column7">Mô tả</th>
+                        <th class="column100 column8" data-column="column8" style="width: 80px;">Trạng thái chấp nhận</th>
+                        <th class="column100 column9" data-column="column9" style="width: 10px;">Xem</th>
+                        <% if(objectType == 1) { %>
+                            <th class="column100 column9" data-column="column10" style="width: 10px;">Chấp nhận</th>
+                        <% } %>
+                        <% if(objectType == 0) { %>
+                            
+                            <th class="column100 column10" data-column="column10" style="width: 10px;">Sửa</th>
+                            <th class="column100 column11" data-column="column11" style="width: 10px;">Hủy</th>
+                        <% } %>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i=0; i<appointments.length; i++) {  
+                        var viewId = 'view_'+i, updateId = 'update_'+i, formUpdate = 'formUpdate_'+i,
+                            deleteId = 'delete_'+i, pathImage = '';
+                        if (typeof appointments[i].doctor[0].image == 'undefined' || !appointments[i].doctor[0].image)
+                            pathImage = '/images/datas/user-default.png';
+                        else pathImage = appointments[i].doctor[0].image;
+                    %>
+                        <tr class="row100">
+                            <td class="column100 column1" data-column="column1"><%=i+1%></td>
+                            <td class="column100 column2" data-column="column2" style="width: 100px;"><%=appointments[i]._id%></td>
+                            <td class="column100 column3" data-column="column3" style="width: 100px;"><%=appointments[i].patient[0].name%></td>
+                            <td class="column100 column4" data-column="column4" style="width: 100px;"><%=appointments[i].doctor[0].name%></td>
+                            <td class="column100 column5" data-column="column5" style="width: 100px;"><%=appointments[i].time%></td>
+                            <td class="column100 column6" data-column="column6"><%=appointments[i].address%></td>
+                            <td class="column100 column7" data-column="column7"><%=appointments[i].description%></td>
+                            <td class="column100 column8" data-column="column8" style="width: 80px;">
+                                <% if(appointments[i].acceptance == true) { %>
+                                    Đã chấp nhận
+                                <% } else {%>
+                                    Chưa chấp nhận
+                                <% } %>
+                            </td>
+                            <td class="column100 column9" data-column="column9" style="width: 10px;" onclick="showScene('<%=viewId%>')"><a>click</a></td>
+                            <input type="hidden" id="<%=deleteId%>" value="<%=appointments[i]._id%>">
+                            <% if(objectType == 1) { %>
+                                <td class="column100 column10" data-column="column10" style="width: 10px;" onclick="updates('<%=deleteId%>')"><a>click</a></td>
+                            <% } %>
+                            <% if(objectType == 0) { %>
+                                <td class="column100 column10" data-column="column10" style="width: 10px;" onclick="showScene('<%=updateId%>')"><a>click</a></td>
+                                <td class="column100 column11" data-column="column11" style="width: 10px;" onclick="deletes('<%=deleteId%>')"><a>click</a></td>
+                            <% } %>
+                        </tr>
+                        <!-- View -->
+                        <a onclick="hideScene('<%=viewId%>')" id="<%=viewId%>" class="view_action">
+                            <div class="center_box_action">
+                                <div class="img_box_instroduce_view">
+                                    <img src="<%=pathImage%>">
+                                </div>
+                                <div class="text_box_instroduce_view">
+                                    <h1 class ="title_box_instroduce">
+                                        <%=appointments[i]._id%>
+                                    </h1>
+                                    <p><hr></p>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">ID bác sĩ:</span> <%=appointments[i].doctor[0]._id%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Họ tên bác sĩ:</span> <%=appointments[i].doctor[0].name%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Số điện thoại:</span> <%=appointments[i].doctor[0].phoneNumber%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Trình độ:</span>  <%=appointments[i].doctor[0].level%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Kinh nghiệm:</span>  <%=appointments[i].doctor[0].level%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Đánh giá:</span>  <%=appointments[i].doctor[0].star%> Sao</div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">ID chuyên khoa:</span>  <%=appointments[i].doctor[0].departmentId%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Trình độ:</span>  <%=appointments[i].doctor[0].level%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Kinh nghiệm:</span>  <%=appointments[i].doctor[0].experience%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Id Chuyên khoa:</span>  <%=appointments[i].doctor[0].departmentId%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Đánh giá:</span>  <%=appointments[i].doctor[0].star%> Sao</div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Thời gian hẹn:</span>  <%=appointments[i].time%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Địa chỉ hẹn:</span>  <%=appointments[i].address%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Mô tả:</span>  <%=appointments[i].description%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Trạng thái chấp nhận:</span> 
+                                        <% if(appointments[i].acceptance == true) { %>
+                                            Đã chấp nhận
+                                        <% } else {%>
+                                            Chưa chấp nhận
+                                        <% } %>
+                                    </div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">ID người đặt:</span>  <%=appointments[i].patient[0]._id%></div>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">Họ tên người đặt:</span>  <%=appointments[i].patient[0].name%></div>
+                                    <% if(objectType == 0) { %>
+                                        <div class="introduce_view" name="" >
+                                            <span class="icons_text_view">
+                                                <img src="/images/add.png" width="20px">
+                                            </span>
+                                            <span class="text_instroduce_view">Trạng thái</span>
+                                            <% if(appointments[i].active == true) { %>
+                                                Đã kích hoạt
+                                            <% } else {%>
+                                                Chưa kích hoạt
+                                            <% } %>
+                                        </div>
+                                        <div class="introduce_view" name="" >
+                                            <span class="icons_text_view">
+                                                <img src="/images/add.png" width="20px">
+                                            </span>
+                                            <span class="text_instroduce_view">Lân cuối cập nhật:</span>  <%=appointments[i].timestamp%></div>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </a>
+                        <!--END VIEW ACTION-->
+                        <% if(objectType == 0) { %>
+                            <!--UPDATE ACTION-->
+                            <tr><td>
+                            <div id ="<%=updateId%>" class="update_action">
+                                <div class="center_box_action">
+                                    <form id="<%=formUpdate%>">
+                                        <div class="text_box_instroduce_update" style="position: fixed;margin-top: 1%;margin-left: 20%;">
+                                            <h1 class ="title_box_instroduce">
+                                                <%= appointments[i]._id %>
+                                            </h1>
+                                            <hr><p>
+                                            <div class="row">
+                                                <label for="_id">ID: <span class="req">*</span></label>
+                                                <input type="text" readonly="readonly" name="_id" class="txt" tabindex="1" value="<%= appointments[i]._id %>">
+                                            </div>
+                                                
+                                            <div class="row">
+                                                <label for="doctorId">ID bác sĩ:  <span class="req">*</span></label>
+                                                <input type="text" name="doctorId" id="doctorId" class="txt" tabindex="2" value="<%= appointments[i].doctor[0]._id %>" required>
+                                            </div>
+    
+                                            <div class="row">
+                                                <label for="patientId">ID người đặt:  <span class="req">*</span></label>
+                                                <input type="text" name="patientId" id="patientId" class="txt" tabindex="3" value="<%= appointments[i].patient[0]._id %>" required>
+                                            </div>
+                                                
+                                            <div class="row">
+                                                <label for="time">Thời gian hẹn:   <span class="req">*</span></label>
+                                                <input type="datetime-local" name="time" id="time" class="txt" tabindex="4" value="<%= appointments[i].time %>" required>
+                                            </div>
+                
+                                            <div class="row">
+                                                <label for="address">Địa chỉ:  <span class="req">*</span></label>
+                                                <textarea name="address" id="address" class="txtarea" tabindex="5" required><%= appointments[i].address %></textarea>
+                                            </div>
+
+                                            <div class="row">
+                                                <label for="description">Mô tả:  <span class="req">*</span></label>
+                                                <textarea name="description" id="description" class="txtarea" tabindex="6" required><%= appointments[i].description %></textarea>
+                                            </div>
+
+                                            <div class="row">
+                                                <label for="acceptance">Trạng thái chấp nhận:  <span class="req">*</span></label>
+                                                <input type="text" name="acceptance" id="acceptance" class="txt" tabindex="7" value="<%= appointments[i].acceptance %>" required>
+                                            </div>
+                                                
+                                            <div class="row">
+                                                <label for="active">Trạng thái hoạt động:  <span class="req">*</span></label>
+                                                <input type="text" name="active" class="txt" tabindex="8" value="<%= appointments[i].active %>" required>
+                                            </div>
+
+                                            <div class="center">
+                                                <button class="submitbtn" onclick="submitUpdate('<%=formUpdate%>','<%=updateId%>')">Accept</button>
+                                                <button type="button" class="submitbtn" onclick="hideScene('<%=updateId%>')">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            </td></tr>
+                            <!--END UPDATE-->
+                        <% } %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

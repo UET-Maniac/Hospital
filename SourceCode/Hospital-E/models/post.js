@@ -4,19 +4,24 @@ var tools = require('./tools');
 var config = require('../config.json');
 var defaultId = config.defaultId.post;
 /**
- * Schema bài trao đổi
+ * Schema bài đăng
  */
 var Post = new Schema({
     _id: String,
+	tags: [String],
+	title: String,
 	content: String,
 	image: String,
-	userId: {type: String, ref: 'User'},
-	subPostId:[{type: String, ref: 'Post'}],
+	like: Number,
+	authorId: {type: String, ref: 'User'},
+	// postType = 0  la new con =1 la post cũ
+	postType: Number,
+	subPostIds: [String],
     active: Boolean,
     timestamp: Date
 })
 /**
- * Thêm bài trao đổi
+ * Thêm bài đăng
  * @param {*} data 
  * @param {*} callback 
  */
@@ -25,7 +30,7 @@ Post.statics.inserts = function(data, callback){
 	tools.Insert(PostModel, query, defaultId, data, callback);
 }
 /**
- * Tìm bài trao đổi
+ * Tìm kiếm bài đăng
  * @param {*} data 
  * @param {*} callback 
  */
@@ -42,7 +47,7 @@ Post.statics.finds = function(data, callback){
 	this.find(query,callback);
 }
 /**
- * Cập nhật bài trao đổi
+ * Cập nhật bài đăng
  * @param {*} data 
  * @param {*} callback 
  */
@@ -50,7 +55,7 @@ Post.statics.updates = function(data, callback){
 	tools.Update.call(this, data, callback);
 }
 /**
- * 'Xóa' bài trao đổi
+ * 'Xóa' bài đăng
  * @param {*} data 
  * @param {*} callback 
  */

@@ -49,9 +49,10 @@ router.route('/')
 		});
 	})
 	.post(upload.single('image'), function(req, res, next){
-        var data = {}
-        if (req.body.name){
-		    data.name = req.body.name
+        var data = {
+			name: req.body.name,
+			sex: req.body.sex,
+			objectType: req.body.objectType
 		}
 	    if(req.body.card){
 		    data.card = req.body.card
@@ -62,9 +63,6 @@ router.route('/')
 	    if(req.body.birthday){
 		    data.birthday = req.body.birthday
         }
-		if(req.body.sex){
-		    data.sex = req.body.sex
-		}
 		if(req.body.address){
 		    data.address = req.body.address
 		}
@@ -73,9 +71,6 @@ router.route('/')
 		}
 		if(req.body.password){
 		    data.password = req.body.password
-		}
-		if(req.body.objectType){
-		    data.objectType = req.body.objectType
 		}
 		if(req.body.level){
 		    data.level = req.body.level
@@ -104,11 +99,12 @@ router.route('/')
 	})
 	.patch(upload.single('image'), function(req, res, next){
 		var data = {
-		    _id: req.body._id,
+			_id: req.body._id,
+			name: req.body.name,
+			sex: req.body.sex,
+			objectType: req.body.objectType,
+			active: req.body.active
 	    }
-	    if (req.body.name){
-		    data.name = req.body.name
-		}
 	    if(req.body.card){
 		    data.card = req.body.card
 	    }
@@ -118,17 +114,11 @@ router.route('/')
 	    if(req.body.birthday){
 		    data.birthday = req.body.birthday
 		}
-		if(req.body.sex){
-		    data.sex = req.body.sex
-		}
 		if(req.body.address){
 		    data.address = req.body.address
 		}
 		if(req.body.userName){
 		    data.userName = req.body.userName
-		}
-		if(req.body.objectType){
-		    data.objectType = req.body.objectType
 		}
 		if(req.body.level){
 		    data.level = req.body.level
@@ -142,9 +132,6 @@ router.route('/')
 		if(req.body.dean){
 		    data.dean = req.body.dean
 		}
-		if(req.body.active){
-		    data.active = req.body.active
-	    }
 	    if (req.file){
             // cắt 'puclic' đi
             data.image= req.file.path.substr(6,req.file.path.length);
@@ -161,16 +148,16 @@ router.route('/')
                 }
             });
         })
-        .delete(function(req, res, next){
-            var data = req.body._id;
-            User.deletes(data, (err, user) => {
-		     if (err || !user){
-			    res.render('pages/errorTemplate',
+	.delete(function(req, res, next){
+		var data = req.body._id;
+		User.deletes(data, (err, user) => {
+			if (err || !user){
+				res.render('pages/errorTemplate',
 					{message: 'Lỗi server!', codeError: 500});
-		    } else{
+			} else{
 				res.render('pages/listUsers', {users: [user], objectType: objectType});
-		    }
-	    });
+			}
+		});
 	})
 
 module.exports = router;

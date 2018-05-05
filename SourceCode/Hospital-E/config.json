@@ -15,7 +15,6 @@
         "diseaseType": "DT10000000",
         "medicalRecord": "REC10000000",
         "medicine": "MED10000000",
-        "news": "NEW10000000",
         "post": "POS10000000",
         "rating": "RAT10000000",
         "user": "USE100000000"
