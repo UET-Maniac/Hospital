@@ -69,21 +69,13 @@ router.route('/')
     .patch(checkAdmin, upload.single('image'), function(req, res, next){
         var data = {
             _id: req.body._id,
-        }
-        if (req.body.name){
-            data.name = req.body.name
-        }
-        if(req.body.description){
-            data.description = req.body.description
-        }
-        if(req.body.address){
-            data.address = req.body.address
+            name: req.body.name,
+            description: req.body.description,
+            address: req.body.address,
+            active: req.body.active
         }
         if(req.body.foundingOn){
-            data.foundingOn = req.body.foundingOn
-        }
-        if(req.body.active){
-            data.active = req.body.active
+            data.foundingOn= req.body.foundingOn;
         }
         if (req.file){
             // cắt 'puclic' đi

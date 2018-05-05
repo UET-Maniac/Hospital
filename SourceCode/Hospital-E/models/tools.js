@@ -24,20 +24,6 @@ function Update(data, callback){
 	this.findByIdAndUpdate(query, update, callback);
 }
 /**
- * Với những đối tượng có các array tham chiếu đến thực thể khác
- * Thêm 1 tham chiếu và mảng đó 
- * @param {string} data _id của đối tượng 
- * @param {object} add query cho update 
- * @param {function} callback hàm call back
- */
-function addIntoArray(data, add, callback){
-	data.active = true;
-	data.timestamp = new Date();
-	var query = data;
-	var update = { $push: add };
-	this.findByIdAndUpdate(query, update, callback);
-}
-/**
  * Thêm 1 đối tượng  (tìm kiếm xem dữ liệu đã tồn tại hay chưa rồi mới thêm)
  * @param {model} model schemal model truyền vào 
  * @param {object} query điều kiện để check tránh trùng lặp dữ liệu

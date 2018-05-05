@@ -65,28 +65,6 @@ MedicalRecord.statics.deletes = function(data, callback){
 	tools.Delete.call(this, data, callback);
 }
 /**
- * Thêm loại bệnh vào tham chiếu trong mảng diseaseTypes
- * @param {object} data dữ liệu cần thêm (_id của hồ sơ và diseaseTypes (id) của loại bệnh)
- * @param {function} callback hàm callback 
- */
-MedicalRecord.statics.addIntoArrayDiseaseTypes = function(data, callback){
-	var add = {
-		diseaseTypes: data.diseaseTypes
-	}
-	tools.addIntoArray.call(this, data._id, add, callback);
-}
-/**
- * Thêm loại thuốc vào tham chiếu trong mảng medicines
- * @param {object} data dữ liệu cần thêm (_id của hồ sơ và medicines (id) của loại thuốc)
- * @param {function} callback hàm callback 
- */
-MedicalRecord.statics.addIntoArrayMedicines = function(data, callback){
-	var add = {
-		medicines: data.medicines
-	}
-	tools.addIntoArray.call(this, data._id, add, callback);
-}
-/**
  * name, Schema, collection
  */
 var MedicalRecordModel = mongoose.model('MedicalRecord', MedicalRecord, "medicalRecord");

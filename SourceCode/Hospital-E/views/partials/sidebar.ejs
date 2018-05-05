@@ -17,13 +17,15 @@
             <a target="_top" href="/dien-dan">Diễn đàn</a>
             <span class="infoBox" id="appointment">
                 <a class="info-choose" id="appointment-choose" target="_top" href="/dat-lich-hen/dat-moi">Đặt lịch hẹn</a>
-                <span class="infoBox-content" id="appointment-content">
-                    <a target="_top" href="/dat-lich-hen/dat-moi">Đặt mới</a>
-                    <a target="_top" href="/dat-lich-hen/lich-su">Lịch sử</a>
-                    <% if(objectType == 0 || objectType == 1){%>
-                        <a target="_top" href="/dat-lich-hen/lich-hen">Lịch hẹn</a>
-                    <% } %>
-                </span>
+                <% if(objectType == 0 || objectType == 1 || objectType == 2){%>
+                    <span class="infoBox-content" id="appointment-content">
+                        <a target="_top" href="/dat-lich-hen/dat-moi">Đặt mới</a>
+                        <a target="_top" href="/dat-lich-hen/lich-su">Lịch sử</a>
+                        <% if(objectType == 0 || objectType == 1){%>
+                            <a target="_top" href="/dat-lich-hen/lich-hen">Lịch hẹn</a>
+                        <% } %>
+                    </span>
+                <% } %>
             </span>
             <% if(objectType == 0 || objectType == 1 || objectType == 2){%>
                 <span class="infoBox" id="record">

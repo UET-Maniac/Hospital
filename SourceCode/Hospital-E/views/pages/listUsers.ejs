@@ -187,12 +187,12 @@
                                         <hr><p>
                                         <div class="row">
                                             <label for="_id">ID: <span class="req">*</span></label>
-                                            <input type="text" readonly="readonly" name="_id" class="txt" tabindex="1" value="<%= users[i]._id %>">
+                                            <input type="text" readonly="readonly" name="_id" class="txt" tabindex="1" value="<%= users[i]._id %>" required>
                                         </div>
                                             
                                         <div class="row">
                                             <label for="name">Họ và tên:  <span class="req">*</span></label>
-                                            <input type="text" name="name" class="txt" tabindex="2" value="<%= users[i].name %>">
+                                            <input type="text" name="name" class="txt" tabindex="2" value="<%= users[i].name %>" required>
                                         </div>
 
                                         <div class="row">
@@ -212,7 +212,7 @@
 
                                         <div class="row">
                                             <label for="sex">Giới tính:  <span class="req">*</span></label>
-                                            <input type="text" name="sex" class="txt" tabindex="6" value="<%= users[i].sex %>">
+                                            <input type="text" name="sex" class="txt" tabindex="6" value="<%= users[i].sex %>" required>
                                         </div>
 
                                         <div class="row">
@@ -227,32 +227,32 @@
                                             
                                         <div class="row">
                                             <label for="objectType">Định quyền:  <span class="req">*</span></label>
-                                            <input type="text" name="objectType" class="txt" tabindex="9" value="<%= users[i].objectType %>">
+                                            <input type="text" name="objectType" class="txt" tabindex="9" value="<%= users[i].objectType %>" required>
                                         </div>
                                         <% if(users[i].objectType == 1) { %>
                                             <div class="row">
                                                 <label for="level">Trình độ:  <span class="req">*</span></label>
-                                                <input type="text" name="level" class="txt" tabindex="10" value="<%= users[i].level %>">
+                                                <input type="text" name="level" class="txt" tabindex="10" value="<%= users[i].level %>" required>
                                             </div>
                                             
                                             <div class="row">
                                                 <label for="experience">Kinh nghiệm:  <span class="req">*</span></label>
-                                                <input type="text" name="experience" class="txt" tabindex="11" value="<%= users[i].experience %>">
+                                                <input type="text" name="experience" class="txt" tabindex="11" value="<%= users[i].experience %>" required>
                                             </div>
 
                                             <div class="row">
                                                 <label for="departmentId">Chuyên khoa:  <span class="req">*</span></label>
-                                                <input type="text" name="departmentId" class="txt" tabindex="12" value="<%= users[i].departmentId._id %>">
+                                                <input type="text" name="departmentId" class="txt" tabindex="12" value="<%= users[i].departmentId._id %>" required>
                                             </div>
 
                                             <div class="row">
                                                 <label for="dean">Trưởng khoa:  <span class="req">*</span></label>
-                                                <input type="text" name="dean" class="txt" tabindex="13" value="<%= users[i].dean %>">
+                                                <input type="text" name="dean" class="txt" tabindex="13" value="<%= users[i].dean %>" required>
                                             </div>
                                         <% } %>
                                         <div class="row">
                                             <label for="active">Trạng thái hoạt động:  <span class="req">*</span></label>
-                                            <input type="text" name="active" class="txt" tabindex="14" value="<%= users[i].active %>">
+                                            <input type="text" name="active" class="txt" tabindex="14" value="<%= users[i].active %>" required>
                                         </div>
                                         <div class="center">
                                             <button class="submitbtn" onclick="submitUpdate('<%=formUpdate%>','<%=updateId%>')">Accept</button>
