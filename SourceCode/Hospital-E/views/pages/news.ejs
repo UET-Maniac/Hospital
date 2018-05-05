@@ -2,7 +2,30 @@
 <html lang="en">
     <head>
         <% include ../partials/head %> 
-      
+        <style>
+            .main_content button{
+                color: black;
+                padding: 10px;
+            }
+            .main_content button:hover{
+                color: blue;
+            }
+        </style>
+        <script type="text/javascript">
+            var number_page = 0;
+            $(document).ready(function(){
+                $("#btn-more").click(function(){
+                    number_page ++;
+                    var url_p = "http://localhost:3000/tin-tuc/readmore?page=" + number_page;
+                    $.ajax({
+                        url: url_p,
+                        success: function(result){
+                            $("#block_list_news").append(result);
+                        }
+                    });
+                });
+            });
+</script>
     </head>
     <body>
     <!--
@@ -21,6 +44,7 @@
         <div class="body-wrapper">
             <div class="main_content">
                 <h2 class = "main_name">Tin Tức</h2>
+                <div id="block_list_news">
                 <% news.forEach(function(one_new){ %>
                 <div class= "block_post">
                     <h3 class="teaser_headline"><a href=""><%= one_new.title %></a></h3>
@@ -32,54 +56,11 @@
                     <div class = "block_img_post"><img src="/images/img_post.jpg"></div>
                 </div>
                 <hr class="clear">
-                <% }); %> 
-                
-
-                <!--
-                    First post
-                -->
-                <div class= "block_post">
-                    <h3 class="teaser_headline"><a href="">Addressing Emergency Care in Afghanistan</a></h3>
-                    <div class ="block_text_post">
-                        <span class="time_post">17 April 2018  </span> –
-                        <span>After fighting broke out in the rural district of Chark-Logar, Salim and his family were forced to flee their home. During the firefight, Salim was shot in the stomach. It took Salim two hours until he reached a first aid post. Salim's story is not unusual in today's Afghanistan, where the already overwhelmed health facilities are often unable to absorb the burden. The Ministry of Health, with support from the Health Cluster, led by WHO, is struggling to rebuild a health system badly damaged after years of conflict....
-                        </span>
-                        <span class="readmore"><a href="">Read more</a></span>
-                    </div>
-                    <div class = "block_img_post"><img src="/images/img_post.jpg"></div>
+                <% }); %>
                 </div>
-                <hr class="clear">
-                
-                 <!--
-                    Second post
-                -->
-                <div class= "block_post">
-                        <h3 class="teaser_headline"><a href="">Addressing Emergency Care in Afghanistan</a></h3>
-                        <div class ="block_text_post">
-                            <span class="time_post">17 April 2018  </span> –
-                            <span>After fighting broke out in the rural district of Chark-Logar, Salim and his family were forced to flee their home. During the firefight, Salim was shot in the stomach. It took Salim two hours until he reached a first aid post. Salim's story is not unusual in today's Afghanistan, where the already overwhelmed health facilities are often unable to absorb the burden. The Ministry of Health, with support from the Health Cluster, led by WHO, is struggling to rebuild a health system badly damaged after years of conflict....
-                            </span>
-                            <span class="readmore"><a href="">Read more</a></span>
-                        </div>
-                        <div class = "block_img_post"><img src="/images/img_post.jpg"></div>
-                </div>
-                <hr class="clear">
-
-                 <!--
-                    Thirth post
-                -->
-                <div class= "block_post">
-                        <h3 class="teaser_headline"><a href="">Addressing Emergency Care in Afghanistan</a></h3>
-                        <div class ="block_text_post">
-                            <span class="time_post">17 April 2018  </span> –
-                            <span>After fighting broke out in the rural district of Chark-Logar, Salim and his family were forced to flee their home. During the firefight, Salim was shot in the stomach. It took Salim two hours until he reached a first aid post. Salim's story is not unusual in today's Afghanistan, where the already overwhelmed health facilities are often unable to absorb the burden. The Ministry of Health, with support from the Health Cluster, led by WHO, is struggling to rebuild a health system badly damaged after years of conflict....
-                            </span>
-                            <span class="readmore"><a href="">Read more</a></span>
-                        </div>
-                        <div class = "block_img_post"><img src="/images/img_post.jpg"></div>
-                </div>
+                <button id="btn-more">Tin tuc cu hon >></button>
             </div>
-
+            
             <!--
                 Select Function
             -->
@@ -107,3 +88,4 @@
         <footer><% include ../partials/footer %></footer>
     </body>
 </html>
+

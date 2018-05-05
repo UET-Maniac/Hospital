@@ -13,6 +13,7 @@ var app = express();
 */
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
+var resgisterRouter = require('./routes/resgister');
 var infoDepartmentRouter = require('./routes/informations/department');
 var infoDoctorRouter = require('./routes/informations/doctor');
 var infoAllUserRouter = require('./routes/informations/allUser');
@@ -53,7 +54,8 @@ app.use(bodyParse.json())
     Routes which should handle request
 */
 app.use('/', middlewareToken,indexRouter);
-app.use('/dang-nhap', loginRouter)
+app.use('/dang-nhap', loginRouter);
+app.use('/dang-ky', resgisterRouter);
 app.use('/gioi-thieu/khoa', middlewareToken, infoDepartmentRouter);
 app.use('/gioi-thieu/bac-si', middlewareToken, infoDoctorRouter);
 app.use('/gioi-thieu/tai-khoan', middlewareToken, infoAllUserRouter);
