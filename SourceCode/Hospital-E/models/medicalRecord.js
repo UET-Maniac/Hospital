@@ -33,19 +33,59 @@ MedicalRecord.statics.inserts = function(data, callback){
  * Tìm kiếm hồ sơ => chưa tìm kiếm theo theo tên của bệnh nhân, bác sĩ .....
  * @param {string} data từ tìm kiếm
  * @param {number} objectType đối tượng gửi yêu cầu
- * @param {function} callback hàm callback 
+ * @param {string} objectType id người dùng
+ * @param {function} callback hàm callback
  */
-MedicalRecord.statics.finds = function(data, objectType, callback){
+MedicalRecord.statics.finds = function(data, objectType, idObjectType, callback){
 	var search = {$regex: '.*' + data + '.*', $options: 'i'};
-	var query = {
-		$or: [
-			{_id: search},
-			// .....
-		]
+	var lookupDoctor = {
+		$lookup:{
+			from: 'user',
+			localField: 'doctorId',
+			foreignField: '_id',
+			as: 'doctor'
+		}
 	}
-	if (objectType != config.admin)
-		query.active = true;
-	this.find(query,callback);
+	var lookupPatient = {
+		$lookup:{
+			from: 'user',
+			localField: 'patientId',
+			foreignField: '_id',
+			as: 'patient'
+		}
+	}
+	var match = {
+		$match: {
+			$or: [
+				{_id: search},
+				{bedNo: search},
+				{theDiagnosis: search},
+				{medicines: search}
+			]
+		}
+	}
+	if (objectType != config.admin){
+		match['$match'].active = true;
+	}
+	if (objectType == config.doctor){
+		match['$match']['doctor._id'] = idObjectType;
+		match['$match']['$or'].push(
+			{'patient._id': search}, {'patient.name': search}, 
+			{'patient.card': search},{'patient.phoneNumber': search}, 
+			{'patient.userName': search}
+		);
+	} else if (objectType == config.user){
+		match['$match']['patient._id'] = idObjectType;
+		match['$match']['$or'].push({'doctor._id': search}, {'doctor.name': search});
+	} else if (objectType == config.admin){
+		match['$match']['$or'].push(
+			{'patient._id': search}, {'patient.name': search}, 
+			{'patient.card': search},{'patient.phoneNumber': search}, 
+			{'patient.userName': search}
+		);
+		match['$match']['$or'].push({'doctor._id': search}, {'doctor.name': search});
+	}
+	this.aggregate([lookupDoctor,lookupPatient,match]).exec(callback);
 }
 /**
  * Cập nhật hồ sơ

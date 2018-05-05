@@ -19,7 +19,7 @@ router.use(function(req, res, next){
 router.use(function(req, res, next){
 	if (objectType != config.admin){
 		return  res.render('pages/error',
-			{ objectType: config.viewer, message: 'Không có quyền truy cập!', codeError: 401});
+			{ objectType: objectType, message: 'Không có quyền truy cập!', codeError: 401});
 	}
 	return next();
 })

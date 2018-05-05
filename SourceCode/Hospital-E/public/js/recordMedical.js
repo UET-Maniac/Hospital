@@ -1,13 +1,12 @@
 $(document).ready(function() {
-    $(".row100[acceptance=false]").css('background-color', '#ffff00');
     $('#form-sidebar').on('submit', function(event) {
         event.preventDefault();
         var form = $(this);
         var data = form.serialize();
         $.ajax({
-            method: 'PUT', url: '/dat-lich-hen/lich-su', data: data
+            method: 'PUT', url: '/ho-so/benh-an', data: data
         }).done(function(data){
-            $('#listHistories').html(data);
+            $('#listRecordMedilcal').html(data);
         });
     });
 })
@@ -35,18 +34,4 @@ function displayImage(input, id) {
         };
         reader.readAsDataURL(input.files[0]);
     }
-}
-
-function deletes(id){
-    if(!confirm('Bạn chắc chắn muốn xóa?')){
-        return false;
-    }
-    var data = {
-        _id: $('#'+id).val()
-    }
-    $.ajax({
-        method: 'DELETE', url: '/dat-lich-hen/lich-su', data: data
-    }).done(function(data){
-        $('#listHistories').html(data);
-    });
 }

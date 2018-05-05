@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../partials/head %>
+    </head>
+    <body>
+		<% include ../partials/sidebar %>
+		<header><% include ../partials/header %></header>
+        <div class ="box_top_content">
+            <div class="box_left_name_content">
+                <div class="main_name">Bệnh án</div>
+            </div>
+            
+            <form id="form-sidebar">
+                <div class="action_content_introduce">
+                    <input class ="search" type="text" id="dataSearch" name="data" placeholder="Tìm kiếm">
+                    <a id="search"><img src="/images/icons/search.png" width="32px" onclick="search()"></a>
+                    <a href=""><img src="/images/icons/back.png" width="32px"></a>
+                </div>
+            </form>
+            
+            <div class="clear"></div>
+        </div>
+        <div id="listRecordMedilcal">
+            <% include ./listRecordMedilcal %>
+        </div>
+        
+        <div class="clear"></div>
+        <footer><% include ../partials/footer %></footer>
+    
+        <script src="/js/recordMedical.js"></script>
+        <script src="/js/table.js"></script>
+
+    </body>
+</html>

@@ -6,26 +6,22 @@ $(document).ready(function() {
         var form = $(this);
         var data = form.serialize();
         $.ajax({
-            method: 'PUT', url: '/gioi-thieu/tai-khoan', data: data
+            method: 'PUT', url: '/ho-so/benh-nhan', data: data
         }).done(function(data){
-            $('#listUsers').html(data);
+            $('#listPatients').html(data);
         });
     });
     $('#create-form').on('submit', function(event) {
         event.preventDefault();
-        // var form = $(this);
-        // var data = form.serialize();
-        var data = new FormData(this);
+        var form = $(this);
+        var data = form.serialize();
         $.ajax({
             method: 'POST', 
-            url: '/gioi-thieu/tai-khoan', 
-            data: data,
-            contentType: false,
-            cache: false,
-            processData:false
+            url: '/ho-so/benh-nhan', 
+            data: data
         }).done(function(data){
             hideScene('create');
-            $('#listUsers').html(data);
+            $('#listPatients').html(data);
         });
     })
 })
@@ -45,17 +41,14 @@ function showScene(show){
 function submitUpdate(form, id){
     $('#'+form).submit((event)=>{
         event.preventDefault();
-        var data = new FormData($('#'+form)[0]);
+        var data = $('#'+form).serialize();
         $.ajax({
             method: 'Patch', 
-            url: '/gioi-thieu/tai-khoan', 
-            data: data,
-            contentType: false,
-            cache: false,
-            processData:false
+            url: '/ho-so/benh-nhan', 
+            data: data
         }).done(function(data){
             hideScene(id);
-            $('#listUsers').html(data);
+            $('#listPatients').html(data);
         });
     })
     
@@ -82,8 +75,8 @@ function deletes(id){
         _id: $('#'+id).val()
     }
     $.ajax({
-        method: 'DELETE', url: '/gioi-thieu/tai-khoan', data: data
+        method: 'DELETE', url: '/ho-so/benh-nhan', data: data
     }).done(function(data){
-        $('#listUsers').html(data);
+        $('#listPatients').html(data);
     });
 }

@@ -24,7 +24,7 @@ $(document).ready(function() {
     });
 
     $("#logout").click(function(){
-        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+        document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     })
     //End Effect Side Bar
 });
