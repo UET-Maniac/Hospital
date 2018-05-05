@@ -2,11 +2,11 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var tools = require('./tools');
 var config = require('../config.json');
-var defaultId = config.defaultId.news;
+var defaultId = config.defaultId.post;
 /**
  * Schema bài đăng
  */
-var News = new Schema({
+var Post = new Schema({
     _id: String,
 	tags: [String],
 	title: String,
@@ -25,16 +25,16 @@ var News = new Schema({
  * @param {*} data 
  * @param {*} callback 
  */
-News.statics.inserts = function(data, callback){
+Post.statics.inserts = function(data, callback){
 	var query = {};
-	tools.Insert(NewsModel, query, defaultId, data, callback);
+	tools.Insert(PostModel, query, defaultId, data, callback);
 }
 /**
  * Tìm kiếm bài đăng
  * @param {*} data 
  * @param {*} callback 
  */
-News.statics.finds = function(data, callback){
+Post.statics.finds = function(data, callback){
 	var search = {$regex: '.*' + data + '.*', $options: 'i'};
 	var query = {
 		$or: [
@@ -51,7 +51,7 @@ News.statics.finds = function(data, callback){
  * @param {*} data 
  * @param {*} callback 
  */
-News.statics.updates = function(data, callback){
+Post.statics.updates = function(data, callback){
 	tools.Update.call(this, data, callback);
 }
 /**
@@ -59,14 +59,14 @@ News.statics.updates = function(data, callback){
  * @param {*} data 
  * @param {*} callback 
  */
-News.statics.deletes = function(data, callback){
+Post.statics.deletes = function(data, callback){
 	tools.Delete.call(this, data, callback);
 }
 /**
  * name, Schema, collection
  */
-var NewsModel = mongoose.model('News', News, "news");
+var PostModel = mongoose.model('Post', Post, "post");
 /**
  * Exports
  */
-module.exports = NewsModel;
+module.exports = PostModel;
