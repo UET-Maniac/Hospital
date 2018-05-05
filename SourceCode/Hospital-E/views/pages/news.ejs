@@ -21,6 +21,20 @@
         <div class="body-wrapper">
             <div class="main_content">
                 <h2 class = "main_name">Tin Tức</h2>
+                <% news.forEach(function(one_new){ %>
+                <div class= "block_post">
+                    <h3 class="teaser_headline"><a href=""><%= one_new.title %></a></h3>
+                    <div class ="block_text_post">
+                        <span class="time_post"><%= one_new.timestamp %></span> –
+                        <span><%= one_new.content %></span>
+                        <span class="readmore"><a href="">Read more</a></span>
+                    </div>
+                    <div class = "block_img_post"><img src="/images/img_post.jpg"></div>
+                </div>
+                <hr class="clear">
+                <% }); %> 
+                
+
                 <!--
                     First post
                 -->
