@@ -43,7 +43,19 @@ router.get('/readmore', function(req, res, next) {
 
 });
 
+router.get('/chitiet', (req, res, next) => {
+    console.log(req.query.id);
 
+    Post.find({_id: req.query.id}, (err, data) => {
+        if(err){
+            res.render('pages/error',
+			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
+        }else{
+            console.log(data);
+            res.render('pages/content_news', {one_new: data, objectType: objectType});
+        }
+    });
+});
 
 // router.get('/', (req, res, next) => {
 //     Post.find({_id: req.param._id}, (err, a_news) => {

@@ -1,31 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <% include ../partials/head %> 
+        <% include ../partials/head %>
         <style>
-            .main_content button{
-                color: black;
-                padding: 10px;
+            .no-change{
+                font-size: 20px;
+                color: #fff;
             }
-            .main_content button:hover{
-                color: blue;
+            .no-change:hover{
+                color: #ffa;
             }
         </style>
-        <script type="text/javascript">
-            var number_page = 0;
-            $(document).ready(function(){
-                $("#btn-more").click(function(){
-                    number_page ++;
-                    var url_p = "http://localhost:3000/tin-tuc/readmore?page=" + number_page;
-                    $.ajax({
-                        url: url_p,
-                        success: function(result){
-                            $("#block_list_news").append(result);
-                        }
-                    });
-                });
-            });
-</script>
     </head>
     <body>
     <!--
@@ -43,22 +28,17 @@
     -->
         <div class="body-wrapper">
             <div class="main_content">
-                <h2 class = "main_name">Tin Tức</h2>
-                <div id="block_list_news">
-                <% news.forEach(function(one_new){ %>
-                <div class= "block_post">
-                    <h3 class="teaser_headline"><a href="/tin-tuc/chitiet?id=<%= one_new._id %>"><%= one_new.title %></a></h3>
+                <h2 class = "main_name"><a class="no-change" href="http://localhost:3000/tin-tuc">Tin Tức</a> >> <%= one_new.title %></h2>
+
+                    <h3 class="teaser_headline"><a href=""><%= one_new.title %></a></h3>
                     <div class ="block_text_post">
                         <span class="time_post"><%= one_new.timestamp %></span> –
                         <span><%= one_new.content %></span>
-                        <span class="readmore"><a href="">Read more</a></span>
                     </div>
                     <div class = "block_img_post"><img src="/images/img_post.jpg"></div>
-                </div>
+
                 <hr class="clear">
-                <% }); %>
-                </div>
-                <button id="btn-more">Tin tuc cu hon >></button>
+
             </div>
             
             <!--
