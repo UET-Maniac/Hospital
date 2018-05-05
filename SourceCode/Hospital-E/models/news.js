@@ -14,6 +14,9 @@ var News = new Schema({
 	image: String,
 	like: Number,
 	authorId: {type: String, ref: 'User'},
+	// postType = 0  la new con =1 la post cũ
+	postType: Number,
+	subPostIds: [String],
     active: Boolean,
     timestamp: Date
 })

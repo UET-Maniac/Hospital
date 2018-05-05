@@ -16,8 +16,7 @@ var MedicalRecord = new Schema({
 	treatment: String,
 	timeStart: Date,
 	timeEnd: Date,
-	diseaseTypes: [{type: String, ref: 'DiseaseType'}],
-	medicines:[{type: String, ref: 'Medicine'}],
+	medicines:String,
     active: Boolean,
     timestamp: Date
 })
