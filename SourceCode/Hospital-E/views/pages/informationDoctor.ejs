@@ -2,6 +2,8 @@
 <html lang="en">
     <head>
         <% include ../partials/head %>
+        <script type="text/javascript" src="/js/informationDoctor.js"></script>
+        <script src="/js/infoDepartments.js"></script>
     </head>
     <body>
         <% include ../partials/sidebar %>
@@ -27,47 +29,92 @@
             <div class="col_box_infomation_doctor">
                 <% include ./listDoctor %>
             </div>
+            <% if (objectType == 0){ %>
+				<!--Create ACTION-->
+				<div id ="create" class="create_action">
+					<div class="center_box_action">
+						<form id="create-form">
+							<div class="img_box_instroduce_update">
+								<img id="profile_pic_create" src="/images/datas/user-default.png">
+								<div class="input_file_img">
+									<span>Chọn ảnh: </span>
+									<input type="file" name="image"
+										accept="image/gif, image/jpeg, image/png"
+										onchange="displayImage(this,'profile_pic_create')">
+								</div>
+							</div>
+							<div class="text_box_instroduce_update" >
+								<h1 class ="title_box_instroduce">
+									Bác sĩ
+								</h1>
+								<hr><p>	
+								<div class="row">
+									<label for="id">ID:  <span class="req">*</span></label>
+									<input type="id" name="id" class="txt" tabindex="2" placeholder="USE100000001 ">
+								</div>
+									
+								<div class="row">
+									<label for="name">Tên bác sĩ:  <span class="req">*</span></label>
+									<input type="name" name="name" class="txt" tabindex="2" placeholder="Đặng Ðức Toản">
+								</div>
+									
+								<div class="row">
+                                        <label for="card">Chứng minh thư:  <span class="req">*</span></label>
+                                        <input name="card" class="txt" tabindex="2" placeholder="163439199">
+                                </div>
+
+                                <div class="row">
+                                        <label for="phonenumber">Số điện thoại: <span class="req">*</span></label>
+                                        <input name="phonenumber" class="txt" tabindex="2" placeholder="01634139199">
+                                </div>
+                                
+								<div class="row">
+									<label for="dateofbirth">Ngày sinh:   <span class="req">*</span></label>
+									<input type="date" name="dateofbirth" id="foundingOn" class="txt" tabindex="5">
+                                </div>
+                                
+                                <div class="row">
+                                        <label for="gender">Giới tính: <span class="req">*</span></label>
+                                        <input name="gender" class="txt" tabindex="2" placeholder="true">
+                                </div>
+
+                                <div class="row">
+                                        <label for="address">Địa chỉ: <span class="req">*</span></label>
+                                        <textarea name="address" class="txtarea" tabindex="3" placeholder="144 Xuân Thủy, Cầu Giấy, Hà Nội "></textarea>
+                                </div>
+
+                                <div class="row">
+                                        <label for="level">Trình độ: <span class="req">*</span></label>
+                                        <input name="level" class="txt" tabindex="2" placeholder="Giáo sư">
+                                </div>
+
+                                <div class="row">
+                                        <label for="experience">Kinh nghiệm: <span class="req">*</span></label>
+                                        <input name="experience" class="txt" tabindex="2" placeholder="15 năm">
+                                </div>
+
+                                <div class="row">
+                                        <label for="idkhoa">ID Khoa: <span class="req">*</span></label>
+                                        <input name="idkhoa" class="txt" tabindex="2" placeholder="DEP101">
+                                </div>
+
+                                <div class="row">
+                                        <label for="tenkhoa">Tên khoa: <span class="req">*</span></label>
+                                        <input name="tenkhoa" class="txt" tabindex="2" placeholder=" Chấn thương chỉnh hình">
+                                </div>
+
+								<div class="center">
+									<button class="submitbtn" >Accept</button>
+									<button type="button" class="submitbtn" onclick="hideScene('create')">Cancel</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>	
+				<!--END Create-->
+			<% } %>
             <div class="clear"></div>
         </div>
     <footer><% include ../partials/footer %></footer>
-    <script>
-        
-        $(document).ready(function(){
-        $('#stars li').on('mouseover', function(){
-            var onStar = parseInt($(this).data('value'), 10);
-
-            //Hover star
-            $(this).parent().children('li.star').each(function(e){
-            if (e < onStar) {
-                $(this).addClass('hover');
-            }
-            else {
-                $(this).removeClass('hover');
-            }
-            });
-            
-        }).on('mouseout', function(){
-            $(this).parent().children('li.star').each(function(e){
-            $(this).removeClass('hover');
-            });
-        });
-        
-        
-        //Onclick star
-        $('#stars li').on('click', function(){
-            var onStar = parseInt($(this).data('value'), 10);
-            var stars = $(this).parent().children('li.star');
-            
-            for (i = 0; i < stars.length; i++) {
-            $(stars[i]).removeClass('selected');
-            }
-            
-            for (i = 0; i < onStar; i++) {
-            $(stars[i]).addClass('selected');
-            }
-            
-        });
-        });
-    </script>
     </body>
 </html>

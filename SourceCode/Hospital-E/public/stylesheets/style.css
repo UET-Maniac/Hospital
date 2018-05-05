@@ -567,6 +567,7 @@ footer {
     float: right;
     padding-top: 5px;
     padding-left: 10px;
+    cursor: pointer;
 }
 .box_content_instroduce{
     padding: 30px 50px 30px 50px;
@@ -602,6 +603,15 @@ footer {
     float: right;
     padding-left: 10px;
 }
+.input_file_img{
+    padding-top: 20px;
+    margin-left: 100px;
+}
+.input_file_img span{
+    font-size: 23px;
+    font-weight: bold;
+    color: rebeccapurple;  
+}
 .view_action, .update_action, .create_action, .star_box_rating{
     display: none;
     /** Position and style */
@@ -616,7 +626,7 @@ footer {
     font-family: 'Times New Roman', Times, serif;
     
 }
-.view_action:target, .update_action:target, .create_action:target, .star_box_rating:target{
+.view_action:target, .update_action:target, .create_action:target{
     /** Unhide lightbox **/
     display: block;
 }
@@ -624,13 +634,6 @@ footer {
     width: 90%;
     margin: auto;
     padding-top: 5%;
-}
-.input_file_img {
-    text-align: center;
-}
-.buttonFile {
-    background-color: #0478D3;
-    color: white;
 }
 .img_box_instroduce_view, .img_box_instroduce_update{
     height: 540px;
@@ -855,7 +858,6 @@ form .txt:focus:valid, form .txtarea:focus:valid {
 /* Page infomationDoctor */
 .box_infomation_doctor{
     height: 250px;
-    pading-top: 25px;
     margin-top: 35px;
     padding-bottom: 40px;
 }
@@ -863,8 +865,8 @@ form .txt:focus:valid, form .txtarea:focus:valid {
     overflow-y: scroll;
     height: 250px;
     padding: 0px 30px 0px 30px;
-    background-color: yellowgreen;
-    border: 1px solid yellowgreen;
+    background-color: whitesmoke;
+    border: 1px solid whitesmoke;
     border-radius: 10px;
     font-size: 19px;
 }
@@ -873,6 +875,12 @@ form .txt:focus:valid, form .txtarea:focus:valid {
 	margin-left:26px;
 	padding:0px 0px 10px 0px;
 	font-size:26px;
+}
+.text_content_infomation_doctor{
+    text-decoration: underline;
+    font-style: italic;
+    color: blue;
+    margin-right: 10px; 
 }
 .average-rating{
 	float:left;
@@ -892,8 +900,6 @@ form .txt:focus:valid, form .txtarea:focus:valid {
     list-style-type:none;
     padding:0;
     margin-left: 20px;
-    -moz-user-select:none;
-    -webkit-user-select:none;
   }
   .rating-stars ul > li.star {
     display:inline-block;
@@ -903,16 +909,16 @@ form .txt:focus:valid, form .txtarea:focus:valid {
   /* Idle State of the stars */
   .rating-stars ul > li.star > i.fa{
     font-size:1.6em; /* Change the size of the stars */
-    color:#ccc; /* Color on idle state */
+    color:yellow; /* Color on idle state */
   }
   
   /* Hover state of the stars */
   .rating-stars ul > li.star.hover > i.fa {
-    color:#FFCC36;
+    color:#ccc;
   }
   
   /* Selected state of the stars */
   .rating-stars ul > li.star.selected > i.fa {
-    color:#FF912C;
-  }
+    color:red
+}
   
