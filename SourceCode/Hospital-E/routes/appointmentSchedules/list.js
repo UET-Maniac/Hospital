@@ -16,7 +16,7 @@ router.use(function(req, res, next){
 function checkUser(req, res, next){
 	if(objectType != config.admin && objectType != config.doctor){
         return  res.render('pages/error',
-			{ objectType: config.viewer, message: 'Không có quyền truy cập!', codeError: 401});
+			{ objectType: objectType, message: 'Không có quyền truy cập!', codeError: 401});
     } 
     next();  
 }
@@ -27,7 +27,7 @@ router.route('/')
         Appointment.finds('', objectType, idObjectType, (err, appointments)=>{
             if(err || !appointments.length){
                 res.render('pages/error',
-			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
+			        { objectType: objectType, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
             } else{
                 res.render('pages/appointmentScheduleList', 
                     {appointments: appointments, objectType: objectType});
@@ -105,7 +105,6 @@ router.route('/')
                 acceptance: true
             }
             Appointment.updates(data, (err, appointment) => {
-                console.log(appointment)
                 if (err || !appointment){
                     res.render('pages/errorTemplate',
 					    {message: 'Lỗi server!', codeError: 500});

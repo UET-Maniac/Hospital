@@ -1,0 +1,170 @@
+<div class="container-table100">
+    <div class="wrap-table100">
+        <div class="table100 ver3">
+            <table data-vertable="ver3">
+                <thead>
+                    <tr class="row100 head">
+                        <th class="column100 column1" data-column="column1">S</br>T</br>T</th>
+                        <th class="column100 column2" data-column="column2" style="width: 100px;">ID hồ sơ</th>
+                        <th class="column100 column3" data-column="column3" style="width: 100px;">Họ tên bệnh nhân</th>
+                        <th class="column100 column4" data-column="column4" style="width: 100px;">Họ tên bác sĩ</th>
+                        <th class="column100 column5" data-column="column5" style="width: 100px;">Giường bệnh</th>
+                        <th class="column100 column6" data-column="column6">Chuẩn đoán</th>
+                        <th class="column100 column7" data-column="column7">Tình trạng</th>
+                        <th class="column100 column8" data-column="column8" style="width: 10px;">Xem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i=0; i<medicalRecords.length; i++) {  
+                        var viewId = 'view_'+i;
+                        if (typeof medicalRecords[i].doctor[0].image == 'undefined' || !medicalRecords[i].patient[0].image)
+                            pathImage = '/images/datas/user-default.png';
+                        else pathImage = medicalRecords[i].patient[0].image;
+                    %>
+                        <tr class="row100">
+                            <td class="column100 column1" data-column="column1"><%=i+1%></td>
+                            <td class="column100 column2" data-column="column2" style="width: 100px;"><%=medicalRecords[i]._id%></td>
+                            <td class="column100 column3" data-column="column3" style="width: 100px;"><%=medicalRecords[i].patient[0].name%></td>
+                            <td class="column100 column4" data-column="column4" style="width: 100px;"><%=medicalRecords[i].doctor[0].name%></td>
+                            <td class="column100 column5" data-column="column5" style="width: 100px;"><%=medicalRecords[i].bedNo%></td>
+                            <td class="column100 column6" data-column="column6"><%=medicalRecords[i].theDiagnosis%></td>
+                            <td class="column100 column7" data-column="column7"><%=medicalRecords[i].status%></td>
+                            <td class="column100 column8" data-column="column8" style="width: 10px;" onclick="showScene('<%=viewId%>')"><a>click</a></td>
+                        </tr>
+                        <!-- View -->
+                        <a onclick="hideScene('<%=viewId%>')" id="<%=viewId%>" class="view_action">
+                            <div class="center_box_action">
+                                <div class="img_box_instroduce_view">
+                                    <img src="<%=pathImage%>">
+                                </div>
+                                <div class="text_box_instroduce_view">
+                                    <h1 class ="title_box_instroduce">
+                                        <%=medicalRecords[i]._id%>
+                                    </h1>
+                                    <p><hr></p>
+                                    <div class="introduce_view" name="" >
+                                        <span class="icons_text_view">
+                                            <img src="/images/add.png" width="20px">
+                                        </span>
+                                        <span class="text_instroduce_view">ID bệnh nhân:</span> <%=medicalRecords[i].patient[0]._id%></div>
+                                    <% if(medicalRecords[i].patient[0].name) { %>
+                                        <div class="introduce_view" name="" >
+                                            <span class="icons_text_view">
+                                                <img src="/images/add.png" width="20px">
+                                            </span>
+                                            <span class="text_instroduce_view">Họ tên bệnh nhân:</span> <%=medicalRecords[i].patient[0].name%></div>
+                                    <% } %>
+                                    <% if(medicalRecords[i].patient[0].card) { %>
+                                        <div class="introduce_view" name="" >
+                                            <span class="icons_text_view">
+                                                <img src="/images/add.png" width="20px">
+                                            </span>
+                                            <span class="text_instroduce_view">Số CMND:</span> <%=medicalRecords[i].patient[0].card%></div>
+                                    <% } %>
+                                    <% if(medicalRecords[i].patient[0].phoneNumber) { %>
+                                        <div class="introduce_view" name="" >
+                                            <span class="icons_text_view">
+                                                <img src="/images/add.png" width="20px">
+                                            </span>
+                                            <span class="text_instroduce_view">Số điện thoại:</span>  <%=medicalRecords[i].patient[0].phoneNumber%></div>
+                                    <% } %>
+                                    <% if(medicalRecords[i].patient[0].birthday) { %>
+                                        <div class="introduce_view" name="" >
+                                            <span class="icons_text_view">
+                                                <img src="/images/add.png" width="20px">
+                                            </span>
+                                            <span class="text_instroduce_view">Ngày sinh:</span>  <%=medicalRecords[i].patient[0].birthday%></div>
+                                    <% } %>
+                                    <% if(medicalRecords[i].patient[0].sex) { %>
+                                        <div class="introduce_view" name="" >
+                                            <span class="icons_text_view">
+                                                <img src="/images/add.png" width="20px">
+                                            </span>
+                                            <span class="text_instroduce_view">Giới tính:</span>
+                                            <% if (medicalRecords[i].patient[0].sex == true){ %>
+                                                Nam
+                                            <% } else {%>
+                                                Nữ
+                                            <% } %>
+                                        </div>
+                                    <% } %>
+                                    <% if(medicalRecords[i].patient[0].address) { %>
+                                        <div class="introduce_view" name="" >
+                                            <span class="icons_text_view">
+                                                <img src="/images/add.png" width="20px">
+                                            </span>
+                                            <span class="text_instroduce_view">Địa chỉ:</span>  <%=medicalRecords[i].patient[0].address%></div>
+                                    <% } %>
+                                    <% if(medicalRecords[i].bedNo) { %>
+                                        <div class="introduce_view" name="" >
+                                            <span class="icons_text_view">
+                                                <img src="/images/add.png" width="20px">
+                                            </span>
+                                            <span class="text_instroduce_view">Giường bệnh:</span>  <%=medicalRecords[i].bedNo%></div>
+                                    <% } %>
+                                    <% if(medicalRecords[i].theDiagnosis) { %>
+                                        <div class="introduce_view" name="" >
+                                            <span class="icons_text_view">
+                                                <img src="/images/add.png" width="20px">
+                                            </span>
+                                            <span class="text_instroduce_view">Chuẩn đoán:</span>  <%=medicalRecords[i].theDiagnosis%></div>
+                                    <% } %>
+                                    <% if(medicalRecords[i].status) { %>
+                                        <div class="introduce_view" name="" >
+                                            <span class="icons_text_view">
+                                                <img src="/images/add.png" width="20px">
+                                            </span>
+                                            <span class="text_instroduce_view">Trạng thái:</span>  <%=medicalRecords[i].status%></div>
+                                    <% } %>
+                                    <% if(medicalRecords[i].treatment) { %>
+                                        <div class="introduce_view" name="" >
+                                            <span class="icons_text_view">
+                                                <img src="/images/add.png" width="20px">
+                                            </span>
+                                            <span class="text_instroduce_view">Cách điều trị:</span>  <%=medicalRecords[i].treatment%></div>
+                                    <% } %>
+                                    <% if(medicalRecords[i].timeStart) { %>
+                                        <div class="introduce_view" name="" >
+                                            <span class="icons_text_view">
+                                                <img src="/images/add.png" width="20px">
+                                            </span>
+                                            <span class="text_instroduce_view">Thời gian bắt đầu:</span>  <%=medicalRecords[i].timeStart%></div>
+                                    <% } %>
+                                    <% if(medicalRecords[i].timeEnd) { %>
+                                        <div class="introduce_view" name="" >
+                                            <span class="icons_text_view">
+                                                <img src="/images/add.png" width="20px">
+                                            </span>
+                                            <span class="text_instroduce_view">Thời gian kết thúc:</span>  <%=medicalRecords[i].timeEnd%></div>
+                                    <% } %>
+                                    <% if(medicalRecords[i].medicines) { %>
+                                        <div class="introduce_view" name="" >
+                                            <span class="icons_text_view">
+                                                <img src="/images/add.png" width="20px">
+                                            </span>
+                                            <span class="text_instroduce_view">Các loại thuốc:</span>  <%=medicalRecords[i].medicines%></div>
+                                    <% } %>
+                                    <% if(medicalRecords[i].doctor[0]._id) { %>
+                                        <div class="introduce_view" name="" >
+                                            <span class="icons_text_view">
+                                                <img src="/images/add.png" width="20px">
+                                            </span>
+                                            <span class="text_instroduce_view">ID bác sĩ :</span> <%=medicalRecords[i].doctor[0]._id%></div>
+                                    <% } %>
+                                    <% if(medicalRecords[i].doctor[0].name) { %>
+                                        <div class="introduce_view" name="" >
+                                            <span class="icons_text_view">
+                                                <img src="/images/add.png" width="20px">
+                                            </span>
+                                            <span class="text_instroduce_view">Họ tên bác sĩ:</span>  <%=medicalRecords[i].doctor[0].name%></div>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </a>
+                        <!--END VIEW ACTION-->
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

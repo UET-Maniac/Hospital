@@ -17,7 +17,7 @@ router.use(function(req, res, next){
 function checkAdmin(req, res, next){
 	if(objectType != config.admin){
         return res.render('pages/error',
-            { objectType: config.viewer, message: 'Không có quyền truy cập!', codeError: 401});
+            { objectType: objectType, message: 'Không có quyền truy cập!', codeError: 401});
     }
     return next();  
 }
@@ -27,7 +27,7 @@ router.route('/')
         Department.finds('', objectType, (err, departments) => {
             if (err || !departments.length){
                 res.render('pages/error',
-			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
+			        { objectType: objectType, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
             } else{
                 res.render('pages/informationDepartment', {departments: departments, objectType: objectType});
             }

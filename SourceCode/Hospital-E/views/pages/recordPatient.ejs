@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../partials/head %>
+    </head>
+    <body>
+		<% include ../partials/sidebar %>
+		<header><% include ../partials/header %></header>
+        <div class ="box_top_content">
+            <div class="box_left_name_content">
+                <div class="main_name">Danh sách các hồ sơ</div>
+            </div>
+            
+            <form id="form-sidebar">
+                <div class="action_content_introduce">
+                    <input class ="search" type="text" id="dataSearch" name="data" placeholder="Tìm kiếm">
+                    <a id="search"><img src="/images/icons/search.png" width="32px" onclick="search()"></a>
+                    <a href=""><img src="/images/icons/back.png" width="32px"></a>
+                    <% if(objectType == 1) { %>
+                        <a onclick="showScene('create')"><img src="/images/icons/create.png" width="32px"></a>
+                    <% } %>
+                </div>
+            </form>
+            
+            <div class="clear"></div>
+        </div>
+        <div id="listPatients">
+            <% include ./listPatients %>
+        </div>
+        
+        <% if(objectType == 1) { %>
+            <!--Create ACTION-->
+            <div id ="create" class="create_action">
+                <div class="center_box_action">
+                    <form id="create-form">
+                        <div class="text_box_instroduce_update" style="position: fixed;margin-top: 1%;margin-left: 20%;">
+                            <h1 class ="title_box_instroduce" >
+                                Tạo lịch hẹn
+                            </h1>
+                            <hr><p>	
+                            <div class="row">
+                                <label for="patientId">ID bệnh nhân:  <span class="req">*</span></label>
+                                <input type="text" name="patientId" id="patientId" class="txt" tabindex="1" placeholder="USE100000070" required>
+                            </div>
+                                
+                            <div class="row">
+                                <label for="bedNo">Giường bệnh:   <span class="req">*</span></label>
+                                <input type="text" name="bedNo" id="bedNo" class="txt" tabindex="2" placeholder="210-3" >
+                            </div>
+
+                            <div class="row">
+                                <label for="theDiagnosis">Chuẩn đoán:  <span class="req">*</span></label>
+                                <textarea name="theDiagnosis" id="theDiagnosis" class="txtarea" tabindex="3" placeholder="Gãy tay" required></textarea>
+                            </div>
+
+                            <div class="row">
+                                <label for="status">Tình trạng:  <span class="req">*</span></label>
+                                <textarea name="status" id="status" class="txtarea" tabindex="4" placeholder="Nội trú" required></textarea>
+                            </div>
+
+                            <div class="row">
+                                <label for="treatment">Cách chữa trị:  <span class="req">*</span></label>
+                                <textarea name="treatment" id="treatment" class="txtarea" tabindex="5" placeholder="Bó bột, tránh cử động nhiều" required></textarea>
+                            </div>
+
+                            <div class="row">
+                                <label for="timeStart">Thời gian bắt đầu:  <span class="req">*</span></label>
+                                <input type="date" name="timeStart" id="timeStart" class="txt" tabindex="6" placeholder="2016-05-17 00:00:00" >
+                            </div>
+                                
+                            <div class="row">
+                                <label for="timeEnd">Thời gian kết thúc:  <span class="req">*</span></label>
+                                <input type="date" name="timeEnd" id="timeEnd" class="txt" tabindex="7" placeholder="2016-06-11 00:00:00" >
+                            </div>
+
+                            <div class="row">
+                                <label for="medicines">Các loại thuốc:  <span class="req">*</span></label>
+                                <textarea name="medicines" id="medicines" class="txtarea" tabindex="8" placeholder="Cao bó gãy xương, Cao bạch hổ" required></textarea>
+                            </div>
+                            
+                            <div class="center">
+                                <button class="submitbtn" >Accept</button>
+                                <button type="button" class="submitbtn" onclick="hideScene('create')">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>	
+            <!--END Create-->
+        <% } %>
+
+        <div class="clear"></div>
+        <footer><% include ../partials/footer %></footer>
+    
+        <script src="/js/recordPatient.js"></script>
+        <script src="/js/table.js"></script>
+
+    </body>
+</html>
