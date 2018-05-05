@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../partials/head %>
+        <style>
+        .no-change{
+            font-size: 20px;
+            color: #fff;
+        }
+        .no-change:hover{
+            color: #ffa;
+        }
+    </style>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io('http://localhost:3000');
+            
+
+            
+            socket.on('server-send-comment-new', function(data){
+                var html_render = "<div class='one-comment'>"
+                + "<span class='icon'>img</span>"
+                + "<span class='name'>" + data.name + "</span><br />"
+                + "<span class='u-content'>" + data.message + "</span>"
+                + "</div>";
+                $('#text-comment').val("");
+                $('#list-comment').prepend(html_render);
+            });
+
+            $(document).ready(function(){
+                $('#btn-comment-news').click(function(){
+                    //Nhung data se gui len server, nen mang kem thong tin cua tai khoan de xu li luu tru tren database
+                    var data = {
+                        message: $('#text-comment').val()
+                    };
+                    socket.emit('client-send-comment-new', data);
+                });
+                
+            });
+            
+        </script>
+    </head>
+    <body>
+        <% include ../partials/sidebar %>
+        <header><% include ../partials/header %></header>
+        <div class="body-wrapper">
+            <h2 class = "main_name"><a class="no-change" href="http://localhost:3000/dien-dan">Dien dan</a> >> <%= one_post.title %></h2>
+            <div class="content-news">
+                <p class="title-news"><%= one_post.title %></p>
+                <p class="inner-content"><%= one_post.content %></p>
+                <span class="meta-news">(<%= one_post.authorId %>- <%= one_post.timestamp %>)</span>
+            </div>
+            <div class="comment-news">
+                <div class="form-comment">
+                        <textarea id="text-comment" rows="2" cols="50" placholder="add comment"></textarea>
+                        <button id="btn-comment-news" value="Post" style="color: black; padding: 10px; border: 2px solid gray;">Post</button>
+                </div>
+                <div class="list-comment" id="list-comment">
+                    <div class="one-comment">
+                        <span class="icon">img</span>
+                        <span class="name">Thu chu linh</span><br />
+                        <span class="u-content">Cam on bac si</span>
+                    </div>
+                    <div class="one-comment">
+                        <span class="icon">img</span>
+                        <span class="name">Thu chu linh</span><br />
+                        <span class="u-content">Cam on bac si</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer><% include ../partials/footer %></footer>
+    </body>
+</html>

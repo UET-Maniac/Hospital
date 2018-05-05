@@ -36,7 +36,7 @@ router.get('/readmore', function(req, res, next) {
             res.render('pages/error',
 			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
         }else{
-            news_data_slice = news_data.slice(number*5, number * 5 + 5);
+            news_data_slice = news_data.slice(number*10, number * 10 + 10);
             res.render('pages/readmore', {news: news_data_slice, objectType: objectType});
         }
     });
