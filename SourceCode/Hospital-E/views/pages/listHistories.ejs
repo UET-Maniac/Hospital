@@ -23,7 +23,7 @@
                             pathImage = '/images/datas/user-default.png';
                         else pathImage = appointments[i].doctor[0].image;
                     %>
-                        <tr class="row100">
+                        <tr class="row100" acceptance="<%=appointments[i].acceptance%>">
                             <td class="column100 column1" data-column="column1"><%=i+1%></td>
                             <td class="column100 column2" data-column="column2" style="width: 100px;"><%=appointments[i]._id%></td>
                             <td class="column100 column3" data-column="column3" style="width: 100px;"><%=appointments[i].patient[0].name%></td>

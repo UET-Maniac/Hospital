@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    $(".row100[acceptance=false]").css('background-color', '#ffff00');
     $('#form-sidebar').on('submit', function(event) {
         event.preventDefault();
         var form = $(this);
