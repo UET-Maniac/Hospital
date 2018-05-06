@@ -1,9 +1,9 @@
-<% for(var i=0; i<doctors.length; i++) { 
+<% for(var i=0; i<doctors.length; i++) {
     var viewId = 'view_'+i, updateId = 'update_'+i, formUpdate = 'formUpdate_'+i,
-    deleteId = 'deleteId_'+i, imageId = 'imageId_'+i, pathImage = '';
-    if (typeof departments[i].image == 'undefined' || !departments[i].image)
+        deleteId = 'deleteId_'+i, imageId = 'imageId_'+i, pathImage = '';
+    if (typeof doctors[i].image == 'undefined' || !doctors[i].image)
         pathImage = '/images/datas/user-default.png';
-    else pathImage = departments[i].image; 
+    else pathImage = doctors[i].image;
 %>
     <div class="box_infomation_doctor">
         <div class="img_infomation_doctor col-md-3 float-left">
@@ -138,11 +138,178 @@
                         </a>
                     </div>
             </div>
-            <div class="">
-                
-            </div>
         </div>
         <br><hr><br>
+
+        <!-- View -->
+    <a onclick="hideScene('<%=viewId%>')" id="<%=viewId%>" class="view_action">
+        <div class="center_box_action">
+            <div class="img_box_instroduce_view">
+                <img src="<%=pathImage%>">
+            </div>
+            <div class="text_box_instroduce_view">
+                <h1 class ="title_box_instroduce">
+                    <%= departments[i].name %>
+                </h1>
+                <p><hr></p>
+                <div class="introduce_view" name="" >
+                    <span class="icons_text_view">
+                        <img src="/images/add.png" width="20px">
+                    </span>
+                    <span class="text_instroduce_view">ID:</span> <%= doctor[i]._id %></div>
+                <div class="introduce_view" name="" >
+                    <span class="icons_text_view">
+                        <img src="/images/add.png" width="20px">
+                    </span>
+                    <span class="text_instroduce_view">Tên bác sĩ:</span>  <%= doctor[i].name %></div>
+                <div class="introduce_view" name="" >
+                    <span class="icons_text_view">
+                        <img src="/images/add.png" width="20px">
+                    </span>
+                    <span class="text_instroduce_view">Chứng minh thư: </span> <%= doctor[i].card %></div>
+                <div class="introduce_view" name="" >
+                    <span class="icons_text_view">
+                        <img src="/images/add.png" width="20px">
+                    </span>
+                    <span class="text_instroduce_view">Số điện thoại:</span>  <%=doctor[i].phoneNumber%></div>
+                <div class="introduce_view" name="" >
+                    <span class="icons_text_view">
+                        <img src="/images/add.png" width="20px">
+                    </span>
+                    <span class="text_instroduce_view">Ngày sinh:</span>  <%=doctor[i].birthday%></div>
+                <div class="introduce_view" name="" >
+                    <span class="icons_text_view">
+                        <img src="/images/add.png" width="20px">
+                    </span>
+                    <span class="text_instroduce_view">Giới tính:</span>  <%=doctor[i].sex%></div>
+                <div class="introduce_view" name="" >
+                    <span class="icons_text_view">
+                        <img src="/images/add.png" width="20px">
+                    </span>
+                    <span class="text_instroduce_view">Địa chỉ:</span>  <%=doctor[i].address%></div>
+
+                <div class="introduce_view" name="" >
+                    <span class="icons_text_view">
+                        <img src="/images/add.png" width="20px">
+                    </span>
+                    <span class="text_instroduce_view">Trình độ:</span>  <%=doctor[i].level%></div>
+                <div class="introduce_view" name="" >
+                    <span class="icons_text_view">
+                        <img src="/images/add.png" width="20px">
+                    </span>
+                    <span class="text_instroduce_view">Kinh nghiệm:</span>  <%=doctor[i].experience%></div>
+                <div class="introduce_view" name="" >
+                    <span class="icons_text_view">
+                        <img src="/images/add.png" width="20px">
+                    </span>
+                    <span class="text_instroduce_view">ID khoa:</span>  <%= doctors[i].departmentId._id %></div>
+                <div class="introduce_view" name="" >
+                    <span class="icons_text_view">
+                        <img src="/images/add.png" width="20px">
+                    </span>
+                    <span class="text_instroduce_view">Tên khoa:</span>  <%= doctors[i].departmentId.name %></div>
+                
         
+                <% if (objectType == 0){ %>
+                    <div class="introduce_view" name="" >
+                        <span class="icons_text_view">
+                            <img src="/images/add.png" width="20px">
+                        </span>
+                        <span class="text_instroduce_view">Trạng thái hoạt động:</span>  <%=departments[i].active%></div>
+                    <div class="introduce_view" name="" >
+                        <span class="icons_text_view">
+                            <img src="/images/add.png" width="20px">
+                        </span>
+                        <span class="text_instroduce_view">Lần cuối cập nhật:</span>  <%=departments[i].timestamp%></div>
+                <% } %>
+            </div>
+        </div>
+    </a>
+    <!--End view-->
+
+    <% if (objectType == 0){ %>
+        <!--UPDATE ACTION-->
+        <div id ="<%=updateId%>" class="update_action">
+            <div class="center_box_action">
+                <form id="<%=formUpdate%>">
+                    <div class="img_box_instroduce_update">
+                        <img id="<%=imageId%>" src="<%=pathImage%>">
+                        <div class="input_file_img" class="buttonFile">
+                            <span>Chọn ảnh: </span>
+                            <input type="file" name="image"
+                                accept="image/gif, image/jpeg, image/png"
+                                onchange="displayImage(this,'<%=imageId%>')">
+                        </div>
+                    </div>
+                    <div class="text_box_instroduce_update" >
+                        <h1 class ="title_box_instroduce">
+                            <%= doctor[i].name %>
+                        </h1>
+                        <hr><p>
+                        <div class="row">
+                            <label for="_id">ID: <span class="req">*</span></label>
+                            <input type="text" readonly="readonly" name="_id" class="txt" tabindex="1" value="<%= doctor[i]._id %>" required>
+                        </div>
+                            
+                        <div class="row">
+                            <label for="name">Tên bác sĩ:  <span class="req">*</span></label>
+                            <input type="name" name="name" class="txt" tabindex="2" value="<%= doctor[i].name %>" required>
+                        </div>
+                            
+                        <div class="row">
+                            <label for="card">Chứng minh thư:  <span class="req">*</span></label>
+                            <input name="card" class="txt" tabindex="2" value="<%= doctor[i].card %>" required>
+                        </div>
+
+                        <div class="row">
+                                <label for="phonenumber">Số điện thoại: <span class="req">*</span></label>
+                                <input name="phonenumber" class="txt" tabindex="2" value="<%= doctor[i].phoneNumber %>" required>
+                        </div>
+                        
+                        <div class="row">
+                            <label for="dateofbirth">Ngày sinh:   <span class="req">*</span></label>
+                            <input type="date" name="dateofbirth" id="foundingOn" class="txt" tabindex="5" value="<%= doctor[i].birthday %>" required >
+                        </div>
+                        
+                        <div class="row">
+                                <label for="gender">Giới tính: <span class="req">*</span></label>
+                                <input name="gender" class="txt" tabindex="2" value="<%= doctor[i].sex %>" required>
+                        </div>
+
+                        <div class="row">
+                                <label for="address">Địa chỉ: <span class="req">*</span></label>
+                                <textarea name="address" class="txtarea" tabindex="3" value="<%= doctor[i].address %>" required></textarea>
+                        </div>
+
+                        <div class="row">
+                                <label for="level">Trình độ: <span class="req">*</span></label>
+                                <input name="level" class="txt" tabindex="2" value="<%= doctor[i].level %>" required>
+                        </div>
+
+                        <div class="row">
+                                <label for="experience">Kinh nghiệm: <span class="req">*</span></label>
+                                <input name="experience" class="txt" tabindex="2" value="<%= doctor[i].experience %>" required>
+                        </div>
+
+                        <div class="row">
+                                <label for="idkhoa">ID Khoa: <span class="req">*</span></label>
+                                <input name="idkhoa" class="txt" tabindex="2" value="<%= doctors[i].departmentId._id %>" required>
+                        </div>
+
+                        <div class="row">
+                                <label for="tenkhoa">Tên khoa: <span class="req">*</span></label>
+                                <input name="tenkhoa" class="txt" tabindex="2" value="<%= doctors[i].departmentId.name %>" required>
+                        </div>
+
+                        <div class="center">
+                            <button class="submitbtn" onclick="submitUpdate('<%=formUpdate%>','<%=updateId%>')">Accept</button>
+                            <button type="button" class="submitbtn" onclick="hideScene('<%=updateId%>')">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>	
+        <!--END UPDATE-->
+
     </div>
 <% } %>
