@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../partials/head %> 
+    </head>
+    <body>
+    <!--
+         Sidebar
+    -->
+        <% include ../partials/sidebar %>
+
+    <!--
+         Header
+     -->
+        <header><% include ../partials/header %></header>
+
+    <!--
+        Body
+    -->
+        <div class="body-wrapper">
+                <div class = "introduce col-md-7 float-left">
+                    <div class="reviews"><h1>Reviews</h1></div>
+                    <% for(var i=0; i<5; i++) { %>
+                    <div class="comment-part">
+                        <div class="user-img-part">
+                            <div class="user-img">
+                                <img src="/images/man.png">
+                            </div>
+                            <div class="user-text">
+                                <h4>8 days ago</h4>
+                                <p>Tom kok</p>
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        <div class="comment">
+                            <i aria-hidden="true" class="fa fa-star"></i>
+                            <i aria-hidden="true" class="fa fa-star"></i>
+                            <i aria-hidden="true" class="fa fa-star"></i>
+                            <i aria-hidden="true" class="fa fa-star"></i>
+                            <i aria-hidden="true" class="fa fa-star-o"></i>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco.</p>
+                        </div>
+                        <div style="clear: both;"></div>
+                        <hr>
+                    </div>
+                    <%}%>
+                </div>
+                <div class="infoAppointment col-md-5 float-right">
+                        <div class="main-section">
+                                <div class="reviews"><h1>Điểm đánh giá</h1></div>
+                                <p>
+                                <div class="average-rating-page">
+                                    <h2>2.5</h2>
+                                    <div class="rating">
+                                        <span class="rating-star" data-value="5"></span>
+                                        <span class="rating-star" data-value="4"></span>
+                                        <span class="rating-star" data-value="3"></span>
+                                        <span class="rating-star" data-value="2"></span>
+                                        <span class="rating-star" data-value="1"></span>
+                                    </div>
+                                    <p>Điểm trung bình</p>
+                                </div>
+                                
+                        </div>
+                </div>
+                <div class="clear"></div>
+        </div>
+
+     <!--
+         Footer
+     -->   
+        <footer><% include ../partials/footer %></footer>
+
+        <script>
+                $('.rating-star').click(function() {
+                $(this).parents('.rating').find('.rating-star').removeClass('checked');
+                $(this).addClass('checked');
+                    
+                var submitStars ="Bạn đã bình chọn cho bác sĩ: " + $(this).attr('data-value') +" Sao";
+                alert(submitStars);
+            });
+        </script>
+
+    </body>
+</html>

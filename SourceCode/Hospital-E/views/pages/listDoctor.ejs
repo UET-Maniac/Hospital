@@ -82,25 +82,20 @@
             <div class="hedding-title"><h2>Điểm đánh giá</h2></div> 
 		    <div class="rating-part">
                 <div class="average-rating">    
+                    <!--Điểm đánh giá-->
                     <h2 class="star-value"><% if(doctors[i].star){%><%= doctors[i].star %><% } %>/5</h2>
-                    <div class='rating-stars text-center'>
-                        <ul id='stars'>
-                            <li class='star' title='1 Sao' >
-                                <i class='fa fa-star-o' id="star_1"></i>
-                            </li>
-                            <li class='star star_2' title='2 Sao' data-value='1'>
-                                <i class='fa fa-star-o' id="star_2"></i>
-                            </li>
-                            <li class='star star_3' title='3 Sao' data-value='3'>
-                                <i class='fa fa-star-o' id="star_3"></i>
-                            </li>
-                            <li class='star star_4' title='4 Sao' data-value='4'>
-                                <i class='fa fa-star-o' id="star_4"></i>
-                            </li>
-                            <li class='star star_5' title='5 Sao' data-value='5'>
-                                <i class='fa fa-star-o' id="star_5"></i>
-                            </li>
-                        </ul>
+                    <!--Hiện số sao
+                        class:
+                            fa fa-star: hiện sao full
+                            fa fa-star-o: hiện sao rỗng
+                            fa fa-star-half-o: hiện nửa sao full
+                    -->
+                    <div class="star_icon">
+                        <i aria-hidden="true" class="fa fa-star"></i>
+                        <i aria-hidden="true" class="fa fa-star"></i>
+                        <i aria-hidden="true" class="fa fa-star"></i>
+                        <i aria-hidden="true" class="fa fa-star"></i>
+                        <i aria-hidden="true" class="fa fa-star"></i>
                     </div>
                 </div>
             </div>
@@ -130,10 +125,16 @@
                             <label for="icon_view_instroduce">View</label>
                         </a>
                     </div>
+                    <div class="icon_view_instroduce">
+                        <a href="/danh-gia">
+                            <img src="/images/icon-pointer.png" width="16px">
+                            <label for="icon_view_instroduce">Rating</label>
+                        </a>
+                    </div>
         </div>
         </div>
-        
 
-        <br>
+        <br><hr><br>
+        
     </div>
 <% } %>
