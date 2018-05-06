@@ -1,4 +1,10 @@
-<% for(var i=0; i<doctors.length; i++) {%>
+<% for(var i=0; i<doctors.length; i++) { 
+    var viewId = 'view_'+i, updateId = 'update_'+i, formUpdate = 'formUpdate_'+i,
+    deleteId = 'deleteId_'+i, imageId = 'imageId_'+i, pathImage = '';
+    if (typeof departments[i].image == 'undefined' || !departments[i].image)
+        pathImage = '/images/datas/user-default.png';
+    else pathImage = departments[i].image; 
+%>
     <div class="box_infomation_doctor">
         <div class="img_infomation_doctor col-md-3 float-left">
             <img src="<% if(doctors[i].image){%><%= doctors[i].image %><% } %>" height="250px" width="230px" style="border:1px solid yellowgreen; border-radius: 10px;">
@@ -131,9 +137,11 @@
                             <label for="icon_view_instroduce">Rating</label>
                         </a>
                     </div>
+            </div>
+            <div class="">
+                
+            </div>
         </div>
-        </div>
-
         <br><hr><br>
         
     </div>
