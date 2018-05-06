@@ -1,9 +1,23 @@
-<% for(var i=0; i<doctors.length; i++) {%>
+<% for(var i=0; i<doctors.length; i++) {
+    var viewId = 'view_'+i, updateId = 'update_'+i, formUpdate = 'formUpdate_'+i,
+        deleteId = 'deleteId_'+i, imageId = 'imageId_'+i, pathImage = '';
+    if (typeof doctors[i].image == 'undefined' || !doctors[i].image)
+        pathImage = '/images/datas/user-default.png';
+    else pathImage = doctors[i].image;
+    var shortStar = 0, fullStar = 0, nullStar = 0;
+    if(doctors[i].star){
+        shortStar = doctors[i].star % 1;
+        fullStar = doctors[i].star - shortStar;
+        nullStar = 5 - fullStar;
+        if (shortStar>0)
+            nullStar -= 1;
+    }
+%>
     <div class="box_infomation_doctor">
         <div class="img_infomation_doctor col-md-3 float-left">
-            <img src="<% if(doctors[i].image){%><%= doctors[i].image %><% } %>" height="250px" width="230px" style="border:1px solid yellowgreen; border-radius: 10px;">
+            <img src="<%=pathImage%>" height="250px" width="230px" style="border:1px solid yellowgreen; border-radius: 10px;">
         </div>
-        <div class="text_box_infomation_doctor col-md-6 float-left">
+        <div class="text_box_infomation_doctor col-md-6 float-left" name="<%=doctors[i].active%>">
             <div class="content_infomation_doctor">
                 <span class="text_content_infomation_doctor">ID:</span>
                 <% if(doctors[i]._id){%>
@@ -36,8 +50,10 @@
             </div>
             <div class="content_infomation_doctor">
                     <span class="text_content_infomation_doctor">Giới tinh:</span>
-                    <% if(doctors[i].sex){%>
-                        <%= doctors[i].sex %>
+                    <% if(doctors[i].sex == true){%>
+                        Nam
+                    <% } else { %>
+                        Nữ
                     <% } %>
             </div>
             <div class="content_infomation_doctor">
@@ -46,8 +62,6 @@
                         <%= doctors[i].address %>
                     <% } %>
             </div>
-            
-
             <div class="content_infomation_doctor">
                 <span class="text_content_infomation_doctor">Trình độ:</span>
                 <% if(doctors[i].level){%>
@@ -60,8 +74,6 @@
                     <%= doctors[i].experience %>
                 <% } %>
             </div>
-            
-
             <div class="content_infomation_doctor">
                 <span class="text_content_infomation_doctor">ID khoa:</span>
                 <% if(doctors[i].departmentId._id){%>
@@ -74,6 +86,20 @@
                     <%= doctors[i].departmentId.name %>
                 <% } %>
             </div>
+            <% if(objectType == 0) { %>
+                <div class="content_infomation_doctor">
+                    <span class="text_content_infomation_doctor">Trạng thái hoạt động:</span>
+                    <% if(doctors[i].active == true) { %>
+                        Đã kích hoạt
+                    <% } else {%>
+                        Chưa kích hoạt
+                    <% } %>
+                </div>
+                <div class="content_infomation_doctor">
+                    <span class="text_content_infomation_doctor">Lần cuối cập nhật:</span>
+                    <%=doctors[i].timestamp%>
+                </div>
+            <% } %>
             <div class="h2"></div>
         </div>
 
@@ -91,11 +117,13 @@
                             fa fa-star-half-o: hiện nửa sao full
                     -->
                     <div class="star_icon">
-                        <i aria-hidden="true" class="fa fa-star"></i>
-                        <i aria-hidden="true" class="fa fa-star"></i>
-                        <i aria-hidden="true" class="fa fa-star"></i>
-                        <i aria-hidden="true" class="fa fa-star"></i>
-                        <i aria-hidden="true" class="fa fa-star"></i>
+                        <%for(var s = 0; s<fullStar; s++){%>
+                            <i aria-hidden="true" class="fa fa-star"></i>
+                        <% } if (shortStar>0) { %>
+                            <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                        <% } for (var s=0; s<nullStar; s++){ %>
+                            <i aria-hidden="true" class="fa fa-star-o"></i>
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -106,35 +134,234 @@
 
         <div class="icon_action_doctor" style="margin-right: 270px">
         <div class="action_box_instroduce float-right ">
-                    <div class="icon_delete_instroduce">
-                        <input type="hidden">
-                        <a>
-                            <img src="/images/icons/delete.png" width="16px">
-                            <label for="icon_delete_instroduce">Delete</label>
-                        </a>
-                    </div>
-                    <div class="icon_update_instroduce" >
-                        <a>
-                            <img src="/images/icons/update.png" width="16px">
-                            <label for="icon_update_instroduce">Update</label>
-                        </a>
-                    </div>
-                    <div class="icon_view_instroduce">
-                        <a>
-                            <img src="/images/icons/view.png" width="16px">
-                            <label for="icon_view_instroduce">View</label>
-                        </a>
-                    </div>
-                    <div class="icon_view_instroduce">
-                        <a href="/danh-gia">
-                            <img src="/images/icon-pointer.png" width="16px">
-                            <label for="icon_view_instroduce">Rating</label>
-                        </a>
-                    </div>
+            <% if (objectType == 0){ %>
+                <div class="icon_delete_instroduce">
+                    <input type="hidden" id="<%=deleteId%>" value="<%=doctors[i]._id%>">
+                    <a onclick="deletes('<%=deleteId%>')">
+                        <img src="/images/icons/delete.png" width="16px">
+                        <label for="icon_delete_instroduce">Delete</label>
+                    </a>
+                </div>
+                <div class="icon_update_instroduce" >
+                    <a onclick="showScene('<%=updateId%>')">
+                        <img src="/images/icons/update.png" width="16px">
+                        <label for="icon_update_instroduce">Update</label>
+                    </a>
+                </div>
+            <% } %>
+            <div class="icon_view_instroduce">
+                <a onclick="showScene('<%=viewId%>')">
+                    <img src="/images/icons/view.png" width="16px">
+                    <label for="icon_view_instroduce">View</label>
+                </a>
+            </div>
+            <div class="icon_view_instroduce">
+                <a href="/danh-gia">
+                    <img src="/images/icon-pointer.png" width="16px">
+                    <label for="icon_view_instroduce">Rating</label>
+                </a>
+            </div>
         </div>
         </div>
 
         <br><hr><br>
-        
+
+        <!-- View -->
+        <a onclick="hideScene('<%=viewId%>')" id="<%=viewId%>" class="view_action">
+            <div class="center_box_action">
+                <div class="img_box_instroduce_view">
+                    <img src="<%=pathImage%>">
+                </div>
+                <div class="text_box_instroduce_view">
+                    <h1 class ="title_box_instroduce">
+                        <%= doctors[i].name %>
+                    </h1>
+                    <p><hr></p>
+                    <div class="introduce_view" name="" >
+                        <span class="icons_text_view">
+                            <img src="/images/add.png" width="20px">
+                        </span>
+                        <span class="text_instroduce_view">ID:</span> <%= doctors[i]._id %></div>
+                    <div class="introduce_view" name="" >
+                        <span class="icons_text_view">
+                            <img src="/images/add.png" width="20px">
+                        </span>
+                        <span class="text_instroduce_view">CMND:</span> <%= doctors[i].card %></div>
+                    <div class="introduce_view" name="" >
+                        <span class="icons_text_view">
+                            <img src="/images/add.png" width="20px">
+                        </span>
+                        <span class="text_instroduce_view">Số điện thoại:</span> <%= doctors[i].phoneNumber %></div>
+                    <div class="introduce_view" name="" >
+                        <span class="icons_text_view">
+                            <img src="/images/add.png" width="20px">
+                        </span>
+                        <span class="text_instroduce_view">Ngày sinh:</span>  <%=doctors[i].birthday%></div>
+                    <div class="introduce_view" name="" >
+                        <span class="icons_text_view">
+                            <img src="/images/add.png" width="20px">
+                        </span>
+                        <span class="text_instroduce_view">Giới tính:</span>
+                        <% if(doctors[i].sex == true) { %>
+                            Nam
+                        <% } else {%>
+                            Nữ
+                        <% } %>
+                    </div>
+                    <div class="introduce_view" name="" >
+                        <span class="icons_text_view">
+                            <img src="/images/add.png" width="20px">
+                        </span>
+                        <span class="text_instroduce_view">Địa chỉ:</span>  <%=doctors[i].address%></div>
+                    <div class="introduce_view" name="" >
+                        <span class="icons_text_view">
+                            <img src="/images/add.png" width="20px">
+                        </span>
+                        <span class="text_instroduce_view">Tên đăng nhập:</span>  <%=doctors[i].userName%></div>
+                    <div class="introduce_view" name="" >
+                        <span class="icons_text_view">
+                            <img src="/images/add.png" width="20px">
+                        </span>
+                        <span class="text_instroduce_view">Trình độ:</span>  <%=doctors[i].level%></div>
+                    <div class="introduce_view" name="" >
+                        <span class="icons_text_view">
+                            <img src="/images/add.png" width="20px">
+                        </span>
+                        <span class="text_instroduce_view">Kinh nghiệm:</span>  <%=doctors[i].experience%></div>
+                    <div class="introduce_view" name="" >
+                        <span class="icons_text_view">
+                            <img src="/images/add.png" width="20px">
+                        </span>
+                        <span class="text_instroduce_view">Chuyên khoa:</span>  <%=doctors[i].departmentId.name%></div>
+                    <div class="introduce_view" name="" >
+                        <span class="icons_text_view">
+                            <img src="/images/add.png" width="20px">
+                        </span>
+                        <span class="text_instroduce_view">Đánh giá:</span>  <%=doctors[i].star%> Sao</div>
+                    <div class="introduce_view" name="" >
+                        <span class="icons_text_view">
+                            <img src="/images/add.png" width="20px">
+                        </span>
+                        <span class="text_instroduce_view">Chức vụ:</span>
+                        <% if(doctors[i].dean == true) { %>
+                            Trưởng khoa
+                        <% } else {%>
+                            Bác sĩ khoa
+                        <% } %>
+                    </div>
+                    <% if(objectType == 0) { %>
+                        <div class="introduce_view" name="" >
+                            <span class="icons_text_view">
+                                <img src="/images/add.png" width="20px">
+                            </span>
+                            <span class="text_instroduce_view">Trạng thái hoạt động:</span> 
+                            <% if(doctors[i].active == true) { %>
+                                Đã kích hoạt
+                            <% } else {%>
+                                Chưa kích hoạt
+                            <% } %>
+                        </div>
+                        <div class="introduce_view" name="" >
+                            <span class="icons_text_view">
+                                <img src="/images/add.png" width="20px">
+                            </span>
+                            <span class="text_instroduce_view">Lần cuối cập nhật:</span>  <%=doctors[i].timestamp%></div>
+                    <% } %>
+                </div>
+            </div>
+        </a>
+        <!--END VIEW ACTION-->
+        <!--UPDATE ACTION-->
+        <% if (objectType == 0) { %>
+        <div id ="<%=updateId%>" class="update_action">
+            <div class="center_box_action">
+                <form id="<%=formUpdate%>">
+                    <div class="img_box_instroduce_update">
+                        <img id="<%=imageId%>" src="<%=pathImage%>">
+                        <div class="input_file_img">
+                            <label for="image">Chọn ảnh</label>
+                            <input type="file" name="image" class="buttonFile"
+                                accept="image/gif, image/jpeg, image/png"
+                                onchange="displayImage(this,'<%=imageId%>')">
+                        </div>
+                    </div>
+                    <div class="text_box_instroduce_update" >
+                        <h1 class ="title_box_instroduce">
+                            <%= doctors[i].name %>
+                        </h1>
+                        <hr><p>
+                        <div class="row">
+                            <label for="_id">ID: <span class="req">*</span></label>
+                            <input type="text" readonly="readonly" name="_id" class="txt" tabindex="1" value="<%= doctors[i]._id %>" required>
+                        </div>
+                            
+                        <div class="row">
+                            <label for="name">Họ và tên:  <span class="req">*</span></label>
+                            <input type="text" name="name" class="txt" tabindex="2" value="<%= doctors[i].name %>" required>
+                        </div>
+
+                        <div class="row">
+                            <label for="card">CMND:  <span class="req">*</span></label>
+                            <input type="text" name="card" class="txt" tabindex="3" value="<%= doctors[i].card %>" required>
+                        </div>
+                        
+                        <div class="row">
+                            <label for="phoneNumber">Số điện thoại:  <span class="req">*</span></label>
+                            <input type="text" name="phoneNumber" class="txt" tabindex="4" value="<%= doctors[i].phoneNumber %>" required>
+                        </div>
+
+                        <div class="row">
+                            <label for="birthday">Ngày sinh:   <span class="req">*</span></label>
+                            <input type="date" name="birthday" class="txt" tabindex="5" value="<%=doctors[i].birthday%>">
+                        </div>
+
+                        <div class="row">
+                            <label for="sex">Giới tính:  <span class="req">*</span></label>
+                            <input type="text" name="sex" class="txt" tabindex="6" value="<%= doctors[i].sex %>" required>
+                        </div>
+
+                        <div class="row">
+                            <label for="address">Địa chỉ:  <span class="req">*</span></label>
+                            <input type="text" name="address" class="txt" tabindex="7" value="<%= doctors[i].address %>" required>
+                        </div>
+
+                        <div class="row">
+                            <label for="userName">Tên đăng nhập:  <span class="req">*</span></label>
+                            <input type="email" name="userName" class="txt" tabindex="8" value="<%= doctors[i].userName %>">
+                        </div>
+                            
+                        <div class="row">
+                            <label for="level">Trình độ:  <span class="req">*</span></label>
+                            <input type="text" name="level" class="txt" tabindex="9" value="<%= doctors[i].level %>" required>
+                        </div>
+                        
+                        <div class="row">
+                            <label for="experience">Kinh nghiệm:  <span class="req">*</span></label>
+                            <input type="text" name="experience" class="txt" tabindex="10" value="<%= doctors[i].experience %>" required>
+                        </div>
+
+                        <div class="row">
+                            <label for="departmentId">Chuyên khoa:  <span class="req">*</span></label>
+                            <input type="text" name="departmentId" class="txt" tabindex="11" value="<%= doctors[i].departmentId._id %>" required>
+                        </div>
+
+                        <div class="row">
+                            <label for="dean">Trưởng khoa:  <span class="req">*</span></label>
+                            <input type="text" name="dean" class="txt" tabindex="12" value="<%= doctors[i].dean %>" required>
+                        </div>
+                        <div class="row">
+                            <label for="active">Trạng thái hoạt động:  <span class="req">*</span></label>
+                            <input type="text" name="active" class="txt" tabindex="13" value="<%= doctors[i].active %>" required>
+                        </div>
+                        <div class="center">
+                            <button class="submitbtn" onclick="submitUpdate('<%=formUpdate%>','<%=updateId%>')">Accept</button>
+                            <button type="button" class="submitbtn" onclick="hideScene('<%=updateId%>')">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--END UPDATE-->
+        <% } %>
     </div>
 <% } %>

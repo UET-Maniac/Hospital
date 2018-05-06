@@ -77,10 +77,12 @@ User.statics.finds = function(data, objectType, typeFind, callback){
 		query.active = true;
 	}
 	if (typeFind == config.doctor){
-		query.address = search;
-		query.level= search;
-		query.experience= search;
-		query.departmentId= search;
+		query['$or'].push(
+			{address: search},
+			{level: search},
+			{experience: search},
+			{departmentId: search}
+		)
 	}
 	this.find(query)
 		.sort({_id: 1})

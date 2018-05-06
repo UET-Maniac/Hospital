@@ -7,9 +7,9 @@ var storage = multer.diskStorage({
 		// chua xu ly truong hop trungn ten khac loai anh
 		var fileName = '';
 		if (req.objectType == 0){
-			fileName += req.auth.data.userName + '.' + new Date() + '.';
+			fileName += req.auth.data.userName;
 		}
-		fileName += req.auth.data._id + file.originalname.substring(
+		fileName += req.auth.data._id + '.' + new Date() + '.' + file.originalname.substring(
 			file.originalname.lastIndexOf('.'), 
 			file.originalname.length
 		)
