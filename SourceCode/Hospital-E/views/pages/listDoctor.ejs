@@ -1,6 +1,6 @@
 <% for(var i=0; i<doctors.length; i++) {
     var viewId = 'view_'+i, updateId = 'update_'+i, formUpdate = 'formUpdate_'+i,
-        deleteId = 'deleteId_'+i, imageId = 'imageId_'+i, pathImage = '';
+        deleteId = 'deleteId_'+i, imageId = 'imageId_'+i, formRate = 'formRate_'+i, pathImage = '';
     if (typeof doctors[i].image == 'undefined' || !doctors[i].image)
         pathImage = '/images/datas/user-default.png';
     else pathImage = doctors[i].image;
@@ -156,10 +156,11 @@
                 </a>
             </div>
             <div class="icon_view_instroduce">
-                <a href="/danh-gia">
+                <a href="/danh-gia/<%=doctors[i]._id%>">
                     <img src="/images/icon-pointer.png" width="16px">
                     <label for="icon_view_instroduce">Rating</label>
                 </a>
+                
             </div>
         </div>
         </div>

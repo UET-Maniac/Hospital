@@ -18,77 +18,95 @@
         Body
     -->
         <div class="body-wrapper">
-                <div class = "introduce col-md-7 float-left">
-                    <div class="reviews"><h1>Reviews</h1></div>
-                    <% for(var i=0; i<5; i++) { %>
-                    <div class="comment-part">
-                        <div class="user-img-part">
-                            <div class="user-img">
-                                <img src="/images/man.png">
-                            </div>
-                            <div class="user-text">
-                                <h4>8 days ago</h4>
-                                <p>Tom kok</p>
-                            </div>
-                            <div style="clear: both;"></div>
+            <div class = "introduce col-md-7 float-left">
+                <div class="reviews"><h1>Đánh giá bác sĩ</h1></div>
+                <% for(var i=0; i<ratings.length; i++) {
+                    var  pathImage = '';
+                    if (typeof ratings[i].patientId.image == 'undefined' || !ratings[i].patientId.image)
+                        pathImage = '/images/man.png';
+                    else pathImage = ratings[i].patientId.image;
+                    var shortStar = 0, fullStar = 0, nullStar = 0;
+                    if(ratings[i].star){
+                        shortStar = ratings[i].star % 1;
+                        fullStar = ratings[i].star - shortStar;
+                        nullStar = 5 - fullStar;
+                        if (shortStar>0)
+                            nullStar -= 1;
+                    }
+                %>
+                <div class="comment-part">
+                    <div class="user-img-part">
+                        <div class="user-img">
+                            <img src="<%=pathImage%>">
                         </div>
-                        <div class="comment">
-                            <i aria-hidden="true" class="fa fa-star"></i>
-                            <i aria-hidden="true" class="fa fa-star"></i>
-                            <i aria-hidden="true" class="fa fa-star"></i>
-                            <i aria-hidden="true" class="fa fa-star"></i>
-                            <i aria-hidden="true" class="fa fa-star-o"></i>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco.</p>
+                        <div class="user-text">
+                            <h6><%=ratings[i].timestamp%></h6>
+                            <p><%if(ratings[i].patientId.userName) {%>
+                                    <%=ratings[i].patientId.userName%>
+                                <% } else { %>
+                                    <%=ratings[i].patientId.name%>
+                                <% } %>
+                            </p>
                         </div>
                         <div style="clear: both;"></div>
-                        <hr>
                     </div>
-                    <%}%>
+                    <div class="comment">
+                        <%for(var s = 0; s<fullStar; s++){%>
+                            <i aria-hidden="true" class="fa fa-star"></i>
+                        <% } if (shortStar>0) { %>
+                            <i aria-hidden="true" class="fa fa-star-half-o"></i>
+                        <% } for (var s=0; s<nullStar; s++){ %>
+                            <i aria-hidden="true" class="fa fa-star-o"></i>
+                        <% } %>
+                        <p><%=ratings[i].content%></p>
+                    </div>
+                    <div style="clear: both;"></div>
+                    <hr>
                 </div>
-                <div class="infoAppointment col-md-5 float-right">
-                        <div class="main-section">
-                                <div class="reviews"><h1>Điểm đánh giá</h1></div>
-                                <p>
-                                <div class="average-rating-page">
-                                    <h2>2.5</h2>
-                                    <div class="rating">
-                                        <span class="rating-star" data-value="5"></span>
-                                        <span class="rating-star" data-value="4"></span>
-                                        <span class="rating-star" data-value="3"></span>
-                                        <span class="rating-star" data-value="2"></span>
-                                        <span class="rating-star" data-value="1"></span>
-                                    </div>
-                                </div>
-                                
+                <%}%>
+            </div>
+            <div class="infoAppointment col-md-5 float-right">
+                <div class="main-section">
+                    <div class="reviews"><h1>Điểm đánh giá</h1></div>
+                    <p>
+                    <div class="average-rating-page">
+                        <h2 id="point">2.5</h2>
+                        <div class="rating">
+                            <span class="rating-star" data-value="5"></span>
+                            <span class="rating-star" data-value="4"></span>
+                            <span class="rating-star" data-value="3"></span>
+                            <span class="rating-star" data-value="2"></span>
+                            <span class="rating-star" data-value="1"></span>
                         </div>
-
-                        <form name="">
-									<label for="doctorId">ID Bác sĩ:  <span class="req">*</span></label>
-									<input style="margin-left: 10px;" type="name" name="doctorId" class="txt" tabindex="1" placeholder="USE100000001">
-                                        <label for="patientId">Content:  <span class="req">*</span></label>
-                                        <textarea style="margin-left: 10px;" name="patientId" class="txtarea" tabindex="2" placeholder="tuyet voi"></textarea>
-                                <div class="center" style="margin-left: 70px;">
-                                        <button class="submitbtn" >Accept</button>
-                                </div>
-                        </form>
+                    </div>
+                        
                 </div>
-                <div class="clear"></div>
+
+                <form id="formRate" action="/danh-gia" method="POST">
+                    <label for="doctorId">ID Bác sĩ:  <span class="req">*</span></label>
+                    <input style="margin-left: 10px;" type="name" name="doctorId" class="txt" tabindex="1" value="<%=doctorId%>" readonly>
+                    <input type="hidden" name="star" id="star" value="5">
+                    <label for="patientId">Nội dung:  <span class="req">*</span></label>
+                    <textarea style="margin-left: 10px;" name="content" class="txtarea" tabindex="2" placeholder="Tuyệt vời"></textarea>
+                    <div class="center" style="margin-left: 70px;">
+                        <button class="submitbtn" >Accept</button>
+                    </div>
+                </form>
+            </div>
+            <div class="clear"></div>
         </div>
 
-     <!--
-         Footer
-     -->   
+        <!--
+            Footer
+        -->   
         <footer><% include ../partials/footer %></footer>
 
         <script>
-                $('.rating-star').click(function() {
+            $('.rating-star').click(function() {
                 $(this).parents('.rating').find('.rating-star').removeClass('checked');
                 $(this).addClass('checked');
-                    
-                var submitStars ="Bạn đã bình chọn cho bác sĩ: " + $(this).attr('data-value') +" Sao";
-                alert(submitStars);
+                $('#star').val($(this).attr('data-value'));
+                $('#point').text($(this).attr('data-value') + '.0');
             });
         </script>
 

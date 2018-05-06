@@ -88,3 +88,7 @@ function deletes(id){
         $('#listDoctor').html(data);
     });
 }
+
+function getRating(form){
+    $('#'+form).submit()
+}

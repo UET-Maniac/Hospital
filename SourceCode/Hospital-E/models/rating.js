@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var tools = require('./tools');
 var config = require('../config.json');
-var defaultId = require.defaultId.rating;
+var defaultId = config.defaultId.rating;
 /**
  * Schema đánh giá
  */
@@ -26,26 +26,15 @@ Rating.statics.inserts = function(data, callback){
 	tools.Insert(RatingModel, query, defaultId, data, callback);
 }
 /**
- * Tìm kiếm 1 đánh giá => chưa có tìm kiếm theo tên bác sĩ và tên người đánh giá
- * @param {string} data từ tìm kiếm
- * @param {number} objectType đối tượng gửi yêu cầu 
+ * Lay danh gia
+ * @param {string} data doctorId
  * @param {function} callback hàm callback
  */
-Rating.statics.finds = function(data, objectType, callback){
-	var search = {$regex: '.*' + data + '.*', $options: 'i'};
+Rating.statics.finds = function(data, callback){
 	var query = {
-		$or: [
-			{_id: search},
-			{doctorId: search},
-			{patientId: search}
-		]
+		doctorId: data.doctorId
 	}
-	if (objectType != config.admin)
-		query.active = true;
 	this.find(query)
-		.populate({
-			path: 'doctorId'
-		})
 		.populate({
 			path: 'patientId'
 		})
