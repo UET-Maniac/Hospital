@@ -4,17 +4,6 @@
     if (typeof doctors[i].image == 'undefined' || !doctors[i].image)
         pathImage = '/images/datas/user-default.png';
     else pathImage = doctors[i].image;
-<<<<<<< HEAD
-=======
-    var shortStar = 0, fullStar = 0, nullStar = 0;
-    if(doctors[i].star){
-        shortStar = doctors[i].star % 1;
-        fullStar = doctors[i].star - shortStar;
-        nullStar = 5 - fullStar;
-        if (shortStar>0)
-            nullStar -= 1;
-    }
->>>>>>> c4b62d4ab1694485cc81238d2bed98c12936c275
 %>
     <div class="box_infomation_doctor">
         <div class="img_infomation_doctor col-md-3 float-left">
@@ -362,7 +351,6 @@
                             <button type="button" class="submitbtn" onclick="hideScene('<%=updateId%>')">Cancel</button>
                         </div>
                     </div>
-<<<<<<< HEAD
             </div>
         </div>
         <br><hr><br>
@@ -537,12 +525,5 @@
         </div>	
         <!--END UPDATE-->
 
-=======
-                </form>
-            </div>
-        </div>
-        <!--END UPDATE-->
-        <% } %>
->>>>>>> c4b62d4ab1694485cc81238d2bed98c12936c275
     </div>
 <% } %>
