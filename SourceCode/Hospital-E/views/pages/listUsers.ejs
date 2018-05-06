@@ -26,7 +26,7 @@
                             pathImage = '/images/datas/user-default.png';
                         else pathImage = users[i].image;
                     %>
-                        <tr class="row100">
+                        <tr class="row100" name="<%=users[i].active%>">
                             <td class="column100 column1" data-column="column1"><%=i+1%></td>
                             <td class="column100 column2" data-column="column2"><%=users[i]._id%></td>
                             <td class="column100 column3" data-column="column3" style="width: 300px;"><%=users[i].name%></td>

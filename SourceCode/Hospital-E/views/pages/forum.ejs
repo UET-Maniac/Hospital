@@ -35,21 +35,13 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <% posts.forEach(function(one_post){ %>
                         <tr>
-                            <th scope="row">Xin hỏi bệnh HIV/AIDS có triệu chứng ban đầu như thế nào?</th>
-                            <td>Martin Wieve</td>
-                            <td>10:24 12/12/2017</td>
+                            <td scope="row"><a href="http://localhost:3000/dien-dan/chitiet?id=<%= one_post._id %>" style="color:black; font-size: 16px"><%= one_post.title %></a></td>
+                            <td><%= one_post.authorId %></td>
+                            <td><%= one_post.timestamp %></td>
                         </tr>
-                        <tr>
-                            <th scope="row">Xin hỏi bệnh HIV/AIDS có triệu chứng ban đầu như thế nào?</th>
-                            <td>Martin Wieve</td>
-                            <td>22:34 12/12/2017</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Xin hỏi bệnh HIV/AIDS có triệu chứng ban đầu như thế nào?</th>
-                            <td>Martin Wieve</td>
-                            <td>01:00 12/12/2017</td>
-                        </tr>
+                        <% }); %>
                         </tbody>
                     </table>
                 </div>

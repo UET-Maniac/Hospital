@@ -17,4 +17,5 @@ router.get('/', function(req, res) {
     res.render('pages/index', { objectType: objectType });
 });
 
+
 module.exports = router;

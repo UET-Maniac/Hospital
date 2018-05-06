@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var config = require('../config.json');
+var mongoose = require('mongoose');
 var objectType = config.viewer;
+var Post = require("../models/post");
 
 router.use(function(req, res, next){
 	if(typeof req.objectType !== 'undefined'){
@@ -14,7 +16,27 @@ router.use(function(req, res, next){
 
 /* GET main forum. */
 router.get('/', function(req, res, next) {
-    res.render('pages/forum', {objectType: objectType});
+    Post.find({}, (err, post_data) => {
+        if(err){
+            res.render('pages/error',
+			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
+        }else{
+            post_data_slice = post_data.slice(0, 10);
+            res.render('pages/forum', {posts: post_data_slice, objectType: objectType});
+        }
+    });
+});
+
+router.get('/chitiet', function(req, res, next){
+    console.log(req.query.id);
+    
+    Post.find({_id: req.query.id}, (err, data) => {
+        if(err){
+            res.render('pages/error', { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
+        }else{
+            res.render('pages/content_ask', {one_post: data, objectType: objectType});
+        }
+    });
 });
 
 module.exports = router;

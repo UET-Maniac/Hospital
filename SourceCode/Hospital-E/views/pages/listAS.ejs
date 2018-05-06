@@ -31,14 +31,34 @@
                             pathImage = '/images/datas/user-default.png';
                         else pathImage = appointments[i].doctor[0].image;
                     %>
-                        <tr class="row100">
+                        <tr class="row100" name="<%=appointments[i].active%>" acceptance="<%=appointments[i].acceptance%>">
                             <td class="column100 column1" data-column="column1"><%=i+1%></td>
                             <td class="column100 column2" data-column="column2" style="width: 100px;"><%=appointments[i]._id%></td>
-                            <td class="column100 column3" data-column="column3" style="width: 100px;"><%=appointments[i].patient[0].name%></td>
-                            <td class="column100 column4" data-column="column4" style="width: 100px;"><%=appointments[i].doctor[0].name%></td>
-                            <td class="column100 column5" data-column="column5" style="width: 100px;"><%=appointments[i].time%></td>
-                            <td class="column100 column6" data-column="column6"><%=appointments[i].address%></td>
-                            <td class="column100 column7" data-column="column7"><%=appointments[i].description%></td>
+                            <td class="column100 column3" data-column="column3" style="width: 100px;">
+                                <% if (appointments[i].patient[0].name) { %>
+                                    <%=appointments[i].patient[0].name%>
+                                <% } %>
+                            </td>
+                            <td class="column100 column4" data-column="column4" style="width: 100px;">
+                                <% if (appointments[i].doctor[0].name) { %>
+                                    <%=appointments[i].doctor[0].name%>
+                                <% } %>
+                            </td>
+                            <td class="column100 column5" data-column="column5" style="width: 100px;">
+                                <% if (appointments[i].time) { %>
+                                    <%=appointments[i].time%>
+                                <% } %>
+                            </td>
+                            <td class="column100 column6" data-column="column6">
+                                <% if (appointments[i].address) { %>
+                                    <%=appointments[i].address%>
+                                <% } %>
+                            </td>
+                            <td class="column100 column7" data-column="column7">
+                                <% if (appointments[i].description) { %>
+                                    <%=appointments[i].description%>
+                                <% } %>
+                            </td>
                             <td class="column100 column8" data-column="column8" style="width: 80px;">
                                 <% if(appointments[i].acceptance == true) { %>
                                     Đã chấp nhận
@@ -174,7 +194,7 @@
                                             <span class="icons_text_view">
                                                 <img src="/images/add.png" width="20px">
                                             </span>
-                                            <span class="text_instroduce_view">Lân cuối cập nhật:</span>  <%=appointments[i].timestamp%></div>
+                                            <span class="text_instroduce_view">Lần cuối cập nhật:</span>  <%=appointments[i].timestamp%></div>
                                     <% } %>
                                 </div>
                             </div>

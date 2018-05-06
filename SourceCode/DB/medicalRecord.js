@@ -148,7 +148,7 @@ var arr = [
 
 	{
 		"_id": "REC10000013",
-		"doctorId": "USE1000000008",
+		"doctorId": "USE100000008",
 		"patientId": "USE100000061",
 		"bedNo": "307-1",
 		"theDiagnosis": "Đục thủy tinh thể",

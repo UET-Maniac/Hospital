@@ -44,7 +44,7 @@ var arr = [
 		"name": "Da liễu",
 		"description": "Thực hiện các chăm sóc da",
 		"address": "Khu A5, bệnh viện X",
-		"image": "/images/datasDEP105.jpg",
+		"image": "/images/datas/DEP105.jpg",
 		"foundingOn": new Date('1990-12-02'),
 		"doctorIds": ["USE100000021","USE100000022","USE100000023","USE100000024","USE100000025"]
 	}
