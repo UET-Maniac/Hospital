@@ -110,7 +110,7 @@
 		    <div class="rating-part">
                 <div class="average-rating">    
                     <!--Điểm đánh giá-->
-                    <h2 class="star-value"><% if(doctors[i].star){%><%= doctors[i].star %><% } %>/5</h2>
+                    <h2 class="star-value"><% if(doctors[i].star){%><%= doctors[i].star.toFixed(1) %><% } %>/5</h2>
                     <!--Hiện số sao
                         class:
                             fa fa-star: hiện sao full

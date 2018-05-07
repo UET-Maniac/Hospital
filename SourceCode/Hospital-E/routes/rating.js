@@ -49,6 +49,7 @@ router.route('/')
                 res.render('pages/error',
                     { objectType: objectType, message: 'Lỗi server!', codeError: 500});
             } else{
+                Rating.updateStar();
                 var url = '/danh-gia/' + rating.doctorId;
                 res.redirect(url);
             }

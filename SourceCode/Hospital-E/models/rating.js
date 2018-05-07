@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 var tools = require('./tools');
 var config = require('../config.json');
 var defaultId = config.defaultId.rating;
+var User = require('./user');
 /**
  * Schema đánh giá
  */
@@ -55,6 +56,24 @@ Rating.statics.updates = function(data, callback){
  */
 Rating.statics.deletes = function(data, callback){
 	tools.Delete.call(this, data, callback);
+}
+
+Rating.statics.updateStar = function(){
+	// chua co active
+	var cur = this.aggregate([
+		{ "$group":
+			{ 
+				"_id": "$doctorId", 
+				"starTB": { "$avg": "$star" } 
+			} 
+		}
+	]).exec((err, result)=>{
+		result.forEach(element => {
+			User.update({ "_id": element._id },
+				{ "$set": { "star": element.starTB }})
+				.exec();
+		});
+	});
 }
 /**
  * name, Schema, collection

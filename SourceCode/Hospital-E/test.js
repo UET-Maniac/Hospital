@@ -218,3 +218,20 @@ match['$match']['$or'].push({b: 2},{c: 3})
 console.log(match['$match'])
 
 ///update({},{$set: {active: true, timestamp: new Date()}},{multi: true})
+
+
+// var cur = db.rating.aggregate([ 
+//     { "$group":
+//         { 
+//             "_id": "$doctorId", 
+//             "starTB": { "$avg": "$star" } 
+//         } 
+//     }
+// ]);
+
+// // Iterate through results and update average grade for each truck.
+// while (cur.hasNext()) {
+//     var doc = cur.next();
+//     db.user.update({ "_id": doc._id },
+//                   { "$set": { "star": doc.starTB }});
+// }
