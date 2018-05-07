@@ -53,7 +53,6 @@ User.statics.inserts = function(data, callback){
  * typeFind 0-> admin, 1->doctor, 2->user
  * objectType 0->all (admin), 1->doctor, 2->user
  * chua tim dc neu viet khong dau
- * chua tim duoc neu tim kiem ban ten khoa
  * @param {string} data từ tìm kiếm
  * @param {number} objectType đối tượng gửi yêu cầu
  * @param {number} typeFind đối tượng được tìm kiếm
@@ -61,35 +60,41 @@ User.statics.inserts = function(data, callback){
  */
 User.statics.finds = function(data, objectType, typeFind, callback){
 	var search = {$regex: '.*' + data + '.*', $options: 'i'};
-	var query = {
-		$or: [
-			{_id: search},
-			{name: search},
-			{card: search},
-			{phoneNumber: search},
-			{userName: search}
-		]
+	var lookupDepartment = {
+		$lookup:{
+			from: 'department',
+			localField: 'departmentId',
+			foreignField: '_id',
+			as: 'departmentId'
+		}
 	}
-	if (typeFind != config.admin){
-		query.objectType = typeFind;
+	var match = {
+		$match: {
+			$or: [
+				{_id: search},
+				{name: search},
+				{card: search},
+				{phoneNumber: search},
+				{userName: search},
+				{address: search},
+				{level: search},
+				{experience: search}
+			]
+		}
 	}
 	if (objectType != config.admin){
-		query.active = true;
+		match['$match'].active = true;
+	}
+	if (typeFind != config.admin){
+		match['$match'].objectType = typeFind;
 	}
 	if (typeFind == config.doctor){
-		query['$or'].push(
-			{address: search},
-			{level: search},
-			{experience: search},
-			{departmentId: search}
-		)
+		match['$match']['$or'].push(
+			{'departmentId._id': search},
+			{'departmentId.name': search}
+		);
 	}
-	this.find(query)
-		.sort({_id: 1})
-		.populate({
-			path: 'departmentId'
-		})
-		.exec(callback)
+	this.aggregate([lookupDepartment,match]).sort({_id: 1}).exec(callback);
 }
 /**
  * Cập nhật người dùng

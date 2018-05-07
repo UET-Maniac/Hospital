@@ -41,7 +41,6 @@ router.route('/')
   	.put(function(req, res, next){
 		var data = '';
 		if (req.body.data) data = req.body.data;
-		console.log(data)
 		Doctor.finds(data, objectType, typeFind, (err, doctors) => {
 	  		if (err || !doctors.length){
 				res.render('pages/errorTemplate',

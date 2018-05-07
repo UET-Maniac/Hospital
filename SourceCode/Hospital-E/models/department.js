@@ -13,7 +13,6 @@ var Department = new Schema({
 	address: String,
 	image: String,
 	foundingOn: Date,
-	doctorIds: [{type: String, ref: 'User'}],
     active: Boolean,
     timestamp: Date
 });
@@ -71,25 +70,26 @@ Department.statics.deletes = function(data, callback){
 
 Department.statics.findIncludeWithDoctor = function(data, callback){
 	var search = {$regex: '.*' + data + '.*', $options: 'i'};
-	var query = {
-		$or: [
-			{_id: search},
-			{name: search}
-		],
-		active: true
+	var lookupDoctor = {
+		$lookup:{
+			from: 'user',
+			localField: '_id',
+			foreignField: 'departmentId',
+			as: 'doctorIds'
+		}
 	}
-	DepartmentModel.find(query)
-		.select('_id')
-		.select('name')
-		.select('doctorIds')
-		.exec((err, departments) => {
-			if(err || !departments){
-				callback(err, departments);
-			} else{
-				DepartmentModel.populate(departments, 
-					{path: 'doctorIds', match: {active: true}, select: {'_id': 1, 'name': 1}}, callback)
-			}
-		})
+	var match = {
+		$match: {
+			$or: [
+				{_id: search},
+				{name: search},
+				{address: search}
+			],
+			active: true,
+			'doctorIds.active': true
+		}
+	}
+	this.aggregate([lookupDoctor,match]).sort({_id: 1}).exec(callback);
 }
 /**
  * name, Schema, collection
