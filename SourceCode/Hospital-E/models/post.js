@@ -36,15 +36,32 @@ Post.statics.inserts = function(data, callback){
  */
 Post.statics.finds = function(data, callback){
 	var search = {$regex: '.*' + data + '.*', $options: 'i'};
-	var query = {
-		$or: [
-			{_id: search},
-			// .....
-		]
+	var lookupUser = {
+		$lookup:{
+			from: 'user',
+			localField: 'authId',
+			foreignField: '_id',
+			as: 'auth'
+		}
 	}
-	if (type != config.admin)
-		query.active = true;
-	this.find(query,callback);
+	var match = {
+		$match: {
+			$or: [
+				// {_id: search},
+				// {name: search},
+				// {card: search},
+				// {phoneNumber: search},
+				// {userName: search},
+				// {address: search},
+				// {level: search},
+				// {experience: search}
+			]
+		}
+	}
+	if (objectType != config.admin){
+		match['$match'].active = true;
+	}
+	this.aggregate([lookupUser,match]).sort({_id: 1}).exec(callback);
 }
 /**
  * Cập nhật bài đăng
