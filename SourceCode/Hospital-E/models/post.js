@@ -36,13 +36,13 @@ Post.statics.inserts = function(data, callback){
  */
 Post.statics.finds = function(data, callback){
 	var search = {$regex: '.*' + data + '.*', $options: 'i'};
-<<<<<<< HEAD
+
 	var query = {
 		$or: [
 			{_id: search},
 			{postType: search}
 		]
-=======
+	}
 	var lookupUser = {
 		$lookup:{
 			from: 'user',
@@ -50,7 +50,7 @@ Post.statics.finds = function(data, callback){
 			foreignField: '_id',
 			as: 'auth'
 		}
->>>>>>> eed2d9e185a2f5d28d9a2031f8d5815ece1589e9
+
 	}
 	var match = {
 		$match: {

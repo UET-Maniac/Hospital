@@ -15,39 +15,27 @@ router.post("/", (req, res, next) => {
     var data = {
         userName: req.body.email,
         password: req.body.password,
-<<<<<<< HEAD
-        _id : mongoose.Types.ObjectId(),
-        objectType : 2
-    }
-    
-    User.inserts(account, (err, user)=>{
-        if(err){
-            return console.log(err);
-        }else{
-=======
-        objectType : config.user
+        objectType: 2
     }
     User.inserts(data, (err, user)=>{
         if (err || !user){
             res.render('pages/error',
                 { objectType: config.viewer , message: 'Xảy ra lỗi với server!', codeError: 500});
         } else{
->>>>>>> eed2d9e185a2f5d28d9a2031f8d5815ece1589e9
+
             User.login(user, function(err, user) {
                 if (user && !err) {
                     data._id = user._id;
                     data.objectType = user.objectType;
                     Token.sign(data, (err, token) => {
                         res.cookie('token', token, { expire: new Date() + config.cookieExpires });
-                        // res.setHeader('content-type', 'application/json');
-                        // res.setHeader('Authorization', token);
+                        res.cookie('H-user', user, {exprie: new Date() + config.cookieExpires});
                         data.token = token;
                         User.updateToken(data, (err, result) => {
                             if (err) {
                                 res.render('pages/error',
                                     { objectType: config.viewer , message: 'Xảy ra lỗi với server!', codeError: 500});
                             } else {
-                                // chua thong bao thanh cong dang nhap
                                 res.redirect('/');
                                 res.render("pages/index", {objectType: data.objectType});
                             }
