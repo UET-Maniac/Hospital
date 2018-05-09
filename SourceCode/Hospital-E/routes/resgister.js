@@ -15,6 +15,7 @@ router.post("/", (req, res, next) => {
     var data = {
         userName: req.body.email,
         password: req.body.password,
+<<<<<<< HEAD
         _id : mongoose.Types.ObjectId(),
         objectType : 2
     }
@@ -23,6 +24,15 @@ router.post("/", (req, res, next) => {
         if(err){
             return console.log(err);
         }else{
+=======
+        objectType : config.user
+    }
+    User.inserts(data, (err, user)=>{
+        if (err || !user){
+            res.render('pages/error',
+                { objectType: config.viewer , message: 'Xảy ra lỗi với server!', codeError: 500});
+        } else{
+>>>>>>> eed2d9e185a2f5d28d9a2031f8d5815ece1589e9
             User.login(user, function(err, user) {
                 if (user && !err) {
                     data._id = user._id;
@@ -52,7 +62,8 @@ router.post("/", (req, res, next) => {
                 }
             })
         }
-    });
+    })
+    
 })
  
 
