@@ -39,7 +39,7 @@ Post.statics.finds = function(data, callback){
 	var query = {
 		$or: [
 			{_id: search},
-			// .....
+			{postType: search}
 		]
 	}
 	if (type != config.admin)

@@ -78,7 +78,8 @@ User.statics.finds = function(data, objectType, typeFind, callback){
 				{userName: search},
 				{address: search},
 				{level: search},
-				{experience: search}
+				{experience: search},
+				{token: search}
 			]
 		}
 	}

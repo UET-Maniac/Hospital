@@ -302,7 +302,7 @@ footer {
 }
 
 .block_img_post img {
-    width: 50%;
+    width: 35%;
     float: right;
     padding-top: 10px;
 }
@@ -982,4 +982,32 @@ form .txt:focus:valid, form .txtarea:focus:valid {
 .comment{
 	width:68%;
 	float:right;
+}
+
+
+/*
+    Add_ask.ejs
+*/
+.add_ask{
+    width: 70%;
+    margin: 0px auto;
+    padding: 20px;
+    border: 1px #7d996e dashed;
+}
+
+.add_ask input[type="text"]{
+    width: 65%;
+}
+
+.add_ask span{
+    display: inline-block;
+    width: 30%;
+    font-style: italic;
+    font-size: 20px;
+}
+
+.add_ask input[type=submit]{
+    padding: 5px 10px;
+    display: inline-block;
+    margin-top: 20px;
 }

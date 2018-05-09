@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var config = require('../config.json');
 var objectType = config.viewer;
+var User = require('../models/user');
 
 router.use(function(req, res, next){
 	if(typeof req.objectType !== 'undefined'){
@@ -14,7 +15,14 @@ router.use(function(req, res, next){
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    res.render('pages/index', { objectType: objectType });
+    var user;
+    User.find({token: req.cookies.token}, function(err, user){
+        if(!err){
+            console.log(user);
+            res.render('pages/index', {user: user, objectType: objectType });
+        }
+    });
+    
 });
 
 

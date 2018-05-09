@@ -16,7 +16,7 @@ router.use(function(req, res, next){
 
 /* GET main forum. */
 router.get('/', function(req, res, next) {
-    Post.find({}, (err, post_data) => {
+    Post.find({postType: 1}, (err, post_data) => {
         if(err){
             res.render('pages/error',
 			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
@@ -26,6 +26,11 @@ router.get('/', function(req, res, next) {
         }
     });
 });
+
+router.get('/dat-cau-hoi', (req, res, next) => {
+    res.render("pages/add_ask", {objectType: objectType});
+});
+
 
 router.get('/chitiet', function(req, res, next){
     console.log(req.query.id);

@@ -16,8 +16,9 @@ router.use(function(req, res, next){
 
 /* GET page News */
 router.get('/', function(req, res, next) {
-    Post.find({}, (err, news_data) => {
-        if(err || !news_data.length){
+    //find({postType: 1})
+    Post.find({postType: 0}, (err, news_data) => {
+        if(err){
             res.render('pages/error',
 			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
         }else{
@@ -30,8 +31,8 @@ router.get('/', function(req, res, next) {
 
 router.get('/readmore', function(req, res, next) {
     var number = parseInt(req.query.page);
-    
-    Post.find({}, (err, news_data) => {
+
+    Post.find({postType: 0}, (err, news_data) => {
         if(err){
             res.render('pages/error',
 			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
@@ -45,7 +46,6 @@ router.get('/readmore', function(req, res, next) {
 
 router.get('/chitiet', (req, res, next) => {
     console.log(req.query.id);
-
     Post.find({_id: req.query.id}, (err, data) => {
         if(err){
             res.render('pages/error',
@@ -57,14 +57,5 @@ router.get('/chitiet', (req, res, next) => {
     });
 });
 
-// router.get('/', (req, res, next) => {
-//     Post.find({_id: req.param._id}, (err, a_news) => {
-//         if(err){
-//             res.render('pages/error', { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
-//         }else{
-//             res.send("Heello");
-//         }
-//     });
-// });
 
 module.exports = router;

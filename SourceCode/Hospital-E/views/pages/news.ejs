@@ -24,6 +24,8 @@
                         }
                     });
                 });
+                var content = $('.titiu').html();
+                $(".titiu").html(content.sile(0, 50) + "...");
             });
 </script>
     </head>
@@ -50,10 +52,9 @@
                     <h3 class="teaser_headline"><a href="/tin-tuc/chitiet?id=<%= one_new._id %>"><%= one_new.title %></a></h3>
                     <div class ="block_text_post">
                         <span class="time_post"><%= one_new.timestamp %></span> –
-                        <span><%= one_new.content %></span>
-                        <span class="readmore"><a href="">Read more</a></span>
+                        <span class="titiu"><%= one_new.content %></span>
                     </div>
-                    <div class = "block_img_post"><img src="/images/img_post.jpg"></div>
+                    <div class = "block_img_post"><img width="150px" src="/images/img_post.png"></div>
                 </div>
                 <hr class="clear">
                 <% }); %>

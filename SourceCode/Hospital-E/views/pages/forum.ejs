@@ -22,7 +22,7 @@
             <div class="main_content">
                 <h2 class = "main_name">Diễn đàn</h2>
                 <div>
-                    <button class="btn_add_question"><a>+ Gửi câu hỏi mới</a></button>
+                    <a href="dien-dan/dat-cau-hoi"><button class="btn_add_question">+ Gửi câu hỏi mới</button></a>
                 </div>
                 <hr />
                 <div class="list_question">
@@ -37,8 +37,8 @@
                         <tbody>
                         <% posts.forEach(function(one_post){ %>
                         <tr>
-                            <td scope="row"><a href="http://localhost:3000/dien-dan/chitiet?id=<%= one_post._id %>" style="color:black; font-size: 16px"><%= one_post.title %></a></td>
-                            <td><%= one_post.authorId %></td>
+                            <td scope="row"><a href="http://localhost:3000/dien-dan/chitiet?id=<%= one_post._id %>" style="color:black; font-size: 16px"><%= one_post.content %></a></td>
+                            <td><%= one_post.auth[0].name %></td>
                             <td><%= one_post.timestamp %></td>
                         </tr>
                         <% }); %>
