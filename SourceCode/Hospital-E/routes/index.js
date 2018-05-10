@@ -15,6 +15,7 @@ router.use(function(req, res, next){
 
 /* GET home page. */
 router.get('/', function(req, res) {
+    console.log(req);
     var user;
     User.find({token: req.cookies.token}, function(err, user){
         if(!err){

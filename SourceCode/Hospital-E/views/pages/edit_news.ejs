@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../partials/head %> 
+    </head>
+    <body>
+        <% include ../partials/sidebar %>
+        <header><% include ../partials/header %></header>
+        <div class="body-wrapper">
+            <h2 class = "main_name">Tin Tức >> Tao bai moi</h2>
+            <form action="/tin-tuc/upload" method="post" name="upload" enctype="multipart/form-data">
+                <span>Chinh sua tieu de: </span><input type="text" name="title"/><br />
+                <input type="file" name="fileUpload" /><br />
+                <input type='submit' value='Submit' />
+            </form>
+        </div>
+        <footer><% include ../partials/footer %></footer>
+    </body>
+</html>

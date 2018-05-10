@@ -55,14 +55,14 @@ Post.statics.finds = function(data, callback){
 	var match = {
 		$match: {
 			$or: [
-				// {_id: search},
-				// {name: search},
-				// {card: search},
-				// {phoneNumber: search},
-				// {userName: search},
-				// {address: search},
-				// {level: search},
-				// {experience: search}
+				{_id: search},
+				{name: search},
+				{card: search},
+				{phoneNumber: search},
+				{userName: search},
+				{address: search},
+				{level: search},
+				{experience: search}
 			]
 		}
 	}

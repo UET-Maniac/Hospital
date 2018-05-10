@@ -4,6 +4,7 @@ var config = require('../config.json');
 var mongoose = require('mongoose');
 var objectType = config.viewer;
 var Post = require("../models/post");
+var User = require("../models/user");
 
 router.use(function(req, res, next){
 	if(typeof req.objectType !== 'undefined'){
@@ -21,6 +22,7 @@ router.get('/', function(req, res, next) {
             res.render('pages/error',
 			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
         }else{
+            post_data.reverse();
             post_data_slice = post_data.slice(0, 10);
             res.render('pages/forum', {posts: post_data_slice, objectType: objectType});
         }
@@ -44,4 +46,31 @@ router.get('/chitiet', function(req, res, next){
     });
 });
 
+
+router.get('/process-add', (req, res, next) => {
+    var data = {
+        _id: "NEW" + Number(new Date()),
+        title: req.query.content_ask,
+    }
+
+    User.findOne({token: req.cookies.token}, (err, user)=>{
+        if(err){
+            res.render('pages/error', { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
+        }else{
+            data.authorId = user._id;
+            data.postType = 1;
+            data.active = true;
+            data.timestamp = new Date();
+
+            Post.create(data, (err, save) => {
+                if(err){
+                    res.render('pages/error', { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
+                }else{
+                    res.render('pages/add_ask_success', {objectType: objectType});
+                }
+            })
+        }
+    });
+
+})
 module.exports = router;

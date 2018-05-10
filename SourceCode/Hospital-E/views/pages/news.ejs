@@ -10,6 +10,15 @@
             .main_content button:hover{
                 color: blue;
             }
+            .btn_add_news{
+                padding: 10px;
+                border: 1px solid green;
+                margin: 20px;
+            }
+            .btn_add_news:hover{
+                background-color: #ffffdd;
+                border-color: blue;
+            }
         </style>
         <script type="text/javascript">
             var number_page = 0;
@@ -46,6 +55,11 @@
         <div class="body-wrapper">
             <div class="main_content">
                 <h2 class = "main_name">Tin Tức</h2>
+                <% if(objectType == 1){ %>
+                <div>
+                    <a href="tin-tuc/tao-bai"><button class="btn_add_news">+ Tao bai viet mới</button></a>
+                </div>
+                <% } %>
                 <div id="block_list_news">
                 <% news.forEach(function(one_new){ %>
                 <div class= "block_post">

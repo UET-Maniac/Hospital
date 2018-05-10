@@ -29,7 +29,6 @@ router.post("/", (req, res, next) => {
                     data.objectType = user.objectType;
                     Token.sign(data, (err, token) => {
                         res.cookie('token', token, { expire: new Date() + config.cookieExpires });
-                        res.cookie('H-user', user, {exprie: new Date() + config.cookieExpires});
                         data.token = token;
                         User.updateToken(data, (err, result) => {
                             if (err) {
