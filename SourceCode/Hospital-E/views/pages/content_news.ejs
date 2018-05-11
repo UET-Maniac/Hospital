@@ -10,7 +10,100 @@
             .no-change:hover{
                 color: #ffa;
             }
+
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                padding-top: 100px; /* Location of the box */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            }
+
+            /* Modal Content */
+            .modal-content {
+                background-color: #fefefe;
+                margin: auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%;
+            }
+
+            /* The Close Button */
+            .close {
+                color: #aaaaaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }  
+
         </style>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#btn-like").click(function(){
+                    $.ajax({
+                        type: "GET",
+                        url: "http://localhost:3000/tin-tuc/incrementVote",
+                        data: {
+                            idPost: $("#data-hide").val()
+                        },
+                        success: function(result){
+                            $("#number_vote").html(result);
+                        }
+                    });
+                });
+                $("#btn-dislike").click(function(){
+                    $.ajax({
+                        type: "GET",
+                        url: "http://localhost:3000/tin-tuc/descrementVote",
+                        data: {
+                            idPost: $("#data-hide").val()
+                        },
+                        success: function(result){
+                            $("#number_vote").html(result);
+                        }
+                    });
+                });
+
+                $("#edit-new").attr("href", "/tin-tuc/chinh-sua?id="+$("#data-hide").val());
+                $("#delete-new").attr("href", "/tin-tuc/xoa-bai?id="+$("#data-hide").val());
+
+                //Popup
+                var modal = document.getElementById('myModal');
+
+                // Get the button that opens the modal
+                var btn = document.getElementById("myBtn");
+
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+
+                // When the user clicks the button, open the modal 
+                btn.onclick = function() {
+                    modal.style.display = "block";
+                }
+
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function() {
+                    modal.style.display = "none";
+                }
+                
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            });
+        </script>
     </head>
     <body>
     <!--
@@ -26,6 +119,7 @@
     <!--
         Body
     -->
+        <input type="hidden" id="data-hide" value="<%= one_new._id %>" />
         <div class="body-wrapper">
             <div class="main_content">
                 <h2 class = "main_name"><a class="no-change" href="http://localhost:3000/tin-tuc">Tin Tức</a> >> <%= one_new.title %></h2>
@@ -60,6 +154,30 @@
                 Clear Float
             -->
             <div class="clear"></div>
+            <% if(own == true){ %>
+                <button class="btn-normal" id="btn-edit"><a id="edit-new" href="">Chinh sua</a></button>
+                <button class="btn-normal" id="myBtn">Xoa bai</button>
+                <div id="myModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div>
+                            <span style="color: red">Ban thuc su muon xoa bai viet</span><br />
+                            <button><a id="delete-new" href="" style="color: black; font-size: 20px;">Xac nhan xoa</button>
+                        </div>
+                    </div>
+
+                </div>
+            <% }else{ %>
+                <% if(one_new.like == undefined) { %>
+                <span id="number_vote" class="number_vote"><img width="40px" src="/images/icons/like.png" />0</span>
+                <% }else{ %>
+                <span id="number_vote" class="number_vote"><img width="40px" src="/images/icons/like.png" /><%= one_new.like %></span>
+                <% } %>
+                <button class="btn-vote" id="btn-like">Like</button>
+                <button class="btn-vote" id="btn-dislike">Unlike</button>
+            <% } %>
         </div>
 
      <!--

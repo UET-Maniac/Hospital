@@ -1031,3 +1031,111 @@ button#change_password{
     border-radius: 3px;
     padding: 2px 4px;
 }
+
+/*
+* Content_ask
+*/
+
+.content-news{
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid gray;
+}
+
+.content-news p{
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.content-news span{
+    font-style: italic;
+}
+
+.bind-width{
+    font-weight: bold;
+    color: orange;
+    border-bottom: 3px solid orange;
+}
+
+.comment-news{
+    margin-left: 10px;
+    margin-right: 10px; 
+}
+
+.form-comment{
+    margin: 10px;
+}
+
+#btn-comment-news{
+    color: black; 
+    padding: 4px 10px; 
+    border: 2px solid gray;
+}
+#btn-comment-news:hover{
+    color: #121212;
+    background-color: #f0f0f0;
+}
+
+
+.list-comment .one-comment{
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid #ffffba;
+    box-shadow: 1px 1px 1px #fffaaa;
+}
+
+.list-comment .one-comment .u-content{
+    padding-left: 40px;
+}
+/*
+* end content_ask
+*/
+
+
+.number_vote{
+    margin-left: 40px;
+    font-size: 40px;
+}
+
+#btn-like{
+    margin-left: 20px;
+    border: 2px solid green;
+    display: inline-block;
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+    font-weight: bold;
+    color: red;
+}
+#btn-like:hover{
+    background-color: #7d996e;
+}
+#btn-dislike{
+    margin-left: 20px;
+    border: 2px solid violet;
+    display: inline-block;
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+    font-weight: bold;
+    color: brown;
+}
+#btn-dislike:hover{
+    background-color: gray;
+}
+
+
+.btn-normal{
+    color: black;
+    border: 1px solid black;
+    width: 150px;
+    padding: 3px 6px;
+}
+.btn-normal a{
+    color: black;
+}
+.btn-normal:hover{
+    color: #00000f;
+    background-color: #ffffba;
+}

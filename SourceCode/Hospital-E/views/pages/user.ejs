@@ -52,6 +52,8 @@
             </div>
             <div class="float-right col-md-9">
                 <form action="/ho-so/tai-khoan/update" method="get">
+                    <span class="col-width-4">ID tai khoan: </span>
+                    <input class="width-4" type="text" disabled value="<%= user._id %>" />
                     <span class="col-width-4">Ho ten:</span>
                     <% if(user.name != undefined) { %>
                         <input class="width-4" type="text" value="<%= user.name %>" name="name" /><br />

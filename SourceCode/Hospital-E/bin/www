@@ -7,7 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('hospital-e:server');
 var http = require('http');
-
+var Post = require('../models/post');
 /**
  * Get port from environment and store in Express.
  */
@@ -32,10 +32,28 @@ io.on('connection', function (socket) {
 
   socket.on('client-send-comment-new', function(data){
     //Save data in here
-    
+    var data_to_db = {
+      _id: "COM" + Number(new Date()),
+      title: data.message,
+      authorId: data.userId,
+      active: true
+    }
+    Post.findOne({_id: data.postId}, (err, one_post) => {
+      one_post.subPostIds.push(data_to_db);
+      one_post.save(function(err, updatePost){
+        if(err)
+          return handleError(err);
+      });
+    });
     var data_send = {
-      name: "Duc thanh chua troi",
-      message: data.message
+      name: data.author,
+      message: data.message,
+      kind: ""
+    }
+    if(data.authority == 2){
+      data_send.kind = "Nguoi dung";
+    }else{
+      data_send.kind = "Bac si";
     }
     io.sockets.emit("server-send-comment-new", data_send);
   });

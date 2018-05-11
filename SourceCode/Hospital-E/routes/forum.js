@@ -17,17 +17,31 @@ router.use(function(req, res, next){
 
 /* GET main forum. */
 router.get('/', function(req, res, next) {
-    Post.find({postType: 1}, (err, post_data) => {
-        if(err){
-            res.render('pages/error',
-			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
-        }else{
-            post_data.reverse();
-            post_data_slice = post_data.slice(0, 10);
-            res.render('pages/forum', {posts: post_data_slice, objectType: objectType});
-        }
-    });
+    Post.find({postType: 1})
+        .populate('authorId')
+        .exec(function(err, data){
+            if(err)
+                return handleError(err);
+            console.log(data);
+            data.reverse();
+            data = data.slice(0, 20);
+            res.render('pages/forum', {posts: data, objectType: objectType});
+        });
 });
+
+// router.get('/', function(req, res, next) {
+//     Post.find({postType: 1}, (err, post_data) => {
+//         if(err){
+//             res.render('pages/error',
+// 			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
+//         }else{
+//             post_data.reverse();
+//             post_data_slice = post_data.slice(0, 20);
+//             console.log(post_data_slice);
+//             res.render('pages/forum', {posts: post_data_slice, objectType: objectType});
+//         }
+//     });
+// });
 
 router.get('/dat-cau-hoi', (req, res, next) => {
     res.render("pages/add_ask", {objectType: objectType});
@@ -35,16 +49,21 @@ router.get('/dat-cau-hoi', (req, res, next) => {
 
 
 router.get('/chitiet', function(req, res, next){
-    console.log(req.query.id);
-    
-    Post.find({_id: req.query.id}, (err, data) => {
-        if(err){
-            res.render('pages/error', { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
-        }else{
+    Post.findOne({_id: req.query.id})
+        .populate('authorId')
+        .exec(function(err, data){
+            if(err)
+                return handleError(err);
             console.log(data);
-            res.render('pages/content_ask', {one_post: data[0], objectType: objectType});
-        }
-    });
+            User.findOne({token: req.cookies.token}, (err, user)=>{
+                if(err)
+                    return handleError(err);
+
+                res.render('pages/content_ask', {one_post: data, user: user, objectType: objectType});
+            });
+            
+        });
+    
 });
 
 

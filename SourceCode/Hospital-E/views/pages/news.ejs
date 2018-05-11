@@ -33,8 +33,13 @@
                         }
                     });
                 });
-                var content = $('.titiu').html();
-                $(".titiu").html(content.sile(0, 50) + "...");
+                var obj_content = document.getElementsByClassName("titiu");
+                for(var i = 0; i < obj_content.length; i++){
+                    //console.log(obj_content[i].innerHTML);
+                    //var content = new String()
+                    obj_content[i].innerHTML = obj_content[i].innerHTML.slice(0, 60) + "...";
+                }
+                //$(".titiu").html($('.titiu').html().slice(0, 60) + "...");
             });
 </script>
     </head>
@@ -95,6 +100,7 @@
                 Clear Float
             -->
             <div class="clear"></div>
+            
         </div>
 
      <!--

@@ -7,10 +7,12 @@
         <% include ../partials/sidebar %>
         <header><% include ../partials/header %></header>
         <div class="body-wrapper">
-            <h2 class = "main_name">Tin Tức >> Tao bai moi</h2>
-            <form action="/tin-tuc/upload" method="post" name="upload" enctype="multipart/form-data">
-                <span>Tieu de bai viet: </span><input type="text" name="title" placeholder="Tieu de cho bai viet"/><br />
-                <span>Tai len bai viet:</span><br />
+            <h2 class = "main_name">Tin Tức >> Chinh sua bai viet</h2>
+            
+            <form action="/tin-tuc/updateNews" method="post" name="upload" enctype="multipart/form-data">
+                <span>+) Id bai viet: </span><input type="text" name="id" value="<%= one_new._id %>" readonly /><br />
+                <span>+) Tieu de bai viet: </span><input type="text" name="title" value="<%= one_new.title %>" /><br />
+                <span>+) Tai len bai viet da chinh sua: </span><br />
                 <input type="file" name="fileUpload" /><br />
                 <input type='submit' value='Submit' />
             </form>
