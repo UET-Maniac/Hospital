@@ -55,8 +55,7 @@ router.get('/chitiet', (req, res, next) => {
             res.render('pages/error',
 			        { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
         }else{
-            console.log(data);
-            res.render('pages/content_news', {one_new: data, objectType: objectType});
+            res.render('pages/content_news', {one_new: data[0], objectType: objectType});
         }
     });
 });

@@ -1011,3 +1011,23 @@ form .txt:focus:valid, form .txtarea:focus:valid {
     display: inline-block;
     margin-top: 20px;
 }
+
+
+.col-width-4{
+    display: inline-block;
+    width: 30%;
+    margin-top: 10px;
+}
+
+.width-4{
+    width: 40%;
+}
+
+button#change_password{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: red;
+    border: 2px solid gray;
+    border-radius: 3px;
+    padding: 2px 4px;
+}

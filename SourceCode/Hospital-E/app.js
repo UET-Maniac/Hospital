@@ -32,7 +32,7 @@ var forumRouter = require('./routes/forum');
 var newsRouter = require("./routes/news");
 var ratingRouter = require("./routes/rating");
 var userRouter = require("./routes/user");
-
+var produceRouter = require("./routes/produce");
 //End import routes
 
 var middlewareToken = require('./middlewares/token');
@@ -74,6 +74,7 @@ app.use('/dien-dan', middlewareToken, forumRouter);
 app.use('/tin-tuc', middlewareToken, newsRouter);
 app.use('/danh-gia', middlewareToken, ratingRouter);
 app.use('/thong-tin-nguoi-dung', middlewareToken, userRouter);
+app.use('/gioi-thieu', middlewareToken, produceRouter);
 //end routes
 
 // nếu dùng middleware cho tất cả lại sai????

@@ -2,7 +2,29 @@
 <html lang="en">
     <head>
         <% include ../partials/head %> 
-      
+        <script>
+        $(document).ready(function(){
+            var date = new Date($("#birthday").attr("value"));
+            var month = date.getMonth() + 1;
+            var month_str = month;
+            if(month < 10){
+                month_str = "0" + month;
+            }
+            var date_text = date.getFullYear() + "-" + month_str + "-" + date.getDate();
+            $("#birthday").attr("value", date_text);
+        });
+        </script>
+        <style>
+            .mes-comp{
+                color: green;
+                font-size: 20px;
+                font-style: italic;
+                border: 1px solid green;
+                padding: 3px;
+                margin: 10px auto;
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
     <!--
@@ -19,12 +41,64 @@
     <!--
         Body
     -->
-
     <div class="body-wrapper">
-        asd
+        <h2 class = "main_name">Tai khoan</h2>
+        <% if(com.com != undefined){ %>
+        <div class="mes-comp">Tai khoan da duoc cap nhap thong tin thanh cong</div>
+        <% } %>
+        <div class="infor-user">
+            <div class="float-left col-md-3">
+                <img src="/images/icons/user.jpg" />
+            </div>
+            <div class="float-right col-md-9">
+                <form action="/ho-so/tai-khoan/update" method="get">
+                    <span class="col-width-4">Ho ten:</span>
+                    <% if(user.name != undefined) { %>
+                        <input class="width-4" type="text" value="<%= user.name %>" name="name" /><br />
+                    <% }else{ %>
+                        <input class="width-4" type="text" value="" name="name" placeholder="Chua co thong tin" /><br />
+                    <% } %>
+                    <span class="col-width-4">So CMND:</span>
+                    <% if(user.card != undefined){ %>
+                        <input class="width-4" type="text" value="<%= user.card %>" name="card"/><br />
+                    <% }else{ %>
+                        <input class="width-4" type="text" value="" placeholder="Chua co thong tin" name="card"/><br />
+                    <% } %>
+                    <span class="col-width-4">So dien thoai:</span>
+                    <% if(user.phoneNumber != undefined){ %>
+                        <input class="width-4" type="text" value="<%= user.phoneNumber %>" name="phoneNumber"/><br />
+                    <% }else{ %>
+                        <input class="width-4" type="text" value="" placeholder="Chua co thong tin" name="phoneNumber"/><br />
+                    <% } %>
+                    <span class="col-width-4">Ngay sinh:</span>
+                    <% if(user.birthday != undefined){ %>
+                    <input type="date" id="birthday" value="<%= user.birthday %>" value_raw="<%= user.birthday %>" name="birthday"/><br />
+                    <% }else{ %>
+                        <input type="date" id="birthday" value="" placeholder="Chua co thong tin" name="birthday"/><br />
+                    <% } %>
+                    <span class="col-width-4">Gioi tinh:</span>
+                    <% if(user.sex != 1){ %>
+                        <input type="radio" value="male" name="sex" checked />Nam
+                        <input type="radio" value="female" name="sex"/>Nu<br />
+                    <% }else{ %>
+                        <input type="radio" value="male" name="sex" />Nam
+                        <input type="radio" value="female" name="sex" checked />Nu<br />
+                    <% } %>
+                    <span class="col-width-4">Dia chi:</span>
+                    <% if(user.address != undefined) { %>
+                        <input class="width-4" type="text" value="<%= user.address %>" name="address"/><br />
+                    <% }else{ %>
+                    <input class="width-4" type="text" value="" placeholder="Chua co thong tin" name="address"/><br />
+                    <% } %>
+                        <span class="col-width-4">Email:</span>
+                    <input class="width-4" type="text" value="<%= user.userName %>" name="userName"/><br />
+                    <input type="submit" value="Cap nhat thong tin" />
+                </form>
+                <button id="change_password">Thay doi mat khau</button>
+            </div>
+            <div class="clear"></div>
+        </div>
     </div>>
-
-
 
 
 

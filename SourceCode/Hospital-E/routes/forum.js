@@ -41,7 +41,8 @@ router.get('/chitiet', function(req, res, next){
         if(err){
             res.render('pages/error', { objectType: config.viewer, message: 'Không tìm thấy dữ liệu phù hợp!', codeError: 404});
         }else{
-            res.render('pages/content_ask', {one_post: data, objectType: objectType});
+            console.log(data);
+            res.render('pages/content_ask', {one_post: data[0], objectType: objectType});
         }
     });
 });
