@@ -178,6 +178,13 @@
                                             <img src="/images/add.png" width="20px">
                                         </span>
                                         <span class="text_instroduce_view">Họ tên người đặt:</span>  <%=appointments[i].patient[0].name%></div>
+                                    <% if(appointments[i].patient[0].phoneNumber) { %>
+                                        <div class="introduce_view" name="" >
+                                            <span class="icons_text_view">
+                                                <img src="/images/add.png" width="20px">
+                                            </span>
+                                            <span class="text_instroduce_view">Số điện thoại người đặt:</span>  <%=appointments[i].patient[0].phoneNumber%></div>
+                                    <% } %>
                                     <% if(objectType == 0) { %>
                                         <div class="introduce_view" name="" >
                                             <span class="icons_text_view">
