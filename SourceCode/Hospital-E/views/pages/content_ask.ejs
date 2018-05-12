@@ -54,14 +54,26 @@
                 <span class="meta-news">(<%= one_post.authorId.name %> - <%= one_post.timestamp %>)</span>
             </div>
             <input type="hidden" id="getAuthor" value="<%= user.name %>" authority="<%= objectType %>" userId="<%= user._id %>" postId="<%= one_post._id %>" />
+            <% if(objectType != 3){ %>
             <div class="bind-width">Khung tra loi</div>
             <div class="comment-news">
                 <div class="form-comment">
                         <textarea id="text-comment" rows="2" cols="50" placeholder="Viet cau tra loi tai day"></textarea>
                         <button id="btn-comment-news" value="Post">Binh luan</button>
                 </div>
+            <% }else{ %>
+                <div>Ban can <a style="color: blue; text-decoration: underline;" href="/dang-nhap">dang nhap</a> hoac <a style="color: blue; text-decoration: underline;" href="/dang-ky">dang ki</a> neu chua co tai khoan de su dung chuc nang binh luan cho cau hoi</div>
+            <% } %>
+                
                 <div class="list-comment" id="list-comment">
+                    <% for(var i = one_post.subPostIds.length - 1; i >= 0; i--){ %>
                     <div class="one-comment">
+                        <span class="icon"><img width="80px" src="/images/icons/user.jpg" />
+                        <span class="name"><%= one_post.subPostIds[i].authorId.name %></span><br />
+                        <span class="u-content"><%= one_post.subPostIds[i].title %></span>
+                    </div>
+                    <% } %>
+                <!--    <div class="one-comment">
                         <span class="icon"><img width="80px" src="/images/icons/user.jpg" />
                         <span class="name">Bac si: Thu chu linh</span><br />
                         <span class="u-content">Cam on bac si</span>
@@ -70,8 +82,9 @@
                         <span class="icon"><img width="80px" src="/images/icons/user.jpg" />
                         <span class="name">Thu chu linh</span><br />
                         <span class="u-content">Cam on bac si</span>
-                    </div>
+                    </div> -->
                 </div>
+                
             </div>
         </div>
         

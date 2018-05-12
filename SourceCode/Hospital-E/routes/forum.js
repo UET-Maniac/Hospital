@@ -50,11 +50,15 @@ router.get('/dat-cau-hoi', (req, res, next) => {
 
 router.get('/chitiet', function(req, res, next){
     Post.findOne({_id: req.query.id})
-        .populate('authorId')
+        .populate([{path: 'authorId'}, {path: 'subPostIds', populate: {path: 'authorId', select: 'name'}}])
         .exec(function(err, data){
             if(err)
                 return handleError(err);
-            console.log(data);
+            // console.log(data);
+            // console.log(data.subPostIds.length);
+             for(var i = 0; i < data.subPostIds.length; i++){
+                 console.log(data.subPostIds[i]);
+             }
             User.findOne({token: req.cookies.token}, (err, user)=>{
                 if(err)
                     return handleError(err);

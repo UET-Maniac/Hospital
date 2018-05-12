@@ -38,13 +38,18 @@ io.on('connection', function (socket) {
       authorId: data.userId,
       active: true
     }
-    Post.findOne({_id: data.postId}, (err, one_post) => {
-      one_post.subPostIds.push(data_to_db);
-      one_post.save(function(err, updatePost){
-        if(err)
-          return handleError(err);
+
+    Post.create(data_to_db, (err, saved_post) => {
+      if(err) return handleError(err);
+      Post.findOne({_id: data.postId}, (err, one_post) => {
+        if(err) return handleError(err);
+        one_post.subPostIds.push(data_to_db);
+        one_post.save(function(err0, updatePost){
+          if(err) return handleError(err);
+        });
       });
     });
+
     var data_send = {
       name: data.author,
       message: data.message,
@@ -55,6 +60,7 @@ io.on('connection', function (socket) {
     }else{
       data_send.kind = "Bac si";
     }
+    console.log("render comment");
     io.sockets.emit("server-send-comment-new", data_send);
   });
 });
