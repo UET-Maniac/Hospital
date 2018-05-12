@@ -13,13 +13,13 @@ router.use(function(req, res, next){
     next();  
 })
 
-function checkUser(req, res, next){
+router.use(function (req, res, next){
 	if(objectType != config.admin && objectType != config.doctor){
         return  res.render('pages/error',
 			{ objectType: objectType, message: 'Không có quyền truy cập!', codeError: 401});
     } 
     next();  
-}
+})
 
 router.route('/')
     .get(function(req, res, next){
@@ -31,13 +31,10 @@ router.route('/')
             } else{
                 res.render('pages/recordPatient', 
                     {medicalRecords: medicalRecords, objectType: objectType});
-                // medicalRecords.forEach(element => {
-                //     console.log(element)
-                // });
             }
         })
     })
-    .put(checkUser, function(req, res, next){
+    .put(function(req, res, next){
         var data = '';
         if (req.body.data) data = req.body.data;
         var idObjectType = req.auth.data._id;
