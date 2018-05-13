@@ -50,7 +50,7 @@
         <div class="body-wrapper">
             <h2 class = "main_name"><a class="no-change" href="http://localhost:3000/dien-dan">Dien dan</a> >> <%= one_post.title %></h2>
             <div class="content-news">
-                <p class="title-news"><%= one_post.title %></p>
+                <p class="title-news"><%= one_post.content %></p>
                 <span class="meta-news">(<%= one_post.authorId.name %> - <%= one_post.timestamp %>)</span>
             </div>
             <input type="hidden" id="getAuthor" value="<%= user.name %>" authority="<%= objectType %>" userId="<%= user._id %>" postId="<%= one_post._id %>" />
@@ -70,7 +70,7 @@
                     <div class="one-comment">
                         <span class="icon"><img width="80px" src="/images/icons/user.jpg" />
                         <span class="name"><%= one_post.subPostIds[i].authorId.name %></span><br />
-                        <span class="u-content"><%= one_post.subPostIds[i].title %></span>
+                        <span class="u-content"><%= one_post.subPostIds[i].content %></span>
                     </div>
                     <% } %>
                 <!--    <div class="one-comment">

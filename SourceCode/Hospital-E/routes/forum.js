@@ -74,7 +74,7 @@ router.get('/chitiet', function(req, res, next){
 router.get('/process-add', (req, res, next) => {
     var data = {
         _id: "NEW" + Number(new Date()),
-        title: req.query.content_ask,
+        content: req.query.content_ask,
     }
 
     User.findOne({token: req.cookies.token}, (err, user)=>{

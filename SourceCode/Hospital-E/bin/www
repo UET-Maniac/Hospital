@@ -34,7 +34,7 @@ io.on('connection', function (socket) {
     //Save data in here
     var data_to_db = {
       _id: "COM" + Number(new Date()),
-      title: data.message,
+      content: data.message,
       authorId: data.userId,
       active: true
     }
